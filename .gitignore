@@ -2,3 +2,5 @@
 **/_out
 *.pdf
 *.synctex.gz
+*.bib.bak
+*.bib.sav
