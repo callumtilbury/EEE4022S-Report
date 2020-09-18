@@ -3,6 +3,7 @@
 % ----------------------------------------------------
 \documentclass[class=report,11pt,crop=false]{standalone}
 \input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
 \begin{document}
 % ----------------------------------------------------
 \chapter{Introduction}
@@ -10,7 +11,7 @@
     {\emph{Benjamin Franklin}}
 % ----------------------------------------------------
 
-This report describes an investigation done into using Digital Audio Broadcasting (DAB) signals for Passive Radar. Much of the report focuses on the DAB standard, and the algorithms used for modulating and demodulating such signals. Some basic tests are then done, integrating the processed DAB signals into various Passive Radar processing algorithms.
+This report describes an investigation done into using Digital Audio Broadcasting (DAB) signals for Passive Radar. Much of the report focuses on the \acrfull{dab} standard, and the algorithms used for modulating and demodulating such signals. Some basic tests are then done, integrating the processed \acrshort{dab} signals into various Passive Radar processing algorithms.
 
 \section{Background}
 Passive radar has been around for as long as radar itself. Though it garnered some initial interest in the 1950s, the topic remained was neglected in favour of active radar systems. However, in recent decades there has been fresh excitement surrounding the field, for a host of reasons.
@@ -47,6 +48,7 @@ This report begins in Chapter ( ) with a broad but brief literature review, look
 % ----------------------------------------------------
 \ifstandalone
 \bibliography{../Bibliography/References.bib}
+\printnoidxglossary[type=\acronymtype]
 \fi
 \end{document}
 % ----------------------------------------------------

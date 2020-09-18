@@ -2,6 +2,8 @@
 \input{Style/ChapterStyle.tex}
 \usepackage{standalone} % Best loaded last in the preamble
 
+\input{FrontMatter/Glossary.tex}
+
 \begin{document}
 
 \pagenumbering{roman}
@@ -11,6 +13,9 @@
 \input{FrontMatter/Abstract.tex}
 
 \tableofcontents
+\newpage
+
+\printnoidxglossary[type=\acronymtype]
 \newpage
 
 \pagenumbering{arabic}
