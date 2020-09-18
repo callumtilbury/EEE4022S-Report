@@ -3,6 +3,7 @@
 % ----------------------------------------------------
 \documentclass[class=report,11pt,crop=false]{standalone}
 \input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
 \begin{document}
 % ----------------------------------------------------
 \chapter{Literature Review}
@@ -37,7 +38,7 @@
 % ----------------------------------------------------
 \ifstandalone
 \bibliography{../Bibliography/References.bib}
-\printnoidxglossary[type=\acronymtype]
+\printnoidxglossary[type=\acronymtype,nonumberlist]
 \fi
 \end{document}
 % ----------------------------------------------------

@@ -3,11 +3,12 @@
 % ----------------------------------------------------
 \documentclass[class=report,11pt,crop=false]{standalone}
 \input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
 \begin{document}
 % ----------------------------------------------------
 \chapter{Passive Radar Integration}
-\epigraph{Quote}%
-    {\emph{Author}}
+\epigraph{If you wish to make an apple pie from scratch, you must first invent the universe.}%
+    {\emph{Carl Sagan}}
 % ----------------------------------------------------
 
 \section{Overview}
@@ -39,7 +40,7 @@
 % ----------------------------------------------------
 \ifstandalone
 \bibliography{../Bibliography/References.bib}
-\printnoidxglossary[type=\acronymtype]
+\printnoidxglossary[type=\acronymtype,nonumberlist]
 \fi
 \end{document}
 % ----------------------------------------------------

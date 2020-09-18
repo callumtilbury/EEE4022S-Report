@@ -3,11 +3,12 @@
 % ----------------------------------------------------
 \documentclass[class=report,11pt,crop=false]{standalone}
 \input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
 \begin{document}
 % ----------------------------------------------------
 \chapter{Digital Audio Broadcasting: Standard}
-\epigraph{Quote}%
-{Author}
+\epigraph{Where the waters do agree, it is quite wonderful the relief they give.}%
+{\emph{Jane Austen, Emma}}
 % ----------------------------------------------------
 
 \section{Overview}
@@ -48,7 +49,7 @@ The Digital Audio Broadcasting standard~\cite{dabstandard}.
 % ----------------------------------------------------
 \ifstandalone
 \bibliography{../Bibliography/References.bib}
-\printnoidxglossary[type=\acronymtype]
+\printnoidxglossary[type=\acronymtype,nonumberlist]
 \fi
 \end{document}
 % ----------------------------------------------------

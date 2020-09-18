@@ -3,11 +3,12 @@
 % ----------------------------------------------------
 \documentclass[class=report,11pt,crop=false]{standalone}
 \input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
 \begin{document}
 % ----------------------------------------------------
 \chapter{Digital Audio Broadcasting: Processing}
-\epigraph{Quote}%
-    {\emph{Author}}
+\epigraph{Nobody can build you the bridge over which you must cross the river of life, nobody but you alone.}%
+    {\emph{Friedrich Nietzsche}}
 % ----------------------------------------------------
 
 \section{Overview}
@@ -49,7 +50,7 @@
 % ----------------------------------------------------
 \ifstandalone
 \bibliography{../Bibliography/References.bib}
-\printnoidxglossary[type=\acronymtype]
+\printnoidxglossary[type=\acronymtype,nonumberlist]
 \fi
 \end{document}
 % ----------------------------------------------------

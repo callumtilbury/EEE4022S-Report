@@ -3,11 +3,12 @@
 % ----------------------------------------------------
 \documentclass[class=report,11pt,crop=false]{standalone}
 \input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
 \begin{document}
 % ----------------------------------------------------
 \chapter{Conclusions}
-\epigraph{Quote}%
-    {\emph{Author}}
+\epigraph{The same rule holds for us now, of course: we choose our next world through what we learn in this one. Learn nothing, and the next world is the same as this one.}%
+    {\emph{Richard Bach, Jonathan Livingston Seagull}}
 % ----------------------------------------------------
 
 \blindtext
@@ -20,7 +21,7 @@
 % ----------------------------------------------------
 \ifstandalone
 \bibliography{../Bibliography/References.bib}
-\printnoidxglossary[type=\acronymtype]
+\printnoidxglossary[type=\acronymtype,nonumberlist]
 \fi
 \end{document}
 % ----------------------------------------------------
