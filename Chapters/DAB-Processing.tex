@@ -13,39 +13,44 @@
 
 \section{Overview}
 
-\blindmathpaper
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{BD_Overview_All.pdf}
+    \caption{Block diagram showing entire DAB processing chain}
+    \label{fig:BD_Overview_All}
+\end{figure}
+
+\section{Pre-processing}
+\subsection{Reading IQ data from file}
+\subsection{Resampling IQ data}
+\subsection{Frame Synchronization via Phase Reference Symbol}
+\subsection{Frame Extraction}
 
 \section{Demodulation}
-\blindmathpaper
-
 \subsection{Overview}
-\subsection{Frame Synchronization}
-\blindmathpaper
-\subsection{Symbol Synchronization}
-\blindmathpaper
-\subsection{OFDM Symbol Extraction}
-\blindmathpaper
-\subsection{Frequency De-interleaving}
-\blindmathpaper
-\subsection{Differential Phase Demodulation}
-\blindmathpaper
-\subsection{Error Correction Methods}
-\blindmathpaper
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{BD_Demod_All.pdf}
+    \caption{Block diagram showing entire DAB demodulation processing chain}
+    \label{fig:BD_Demod_All}
+\end{figure}
+
+\subsection{Block Unpacking}
+\subsection{OFDM Demultiplexing}
+\subsection{DQPSK Extraction}
+\subsection{Frequency Deinterleaving}
+\subsection{DQPSK Snapping}
+\subsection{Error Correction}
 
 \section{Re-modulation}
 \subsection{Overview}
-\subsection{Differential Phase Modulation}
-\blindmathpaper
 \subsection{Frequency Interleaving}
-\blindmathpaper
-\subsection{OFDM Symbol Creation}
-\blindmathpaper
-\subsection{Guard Interval Insertion}
-\blindmathpaper
+\subsection{DQPSK Building}
+\subsection{OFDM Multiplexing}
+\subsection{Block Packing}
 
 \section{Summary}
-\blindtext
 
 % ----------------------------------------------------
 \ifstandalone
