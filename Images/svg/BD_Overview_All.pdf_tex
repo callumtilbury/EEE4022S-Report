@@ -1,0 +1,87 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'BD_Overview_All.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1855.30584879bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.38983603)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{BD_Overview_All.pdf}}%
+    \put(0.19279354,0.18668023){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}symbols\\unpack\end{tabular}}}}%
+    \put(0.31361059,0.18729546){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}ofdm\\demux\end{tabular}}}}%
+    \put(0.43460811,0.18791916){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}dqpsk\\extract\end{tabular}}}}%
+    \put(0.55450578,0.18629896){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}freq\\deinterleave\end{tabular}}}}%
+    \put(0.6744622,0.18789095){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}dqpsk\\snap\end{tabular}}}}%
+    \put(0.79604626,0.18667179){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}error\\correct\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{BD_Overview_All.pdf}}%
+    \put(0.3163233,0.0475809){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}freq\\interleave\end{tabular}}}}%
+    \put(0.43604486,0.04813793){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}dqpsk\\build\end{tabular}}}}%
+    \put(0.55704236,0.04811655){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}ofdm\\mux\end{tabular}}}}%
+    \put(0.67763672,0.04759657){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}symbols\\pack\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{BD_Overview_All.pdf}}%
+    \put(0.23688319,0.09118743){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}remodulate\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{BD_Overview_All.pdf}}%
+    \put(0.11843273,0.2267436){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}demodulate\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{BD_Overview_All.pdf}}%
+    \put(0.31272502,0.32187532){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}iq\\read\end{tabular}}}}%
+    \put(0.43321887,0.32320469){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}iq\\resample\end{tabular}}}}%
+    \put(0.55330408,0.35055206){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}prs\\detect\end{tabular}}}}%
+    \put(0.67481069,0.32266333){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}frame\\extract\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{BD_Overview_All.pdf}}%
+    \put(0.23405723,0.3662542){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}pre-processing\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{BD_Overview_All.pdf}}%
+    \put(-0.00092705,0.17990275){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_frame\end{tabular}}}}%
+    \put(0.08078632,0.31583499){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_recording\end{tabular}}}}%
+    \put(0.93051585,0.17990275){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_data\end{tabular}}}}%
+    \put(0.81543684,0.31660733){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_frame\end{tabular}}}}%
+    \put(0.13191398,0.04088116){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_data\end{tabular}}}}%
+    \put(0.81157505,0.04088116){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_frame\_remod\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
