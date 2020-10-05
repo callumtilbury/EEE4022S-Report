@@ -11,26 +11,79 @@
     {\emph{Robert Burton}}
 % ----------------------------------------------------
 
+Radio Detection and Ranging (RADAR) technology has been around for many decades, with early developments occurring in the 1920s and 1930s, advancing rapidly in the years that followed. It, together with many other technologies, developed as a secret military project, and was used extensively in the Second World War. Since then, it has become incredibly ubiquitous, used in a myriad of applications, on both large and small scales. Even the acronym itself has become well-known by the broader public, used today in everyday conversation as a common noun, \emph{radar}.
+
+This chapter hopes to outline a brief history of radar, specifically looking at the development of \emph{passive} radar technology, with its associated advantages and use cases. Following that, there will be a brief look at digital broadcasting technologies. Finally, the literature for using digital broadcasting in passive radar contexts will be reviewed.
+
+% -------- PASSIVE RADAR --------
 \section{Passive Radar}
 
-\blindmathpaper
+\subsection{History}
+The history of passive radar naturally begins as a history of radar itself. Like most scientific breakthroughs, it is difficult to attribute the development of radar solely to one individual or group, and frankly it would be disingenuous to do so. In fact, many advances in radar technology were so-called "multiple discoveries", in which more than one scientist independently discovered the same phenomenon, or crafted the same (or a highly similar) invention. Nonetheless, one can follow an approximate trace through time, looking at key breakthroughs in knowledge that then preceded further breakthroughs, and so on. Naturally, such a history is bound to omit some figures, and there is also a question of how far back in time one should look.
 
+A good place to start, however, is at the middle of the 19th century. It was in 1865 that the Scottish mathematical physicist, James Maxwell, published his seminal work, in which the now-famous Maxwell's equations were first demonstrated~\cite{maxwell1865viii}. In doing so, he was able to conjecture the existence of electromagnetic waves. Three decades later, through a host of experiments done between 1885 and 1889, Heinrich Hertz was able to verify Maxwell's equations and, more relevantly, demonstrate the \emph{reflection} of such waves~\cite{hertz1893electromagnetic, Cichon1995}, amongst other things. In the subsequent years, this work continued by Sir William Crookes, Sir Oliver Lodge, Guglielmo Marconi, Nikola Tesla, and others---all of which constructed the stage on which radar technology could develop.
+
+Then, in 1904, a 22-year-old German engineer named Christian H\"ulsmeyer filed a patent for the so-called \emph{Telemobiloskop}---which he then publicly demonstrated on at least two occasions that year~\cite{Galati2014}. This device was marketed to ship owners as something which could detect nearby obstacles using the reflection of electromagnetic waves ~\cite{}. Semantically, some scholars have argued that this was not a RADAR---radio detection and \emph{ranging}---device, as it could not calculate the distance to the obstacle, along with some other petty concerns regarding its performance. Nevertheless, in 2019, H\"ulsmeyer was officially honoured posthumously for his radar contributions, in an IEEE Historic Milestone event~\cite{Griffiths2019}.
+
+The next major radar milestone was in 1922.
+
+In 1935, in what has become the most well-known origin story, the Daventry Experiment occurred.
+
+Passive radar popular then not then yes.
+
+Where we are today
+
+\subsection{Radar Basics}
+
+\subsection{Radar Taxonomy}
+\subsubsection{Active versus Passive Radar}
+\subsubsection{Radar Geometry}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Monostatic_Geometry.pdf}
+    \caption{Diagram depicting a monostatic radar geometry}
+    \label{fig:Monostatic_Geometry}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Bistatic_Geometry.pdf}
+    \caption{Diagram depicting a bistatic radar geometry}
+    \label{fig:Bistatic_Geometry}
+\end{figure}
+
+\subsubsection{Other Radar Classifcations}
+
+\subsection{Advantages and Disadvantages of Passive Radar}
+Passive radar has a host of advantages over its active counterpart, as well as a handful of drawbacks.
+
+\subsubsection{Advantages}
+Firstly, since passive radar systems use existing transmitters, no additional electromagnetic spectrum allocation is required for their operation. This is particularly relevant in the current technological context, where spectrum is fiercely sought after, often involving huge sums of money and political lobbying. Deploying an active radar system requires licensing for its utilized frequency bands; whereas a passive radar can simply hitchhike off an already-licensed transmission.
+
+Moreover, not only can a passive radar operate without licensing requirements---thus saving costs---it can also operate without the cost of transmitting enormous amounts of power. A useful radar transmitter may need to transmit kilowatts of power, which naturally has an associated electrical cost.
+
+These cost savings make passive radar an interesting case-study in particular for poorer nations. 
+
+
+\subsubsection{Disadvantages}
+
+% -------- DIGITAL BROADCASTING --------
 \section{Digital Broadcasting}
+\subsection{History}
+Around the same time that H\"ulsmeyer \emph{et al.} were experimenting with early radar systems, there was development occurring in wireless \emph{audio} transmissions. In 1900, Reginald Fessenden successfully demonstrated an Amplitude Modulation (AM) transmission, over a distance of 1.6km, using his so-called \emph{radiotelephone}. 
 
-\blindmathpaper
+Investigations into a digital broadcasting technique---instead of an analog approach---begin as early as the 1980s.
 
-\section{Existing Implementations}
-
-\blindmathpaper
-
-
-
+\subsection{Advantages}
+\subsection{Standards and Associated Use Cases}
 
 
-
-
-
-
+% -------- IMPLEMENTATIONS --------
+\section{Digital Broadcasting-based Passive Radar}
+\subsection{History}
+\subsection{Advantages}
+\subsection{Existing Implementations}
 
 
 
@@ -38,7 +91,7 @@
 % ----------------------------------------------------
 \ifstandalone
 \bibliography{../Bibliography/References.bib}
-\printnoidxglossary[type=\acronymtype,nonumberlist]
+% \printnoidxglossary[type=\acronymtype,nonumberlist]
 \fi
 \end{document}
 % ----------------------------------------------------
