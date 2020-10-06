@@ -45,28 +45,29 @@
 \setlength\epigraphrule{0pt}
 \setlength{\epigraphwidth}{0.65\textwidth}
 
+% Colour
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+
 % Hyperlinks & References
 \usepackage{hyperref}
+\definecolor{linkColour}{RGB}{77,71,179}
 \hypersetup{
     colorlinks=true,
-    linkcolor=blue,
-    filecolor=blue,      
-    urlcolor=blue,
-    citecolor=blue,
+    linkcolor=linkColour,
+    filecolor=linkColour,
+    urlcolor=linkColour,
+    citecolor=linkColour,
 }
 \urlstyle{same}
 
 % Automatically correct front-side quotes
-\usepackage[autostyle=false, style=american]{csquotes}
+\usepackage[autostyle=false, style=ukenglish]{csquotes}
 \MakeOuterQuote{"}
 
 % Graphics
 \usepackage{graphicx}
 \graphicspath{{Images/}{../Images/}}
-
-% Colour
-\usepackage{color}
-\usepackage[usenames,dvipsnames]{xcolor}
 
 % SI units
 \usepackage{siunitx}
@@ -117,4 +118,6 @@
 \setlength{\belowcaptionskip}{25pt plus 3pt minus 2pt}
 
 % Glossary package
-\usepackage[acronym]{glossaries}
+% \usepackage[acronym]{glossaries}
+\usepackage{glossaries-extra}
+\setabbreviationstyle[acronym]{long-short}
