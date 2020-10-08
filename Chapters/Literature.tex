@@ -5,6 +5,8 @@
 \input{../Style/ChapterStyle.tex}
 \input{../FrontMatter/Glossary.tex}
 \begin{document}
+\tableofcontents
+
 % ----------------------------------------------------
 \chapter{Literature Review}
 \epigraph{I say with Didacus Stella, a dwarf standing on the shoulders of a giant may see farther than a giant himself.}%
@@ -22,12 +24,12 @@ Fundamentally, radar is a fairly straightforward concept, with complications ari
 
 A \emph{passive} radar system, on the other hand, is different---it only has a receiver. Instead of actively transmitting signals, it uses existing \gls{em} transmitters to illuminate its scene. These transmitters are sometimes called "Illuminators of Opportunity." While the mathematics is slightly more complicated for this approach, the core idea remains the same---reflections of the transmitted signal are measured, and using the calculated time delays, the locations of objects are calculated.
 
-\subsection{Brief History}
+\subsection{Brief History of Radar}
 The history of passive radar naturally begins as a history of radar itself. Like most scientific breakthroughs, it is difficult to attribute the development of radar solely to one individual or group, and frankly it would be disingenuous to do so. In fact, many advances in radar technology were so-called "multiple discoveries", in which more than one scientist independently discovered the same phenomenon, or crafted the same (or a highly similar) invention. Nonetheless, one can follow an approximate trace through time, looking at key breakthroughs in knowledge that then preceded further breakthroughs, and so on. Naturally, such a history is bound to omit some figures, and there is also a question of how far back in time one should look.
 
 A good place to start, however, is at the middle of the 19th century. It was in 1865 that the Scottish mathematical physicist, James Maxwell, published his seminal work, in which the now-famous Maxwell's equations were first demonstrated~\cite{maxwell1865viii}. In doing so, he was able to conjecture the existence of \gls{em} waves. Three decades later, through a host of experiments done between 1885 and 1889, Heinrich Hertz was able to verify Maxwell's equations and, more relevantly, demonstrate the \emph{reflection} of such waves~\cite{hertz1893electromagnetic, Cichon1995}, amongst other things. In the subsequent years, this work continued by Sir William Crookes, Sir Oliver Lodge, Guglielmo Marconi, Nikola Tesla, and others---all of which constructed the stage on which radar technology could develop.
 
-Then, in 1904, a 22-year-old German engineer named Christian H\"ulsmeyer filed a patent for the so-called \emph{Telemobiloskop}---which he then publicly demonstrated on at least two occasions that year~\cite{Galati2014}. This device was marketed to ship owners as something which could detect nearby obstacles using the reflection of \gls{em} waves ~\cite{}. Interestingly, the device failed commercially, and there was little interest in it. It is clear that the technological landscape was not yet ready. Despite its failure, H\"ulsmeyer is today regarded as the father of radar\footnote{Semantically, some scholars have argued that the Telemobiloskop was, in fact, not a RADAR---radio detection and \emph{ranging}---device, as it could not calculate the distance to the obstacle, along with some other petty concerns regarding its poor performance~\cite{pritchard1989radar}. Nevertheless, in 2019, H\"ulsmeyer was officially honoured posthumously for his radar contributions, in an IEEE Historic Milestone event~\cite{Griffiths2019}}.
+Then, in 1904, a 22-year-old German engineer named Christian H\"ulsmeyer filed a patent for the so-called \emph{Telemobiloskop}---which he then publicly demonstrated on at least two occasions that year~\cite{Galati2014}. This device was marketed to ship owners as something which could detect nearby obstacles using the reflection of \gls{em} waves ~\cite{}. Interestingly, the device failed commercially, and there was little interest in it. It is clear that the technological landscape was not yet ready. Despite its failure, H\"ulsmeyer is today regarded as the father of radar\footnote{Semantically, some scholars have argued that the Telemobiloskop was, in fact, not a RADAR---radio detection and \emph{ranging}---device, as it could not calculate the distance to the obstacle, along with some other petty concerns regarding its poor performance~\cite{pritchard1989radar}. Nevertheless, in 2019, H\"ulsmeyer was officially honoured posthumously for his radar contributions, in an IEEE Historic Milestone event~\cite{Griffiths2019}.}.
 
 Further radar discoveries occurred some years later, independently of H\"ulsmeyer's work. For example, on the other side of Atlantic in the United States of America, Leo Young and Hoyt Taylor reported ...
 
@@ -35,7 +37,7 @@ Somewhat surprisingly, passive radar was first implemented not soon after these 
 
 Despite the early appearance of passive radar, interest quickly shifted to active radar developments. That is, until recent decades, where there has been a renewed interest in its advantages.
 
-\subsection{Radar Geometry}
+\subsection{Radar Geometries}
 
 Radar systems can be divided into three broad categories, based on the geometry of their receiver/s and transmitter/s: \emph{monostatic}, \emph{bistatic}, and \emph{multistatic}. Each of these is depicted conceptually in figure~\ref{fig:Radar_Geometry_Depictions}.
 
@@ -67,7 +69,14 @@ Radar systems can be divided into three broad categories, based on the geometry 
 
 It is clear from figure~\ref{fig:Monostatic_Geometry} that a monostatic geometry is the simplest of the three categories, where the transmitter is collocated with the receiver. This need not be \emph{exactly} so, provided the distance between the transmitter and receiver is much smaller than the distance to the target. However, in most modern situations, the same antenna is used for both transmission and reception, made possible by the duplexer, invented in 1936~\cite{kuschel-hagan-history}.
 
-In contrast, the bistatic geometry, shown in figure~\ref{fig:Bistatic_Geometry}, is slightly more complicated. The geometry itself is straightforward, where the receiver is simply not collocated with the transmitter. However, the mathematics consequently becomes a bit trickier. Suppose the radar system detects that the received signal occurs \(t_d\) seconds after it was transmitted. This can easily be converted to a distance, \(d\), using the speed of light in air, \(c\), where \(d \approx ct_d\). In the monostatic case, this range can be combined with a bearing---the direction in which the antenna is pointing---in order to determine the location of the object. Notice, though, in the bistatic case, knowing only the distance creates an elliptic trace of possible positions, with the transmitter and receiver as the two foci of the ellipse respectively.
+In contrast, the bistatic geometry, shown in figure~\ref{fig:Bistatic_Geometry}, is slightly more complicated. The geometry itself is straightforward, where the receiver is simply not collocated with the transmitter. However, the mathematics consequently becomes a bit trickier. Suppose the radar system detects that the received signal occurs \(t_d\) seconds after it was transmitted. This can easily be converted to a distance, \(d\), using the speed of light in air, \(c\), where \(d \approx ct_d\). In the monostatic case, this range can be combined with a bearing---the direction in which the antenna is pointing---in order to determine the location of the object. Notice, though, in the bistatic case, knowing only the distance creates an elliptic trace of possible positions, with the transmitter and receiver as the two foci of the ellipse respectively. This can be seen in figure~\ref{fig:Elliptic_Curve}, where two sample target points are shown---notice how \(d = x_1 + y_1 = x_2 + y_2\), even though \(x_1 \ne x_2\) and \(y_1 \ne y_2\). This shows how two completely different locations result in the same reflected time delay.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Elliptic_Curve.pdf}
+    \caption{Elliptic trace of possible target positions as measured by a bistatic radar system}
+    \label{fig:Elliptic_Curve}
+\end{figure}
 
 As a consequence of this, bistatic radar requires additional measurements in order to locate a target accurately. For example, one can use the doppler shift of the object in order to determine its velocity, and thus pinpoint its position on the elliptic trace. Alternatively, multiple bistatic radar systems can be used simultaneously, and the intersection of the resultant ellipses then indicates the target's location. This latter approach is termed a \emph{multistatic} radar, and is shown in figure~\ref{fig:Multistatic_Geometry}. Note that a multistatic arrangement is loosely defined, and may actually comprise of multiple bistatic and/or monostatic radar systems.
 
@@ -75,7 +84,7 @@ Notice that in passive radar situations, the illuminator of opportunity will nev
 
 Some attention was renewed to passive systems in around 1980, and has increased ever since. This is particularly in line with the advancement of signal jamming techniques, with the potential to cripple existing active radars.
 
-\subsection{Advantages and Disadvantages of Passive Radar}
+\subsection{Advantages \& Disadvantages of Passive Radar}
 Passive radar has a host of advantages over its active counterpart, as well as a handful of drawbacks.
 
 \subsubsection{Advantages}
@@ -103,18 +112,48 @@ The solution here was using a passive radar system hitchhiking on surrounding FM
 
 % -------- DIGITAL BROADCASTING --------
 \section{Digital Broadcasting}
+When considering the innumerable technological advancements of the past century, one cannot overlook the enormous impact of wireless broadcasting. The advent of mass communication, first via radio and later via television, has undoubtedly shaped our culture, our politics, and frankly, our entire lives. The ability for many, many people to receive the same message---be it audio, visual, or textual---certainly built the stage for the zeitgeist of the 21st-century. While this project revolves nominally around passive radar, most of it, in fact, relates to digital broadcasting. The end goal remains as the use of the latter in the context of the former, but the success of digital broadcasting-based passive radar is intimately related to the success of digital broadcasting itself.
+
 \subsection{History of Digital Broadcasting}
-Around the same time that H\"ulsmeyer \emph{et al.} were experimenting with early radar systems, there was development occurring in wireless \emph{audio} transmissions. In 1900, Reginald Fessenden successfully demonstrated an Amplitude Modulation (AM) transmission, over a distance of 1.6km, using his so-called \emph{radiotelephone}. 
+Around the same time that H\"ulsmeyer \emph{et al.} were experimenting with early radar systems, there was development occurring in wireless \emph{audio} transmissions. In 1900, Reginald Fessenden successfully demonstrated an \gls{am} transmission, over a distance of 1.6km, using his so-called \emph{radiotelephone}. In the decades that followed, radio broadcasting became a staple of (Western) culture. By the 1920s, \gls{am} radios were rolling out to everyday households, and new levels of mass communication were achieved. Who can imagine what the Second World War would have been like in the absence of national briefings?
 
-Investigations into a digital broadcasting technique---instead of an analog approach---begin as early as the 1980s.
+All of the investigations hitherto were in analogue broadcasting. The computational power of the early computers was simply inadequate for the demands of digital transmission. Nevertheless, as computers matured, the scene was set for change: investigations into digital broadcasting techniques began. In the 1980s, research began on the Eureka 147 project in Europe, which later became the \gls{dab} standard---the focus of this report. Patents for digital radio devices began appearing in the mid-1980s.
 
-\subsection{Advantages of Digital Broadcasting}
-\subsection{Standards and Associated Use Cases}
+(Note the importance of OFDM)
 
+Now, in 2020, the technology is far more mature, but global adoption is still mixed. In some states, digital transmissions have completely displaced analog counterparts, such as Germany's nationwide implementation of digital television. In other states, however, progress is slower. In a South African context, the \gls{icasa} promised to shut off analog broadcasts in 2011. At present, this has still not occurred.
+
+\subsection{Advantages \& Disadvantages of Digital Broadcasting}
+The benefits and drawbacks of digital broadcasting depend largely on the particular use case. However, there are a handful of consistent advantages, as well as disadvantages.
+
+\subsubsection{Advantages}
+- More efficient bandwidth allocation
+- Perfectly decodable video and audio (robust to errors)
+- Single Frequency Networks
+
+\subsubsection{Disadvantages}
+
+\subsection{Digital Broadcasting Standards \& Adoption}
+There are a host of digital broadcasting standards, spanning a host of use-cases and contexts. To complicate matters further, standards vary by country.
+
+\begin{itemize}
+    \item Video standards
+        \begin{itemize}
+            \item Digital Video Broadcasting (DVB) \\
+            This is the most adopted standard, and the most relevant in a South African context.
+            \item Advanced Television Systems Committee
+        \end{itemize}
+    \item Audio standards
+        \begin{itemize}
+            \item Digital Audio Broadcasting (DAB) \\
+            \item 
+        \end{itemize}
+\end{itemize}
 
 % -------- IMPLEMENTATIONS --------
 \section{Digital Broadcasting-based Passive Radar}
-\subsection{History}
+With the foundations of both passive radar and digital broadcasting presented, it is now interesting to look at the literature relevant to this project: using digital broadcasting signals in the context of a passive radar chain. When passive radar first started resurfacing in the early 1990s, most---if not all---of the work was being done with \gls{fm} signals. This is logical, as \gls{fm} signals were by-far the most ubiquitous radio format globally at that time. Since then, development has branched out into using other signal modulation types, even using WiFi and 
+
 \subsection{Advantages}
 \subsection{Existing Implementations}
 
