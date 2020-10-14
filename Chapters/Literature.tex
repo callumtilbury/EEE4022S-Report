@@ -5,8 +5,9 @@
 \input{../Style/ChapterStyle.tex}
 \input{../FrontMatter/Glossary.tex}
 \begin{document}
+\ifstandalone
 \tableofcontents
-
+\fi
 % ----------------------------------------------------
 \chapter{Literature Review}
 \epigraph{I say with Didacus Stella, a dwarf standing on the shoulders of a giant may see farther than a giant himself.}%
@@ -18,24 +19,24 @@
 This chapter hopes to outline a brief history of radar, specifically looking at the development of \emph{passive} radar technology, with its associated advantages and use cases. Following that, there will be a brief look at digital broadcasting technologies. Finally, the literature for using digital broadcasting in passive radar contexts will be reviewed.
 
 % -------- PASSIVE RADAR --------
-\section{Passive Radar}
+\section{Radar Concepts}
 
-Fundamentally, radar is a fairly straightforward concept, one that is analogous to the biological mechanism of \emph{echolocation}---used by animals such as bats and dolphins. In the simplest form, a radar system consists of a collocated transmitter and receiver. If the transmitter sends out an \gls{em} signal---a short pulse, for example---this signal will propagate through space, hitting objects as it does. The collection of objects is often called a \emph{scene}. Depending on the properties of the objects the \gls{em} waves hit, it is possible that some of the energy will reflect off of them, thus travelling back to the receiver. There will be a variety time delays between sending out the signal and receiving the reflections, depending on the positions of the objects. Since these waves are travelling at the speed of light, which is known\footnote{The speed of light in a vacuum, \(c\), is known exactly, as our measurement of distance is actually defined in terms of \(c\), not the other way around. The speed of light in air, however, is slightly slower than this---and is thus an approximation. Nevertheless, this difference is usually negligible.}, the time delays can be converted to distances---thus revealing the range to the various objects. Additional complexity can be introduced to calculate the objects' actual positions, their velocities, and so on. This is the basis for an \emph{active} radar system---because the transmitter is \emph{actively} producing the \gls{em} waves.
+Fundamentally, radar is a fairly straightforward concept, one that is analogous to the biological mechanism of \emph{echolocation}---used by animals such as bats and dolphins. In the simplest form, a radar system consists of a collocated transmitter and receiver. If the transmitter sends out an \gls{em} signal---a short pulse, for example---this signal will propagate through space, hitting objects as it does. The collection of objects is often called a \emph{scene}. Depending on the properties of the objects the \gls{em} waves hit, some of the energy will reflect off of them, thus travelling back to the receiver. There will be a variety time delays between sending out the signal and receiving the reflections, depending on the positions of the objects. Since these waves are travelling at the speed of light, which is known\footnote{The speed of light in a vacuum, \(c\), is known exactly, as our measurement of distance is actually defined in terms of \(c\), not the other way around. The speed of light in air, however, is slightly slower than this---and is thus an approximation. Nevertheless, this difference is usually negligible.}, the time delays can be converted to distances---thus revealing the range to the various objects. Additional complexity can be introduced to calculate the objects' actual positions, their velocities, and so on. This is the basis for an \emph{active} radar system---because the transmitter is \emph{actively} producing the \gls{em} waves.
 
 A \gls{pr} system, on the other hand, is different---instead of having a transmitter and receiver, it only has the latter. Rather than actively transmitting signals, it uses existing \gls{em} transmissions---sometimes called \gls{ioo}~\cite{Griffiths1992}. While the mathematics is slightly more complicated for this approach, the core idea remains the same---reflections of the transmitted signal are measured, and using the calculated time delays, the locations of objects are calculated.
 
 This section begins with a short history of \gls{pr} and the three possible radar geometries, and then looks specifically at the mechanisms of passive radar and its associated advantages.
 
-\subsection{Brief History of Passive Radar}
+\subsection{Brief History}
 The history of passive radar naturally begins as a history of radar itself. Like most scientific breakthroughs, it is difficult to attribute the development of radar solely to one individual or group, and frankly it would be disingenuous to do so---it arrived via a long line of successive discoveries, sometimes even with multiple independent discoveries of the same thing~\cite{brown1999technical}. A good starting point for this history is in 1865: when the Scottish mathematical physicist, James Maxwell, published his seminal work, in which the now-famous Maxwell's equations were first demonstrated~\cite{maxwell1865viii}. In doing so, Maxwell predicted that \gls{em} waves travelled through free space at the speed of light~\cite{Sengupta2003}. Three decades later, through a host of experiments done between 1885 and 1889, Heinrich Hertz was able to verify Maxwell's equations and, more relevantly, demonstrate the \emph{reflection} of electromagnetic waves~\cite{hertz1893electromagnetic, Cichon1995}, amongst other things. In the subsequent years, this work was continued by Alexander Stepanovich Popov, Sir Oliver Lodge, Guglielmo Marconi, Nikola Tesla, and others~\cite{Rohling2014, James1989, Griffiths2019}---each of whom helped construct the stage on which radar technology could develop.
 
 Then, in 1904, a 22-year-old German engineer named Christian H\"ulsmeyer filed a patent for the so-called \emph{Telemobiloskop}---which he publicly demonstrated on at least two occasions that year~\cite{Galati2014}. This device was marketed as an anti-collision device, able to detect nearby obstacles using the reflection of \gls{em} waves~\cite{swords1986technical}. Interestingly, the device failed commercially, and there was little interest in it. However, despite its failure, H\"ulsmeyer is today regarded as the father of radar\footnote{Semantically, some scholars have argued that the Telemobiloskop was, in fact, not a RADAR---radio detection and \emph{ranging}---device, as it could not calculate the distance to obstacles, along with some other petty concerns regarding its poor performance~\cite{pritchard1989radar}. Nevertheless, in 2019, H\"ulsmeyer was officially honoured posthumously for his radar contributions, in an IEEE Historic Milestone event~\cite{Griffiths2019}.}. For a thorough history of H\"ulsmeyer and his work, the reader is encouraged to see~\cite{pritchard1989radar} and~\cite{bauer2005christian}.
 
-Around twenty years later, there was a renewed interest in- and rediscovery of radar, independently of H\"ulsmeyer's work. On the other side of Atlantic in the United States of America, Leo Young and Hoyt Taylor noticed the reflections of high-frequency \gls{em} waves from nearby ships, as these ships moved in between the radio transmitter and receiver.
+Around twenty years later, there was a renewed interest in- and rediscovery of radar, independently of H\"ulsmeyer's work. On the other side of the Atlantic in the United States of America, Leo Young and Hoyt Taylor noticed the reflections of high-frequency \gls{em} waves from nearby ships, as these ships moved in between the radio transmitter and receiver.
 
 As retold by Kuschel and O'Hagan in~\cite{kuschel-hagan-history}, the first appearance of a passive radar system occurred in 1935, in the well-known Daventry Experiment. It was here that Sir Robert Watson-Watt and Arnold Wilkins used an existing shortwave BBC transmission for the detection of a plane flying 13 kilometres away. Despite the early appearance of passive radar, interest faded---or, rather, interest shifted to active radar developments.
 
-That was, until a renewed interest arose, such as in Griffiths et al.'s work in~\cite{Griffiths1992}. The authors resurfaced the idea of using existing \gls{em} transmsissions as so-called \gls{ioo}.
+That was, until a renewed interest arose, such as in Griffiths et al.'s work in~\cite{Griffiths1992}. The authors resurfaced the idea of using existing \gls{em} transmissions as so-called \gls{ioo}.
 
 
 \subsection{Radar Geometries}
@@ -83,7 +84,9 @@ As a consequence of this, bistatic radar requires additional measurements in ord
 
 Notice that in passive radar situations, the illuminator of opportunity will never be collocated with the receiver; thus, such systems are always at least bistatic, or are otherwise multistatic. Kuschel and O'Hagan have suggested that the convenience and simplicity of active monostatic radars, especially due to the adoption of the duplexer, shifted focus away from passive radar systems in the years after the Second World War~\cite{kuschel-hagan-history}.
 
-\subsection{Advantages \& Disadvantages of Passive Radar}
+\subsection{Passive Bistatic Radar}
+
+% \subsection{Advantages \& Disadvantages of Passive Radar}
 Passive radar has a host of advantages over its active counterpart, as well as a handful of drawbacks.
 
 \subsubsection{Advantages}
@@ -111,14 +114,26 @@ The solution here was using a passive radar system hitchhiking on surrounding FM
 
 - DSI
 
+\subsection{Ambiguity Functions}
+
 % -------- DIGITAL BROADCASTING --------
 \section{Digital Broadcasting}
 When considering the innumerable technological advancements of the past century, one cannot overlook the enormous impact of wireless broadcasting. The advent of mass communication, first via radio and later via television, has undoubtedly shaped our culture, our politics, and frankly, our entire lives. The ability for many, many people to receive the same message---be it audio, visual, or textual---certainly built the stage for the zeitgeist of the 21st-century.
 
 \subsection{History of Digital Broadcasting}
-Around the same time that H\"ulsmeyer \emph{et al.} were experimenting with early radar systems, there was development occurring in wireless \emph{audio} transmissions. In 1900, Reginald Fessenden successfully demonstrated an \gls{am} transmission, over a distance of 1.6km, using his so-called \emph{radiotelephone}. In the decades that followed, radio broadcasting became a staple of (Western) culture. By the 1920s, \gls{am} radios were rolling out to everyday households, and new levels of mass communication were achieved.
+Around the same time that H\"ulsmeyer et al. were experimenting with early radar systems, there was development occurring in wireless \emph{audio} transmissions. In 1900, Reginald Fessenden successfully demonstrated an \gls{am} transmission, over a distance of 1.6km, using his so-called \emph{radiotelephone}. In the decades that followed, radio broadcasting became a staple of (Western) culture. By the 1920s, \gls{am} radios were rolling out to everyday households, and new levels of mass communication were achieved.
 
-All of the investigations hitherto were in analogue broadcasting. The computational power of the early computers was simply inadequate for the demands of digital transmission. Nevertheless, as computers matured, the scene was set for change: investigations into digital broadcasting techniques could begin. For example, in 1985, McNally published a paper entitled, "Digital Audio in Broadcasting,"~\cite{McNally1985}; and in 1988, Weck and Theile laid further foundations with their use of convolutional codes and Viterbi decoding for digital audio broadcasting~\cite{weck1988dab}. Just before the end of the decade, Rault et al. then released their groundbreaking work on \gls{cofdm}, enabling the leap into digital broadcasting~\cite{Raulta}---with further clarity provided subsequently in~\cite{Shelswell1995} by Shelswell. Shortly after this, a flurry of research into digital broadcasting was released, including digital television in~\cite{Bernard1992, stare1992}, and digital audio in~\cite{shelswell1991, Price1992, Maddocks1992}. Around the same time, work was being done on the "Eureka 147" project in Europe, which later became the \gls{dab} standard---the focus of this report. In the years that followed, many more concepts, designs, and possible architectures were released for digital broadcasting technology.
+All of the investigations hitherto were in analogue broadcasting. The computational power of the early computers was simply inadequate for the demands of digital transmission. Nevertheless, as computers matured, the scene was set for change: investigations into digital broadcasting techniques could begin. For example, in 1985, McNally published a paper entitled, "Digital Audio in Broadcasting,"~\cite{McNally1985}; and in 1988, Weck and Theile laid further foundations with their use of convolutional codes and Viterbi decoding for digital audio broadcasting~\cite{weck1988dab}.
+
+OFDM appears in 1966: \cite{Chang1966}
+
+DFT with OFDM: \cite{Weinstein1971}
+
+Also: \cite{lassalle1987principles}
+
+Also: \cite{Alard1988}
+
+Just before the end of the decade, Rault et al. then released their groundbreaking work on \gls{cofdm}, enabling the leap into digital broadcasting~\cite{Raulta}---with further clarity provided subsequently in~\cite{Shelswell1995} by Shelswell. Shortly after this, a flurry of research into digital broadcasting was released, including digital television in~\cite{Bernard1992, stare1992}, and digital audio in~\cite{shelswell1991, Price1992, Maddocks1992}. Around the same time, work was being done on the "Eureka 147" project in Europe, which later became the \gls{dab} standard---the focus of this report. In the years that followed, many more concepts, designs, and possible architectures were released for digital broadcasting technology.
 
 (Note the importance of OFDM)
 
@@ -168,7 +183,7 @@ O'Hagan et al. in 2007, via a "PBR Demonstrator,"~\cite{OHagan2007}. Even using 
 
 One of the earliest works done using digital signals---specifically COFDM signals---was by Poullin in 2005~\cite{Poullin2005}.
 
-Lots of digital video broadcasting signal implementations, including using DVB-T in~\cite{radmard2012feasibility, palmer2011overview,Peto2014}, and more recently using the newer DVB-T2 in~\cite{OHagan2018} and~\cite{Low2019}.
+Lots of digital video-broadcasting signal implementations, including using DVB-T in~\cite{radmard2012feasibility, palmer2011overview,Peto2014}, and more recently using the newer DVB-T2 in~\cite{OHagan2018} and~\cite{Low2019}.
 
 There have been implementations using \gls{dab}: early on \cite{Yardley2007,Coleman2008}, more recently to detect micro-UAVs in~\cite{Schupbach2017}.
 Using signal reconstruction: \cite{ohagan2010dab} instead of conventional DSI suppression.
