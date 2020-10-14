@@ -11,49 +11,63 @@
 % ----------------------------------------------------
 \chapter{Digital Audio Broadcasting: Processing}
 \epigraph{Nobody can build you the bridge over which you must cross the river of life, nobody but you alone.}%
-    {\emph{Friedrich Nietzsche}}
+    {\emph{---Friedrich Nietzsche}}
 % ----------------------------------------------------
 
 \section{Overview}
 
 \begin{figure}[htbp]
     \centering
-    % \includegraphics[width=\linewidth]{BD_Overview_All-embed.pdf}
     \def\svgwidth{\linewidth}
-    \input{../Images/BD_Overview_All-embed.pdf_tex}
+    {\setstretch{0.7} % Line spacing
+        \input{../Images/BD_Overview_All-embed.pdf_tex}}
     \caption{Block diagram showing entire DAB processing chain}
     \label{fig:BD_Overview_All}
 \end{figure}
 
 \section{Pre-processing \label{sect:dab-proc_preprocessing}}
-\subsection{Reading IQ data from file \label{sect:dab-proc_preprocessing_iq-read}}
-\subsection{Resampling IQ data \label{sect:dab-proc_preprocessing_iq-resample}}
-\subsection{Frame Synchronization via Phase Reference Symbol}
-\subsection{Frame Extraction}
 
-\section{Demodulation}
+\subsection{Reading IQ data from file \label{subsect:dab-proc_iq-read}}
+
+
+\subsection{Resampling IQ data \label{subsect:dab-proc_iq-resample}}
+
+
+\subsection{Frame Synchronization via Phase Reference Symbol Detection \label{subsect:dab-proc_prs-detect}}
+
+
+\subsection{Frame Extraction \label{subsect:dab-proc_frame-extract}}
+
+
+
+\section{Demodulation \label{sect:dab-proc_demodulate}}
 \subsection{Overview}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{BD_Demod_All.pdf}
-    \caption{Block diagram showing entire DAB demodulation processing chain}
+    \def\svgwidth{\linewidth}
+    {\setstretch{0.7} % Line spacing
+        \input{../Images/BD_Demod_All-embed.pdf_tex}}
+    \caption{Block diagram showing demodulation section of processing chain}
     \label{fig:BD_Demod_All}
 \end{figure}
 
-\subsection{Symbols Unpacking}
-\subsection{OFDM Demultiplexing}
-\subsection{DQPSK Demapping}
-\subsection{Frequency Deinterleaving}
-\subsection{DQPSK Snapping}
-\subsection{Error Correction}
 
-\section{Re-modulation}
+\subsection{Symbols Unpacking \label{subsect:dab-proc_symbols-unpack}}
+\subsection{OFDM Demultiplexing \label{subsect:dab-proc_ofdm-demux}}
+\subsection{DQPSK Demapping \label{subsect:dab-proc_dqpsk-demap}}
+\subsection{Frequency Deinterleaving \label{subsect:dab-proc_freq-deinterleave}}
+\subsection{DQPSK Snapping \label{subsect:dab-proc_dqpsk-snap}}
+\subsection{Error Correction \label{subsect:dab-proc_error-correct}}
+
+\section{Re-modulation \label{sect:dab-proc_remodulate}}
+
 \subsection{Overview}
-\subsection{Frequency Interleaving}
-\subsection{DQPSK Mapping}
-\subsection{OFDM Multiplexing}
-\subsection{Symbols Packing}
+
+\subsection{Frequency Interleaving \label{subsect:dab-proc_freq-interleave}}
+\subsection{DQPSK Mapping \label{subsect:dab-proc_dqpsk-map}}
+\subsection{OFDM Multiplexing \label{subsect:dab-proc_ofdm-mux}}
+\subsection{Symbols Packing \label{subsect:dab-proc_symbols-pack}}
 
 \section{Summary}
 

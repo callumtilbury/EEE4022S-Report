@@ -1,0 +1,85 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'BD_Demod_All-embed.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1456.0733757bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.31390452)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{BD_Demod_All-embed.pdf}}%
+    \put(0.85510315,0.19847916){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.17449406,0.08790519){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{BD_Demod_All-embed.pdf}}%
+    \put(0.45619362,0.26758907){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}demodulate\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{BD_Demod_All-embed.pdf}}%
+    \put(0.22387735,0.19280033){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_symbols-unpack]{{\makecell{symbols\\unpack}}}\end{tabular}}}}%
+    \put(-0.00686521,0.21216294){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{dab\_frame}\end{tabular}}}}%
+    \put(0.04218346,0.18082538){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times196608$}\end{tabular}}}}%
+    \put(0.45823525,0.19280033){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_ofdm-demux]{{\makecell{ofdm\\demux}}}\end{tabular}}}}%
+    \put(0.69036489,0.19265304){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_dqpsk-demap]{{\makecell{dqpsk\\demap}}}\end{tabular}}}}%
+    \put(0.53515227,0.080995){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_dqpsk-snap]{{\makecell{dqpsk\\snap}}}\end{tabular}}}}%
+    \put(0.79668508,0.080995){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_error-correct]{{\makecell{error\\correct}}}\end{tabular}}}}%
+    \put(0.29756155,0.08152304){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_freq-deinterleave]{\makecell{freq\\{\scriptsize deinterleave}}}\end{tabular}}}}%
+    \put(0.34082261,0.18175114){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.34090597,0.21131091){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_symbols}}\end{tabular}}}}%
+    \put(0.57404795,0.18175114){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.57413127,0.21131091){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_carriers}}\end{tabular}}}}%
+    \put(0.80594479,0.18175114){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.80857388,0.21131091){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
+    \put(0.18064672,0.07054469){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.18073008,0.1001045){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
+    \put(0.41609595,0.07054469){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
+    \put(0.41617926,0.1001045){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
+    \put(0.66563502,0.07054469){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
+    \put(0.66571834,0.1001045){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_snapped}}\end{tabular}}}}%
+    \put(0.90845635,0.10124127){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{dab\_data}\end{tabular}}}}%
+    \put(0.95750496,0.06990371){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
