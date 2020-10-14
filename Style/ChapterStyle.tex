@@ -60,6 +60,7 @@
     citecolor=linkColour,
 }
 \urlstyle{same}
+\usepackage[all]{hypcap}    %for going to the top of an image when a figure reference is clicked
 
 % Automatically correct front-side quotes
 \usepackage[autostyle=false, style=ukenglish]{csquotes}
@@ -113,7 +114,8 @@
 }
 
 % Caption stuff
-\usepackage[hypcap=false]{caption}
+% \usepackage[hypcap=false]{caption}
+\usepackage{caption}
 \usepackage{subcaption}
 \setlength{\abovecaptionskip}{10pt plus 3pt minus 2pt}
 \setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
@@ -125,3 +127,10 @@
 
 % For Proofs & Theorems
 \usepackage{amsthm}
+
+% Maths symbols
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+\usepackage{svg}

@@ -1,0 +1,89 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'BD_Overview_All-embed.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1809.98497504bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.4121262)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{BD_Overview_All-embed.pdf}}%
+    \put(0.18391402,0.19761904){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}symbols\\unpack\end{tabular}}}}%
+    \put(0.30727461,0.19750388){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}ofdm\\demux\end{tabular}}}}%
+    \put(0.43220679,0.1977077){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}dqpsk\\extract\end{tabular}}}}%
+    \put(0.55468331,0.19722823){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}freq\\deinterleave\end{tabular}}}}%
+    \put(0.67670004,0.19869924){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}dqpsk\\snap\end{tabular}}}}%
+    \put(0.80224781,0.19882293){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}error\\correct\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{BD_Overview_All-embed.pdf}}%
+    \put(0.31053689,0.05503676){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}freq\\interleave\end{tabular}}}}%
+    \put(0.43364477,0.05501745){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}dqpsk\\build\end{tabular}}}}%
+    \put(0.55872874,0.0548966){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}ofdm\\mux\end{tabular}}}}%
+    \put(0.68089737,0.05505282){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}symbols\\pack\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{BD_Overview_All-embed.pdf}}%
+    \put(0.22910765,0.09973517){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}remodulate\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{BD_Overview_All-embed.pdf}}%
+    \put(0.10769126,0.23868558){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}demodulate\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{BD_Overview_All-embed.pdf}}%
+    \put(0.55371165,0.36718035){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}prs\\detect\end{tabular}}}}%
+    \put(0.67732672,0.33665182){\makebox(0,0)[lt]{\lineheight{0.85000002}\smash{\begin{tabular}[t]{l}frame\\extract\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{BD_Overview_All-embed.pdf}}%
+    \put(0.22763937,0.38286061){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\hyperref[sect:dab-proc_preprocessing]{pre-processing}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{BD_Overview_All-embed.pdf}}%
+    \put(0.10370838,0.32893102){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_recording\end{tabular}}}}%
+    \put(0.87177831,0.33140821){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_frame\end{tabular}}}}%
+    \put(0.03259987,0.19900247){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_\\frame\end{tabular}}}}%
+    \put(0.9637769,0.20081761){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_\\data\end{tabular}}}}%
+    \put(0.14140869,0.04740957){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_data\end{tabular}}}}%
+    \put(0.90168315,0.0483227){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dab\_frame\_remod\end{tabular}}}}%
+    \put(0.2754951,0.32828898){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\hyperref[sect:dab-proc_preprocessing_iq-read]{iq read}\end{tabular}}}}%
+    \put(0.39829528,0.34368791){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\hyperref[sect:dab-proc_preprocessing_iq-resample]{iq}\end{tabular}}}}%
+    \put(0.3983425,0.32244856){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\hyperref[sect:dab-proc_preprocessing_iq-resample]{resample}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{BD_Overview_All-embed.pdf}}%
+  \end{picture}%
+\endgroup%

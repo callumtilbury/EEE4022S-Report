@@ -18,14 +18,16 @@
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{BD_Overview_All.pdf}
+    % \includegraphics[width=\linewidth]{BD_Overview_All-embed.pdf}
+    \def\svgwidth{\linewidth}
+    \input{../Images/BD_Overview_All-embed.pdf_tex}
     \caption{Block diagram showing entire DAB processing chain}
     \label{fig:BD_Overview_All}
 \end{figure}
 
-\section{Pre-processing}
-\subsection{Reading IQ data from file}
-\subsection{Resampling IQ data}
+\section{Pre-processing \label{sect:dab-proc_preprocessing}}
+\subsection{Reading IQ data from file \label{sect:dab-proc_preprocessing_iq-read}}
+\subsection{Resampling IQ data \label{sect:dab-proc_preprocessing_iq-resample}}
 \subsection{Frame Synchronization via Phase Reference Symbol}
 \subsection{Frame Extraction}
 
