@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1456.0733757bp}%
+    \setlength{\unitlength}{1515.87373585bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,36 +50,38 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.31390452)%
+  \begin{picture}(1,0.34370242)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{BD_Demod_All-embed.pdf}}%
-    \put(0.85510315,0.19847916){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
-    \put(0.17449406,0.08790519){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}...\end{tabular}}}}%
+    \put(0.83439708,0.23530421){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}...\end{tabular}}}}%
+    \put(0.18063763,0.12909232){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}...\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{BD_Demod_All-embed.pdf}}%
-    \put(0.45619362,0.26758907){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}demodulate\end{tabular}}}}%
+    \put(0.49738945,0.30168778){\transparent{0.5}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\Large demodulate}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{BD_Demod_All-embed.pdf}}%
-    \put(0.22387735,0.19280033){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_symbols-unpack]{{\makecell{symbols\\unpack}}}\end{tabular}}}}%
-    \put(-0.00686521,0.21216294){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{dab\_frame}\end{tabular}}}}%
-    \put(0.04218346,0.18082538){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times196608$}\end{tabular}}}}%
-    \put(0.45823525,0.19280033){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_ofdm-demux]{{\makecell{ofdm\\demux}}}\end{tabular}}}}%
-    \put(0.69036489,0.19265304){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_dqpsk-demap]{{\makecell{dqpsk\\demap}}}\end{tabular}}}}%
-    \put(0.53515227,0.080995){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_dqpsk-snap]{{\makecell{dqpsk\\snap}}}\end{tabular}}}}%
-    \put(0.79668508,0.080995){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_error-correct]{{\makecell{error\\correct}}}\end{tabular}}}}%
-    \put(0.29756155,0.08152304){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_freq-deinterleave]{\makecell{freq\\{\scriptsize deinterleave}}}\end{tabular}}}}%
-    \put(0.34082261,0.18175114){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
-    \put(0.34090597,0.21131091){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_symbols}}\end{tabular}}}}%
-    \put(0.57404795,0.18175114){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
-    \put(0.57413127,0.21131091){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_carriers}}\end{tabular}}}}%
-    \put(0.80594479,0.18175114){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
-    \put(0.80857388,0.21131091){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
-    \put(0.18064672,0.07054469){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
-    \put(0.18073008,0.1001045){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
-    \put(0.41609595,0.07054469){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
-    \put(0.41617926,0.1001045){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
-    \put(0.66563502,0.07054469){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
-    \put(0.66571834,0.1001045){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_snapped}}\end{tabular}}}}%
-    \put(0.90845635,0.10124127){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{dab\_data}\end{tabular}}}}%
-    \put(0.95750496,0.06990371){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
+    \put(0.22807278,0.22984941){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_symbols-unpack]{{\makecell{symbols\\unpack}}}\end{tabular}}}}%
+    \put(0.00643288,0.24844818){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{dab\_frame}\end{tabular}}}}%
+    \put(0.05354661,0.21834687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times196608$}\end{tabular}}}}%
+    \put(0.45318539,0.22984941){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_ofdm-demux]{{\makecell{ofdm\\demux}}}\end{tabular}}}}%
+    \put(0.67615765,0.22970793){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_dqpsk-demap]{{\makecell{dqpsk\\demap}}}\end{tabular}}}}%
+    \put(0.52706808,0.12245473){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_dqpsk-snap]{{\makecell{dqpsk\\snap}}}\end{tabular}}}}%
+    \put(0.77828357,0.12245473){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_error-correct]{{\makecell{error\\correct}}}\end{tabular}}}}%
+    \put(0.29885018,0.12296195){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_freq-deinterleave]{\makecell{freq\\{\scriptsize deinterleave}}}\end{tabular}}}}%
+    \put(0.34040462,0.2192361){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.34048469,0.24762976){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_symbols}}\end{tabular}}}}%
+    \put(0.56442934,0.2192361){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.56450938,0.24762976){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_carriers}}\end{tabular}}}}%
+    \put(0.78717799,0.2192361){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.78970337,0.24762976){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
+    \put(0.18654757,0.11241669){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.18662765,0.14081038){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
+    \put(0.41270846,0.11241669){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
+    \put(0.41278849,0.14081038){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
+    \put(0.65240336,0.11241669){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
+    \put(0.65248339,0.14081038){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_snapped}}\end{tabular}}}}%
+    \put(0.88564552,0.14190231){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{dab\_data}\end{tabular}}}}%
+    \put(0.93275919,0.11180099){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{BD_Demod_All-embed.pdf}}%
+    \put(0.29877712,0.03278817){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{deinterleave\_map}}\end{tabular}}}}%
   \end{picture}%
 \endgroup%

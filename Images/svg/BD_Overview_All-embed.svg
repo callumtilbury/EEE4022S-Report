@@ -67,9 +67,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.9736608"
-     inkscape:cx="1737.7793"
-     inkscape:cy="827.52168"
+     inkscape:zoom="1.9209541"
+     inkscape:cx="810.19196"
+     inkscape:cy="799.65055"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -77,9 +77,9 @@
      units="px"
      inkscape:showpageshadow="false"
      inkscape:window-width="1600"
-     inkscape:window-height="900"
+     inkscape:window-height="875"
      inkscape:window-x="1280"
-     inkscape:window-y="0"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:pagecheckerboard="false"
      borderlayer="false"
@@ -93,7 +93,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -829,7 +829,7 @@
          y="63.154099"
          style="stroke-width:0.168378"
          id="tspan2258"
-         dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.066584274">\hyperref[subsect:dab-proc_iq-read]{{\scriptsize\makecell{iq\\resample}}}</tspan></text>
+         dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.066584274">\hyperref[subsect:dab-proc_iq-resample]{{\scriptsize\makecell{iq\\resample}}}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.08047px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.231163"
