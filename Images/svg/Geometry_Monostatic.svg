@@ -13,7 +13,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (c497b03c, 2020-09-10)"
-   sodipodi:docname="Monostatic.svg">
+   sodipodi:docname="Geometry_Monostatic.svg">
   <defs
      id="defs2">
     <inkscape:path-effect
@@ -56,19 +56,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.47959177"
-     inkscape:cx="950.99625"
-     inkscape:cy="459.88585"
+     inkscape:zoom="0.8704542"
+     inkscape:cx="725.85021"
+     inkscape:cy="743.1452"
      inkscape:document-units="px"
-     inkscape:current-layer="g1184"
+     inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
      inkscape:showpageshadow="false"
      inkscape:window-width="1600"
-     inkscape:window-height="900"
-     inkscape:window-x="1280"
-     inkscape:window-y="0"
+     inkscape:window-height="815"
+     inkscape:window-x="1282"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
      inkscape:pagecheckerboard="false"
      borderlayer="false"
@@ -90,7 +90,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -234,22 +234,6 @@
            sodipodi:nodetypes="cssc" />
       </g>
     </g>
-    <text
-       xml:space="preserve"
-       style="font-size:14.9995px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';word-spacing:0px;fill:#5a2ca0;stroke-width:0.374988"
-       x="49.855373"
-       y="184.65134"
-       id="text1544"><tspan
-         sodipodi:role="line"
-         x="49.855373"
-         y="184.65134"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Times;-inkscape-font-specification:Times;fill:#5a2ca0;stroke-width:0.374988"
-         id="tspan1811">Transmitter</tspan><tspan
-         sodipodi:role="line"
-         x="49.855373"
-         y="203.80655"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Times;-inkscape-font-specification:Times;fill:#5a2ca0;stroke-width:0.374988"
-         id="tspan1815">   &amp; Receiver</tspan></text>
     <g
        id="g1184">
       <g
@@ -294,5 +278,16 @@
            id="path1334-5-7-4" />
       </g>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:3.81788px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;fill:#000080;stroke-width:0.0954472"
+       x="81.310097"
+       y="212.71606"
+       id="text1544"><tspan
+         sodipodi:role="line"
+         id="tspan1542"
+         x="81.310097"
+         y="212.71606"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;text-anchor:middle;fill:#5a2ca0;fill-opacity:1;stroke-width:0.0954472">{\scriptsize \textcolor[HTML]{5A2CA0}{\makecell{Transmitter\\&amp; Receiver}}}</tspan></text>
   </g>
 </svg>

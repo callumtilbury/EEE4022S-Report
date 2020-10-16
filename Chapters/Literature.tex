@@ -47,40 +47,48 @@ Radar systems can be divided into three broad categories, based on the geometry 
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Monostatic_Geometry.pdf}
+        \def\svgwidth{\linewidth}
+        {\setstretch{0.7} % Line spacing
+            \input{../Images/Geometry_Monostatic.pdf_tex}}
         \caption{Monostatic radar geometry}
-        \label{fig:Monostatic_Geometry}
+        \label{fig:Geometry_Monostatic}
     \end{subfigure}%
     ~ 
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Bistatic_Geometry.pdf}
+        \def\svgwidth{\linewidth}
+        {\setstretch{0.7} % Line spacing
+            \input{../Images/Geometry_Bistatic.pdf_tex}}
         \caption{Bistatic radar geometry}
-        \label{fig:Bistatic_Geometry}
+        \label{fig:Geometry_Bistatic}
     \end{subfigure}
     ~
     \begin{subfigure}[t]{0.6\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Multistatic_Geometry.pdf}
+        \def\svgwidth{\linewidth}
+        {\setstretch{0.7} % Line spacing
+            \input{../Images/Geometry_Multistatic.pdf_tex}}
         \caption{Multistatic radar geometry}
-        \label{fig:Multistatic_Geometry}
+        \label{fig:Geometry_Multistatic}
     \end{subfigure}%
     \caption{Conceptual depictions of the three broad radar categories, based on their respective transmitter-receiver geometries}
     \label{fig:Radar_Geometry_Depictions}
 \end{figure}
 
-It is clear from figure~\ref{fig:Monostatic_Geometry} that a monostatic geometry is the simplest of the three categories, where the transmitter is collocated with the receiver. This need not be \emph{exactly} so, provided the distance between the transmitter and receiver is much smaller than the distance to the target. However, in most modern situations, the same antenna is used for both transmission and reception, made possible by the duplexer, invented in 1936~\cite{kuschel-hagan-history}.
+It is clear from figure~\ref{fig:Geometry_Monostatic} that a monostatic geometry is the simplest of the three categories, where the transmitter is collocated with the receiver. This need not be \emph{exactly} so, provided the distance between the transmitter and receiver is much smaller than the distance to the target. However, in most modern situations, the same antenna is used for both transmission and reception, made possible by the duplexer, invented in 1936~\cite{kuschel-hagan-history}.
 
-In contrast, the bistatic geometry, shown in figure~\ref{fig:Bistatic_Geometry}, is slightly more complicated. The geometry itself is straightforward, where the receiver is simply not collocated with the transmitter. However, the mathematics consequently becomes a bit trickier. Suppose the radar system detects that the received signal occurs \(t_d\) seconds after it was transmitted. This can easily be converted to a distance, \(d\), using the speed of light in air, \(c\), where \(d \approx ct_d\). In the monostatic case, this range can be combined with a bearing---the direction in which the antenna is pointing---in order to determine the location of the object. Notice, though, in the bistatic case, knowing only the distance creates an elliptic trace of possible positions, with the transmitter and receiver as the two foci of the ellipse respectively. This can be seen in figure~\ref{fig:Elliptic_Curve}, where two sample target points are shown---notice how \(d = x_1 + y_1 = x_2 + y_2\), even though \(x_1 \ne x_2\) and \(y_1 \ne y_2\). This shows how two completely different locations result in the same reflected time delay.
+In contrast, the bistatic geometry, shown in figure~\ref{fig:Geometry_Bistatic}, is slightly more complicated. The geometry itself is straightforward, where the receiver is simply not collocated with the transmitter. However, the mathematics consequently becomes a bit trickier. Suppose the radar system detects that the received signal occurs \(t_d\) seconds after it was transmitted. This can easily be converted to a distance, \(d\), using the speed of light in air, \(c\), where \(d \approx ct_d\). In the monostatic case, this range can be combined with a bearing---the direction in which the antenna is pointing---in order to determine the location of the object. Notice, though, in the bistatic case, knowing only the distance creates an elliptic trace of possible positions, with the transmitter and receiver as the two foci of the ellipse respectively. This can be seen in figure~\ref{fig:Elliptic_Curve}, where two sample target points are shown---notice how \(d = x_1 + y_1 = x_2 + y_2\), even though \(x_1 \ne x_2\) and \(y_1 \ne y_2\). This shows how two completely different locations result in the same reflected time delay.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{Elliptic_Curve.pdf}
+    \def\svgwidth{0.7\linewidth}
+    {\setstretch{0.7} % Line spacing
+        \input{../Images/Elliptic_Curve.pdf_tex}}
     \caption{Elliptic trace of possible target positions as measured by a bistatic radar system}
     \label{fig:Elliptic_Curve}
 \end{figure}
 
-As a consequence of this, bistatic radar requires additional measurements in order to locate a target accurately. For example, one can use the doppler shift of the object in order to determine its velocity, and thus pinpoint its position on the elliptic trace. Alternatively, multiple bistatic radar systems can be used simultaneously, and the intersection of the resultant ellipses then indicates the target's location. This latter approach is termed a \emph{multistatic} radar, and is shown in figure~\ref{fig:Multistatic_Geometry}. Note that a multistatic arrangement is loosely defined, and may actually comprise of multiple bistatic and/or monostatic radar systems.
+As a consequence of this, bistatic radar requires additional measurements in order to locate a target accurately. For example, one can use the doppler shift of the object in order to determine its velocity, and thus pinpoint its position on the elliptic trace. Alternatively, multiple bistatic radar systems can be used simultaneously, and the intersection of the resultant ellipses then indicates the target's location. This latter approach is termed a \emph{multistatic} radar, and is shown in figure~\ref{fig:Geometry_Multistatic}. Note that a multistatic arrangement is loosely defined, and may actually comprise of multiple bistatic and/or monostatic radar systems.
 
 Notice that in passive radar situations, the illuminator of opportunity will never be collocated with the receiver; thus, such systems are always at least bistatic, or are otherwise multistatic. Kuschel and O'Hagan have suggested that the convenience and simplicity of active monostatic radars, especially due to the adoption of the duplexer, shifted focus away from passive radar systems in the years after the Second World War~\cite{kuschel-hagan-history}.
 
@@ -121,6 +129,8 @@ The solution here was using a passive radar system hitchhiking on surrounding FM
 When considering the innumerable technological advancements of the past century, one cannot overlook the enormous impact of wireless broadcasting. The advent of mass communication, first via radio and later via television, has undoubtedly shaped our culture, our politics, and frankly, our entire lives. The ability for many, many people to receive the same message---be it audio, visual, or textual---certainly built the stage for the zeitgeist of the 21st-century.
 
 \subsection{History of Digital Broadcasting}
+(Mention the development of RDS?) % TODO
+
 Around the same time that H\"ulsmeyer et al. were experimenting with early radar systems, there was development occurring in wireless \emph{audio} transmissions. In 1900, Reginald Fessenden successfully demonstrated an \gls{am} transmission, over a distance of 1.6km, using his so-called \emph{radiotelephone}. In the decades that followed, radio broadcasting became a staple of (Western) culture. By the 1920s, \gls{am} radios were rolling out to everyday households, and new levels of mass communication were achieved.
 
 All of the investigations hitherto were in analogue broadcasting. The computational power of the early computers was simply inadequate for the demands of digital transmission. Nevertheless, as computers matured, the scene was set for change: investigations into digital broadcasting techniques could begin. For example, in 1985, McNally published a paper entitled, "Digital Audio in Broadcasting,"~\cite{McNally1985}; and in 1988, Weck and Theile laid further foundations with their use of convolutional codes and Viterbi decoding for digital audio broadcasting~\cite{weck1988dab}.

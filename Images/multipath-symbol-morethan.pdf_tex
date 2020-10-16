@@ -1,0 +1,70 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'multipath-symbol-morethan.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1562.71808616bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.52168659)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{multipath-symbol-morethan.pdf}}%
+    \put(0.02160212,0.32185652){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}+\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{multipath-symbol-morethan.pdf}}%
+    \put(0.86109455,0.40481708){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Direct Signal\end{tabular}}}}%
+    \put(0.86175008,0.28375789){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Delayed Signal\end{tabular}}}}%
+    \put(0.86109455,0.10771296){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Received Signal\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{multipath-symbol-morethan.pdf}}%
+    \put(0.37472105,0.50214254){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_d$\end{tabular}}}}%
+    \put(0.85217225,0.19273378){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{multipath-symbol-morethan.pdf}}%
+    \put(0.37735865,0.01027706){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize Integration Period}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{multipath-symbol-morethan.pdf}}%
+    \put(0.20232457,0.50013724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_s$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

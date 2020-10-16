@@ -13,7 +13,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (c497b03c, 2020-09-10)"
-   sodipodi:docname="Bistatic.svg">
+   sodipodi:docname="Bistatic_Geometry.svg">
   <defs
      id="defs2">
     <inkscape:path-effect
@@ -56,11 +56,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.52495855"
-     inkscape:cx="927.79693"
-     inkscape:cy="479.97684"
+     inkscape:zoom="0.717788"
+     inkscape:cx="1042.0889"
+     inkscape:cy="755.11997"
      inkscape:document-units="px"
-     inkscape:current-layer="g1447"
+     inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -317,25 +317,25 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-size:15.5982px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';word-spacing:0px;fill:#000080;stroke-width:0.389956"
-       x="43.654625"
-       y="276.17087"
+       style="font-size:5.07003px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;fill:#000080;stroke-width:0.126751"
+       x="79.014824"
+       y="276.51901"
        id="text1544"><tspan
          sodipodi:role="line"
          id="tspan1542"
-         x="43.654625"
-         y="276.17087"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';fill:#000080;stroke-width:0.389956">Transmitter</tspan></text>
+         x="79.014824"
+         y="276.51901"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;text-anchor:middle;fill:#000080;stroke-width:0.126751">{\scriptsize \textcolor[HTML]{000080}{Transmitter}}</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:15.1799px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';word-spacing:0px;fill:#800000;stroke-width:0.3795"
-       x="375.59201"
-       y="274.54074"
-       id="text1544-2"><tspan
+       style="font-size:4.93106px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;fill:#000080;stroke-width:0.123277"
+       x="403.99698"
+       y="277.30475"
+       id="text15426"><tspan
          sodipodi:role="line"
-         id="tspan1542-5"
-         x="375.59201"
-         y="274.54074"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';fill:#800000;stroke-width:0.3795">Receiver</tspan></text>
+         id="tspan15424"
+         x="403.99698"
+         y="277.30475"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;text-anchor:middle;fill:#800000;fill-opacity:1;stroke-width:0.123277">{\scriptsize \textcolor[HTML]{800000}{Receiver}}</tspan></text>
   </g>
 </svg>
