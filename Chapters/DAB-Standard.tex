@@ -41,7 +41,7 @@ Figure~\ref{fig:multipath-illustration} illustrates this scenario with dashed li
 
 Logically, the direct signal will be the shortest path from the transmitter to the receiver, and thus the time to receive this signal will be shorter than for all the others---it will "arrive" first. A particular delayed signal will be received after an amount of time, call it \(t_d\), depending on the clutter contained within the scene. Of course, the receiver will not be able simply to separate the direct- and delayed signals---it will instead record a superposition of these signals, as a single 'received signal'.
 
-There are, in essence, two scenarios that can result from this superposition effect. Firstly, the delay period could be shorter than the symbol period, \(t_d < t_s\), as depicted in figure~\ref{fig:multipath-symbol-lessthan}.
+There are, in essence, two scenarios that can result from this superposition effect. Firstly, the delay period could be shorter than the symbol period, \(t_d < t_s\), as depicted in Figure~\ref{fig:multipath-symbol-lessthan}.
 
 \begin{figure}[htbp]
     \centering
@@ -52,9 +52,9 @@ There are, in essence, two scenarios that can result from this superposition eff
     \label{fig:multipath-symbol-lessthan}
 \end{figure}
 
-Notice how the delayed signal has 
+In this case, the delayed signal does interfere with the direct signal, with such regions indicated by striped lines in the received signal. However, the original symbols are probably still recoverable. For example, over the integration period shown, there is some interference between the blue and pink symbols.
 
-Alternatively, the delay period could be longer than the symbol period, \(t_d > t_s\), as shown in figure~\ref{fig:multipath-symbol-morethan}.
+The scenario is if the delay period is longer than the symbol period, \(t_d > t_s\), as shown in Figure~\ref{fig:multipath-symbol-morethan}.
 
 \begin{figure}[htbp]
     \centering
@@ -65,8 +65,13 @@ Alternatively, the delay period could be longer than the symbol period, \(t_d > 
     \label{fig:multipath-symbol-morethan}
 \end{figure}
 
+Notice now how there is now purely interference over the integration period. This is called inter-symbol interference, and makes a system far less robust. In order to receive the correct symbols, the magnitude of the delayed signal must be significantly less than that of the direct signal.
 
-Suppose one wanted to transmit . There are, in essence, two broad approaches to this aim. The first, which is markedly simpler, is a serial approach: simply to modulate the phase of a single carrier wave with successive elements of \(\mathcal{D}\). Alternatively, one could take a parallel approach. That is, to split \(\mathcal{D}\) into \(n\) subsets, and then use these subsets to modulate \(n\) independent carriers respectively. Figure~\ref{fig:carrier-illustration} illustrates these situations with two simplified spectrograms---for the sake of clarity, the frequency components are shown to be perfectly impulsive. Here, each carrier wave's phase is modulated with one of four values, \(\big\{\frac{\pi}{4}, \frac{3\pi}{4}, \frac{5\pi}{4}, \frac{7\pi}{4}\big\}\), in fixed time intervals.
+It is clear that the symbol length, \(t_s\), determines the maximum allowable multipath delay, \(t_d\). It follows that for reliable communication in an urban environment, a longer symbol length is required, and thus a lower data rate. This reveals an important tradeoff, between the tolerance to multipath effects an the data rate.
+
+Note, however, that this is a "serial" approach: where the phase of a \emph{single} carrier wave is modulated with successive elements of \(\mathcal{D}\). Instead of this, one could take a "parallel" approach, by splitting \(\mathcal{D}\) into \(n\) subsets, and then using these subsets to modulate \(n\) independent carriers respectively. As a result, each symbol could be \(n\) times longer---increasing its multipath resilience. Of course, in doing so, the resulting modulated wave will have a larger bandwidth, thus presenting another tradeoff.
+
+Figure~\ref{fig:carrier-illustration} illustrates these situations with two simplified spectrograms---for the sake of clarity, the frequency components are shown to be perfectly impulsive. Here, each carrier wave's phase is modulated with one of four values, \(\big\{\frac{\pi}{4}, \frac{3\pi}{4}, \frac{5\pi}{4}, \frac{7\pi}{4}\big\}\), in fixed time intervals.
 
 \begin{figure}[htbp]
     \centering
@@ -92,18 +97,14 @@ Suppose one wanted to transmit . There are, in essence, two broad approaches to 
 
 Figure~\ref{fig:serial-carrier} shows the serial case, where all 9 symbols are successively modulated on the carrier wave with a frequency of \(\omega_0\). Figure~\ref{fig:parallel-carrier}, on the other hand, shows the parallel case, with the 9 symbols split into 3 separate groups, respectively modulating carriers with frequencies of \((\omega_0 - \Delta \omega)\), \(\omega_0\), and \((\omega_0 + \Delta \omega)\). Notice the symbol period for the latter situation is 3 times longer than that of the former. This shows that in each scenario, the same amount of data is transmitted over the same amount of time.
 
-While the serial scheme is simpler, the parallel scheme has two important advantages.
-
-Multipath, inter-symbol interference
-
-Frequency selective fading
+There is an additional benefit to this approach. Sometimes, the nature of an environment results in so-called \emph{frequency selective fading}. (Maybe later, for frequency interleaving???)
 
 \subsection{Frequency Division Multiplexing}
-The illustration from figure~\ref{fig:carrier-illustration} was an example of \gls{fdm}, where the frequency domain is divided---i.e. multiplexed---into separate regions, each carrying independent information. There is one caveat with the previous example, however. The frequency components, as shown, were assumed to be impulsive. This implies that adjacent carriers could be infinitely close to each other without any crosstalk---that is, interference between the carriers. Unfortunately, this cannot be the case.
+The illustration from Figure~\ref{fig:carrier-illustration} was an example of \gls{fdm}, where the frequency domain is divided---i.e. multiplexed---into separate regions, each carrying independent information. There is one caveat with the previous example, however. The frequency components, as shown, were assumed to be impulsive. This was done for the sake of simplicity, to convey the advantage of using multiple carriers instead of only one. However, this assumption implies that adjacent carriers could be infinitely close to each other without any crosstalk---that is, without interference between the carriers. Unfortunately, this cannot be the case.
 
-To understand why, consider a carrier wave, \(f(t)\), which has a frequency of \(\omega_0\), and is recorded over a period of \(T\) seconds. Notice that this is equivalent to multiplying \(f(t)\) by a windowing function, \(w(t)\), with a width of \(T\). Figure~\ref{fig:sampling-sine} depicts this, where a simple rectangular pulse is used as the windowing function. Note, however, that more complex windowing functions can be used, and the point will remain. The resulting windowed carrier wave is notated as \(f_T(t)\).
+To understand why, consider a carrier wave, \(f(t)\), which has a frequency of \(\omega_0\) and is recorded over a period of \(T\) seconds. Notice that this is equivalent to multiplying \(f(t)\) by a windowing function, \(w(t)\), with a width of \(T\). Figure~\ref{fig:sampling-sine} depicts this, where a simple rectangular pulse is used as the windowing function. Note, however, that more complex windowing functions can be used, and the point will remain. The resulting windowed carrier wave is notated as \(f_T(t)\).
 
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{sampling-sine.pdf}
     \caption{Depiction of sampling as a multiplication with a finite window function}
@@ -112,13 +113,15 @@ To understand why, consider a carrier wave, \(f(t)\), which has a frequency of \
 
 Consider now the impact of windowing as viewed in the frequency domain. The original carrier wave, \(f(t)\), which theoretically spans over all time, is perfectly impulsive. However, multiplication with the windowing function in time is equivalent to convolution with the window's spectrum in frequency. The exact details of this spectrum depend on the windowing function used, but for a simple rectangular function,
 \begin{equation}
-    w(t) = \textrm{rect}\Big(\frac{t}{T}\Big) \xLeftrightarrow{\quad\mathcal{F}\quad} W(\omega) = \text{Sa}()
+    w(t) = \textrm{rect}\bigg(\frac{t}{T}\bigg) \xLeftrightarrow{\quad\mathcal{F}\quad} W(\omega) = T \cdot \textrm{Sa}\bigg(\frac{\omega T}{2}\bigg)
 \end{equation}
+where \(\textrm{Sa}(x)=\frac{\sin{x}}{x}\).
 
-
-\begin{figure}
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{sampling-sine-freq.pdf}
+    \def\svgwidth{\linewidth}
+    {\setstretch{0.7} % Line spacing
+        \input{../Images/sampling-sine-freq.pdf_tex}}
     \caption{Effect of windowing on spectrum}
     \label{fig:sampling-sine-freq}
 \end{figure}
@@ -127,7 +130,7 @@ Instead, each carrier has an associated spectrum, and this spectrum influences t
 
 How, then, does that influence the ability to perform \gls{fdm}?
 
-Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \omega}{\omega}\) spectrum. If the centre frequencies of these carriers are sufficiently distant from the others, there will be negligible interference from one spectrum's sidelobes to another spectrum's mainlobe. This is seen in figure~\ref{fig:three-sincs-good-distance}.
+Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \omega}{\omega}\) spectrum. If the centre frequencies of these carriers are sufficiently distant from the others, there will be negligible interference from one spectrum's sidelobes to another spectrum's mainlobe. This is seen in Figure~\ref{fig:three-sincs-good-distance}.
 
 
 \begin{figure}
@@ -137,7 +140,7 @@ Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \
     \label{fig:three-sincs-bad-distance}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{three-sincs-good-distance.pdf}
     \caption{Three spectra spaced sufficiently far away from each other}
@@ -147,9 +150,9 @@ Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \
 
 
 \subsection{Orthogonal Carriers}
+As shown, a straightforward \gls{fdm} approach requires the carriers to be sufficiently spaced from each other, to avoid cross-talk. There is an important exception to this requirement, if one chooses the carrier frequencies very carefully: specifically, by spacing the carriers precisely with \(\Delta \omega = \frac{2\pi}{T}\). This is shown graphically in Figure~\ref{fig:ofdm-three-sincs}.
 
-
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
@@ -158,7 +161,12 @@ Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \
     \label{fig:ofdm-three-sincs}
 \end{figure}
 
+Notice how the peak of each carrier wave is perfectly aligned with the zero crossings of the other carriers---resulting in zero cross-talk at those frequencies. Mathematically, choosing the carrier waves in this way results in the signals being \emph{orthogonal}. For detailed proofs of how this happens, see appendices%~\ref{sect:proofs_ofdm-time} and~\ref{sect:proofs_ofdm-freq}.
+
 \subsection{Leveraging the Discrete Fourier Transform}
+More than simply just being conceptually clever, an \gls{ofdm} system must be practically realizable too. Suppose one had 1000 independent bitstreams to be modulated onto 1000 carrier waves arranged orthogonally---an \gls{ofdm} transmission. How could one perform this modulation efficiently? Moreover, at the receiver end, how could one demodulate and thus extract the 1000 bitstreams?
+
+A na\"ive approach would involve using 1000 independent multipliers with 1000 independent oscillators, with the frequencies appropriately set to the required carrier wave frequencies. This is depicted in Figure~\ref{}.
 
 
 \subsection{Time \& Frequency Interleaving}
@@ -166,12 +174,45 @@ Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \
 
 \subsection{Forward Error Correction}
 
+\subsection{Cyclic Prefixing and Guard Intervals}
 
 
-\section{Phase Shift Keying \label{sect:dab-std_psk}}
-\subsection{Motivation}
+
+\section{Differential Quadrature Phase Shift Keying \label{sect:dab-std_psk}}
+
+The \gls{dab} standard utilizes a modulation technique called \acrlong{psk}, specifically a variant thereof called \gls{pi4dqpsk}.
+
+\subsection{Binary Phase Shift Keying}
+Consider a sinusoidal carrier wave with a frequency of \(\omega_0\) and an amplitude of \(A\). Unlike in \gls{ask}---where the amplitude of the carrier wave is modulated, and in \gls{fsk}---where the frequency of the carrier wave is modulated, \gls{psk} keeps both the amplitude and frequency constant over time. Instead, it modulates the \emph{phase} of the carrier wave. Mathematically,
+\begin{equation}
+    f(t, n) = A \cdot \sin(\omega_0t + \phi[n])
+\end{equation}
+where \(\phi[n]\) is the corresponding phase for the symbol at the discrete-time step \(n\).
+
+In the simplest case, one could take a bitstream of values---either 0 or 1---and correspondingly modulate the carrier with a phase of either~\(0\) or \(\pi\) radians. Such an approach is called \emph{binary} phase-shift keying, since only two values are used. Figure~\ref{fig:binary-psk} shows a simple example of this.
+
+\begin{figure}[htbp]
+    \centering
+    \def\svgwidth{1\linewidth}
+    {\setstretch{0.7} % Line spacing
+        \input{../Images/binary-psk.pdf_tex}}
+    \caption{Example of binary phase shift keying}
+    \label{fig:binary-psk}
+\end{figure}
+
+\subsection{Using Differential Phases}
+Notice in the previous example that the demodulator would need to have knowledge about the
+
+\begin{figure}[htbp]
+    \centering
+    \def\svgwidth{1\linewidth}
+    {\setstretch{0.7} % Line spacing
+        \input{../Images/differential-binary-psk.pdf_tex}}
+    \caption{Example of differential binary phase shift keying}
+    \label{fig:differential-binary-psk}
+\end{figure}
+
 \subsection{Quadrature Phase Shift Keying}
-\subsection{Differential Quadrature Phase Shift Keying}
 
 
 \section{Transmission Frame}
@@ -187,9 +228,6 @@ Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \
 
 
 \subsection{Data-carrying Symbols}
-
-
-\subsection{Guard Intervals}
 
 
 

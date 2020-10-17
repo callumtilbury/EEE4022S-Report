@@ -1,0 +1,79 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'binary-psk.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{906.45615571bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.49271535)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{binary-psk.pdf}}%
+    \put(0.12798762,0.27137593){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{d40000}{$\phi[0]=0$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{binary-psk.pdf}}%
+    \put(0.12740586,0.35703225){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{d40000}{$0$}\end{tabular}}}}%
+    \put(0.27101232,0.35657171){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{$1$}\end{tabular}}}}%
+    \put(0.41531444,0.35647093){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{$1$}\end{tabular}}}}%
+    \put(0.55754039,0.35655492){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{$1$}\end{tabular}}}}%
+    \put(0.70077028,0.35668927){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{d40000}{$0$}\end{tabular}}}}%
+    \put(0.8439626,0.35662208){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{d40000}{$0$}\end{tabular}}}}%
+    \put(0.2715525,0.27147531){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{0000ff}{$\phi[1]=\pi$}\end{tabular}}}}%
+    \put(0.41485731,0.27129659){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{0000ff}{$\phi[2]=\pi$}\end{tabular}}}}%
+    \put(0.55807357,0.27148809){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{0000ff}{$\phi[3]=\pi$}\end{tabular}}}}%
+    \put(0.70133094,0.27150776){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{d40000}{$\phi[4]=0$}\end{tabular}}}}%
+    \put(0.84456396,0.27127043){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{d40000}{$\phi[5]=0$}\end{tabular}}}}%
+    \put(0.82202322,0.46343913){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}Symbol Bitstream\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{binary-psk.pdf}}%
+    \put(0.13228632,0.01772054){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Modulated Signal, $f(t)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{binary-psk.pdf}}%
+    \put(0.04474606,0.20616273){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$A$\end{tabular}}}}%
+    \put(0.04474606,0.10749696){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$-A$\end{tabular}}}}%
+    \put(0.97140805,0.3184301){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
+    \put(0.97140805,0.13875133){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

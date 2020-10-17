@@ -21,7 +21,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -35,14 +35,14 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1600"
-     inkscape:window-height="875"
+     inkscape:window-height="855"
      id="namedview6432"
      showgrid="false"
-     inkscape:zoom="1.7371032"
-     inkscape:cx="397.50162"
-     inkscape:cy="152.49958"
+     inkscape:zoom="3.3696475"
+     inkscape:cx="340.39391"
+     inkscape:cy="94.567901"
      inkscape:window-x="1280"
-     inkscape:window-y="25"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg6430"
      inkscape:document-rotation="0" />
@@ -519,5 +519,5 @@
        id="tspan1524"
        x="292.6088"
        y="48.211155"
-       style="stroke-width:0.104636">{\LARGE $\frac{1}{T}$}</tspan></text>
+       style="stroke-width:0.104636">{\LARGE $\frac{2\pi}{T}$}</tspan></text>
 </svg>
