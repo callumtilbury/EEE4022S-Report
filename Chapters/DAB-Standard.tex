@@ -20,7 +20,7 @@ This chapter aims to outline the key components of the \gls{dab} standard, as pr
 \section{Coded Orthogonal Frequency Division Multiplexing}
 In 1966, Robert W. Chang published an incredibly important paper~\cite{Chang1966}, outlining the idea of \gls{ofdm}.
 
-\subsection{Motivation}
+\subsection{Motivation: The Problem of Multipath}
 
 The \gls{dab} standard is specifically targeted at the context of mobile reception in urban environments. Each of these characteristics presents notable challenges, and thus required clever design. "Mobile reception" is because most radio listening occurs in moving vehicles, while people are commuting; "urban environments" is because many of these listeners will reside in or near city centres.
 
@@ -149,7 +149,7 @@ Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \
 
 
 
-\subsection{Orthogonal Carriers}
+\subsection{Using Orthogonal Carriers}
 As shown, a straightforward \gls{fdm} approach requires the carriers to be sufficiently spaced from each other, to avoid cross-talk. There is an important exception to this requirement, if one chooses the carrier frequencies very carefully: specifically, by spacing the carriers precisely with \(\Delta \omega = \frac{2\pi}{T}\). This is shown graphically in Figure~\ref{fig:ofdm-three-sincs}.
 
 \begin{figure}[htbp]
@@ -200,6 +200,8 @@ In the simplest case, one could take a bitstream of values---either 0 or 1---and
     \label{fig:binary-psk}
 \end{figure}
 
+\subsection{Quadrature Phase Shift Keying}
+
 \subsection{Using Differential Phases}
 Notice in the previous example that the demodulator would need to have knowledge about the
 
@@ -212,11 +214,9 @@ Notice in the previous example that the demodulator would need to have knowledge
     \label{fig:differential-binary-psk}
 \end{figure}
 
-\subsection{Quadrature Phase Shift Keying}
-
+\subsection{Adding $\pi/4$ Phase Offset}
 
 \section{Transmission Frame}
-
 
 \subsection{Overview}
 
