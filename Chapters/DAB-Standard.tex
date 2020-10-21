@@ -20,7 +20,7 @@ This chapter aims to outline the key components of the \gls{dab} standard, as pr
 \section{Coded Orthogonal Frequency Division Multiplexing}
 In 1966, Robert W. Chang published an incredibly important paper~\cite{Chang1966}, outlining the idea of \gls{ofdm}.
 
-\subsection{Motivation: The Problem of Multipath}
+\subsection{Motivation: The Problem of Multipath \label{subsect:multipath}}
 
 The \gls{dab} standard is specifically targeted at the context of mobile reception in urban environments. Each of these characteristics presents notable challenges, and thus required clever design. "Mobile reception" is because most radio listening occurs in moving vehicles, while people are commuting; "urban environments" is because many of these listeners will reside in or near city centres.
 
@@ -48,7 +48,7 @@ There are, in essence, two scenarios that can result from this superposition eff
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/multipath-symbol-lessthan.pdf_tex}}
-    \caption{}
+    \caption{Multipath situation with \(t_d < t_s\)}
     \label{fig:multipath-symbol-lessthan}
 \end{figure}
 
@@ -61,7 +61,7 @@ The scenario is if the delay period is longer than the symbol period, \(t_d > t_
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/multipath-symbol-morethan.pdf_tex}}
-    \caption{}
+    \caption{Multipath situation with \(t_d \ge t_s\)}
     \label{fig:multipath-symbol-morethan}
 \end{figure}
 
@@ -150,7 +150,7 @@ Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \
 
 
 \subsection{Using Orthogonal Carriers}
-As shown, a straightforward \gls{fdm} approach requires the carriers to be sufficiently spaced from each other, to avoid cross-talk. There is an important exception to this requirement, if one chooses the carrier frequencies very carefully: specifically, by spacing the carriers precisely with \(\Delta \omega = \frac{2\pi}{T}\). This is shown graphically in Figure~\ref{fig:ofdm-three-sincs}.
+As shown, a straightforward \gls{fdm} approach requires the carriers to be sufficiently spaced from each other, to avoid cross-talk. There is an important exception to this requirement, provided one chooses the carrier frequencies very carefully: specifically, by spacing the carriers precisely with \(\Delta \omega = \frac{2\pi}{T}\). This is shown graphically in Figure~\ref{fig:ofdm-three-sincs}.
 
 \begin{figure}[htbp]
     \centering
@@ -164,23 +164,63 @@ As shown, a straightforward \gls{fdm} approach requires the carriers to be suffi
 Notice how the peak of each carrier wave is perfectly aligned with the zero crossings of the other carriers---resulting in zero cross-talk at those frequencies. Mathematically, choosing the carrier waves in this way results in the signals being \emph{orthogonal}. For detailed proofs of how this happens, see appendices%~\ref{sect:proofs_ofdm-time} and~\ref{sect:proofs_ofdm-freq}.
 
 \subsection{Leveraging the Discrete Fourier Transform}
-More than simply just being conceptually clever, an \gls{ofdm} system must be practically realizable too. Suppose one had 1000 independent bitstreams to be modulated onto 1000 carrier waves arranged orthogonally---an \gls{ofdm} transmission. How could one perform this modulation efficiently? Moreover, at the receiver end, how could one demodulate and thus extract the 1000 bitstreams?
+While the \gls{ofdm} system is conceptually clever, it was not adopted for some time due to practical constraints. Suppose one had \(K\) independent bitstreams to be modulated onto \(K\) carrier waves arranged orthogonally---an \gls{ofdm} transmission. In the time domain, this can be modelled as a sum of complex exponentials, and frequencies 
+\begin{equation}    
+    x(t) = \sum^K_{k} X_k e^{j k \omega_0 t}
+\end{equation}
+Consider a discrete representation of \(x(t)\), sampled at \(\frac{1}{T}\),
+\begin{equation}
+    x[n] = x(nT) = \sum^K_{k} X_k e^{j k \omega_0 nT}
+\end{equation}
 
-A na\"ive approach would involve using 1000 independent multipliers with 1000 independent oscillators, with the frequencies appropriately set to the required carrier wave frequencies. This is depicted in Figure~\ref{}.
+
+\begin{figure}
+    \centering
+    \def\svgwidth{\linewidth}
+    {
+        \setstretch{0.7} % Line spacing
+        \scriptsize
+        \input{../Images/ofdm-multipliers.pdf_tex}
+    }
+    \caption{Depicting of a multiplier approach to \gls{ofdm}}
+    \label{fig:ofdm-multipliers}
+\end{figure}
+
+
+How could one perform this modulation process efficiently? Moreover, at the receiver end, how could one demodulate, and thus extract, the \(K\) bitstreams?
+
+\subsection{Cyclic Prefixing and Guard Intervals}
+
+\begin{figure}[htbp]
+    \centering
+    \def\svgwidth{1\linewidth}
+    {\setstretch{0.7} % Line spacing
+        \input{../Images/cyclic-prefix.pdf_tex}}
+    \caption{}
+    \label{fig:cyclic-prefix}
+\end{figure}
+
+Note: still same sampling period!
 
 
 \subsection{Time \& Frequency Interleaving}
+In a multipath situation, as discussed in section~\ref{subsect:multipath}, there is a problem of inter-symbol interference. These effects are mitigated in the \gls{dab} standard by utilizing the \gls{ofdm} scheme, together with cyclic prefixing. There is an additional problem, however. 
+
+\begin{figure}[htbp]
+    \centering
+    \def\svgwidth{1\linewidth}
+    {\setstretch{0.7} % Line spacing
+        \input{../Images/ofdm-selective-fading.pdf_tex}}
+    \caption{}
+    \label{fig:ofdm-selective-fading}
+\end{figure}
 
 
 \subsection{Forward Error Correction}
 
-\subsection{Cyclic Prefixing and Guard Intervals}
-
-
-
 \section{Differential Quadrature Phase Shift Keying \label{sect:dab-std_psk}}
 
-The \gls{dab} standard utilizes a modulation technique called \acrlong{psk}, specifically a variant thereof called \gls{pi4dqpsk}.
+The \gls{dab} standard utilizes a modulation technique called \acrlong{psk}, specifically a variant thereof called \(\frac{\pi}{4}-\)\gls{dqpsk}.
 
 \subsection{Binary Phase Shift Keying}
 Consider a sinusoidal carrier wave with a frequency of \(\omega_0\) and an amplitude of \(A\). Unlike in \gls{ask}---where the amplitude of the carrier wave is modulated, and in \gls{fsk}---where the frequency of the carrier wave is modulated, \gls{psk} keeps both the amplitude and frequency constant over time. Instead, it modulates the \emph{phase} of the carrier wave. Mathematically,
@@ -200,10 +240,12 @@ In the simplest case, one could take a bitstream of values---either 0 or 1---and
     \label{fig:binary-psk}
 \end{figure}
 
-\subsection{Quadrature Phase Shift Keying}
+\subsection{Differential Modulation}
+In order to be demodulate a \gls{qpsk} signal properly, a receiver must be "fully coherent,"~\cite{Moosea}.
 
-\subsection{Using Differential Phases}
-Notice in the previous example that the demodulator would need to have knowledge about the
+Otherwise, phase ambiguity problems.
+
+% Notice in the previous example that the demodulator would need to have knowledge about the
 
 \begin{figure}[htbp]
     \centering
@@ -213,6 +255,8 @@ Notice in the previous example that the demodulator would need to have knowledge
     \caption{Example of differential binary phase shift keying}
     \label{fig:differential-binary-psk}
 \end{figure}
+
+\subsection{Quadrature Phase Shift Keying}
 
 \subsection{Adding $\pi/4$ Phase Offset}
 
@@ -237,7 +281,7 @@ Notice in the previous example that the demodulator would need to have knowledge
 % ----------------------------------------------------
 \ifstandalone
 \bibliography{../Bibliography/References.bib}
-\printnoidxglossary[type=\acronymtype,nonumberlist]
+\printnoidxglossary[type=\acronymtype]
 \fi
 \end{document}
 % ----------------------------------------------------

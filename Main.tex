@@ -15,9 +15,6 @@
 \tableofcontents
 \newpage
 
-\printnoidxglossary[type=\acronymtype,nonumberlist]
-\newpage
-
 \pagenumbering{arabic}
 
 \input{Chapters/Introduction.tex}
@@ -33,5 +30,8 @@
 \input{Chapters/Proofs.tex}
 
 \bibliography{Bibliography/References.bib}
+
+\printnoidxglossary[type=\acronymtype]
+\newpage
 
 \end{document}

@@ -1,0 +1,94 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'ofdm-multipliers.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{2080.69531284bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.46936037)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{ofdm-multipliers.pdf}}%
+    \put(0.08567586,0.22409609){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$X_{0}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{ofdm-multipliers.pdf}}%
+    \put(0.27173492,0.27864858){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{ofdm-multipliers.pdf}}%
+    \put(0.43996452,0.15966053){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x(t)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{ofdm-multipliers.pdf}}%
+    \put(0.53999462,0.1167625){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Channel\end{tabular}}}}%
+    \put(0.10709921,0.11101307){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{ofdm-multipliers.pdf}}%
+    \put(0.08567586,0.14478376){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$X_{K/2}$\end{tabular}}}}%
+    \put(0.08567586,0.06674872){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$X_{K}$\end{tabular}}}}%
+    \put(0.22668195,0.34836251){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0$\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{ofdm-multipliers.pdf}}%
+    \put(0.13546365,0.34958457){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 - \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
+    \put(0.19217392,0.27864858){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.29357198,0.34958458){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 + \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
+    \put(0.10709921,0.18954){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{ofdm-multipliers.pdf}}%
+    \put(0.91923845,0.22320901){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{0}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{ofdm-multipliers.pdf}}%
+    \put(0.79838183,0.27864858){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{ofdm-multipliers.pdf}}%
+    \put(0.87449942,0.11101307){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{ofdm-multipliers.pdf}}%
+    \put(0.91923845,0.14389668){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{K/2}$\end{tabular}}}}%
+    \put(0.91709322,0.06586163){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{K}$\end{tabular}}}}%
+    \put(0.75303747,0.34836249){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0$\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{ofdm-multipliers.pdf}}%
+    \put(0.66211056,0.34958458){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 - \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
+    \put(0.71882089,0.27864858){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.82021892,0.34958459){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 + \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
+    \put(0.87449942,0.18954){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{ofdm-multipliers.pdf}}%
+    \put(0.19963567,0.44906313){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Transmitter\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{ofdm-multipliers.pdf}}%
+    \put(0.74555024,0.44906313){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Receiver\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
