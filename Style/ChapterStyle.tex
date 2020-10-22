@@ -60,7 +60,6 @@
     citecolor=linkColour,
 }
 \urlstyle{same}
-\usepackage[all]{hypcap}    %for going to the top of an image when a figure reference is clicked
 
 % Automatically correct front-side quotes
 \usepackage[autostyle=false, style=ukenglish]{csquotes}
@@ -86,9 +85,10 @@
 \definecolor{stringColour}{RGB}{252, 156, 30}
 \definecolor{keywordColour}{RGB}{50, 38, 224}
 \definecolor{lineNumbersColour}{RGB}{127,127,127}
-\lstset{ 
+\lstset{
   language=Matlab,
   captionpos=b,
+  aboveskip=15pt,belowskip=10pt,
   backgroundcolor=\color{backgroundColour},
   basicstyle=\footnotesize,        % the size of the fonts that are used for the code
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
@@ -116,11 +116,13 @@
 }
 
 % Caption stuff
-% \usepackage[hypcap=false]{caption}
-\usepackage{caption}
+\usepackage[hypcap=true, justification=centering]{caption}
 \usepackage{subcaption}
 \setlength{\abovecaptionskip}{10pt plus 3pt minus 2pt}
 \setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
+
+\setlength{\intextsep}{10pt plus 3pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 3pt minus 2pt}
 
 % Glossary package
 % \usepackage[acronym]{glossaries}
@@ -134,3 +136,6 @@
 \usepackage{amssymb}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
+
+% For algorithms
+\usepackage[]{algorithm2e}

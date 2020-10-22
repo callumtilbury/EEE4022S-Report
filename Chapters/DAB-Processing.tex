@@ -14,22 +14,36 @@
     {\emph{---Friedrich Nietzsche}}
 % ----------------------------------------------------
 
+This chapter details the core design component of the project: a \gls{dab} processing chain. While the broader context of this report falls within the realm of \gls{pr}, the fundamental task at hand was to demodulate and remodulate a given \gls{dab} signal, in order to create a perfect reference signal of given recorded data. Fortunately, as outlined in the previous chapter, not all of the intricacies of the \gls{dab} standard were required to be understood or even considered for integration into a passive radar chain.
+
+The design of the chain involved studying the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, as well as using a reference signal which was known to be perfectly modulated for initial testing. For some functionality, real-world data was also used for design and testing. For the sake of simplicity, the entire chain---including all the dimensions shown in this chapter---was designed around \gls{dab} Mode 1. Nonetheless, altering the chain for implementation with other modes will be trivial. All MATLAB functions were designed with a \texttt{dab\_mode} input, if necessary, to allow for easy changes in future designs. Note, however, that this mode input parameter is not shown in any of the upcoming diagrams.
+
 \section{Overview}
+Within the \gls{dab} processing chain, three main functional blocks were identified: pre-processing, demodulation, and remodulation. The first block reads in a \gls{dab} recording of \gls{iq} data saved as a binary file, and outputs a single \gls{dab} frame. This frame can then be input to the demodulate block, which extracts the \gls{dab} data from it. This data is not the decoded information from the \gls{dab} recording---such as the audio signal---rather, it is simply an extracted bitstream. This bitstream can then be perfectly reconstructed as a \gls{dab} frame, by the remodulate block. A diagrammatic overview of this chain is given in Figure~\ref{fig:BD_Overview_All}.
 
 \begin{figure}[htbp]
-    \centering
-    \def\svgwidth{\linewidth}
-    {\setstretch{0.7} % Line spacing
-        \input{../Images/BD_Overview_All-embed.pdf_tex}}
-    \caption{Block diagram showing entire DAB processing chain}
-    \label{fig:BD_Overview_All}
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/BD_Overview_All-embed.pdf_tex}}
+  \caption{Block diagram showing entire DAB processing chain}
+  \label{fig:BD_Overview_All}
 \end{figure}
+
+Notice in the figure that each of the aforementioned blocks---the pre-process, demodulate, and remodulate blocks---was created from a collection of smaller sub-blocks. These sub-blocks were designed to perform simpler tasks individually, and were written as relatively short MATLAB functions. This atomic-function approach had a host of benefits for the design, debugging, and validation of the chain, and added layers of abstraction for the larger system.
+
+Each of the three blocks will be unpacked in the sections that follow this one, with subsections dedicated to the relevant sub-blocks.
 
 \section{Pre-processing \label{sect:dab-proc_preprocessing}}
 \subsection{Overview}
+The pre-processing chain was designed to read in an \gls{iq} data file, synchronize it appropriately, and extract a single frame from it. Note that in an actual \gls{pr} system---where this \gls{dab} processing chain would be only a small part of a larger chain---this block would be markedly different. If nothing else, a real-world chain would probably stream the \gls{iq} data, rather than read it from a pre-recorded file. Moreover, a real chain might process several \gls{dab} frames at once. However, such details are largely context-specific, and it would be superfluous to include every use-case in this report. Importantly, the other two blocks---used to demodulate and remodulate---would mostly remain the same in various other scenarios. Thus, to make matters simpler, the pre-processing block was designed to be straightforward: to read in data and extract a single frame. That is not to say the block is trivial, and there were some important design decisions made for it.
+
+The pre-processing block has four key stages: reading in \gls{iq} data from a binary file, resampling this data if necessary, detecting the location of the \gls{prs} and thus synchronizing the recording, and then extracting a \gls{dab} frame accordingly. This pipeline is shown graphically in Figure~\ref{fig:BD_Preprocess_All}.
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/BD_Preprocess_All-embed.pdf_tex}}
@@ -38,13 +52,90 @@
 \end{figure}
 
 \subsection{Reading IQ data from file \label{subsect:dab-proc_iq-read}}
+The first sub-block is called \texttt{iq\_read}, and, as mentioned previously, would likely be very different in a real \gls{pr} chain. Nonetheless, here it reads in a \gls{dab} recording from a binary file, and outputs so-called "raw" \gls{iq} data. No changes are made to this data in this function, and it essentially just abstracts MATLAB's file-handling functionality conveniently.
 
+As a minor note, one must remember that a \gls{dab} recording contains \gls{iq} data, which is complex-valued. Since a binary file cannot store such a datatype, it will usually be stored as pairs of numbers. To read this correctly in MATLAB, one can use the simple code shown in Listing~\ref{code:iq_read}.
+
+\begin{lstlisting}[caption={Creating a complex data array with the values read from a binary file},label={code:iq_read}]
+iq_data_raw = data_from_file(1:2:end) + 1j*data_from_file(2:2:end);
+\end{lstlisting}
+
+Though it is not shown in the pre-processing block diagrams, the MATLAB function for \texttt{iq\_read} also included some other input parameters for convenience, including the data-type of the binary file, the offset to skip in the file's data, the number of frames to read, and so on.
+
+A perfect \gls{dab} recording that would be output from the \texttt{iq\_read} function is shown in Figure~\ref{fig:plots/perfect-dab-signal}, showing a handful of frames. Notice the separation of successive \gls{dab} frames by the distinct null symbols.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \includegraphics[width=\linewidth]{plots/perfect-dab-signal.pdf}
+  \caption{Time-domain plot of a handful of frames of a perfect \gls{dab} signal}
+  \label{fig:plots/perfect-dab-signal}
+\end{figure}
 
 \subsection{Resampling IQ data \label{subsect:dab-proc_iq-resample}}
+In order for one to utilise the \gls{fft} to demodulate an \gls{ofdm} symbol, certain requirements must be met. Recall that the window for a single symbol, notated as \(T_u\), is 2048 samples for \gls{dab} Mode 1. This means that a 2048-point \gls{fft} must be used, with a resulting 2048 points in the frequency domain. Recall also that \gls{ofdm} has a strict requirement for the spacing between adjacent carriers---\(1 \si{\kilo \hertz}\) for \gls{dab} Mode1. Notice, then, if the sample rate for the original signal is precisely set at \(F_s = 2.048 \si{\mega \hertz}\), for \gls{dab} Mode 1, then the bins from the \gls{fft} will be perfectly aligned on the \gls{ofdm} carriers---enabling proper demouldation.
 
+However, in a real-world scenario, the desired sampling rate might not necessarily be used in the receiver. Thus, in such a situation, the \gls{iq} data must be resampled. Consider an original sampling rate of \(F_s\), a desired sampling rate of \(\tilde{F_s} = 2.048 \si{\mega \hertz}\), with \(F_s \ne \tilde{F_s}\), and with
+\begin{equation}
+  \frac{\tilde{F_s}}{F_s} = \frac{P}{Q}
+\end{equation}
+where \(P\) and \(Q\) are integers---preferably chosen such that \(P/Q\) is in its most reduced fractional form. Resampling, then, is equivalent to upsampling by a factor of \(P\), and thereafter downsampling by a factor of \(Q\).
+
+Fortunately, MATLAB provides a neat abstraction of this process with the \texttt{resample(X, P, Q)} function, where \(X\) is a uniformly sampled signal, and \(P\) and \(Q\) are as defined above.
 
 \subsection{Frame Synchronization via Phase Reference Symbol Detection \label{subsect:dab-proc_prs-detect}}
 
+One of the most important parts of the entire \gls{dab} processing chain is correct synchronization. It will later be shown how negatively a result is affected by the incorrect alignment of a \gls{dab} frame.
+
+There are two mechanisms built into the \gls{dab} signal for synchronization, namely the Null Symbol, and the \acrfull{prs}. As specified in the \gls{dab} standard document~\cite{dabstandard}, the former symbol can be used for coarse synchronization, whereas the latter is used for fine synchronization. Having said that, it is possible to synchronize only using the \gls{prs}.
+
+Recall that the Null Symbol is a period during which all \gls{ofdm} carriers are turned off. In order to detect this symbol, one can look for a significant drop in the average power of the incoming signal, or something similar.
+
+Algorithm~\ref{alg:test}.
+
+To simplify the processing chain, the frame synchronization was done using only the phase reference symbol.
+
+For \gls{dab} Mode 1, the \gls{prs} has a length of 2048 samples. Thus, in order to detect the symbol within an incoming \gls{dab} signal, one can use a Matched Filter, designed around the \gls{prs}. This Matched Filter will naturally have 2048 samples, and so a sliding window of 2048 samples must also be used. The most straightforward way of doing this would be to look at chunks of the incoming signal, in steps of 2048. This is depicted in Figure~\ref{fig:matched-filter-sliding-window}.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/matched-filter-sliding-window.pdf_tex}}
+      \caption{Depiction of sliding Matched Filter window across a recorded \gls{dab} signal}
+      \label{fig:matched-filter-sliding-window}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \captionsetup{type=figure}
+    \begin{minipage}{.6\linewidth}
+      \begin{algorithm}[H]
+        \caption{How to write algorithms \label{alg:test}}
+
+        \SetAlgoLined
+        
+        \KwData{this text}
+        
+        \KwResult{how to write algorithm with \LaTeX2e }
+        initialization\;
+        
+        \While{not at end of this document}{
+          read current\;
+          \eIf{understand}{
+            go to next section\;
+            current section becomes this one\;
+          }{
+            go back to the beginning of current section\;
+          }
+        }
+
+      \end{algorithm}
+    \end{minipage}
+\end{figure}
+
+An important question when integrating the \gls{dab} processing chain into a larger \gls{pr} system is the regularity of frame synchronization. Ideally, one would only need to synchronize once, if the clock of the transmitter and receiver are perfectly accurate, and so on. Unfortunately, in real scenarios, there are a host of unwanted effects, including clock drift, that may cause synchronization errors over time. The other extreme is to synchronize on every frame---which is possible because every frame is preceded by both a Null Symbol and a \gls{prs}. However, this may prove to be too computationally expensive. Naturally, rules cannot be set for this decision, and are largely context-specific. Further details are thus omitted here.
 
 \subsection{Frame Extraction \label{subsect:dab-proc_frame-extract}}
 
@@ -55,6 +146,7 @@
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/BD_Demod_All-embed.pdf_tex}}
@@ -76,6 +168,7 @@
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/BD_Remod_All-embed.pdf_tex}}

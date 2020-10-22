@@ -32,6 +32,7 @@ Figure~\ref{fig:multipath-illustration} illustrates this scenario with dashed li
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/multipath-illustration.pdf_tex}}
@@ -45,6 +46,7 @@ There are, in essence, two scenarios that can result from this superposition eff
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/multipath-symbol-lessthan.pdf_tex}}
@@ -58,6 +60,7 @@ The scenario is if the delay period is longer than the symbol period, \(t_d > t_
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/multipath-symbol-morethan.pdf_tex}}
@@ -75,6 +78,7 @@ Figure~\ref{fig:carrier-illustration} illustrates these situations with two simp
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \def\svgwidth{0.9\linewidth}
@@ -106,6 +110,7 @@ To understand why, consider a carrier wave, \(f(t)\), which has a frequency of \
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{sampling-sine.pdf}
     \caption{Depiction of sampling as a multiplication with a finite window function}
     \label{fig:sampling-sine}
@@ -119,6 +124,7 @@ where \(\textrm{Sa}(x)=\frac{\sin{x}}{x}\).
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/sampling-sine-freq.pdf_tex}}
@@ -135,6 +141,7 @@ Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \
 
 \begin{figure}
     \centering
+    \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{three-sincs-bad-distance.pdf}
     \caption{Three spectra spaced insufficiently far away from each other}
     \label{fig:three-sincs-bad-distance}
@@ -142,6 +149,7 @@ Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{three-sincs-good-distance.pdf}
     \caption{Three spectra spaced sufficiently far away from each other}
     \label{fig:three-sincs-good-distance}
@@ -154,6 +162,7 @@ As shown, a straightforward \gls{fdm} approach requires the carriers to be suffi
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/ofdm-three-sincs.pdf_tex}}
@@ -176,6 +185,7 @@ Consider a discrete representation of \(x(t)\), sampled at \(\frac{1}{T}\),
 
 \begin{figure}
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{\linewidth}
     {
         \setstretch{0.7} % Line spacing
@@ -193,6 +203,7 @@ How could one perform this modulation process efficiently? Moreover, at the rece
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/cyclic-prefix.pdf_tex}}
@@ -208,6 +219,7 @@ In a multipath situation, as discussed in section~\ref{subsect:multipath}, there
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/ofdm-selective-fading.pdf_tex}}
@@ -233,6 +245,7 @@ In the simplest case, one could take a bitstream of values---either 0 or 1---and
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/binary-psk.pdf_tex}}
@@ -249,6 +262,7 @@ Otherwise, phase ambiguity problems.
 
 \begin{figure}[htbp]
     \centering
+    \captionsetup{type=figure}
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/differential-binary-psk.pdf_tex}}

@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="2567.2417"
+   width="2613.5068"
    height="964.35345"
-   viewBox="0 0 679.24937 255.15185"
+   viewBox="0 0 691.49035 255.15185"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (c497b03c, 2020-09-10)"
@@ -67,9 +67,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.9209541"
-     inkscape:cx="810.19196"
-     inkscape:cy="799.65055"
+     inkscape:zoom="0.4656024"
+     inkscape:cx="1161.5912"
+     inkscape:cy="549.44551"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -77,9 +77,9 @@
      units="px"
      inkscape:showpageshadow="false"
      inkscape:window-width="1600"
-     inkscape:window-height="875"
+     inkscape:window-height="813"
      inkscape:window-x="1280"
-     inkscape:window-y="25"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
      inkscape:pagecheckerboard="false"
      borderlayer="false"
@@ -93,7 +93,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -101,7 +101,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(10.428106,-13.792137)">
+     transform="translate(21.08159,-13.792137)">
     <circle
        id="path130"
        style="fill:#000000;stroke:#000000;stroke-width:0.264583"
@@ -214,7 +214,7 @@
          transform="matrix(0.57635269,0,0,0.53845474,53.811719,80.925249)" />
     </g>
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:0;stroke:#000000;stroke-width:0.7858125;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+       style="opacity:1;fill:#ffffff;fill-opacity:0;stroke:#000000;stroke-width:0.785812;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
        id="rect10-48"
        width="60.071957"
        height="36.418564"
@@ -719,7 +719,7 @@
          id="tspan2592-1-7"
          x="159.82471"
          y="31.121511"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.169491">\hyperref[sect:dab-proc_preprocessing]{pre-processing}</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.169491">\hyperref[sect:dab-proc_preprocessing]{pre-process}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6.77963px;line-height:1.25;font-family:sans-serif;word-spacing:0px;opacity:0.5;stroke-width:0.169491"
