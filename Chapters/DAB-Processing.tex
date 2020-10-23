@@ -19,7 +19,7 @@ This chapter details the core design component of the project: a \gls{dab} proce
 The design of the chain involved studying the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, as well as using a reference signal which was known to be perfectly modulated for initial testing. For some functionality, real-world data was also used for design and testing. For the sake of simplicity, the entire chain---including all the dimensions shown in this chapter---was designed around \gls{dab} Mode 1. Nonetheless, altering the chain for implementation with other modes will be trivial. All MATLAB functions were designed with a \texttt{dab\_mode} input, if necessary, to allow for easy changes in future designs. Note, however, that this mode input parameter is not shown in any of the upcoming diagrams.
 
 \section{Overview}
-Within the \gls{dab} processing chain, three main functional blocks were identified: pre-processing, demodulation, and remodulation. The first block reads in a \gls{dab} recording of \gls{iq} data saved as a binary file, and outputs a single \gls{dab} frame. This frame can then be input to the demodulate block, which extracts the \gls{dab} data from it. This data is not the decoded information from the \gls{dab} recording---such as the audio signal---rather, it is simply an extracted bitstream. This bitstream can then be perfectly reconstructed as a \gls{dab} frame, by the remodulate block. A diagrammatic overview of this chain is given in Figure~\ref{fig:BD_Overview_All}.
+Within the \gls{dab} processing chain, three main functional blocks were identified: pre-processing, demodulation, and remodulation. The first block reads in a \gls{dab} recording of \gls{iq} data saved as a binary file, and outputs a single \gls{dab} frame from this file. This frame can then be input to the demodulate block, which extracts the \gls{dab} data from it. This data is not the decoded information from the \gls{dab} recording---such as the audio signal---rather, it is simply an extracted bitstream. This bitstream can then be perfectly reconstructed as a \gls{dab} frame, by the remodulate block. A diagrammatic overview of this chain is given in Figure~\ref{fig:BD_Overview_All}.
 
 \begin{figure}[htbp]
   \centering
@@ -62,7 +62,7 @@ iq_data_raw = data_from_file(1:2:end) + 1j*data_from_file(2:2:end);
 
 Though it is not shown in the pre-processing block diagrams, the MATLAB function for \texttt{iq\_read} also included some other input parameters for convenience, including the data-type of the binary file, the offset to skip in the file's data, the number of frames to read, and so on.
 
-A perfect \gls{dab} recording that would be output from the \texttt{iq\_read} function is shown in Figure~\ref{fig:plots/perfect-dab-signal}, showing a handful of frames. Notice the separation of successive \gls{dab} frames by the distinct null symbols.
+A perfect \gls{dab} recording that would be output from the \texttt{iq\_read} function is shown in Figure~\ref{fig:plots/perfect-dab-signal}, showing a handful of \gls{dab} frames. Notice the separation of successive frames by the distinct null symbols.
 
 \begin{figure}[htbp]
   \centering
@@ -83,29 +83,68 @@ where \(P\) and \(Q\) are integers---preferably chosen such that \(P/Q\) is in i
 
 Fortunately, MATLAB provides a neat abstraction of this process with the \texttt{resample(X, P, Q)} function, where \(X\) is a uniformly sampled signal, and \(P\) and \(Q\) are as defined above.
 
+% -----------------
 \subsection{Frame Synchronization via Phase Reference Symbol Detection \label{subsect:dab-proc_prs-detect}}
 
-One of the most important parts of the entire \gls{dab} processing chain is correct synchronization. It will later be shown how negatively a result is affected by the incorrect alignment of a \gls{dab} frame.
+One of the most important parts of the entire \gls{dab} processing chain is correct synchronization. If the frame that is output from the pre-processing block is misaligned, the entire demodulation process can break due to misalignment of the \gls{ofdm} symbols. It will later be shown how negatively a result is affected by the incorrect alignment of a \gls{dab} frame.
 
-There are two mechanisms built into the \gls{dab} signal for synchronization, namely the Null Symbol, and the \acrfull{prs}. As specified in the \gls{dab} standard document~\cite{dabstandard}, the former symbol can be used for coarse synchronization, whereas the latter is used for fine synchronization. Having said that, it is possible to synchronize only using the \gls{prs}.
+There are two mechanisms built into the \gls{dab} signal for synchronization, namely the \acrfull{ns} and the \acrfull{prs}. As specified in the \gls{dab} standard document~\cite{dabstandard}, the former symbol can be used for coarse synchronization, whereas the latter is used for fine synchronization. Essentially, then, there are two approaches to frame alignment: to locate the approximate beginning of a frame with the \gls{ns} and then finely align the frame with the \gls{prs}, or to use only the \gls{prs} without first coarsely detecting the \gls{ns}.
 
-Recall that the Null Symbol is a period during which all \gls{ofdm} carriers are turned off. In order to detect this symbol, one can look for a significant drop in the average power of the incoming signal, or something similar.
+For each of these detection processes, only a short chunk of the data will be considered at once. Let the length of this window be notated as \(T_w\), and let the interval between successive chunks be called the "advancement" interval, \(T_a\). In order not to skip any sections of the signal, it is clear that,
+\begin{equation}
+  T_a \le T_w
+\end{equation}
 
-Algorithm~\ref{alg:test}.
-
-To simplify the processing chain, the frame synchronization was done using only the phase reference symbol.
-
-For \gls{dab} Mode 1, the \gls{prs} has a length of 2048 samples. Thus, in order to detect the symbol within an incoming \gls{dab} signal, one can use a Matched Filter, designed around the \gls{prs}. This Matched Filter will naturally have 2048 samples, and so a sliding window of 2048 samples must also be used. The most straightforward way of doing this would be to look at chunks of the incoming signal, in steps of 2048. This is depicted in Figure~\ref{fig:matched-filter-sliding-window}.
+Graphically, the frame synchronization situation is depicted in Figure~\ref{fig:sliding-window-illustration}.
 
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
-      \input{../Images/matched-filter-sliding-window.pdf_tex}}
-      \caption{Depiction of sliding Matched Filter window across a recorded \gls{dab} signal}
-      \label{fig:matched-filter-sliding-window}
+      \input{../Images/sliding-window-illustration.pdf_tex}}
+      \caption{Depiction of sliding window across a recorded \gls{dab} signal}
+      \label{fig:sliding-window-illustration}
 \end{figure}
+
+
+Recall that the Null Symbol is a period during which all \gls{ofdm} carriers are turned off. In order to detect this symbol, one can, for example, look for a significant drop in the average power of the incoming signal, \(P_x\):
+\begin{equation}
+  P_x = \frac{1}{T} \cdot \sum^{T-1}_{n=0} \Big| x[n] \Big|^2
+\end{equation}
+where \(x[n]\) is the sampled signal, and \(T\) is the length of the chunk of signal to be considered---likely set to \(T_\textrm{null}\), the length of the Null Symbol.
+
+The \gls{prs}, on the other hand, can be detected via a Matched Filtering process, which is essentially a time-domain correlation. Conceptually, this filter, \(H(\Omega)\), is designed as:
+\begin{equation}
+  H(\Omega) = R^*(\Omega)
+\end{equation}
+where \(R^*(\Omega)\) is the conjugate of the continuous-time Fourier transform of the \gls{prs}. Of course, since the system is implemented digitally, the filter must be defined discretely,
+\begin{equation}
+  \mathbf{H} = \mathbf{R}^* = \mathrm{DFT} \{ r[n] \}^*
+\end{equation}
+
+Then, the output of the filter in the Fourier domain, \(\mathbf{Y}\), can be calculated via a simple Hadamard product:
+\begin{equation}
+  \mathbf{Y} = \mathbf{H} \odot \mathbf{X}
+\end{equation}
+
+Notice that for each of these symbol detection processes, only a certain chunk of the original signal is considered at once---there is a window applied. Thus there is a decision on the so-called "Window Advancement Interval"---the interval between successive windows for the detection process. This is depicted in Figure~\ref{fig:sliding-window-illustration}.
+
+At a maximum, this interval should be as long as a window itself, in order not to skip any sections of the original signal. Alternatively, for a variety of reasons, the interval may be shorter than the window length. Two possibilities for the Window Advancement Interval are shown in figure~\ref{fig:matched-filter-sliding-window-advance}.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/matched-filter-sliding-window-advance.pdf_tex}}
+      \caption{Depiction of two Window Advancement Intervals alongside a \gls{dab} signal}
+      \label{fig:matched-filter-sliding-window-advance}
+\end{figure}
+
+To simplify the processing chain, the frame synchronization was done using only the phase reference symbol.
+
+% For \gls{dab} Mode 1, the \gls{prs} has a length of 2048 samples. Thus, in order to detect the symbol within an incoming \gls{dab} signal, one can use a Matched Filter, designed around the \gls{prs}. This Matched Filter will naturally have 2048 samples, and so a sliding window of 2048 samples must also be used. The most straightforward way of doing this would be to look at chunks of the incoming signal, in steps of 2048. This is depicted in Figure~\ref{fig:matched-filter-sliding-window}.
 
 \begin{figure}[ht]
     \centering
@@ -135,14 +174,17 @@ For \gls{dab} Mode 1, the \gls{prs} has a length of 2048 samples. Thus, in order
     \end{minipage}
 \end{figure}
 
-An important question when integrating the \gls{dab} processing chain into a larger \gls{pr} system is the regularity of frame synchronization. Ideally, one would only need to synchronize once, if the clock of the transmitter and receiver are perfectly accurate, and so on. Unfortunately, in real scenarios, there are a host of unwanted effects, including clock drift, that may cause synchronization errors over time. The other extreme is to synchronize on every frame---which is possible because every frame is preceded by both a Null Symbol and a \gls{prs}. However, this may prove to be too computationally expensive. Naturally, rules cannot be set for this decision, and are largely context-specific. Further details are thus omitted here.
+An important question when integrating the \gls{dab} processing chain into a larger \gls{pr} system is the regularity of frame synchronization. Ideally, one would only need to synchronize once, if the clock of the transmitter and receiver are perfectly accurate. Unfortunately, in real scenarios, there are a host of unwanted effects, including clock drift, that may cause synchronization errors over time. The other extreme is to synchronize on every frame---which is possible because every frame is preceded by both a Null Symbol and a \gls{prs}. However, this may prove to be too computationally expensive. Naturally, fixed rules cannot be set for this decision, and are largely context-specific. Further details are thus omitted here.
 
 \subsection{Frame Extraction \label{subsect:dab-proc_frame-extract}}
-
+Once the index of the \gls{prs} has been detected, extracting a frame is trivial, as it simply entails subsetting the original data array. This block and subsection are included for the sake of completeness.
 
 
 \section{Demodulation \label{sect:dab-proc_demodulate}}
 \subsection{Overview}
+The purpose of the demodulation block is to extract \gls{dab} "information" from a given frame. This not a \emph{decoder}, as it does not extract any audio signal or similar. Rather, it returns the bitstream with which the \gls{ofdm} carrier waves were modulated. Importantly, this demodulator block is not intended to stand alone, and its output is useless in isolation. Instead, the demodulation and remodulation blocks are designed to operate in tandem, where the output of the demodulate block is the input to the remodulate block. Ultimately, this is all for the purpose of perfectly reconstructing a given \gls{dab} frame, to be used in a \gls{pr} chain.
+
+The demodulation pipeline has six key stages: the \gls{dab} frame is unpacked into a collection of symbols, which is then demultiplexed into \gls{ofdm} carriers, which are then demapped into \gls{dab} data via \gls{dqpsk} demodulation. Thereafter, this \gls{dab} data is interleaved in frequency, snapped to their closest \gls{dqpsk} values, and finally are put through an error-correction algorithm. The overview of this chain is given in Figure~\ref{fig:BD_Demod_All}. Take special note of the nomenclature for the variables before and after each block, as well as their dimensions---provided for \gls{dab} Mode 1.
 
 \begin{figure}[htbp]
     \centering
@@ -154,9 +196,75 @@ An important question when integrating the \gls{dab} processing chain into a lar
     \label{fig:BD_Demod_All}
 \end{figure}
 
+The details for each sub-block are given in the following sections.
 
 \subsection{Symbols Unpacking \label{subsect:dab-proc_symbols-unpack}}
+The purpose of this function is to split a \gls{dab} frame into its symbols, which can then be demultiplexed and further processed. This sub-block also includes the removal of guard intervals from the symbols, thus extracting only the "useful symbol" component. As a result, the function receives a vector of size \(1\times T_f\), and outputs a matrix of size \(L\times T_u\). Note that
+\begin{equation}
+  T_f \ne L\times T_u
+\end{equation}
+since the original frame length, \(T_f\), includes the guard intervals of length \(Tg\), as well as the \gls{ns}. Instead,
+\begin{equation}
+  T_f = L\times (T_u + T_g) + T_\mathrm{null}
+\end{equation}
+
+The symbol unpacking process is depicted graphically in figure~\ref{fig:symbols_unpack}.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/symbols_unpack.pdf_tex}}
+  \caption{Illustration of the \texttt{symbol\_unpack} functionality}
+  \label{fig:symbols_unpack}
+\end{figure}
+
+In MATLAB, the unpacking process is fairly straightforward, with complications only arising in off-by-one errors. Consider the simple code segment in Listing~\ref{code:symbols_unpack} for this functionality.
+
+\begin{lstlisting}[caption={Code used in the \texttt{symbols\_unpack} function}, label={code:symbols_unpack}]
+function dab_symbols = symbols_unpack(dab_frame, dab_mode)
+  % Pre-allocate space for the result
+  dab_symbols = zeros(dab_mode.L, dab_mode.Tu);
+
+  % Start after null & first guard interval
+  ii = dab_mode.Tnull + dab_mode.Tg + 1;
+
+  % Iterate through L symbols
+  for l = 1:dab_mode.L
+      % Read symbol of length Tu
+      dab_symbols(l,:) = dab_frame(ii:ii+dab_mode.Tu-1);
+      % Jump ahead 1 symbol, incl. guard (Ts = Tu + Tg)
+      ii = ii + dab_mode.Ts;
+  end
+end
+\end{lstlisting}
+
+% -------------
 \subsection{OFDM Demultiplexing \label{subsect:dab-proc_ofdm-demux}}
+With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} carriers can then be extracted via a \gls{fft} operation, as explained in the previous chapter. Consider first the case of a single symbol.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \includegraphics[width=0.6\linewidth]{plots/ofdm-carriers-1.pdf}
+  \caption{Plot showing the magnitude of the \gls{ofdm} carriers for a single \gls{dab} symbol}
+  \label{fig:ofdm-carriers-1}
+\end{figure}
+
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/ofdm_demux.pdf_tex}}
+  \caption{Illustration of the \texttt{ofdm\_demux} functionality}
+  \label{fig:ofdm_demux}
+\end{figure}
+
+
+
 \subsection{DQPSK Demapping \label{subsect:dab-proc_dqpsk-demap}}
 \subsection{Frequency Deinterleaving \label{subsect:dab-proc_freq-deinterleave}}
 \subsection{DQPSK Snapping \label{subsect:dab-proc_dqpsk-snap}}
