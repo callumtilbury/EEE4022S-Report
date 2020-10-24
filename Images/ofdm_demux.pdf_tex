@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1271.28829769bp}%
+    \setlength{\unitlength}{1242.94184021bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,28 +50,23 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.64133711)%
+  \begin{picture}(1,0.55167095)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ofdm_demux.pdf}}%
-    \put(0.09329288,0.32370135){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L$\end{tabular}}}}%
+    \put(0.08401754,0.31968069){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ofdm_demux.pdf}}%
-    \put(0.2196956,0.02890795){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
+    \put(0.21330299,0.01816425){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{ofdm_demux.pdf}}%
-    \put(0.90659591,0.32370135){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L$\end{tabular}}}}%
+    \put(0.91586872,0.31968069){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{ofdm_demux.pdf}}%
-    \put(0.80156529,0.02890795){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
+    \put(0.80844277,0.01816425){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{ofdm_demux.pdf}}%
-    \put(0.50365643,0.32470959){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ofdm\\demux\end{tabular}}}}%
-    \put(0.36088911,0.29687901){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
-    \put(0.36099056,0.33285638){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_symbols}}\end{tabular}}}}%
-    \put(0.64474875,0.29687901){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
-    \put(0.64485027,0.33285638){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_carriers}}\end{tabular}}}}%
+    \put(0.50373981,0.32071193){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ofdm\\demux\end{tabular}}}}%
+    \put(0.35771655,0.29224665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.35782032,0.32904451){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_symbols}}\end{tabular}}}}%
+    \put(0.64804988,0.29224665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.64815372,0.32904451){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_carriers}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{ofdm_demux.pdf}}%
-    \put(0.78252545,0.61082702){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$|X[k]|$\end{tabular}}}}%
-    \put(0.8251605,0.55827081){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$k$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=7]{ofdm_demux.pdf}}%
-    \put(0.20074413,0.61082702){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$|x[n]|$\end{tabular}}}}%
-    \put(0.24091289,0.55857909){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

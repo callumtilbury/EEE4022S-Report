@@ -246,11 +246,41 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
 
 \begin{figure}[htbp]
   \centering
-  \captionsetup{type=figure}
-  \includegraphics[width=0.6\linewidth]{plots/ofdm-carriers-1.pdf}
-  \caption{Plot showing the magnitude of the \gls{ofdm} carriers for a single \gls{dab} symbol}
-  \label{fig:ofdm-carriers-1}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/ofdm-carriers-perfect.pdf}
+    \caption{Perfect Data}
+    \label{fig:ofdm-carriers-perfect}
+  \end{subfigure}%
+  ~ 
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/ofdm-carriers-raw.pdf}
+    \caption{Actual Data}
+    \label{fig:ofdm-carriers-raw}
+  \end{subfigure}
+  \caption{Plots showing the magnitude of the \gls{ofdm} carriers for a single \gls{dab} symbol}
+  \label{fig:dqpsk_demap_perfect}
 \end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \includegraphics[width=0.9\linewidth]{plots/ofdm-surface-perfect.png}
+  \caption{Surface plot}
+  \label{fig:ofdm-surface-perfect}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \includegraphics[width=0.9\linewidth]{plots/ofdm-surface-raw.png}
+  \caption{Surface plot}
+  \label{fig:ofdm-surface-raw}
+\end{figure}
+
 
 
 \begin{figure}[htbp]
@@ -266,8 +296,127 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
 
 
 \subsection{DQPSK Demapping \label{subsect:dab-proc_dqpsk-demap}}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk_demap_perfect-1.pdf}
+    \caption{}
+    \label{fig:dqpsk_demap_perfect-1}
+  \end{subfigure}%
+  ~ 
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk_demap_perfect-2.pdf}
+    \caption{}
+    \label{fig:dqpsk_demap_perfect-2}
+  \end{subfigure}
+  ~ 
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk_demap_perfect-2over1.pdf}
+    \caption{}
+    \label{fig:dqpsk_demap_perfect-2over1}
+  \end{subfigure}
+  \caption{}
+  \label{fig:dqpsk_demap_perfect}
+\end{figure}
+
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk_demap_rtl-1.pdf}
+    \caption{}
+    \label{fig:dqpsk_demap_rtl-1}
+  \end{subfigure}%
+  ~ 
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk_demap_rtl-2.pdf}
+    \caption{}
+    \label{fig:dqpsk_demap_rtl-2}
+  \end{subfigure}
+  ~ 
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk_demap_rtl-2over1.pdf}
+    \caption{}
+    \label{fig:dqpsk_demap_rtl-2over1}
+  \end{subfigure}
+  \caption{}
+  \label{fig:dqpsk_demap_rtl}
+\end{figure}
+
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk_demap_raw-1.pdf}
+    \caption{}
+    \label{fig:dqpsk_demap_rtl-1}
+  \end{subfigure}%
+  ~ 
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk_demap_raw-2.pdf}
+    \caption{}
+    \label{fig:dqpsk_demap_rtl-2}
+  \end{subfigure}
+  ~ 
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk_demap_raw-2over1.pdf}
+    \caption{}
+    \label{fig:dqpsk_demap_raw-2over1}
+  \end{subfigure}
+  \caption{}
+  \label{fig:dqpsk_demap_raw}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/dqpsk_demap.pdf_tex}}
+  \caption{}
+  \label{fig:dqpsk_demap}
+\end{figure}
+
+
 \subsection{Frequency Deinterleaving \label{subsect:dab-proc_freq-deinterleave}}
+
 \subsection{DQPSK Snapping \label{subsect:dab-proc_dqpsk-snap}}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \includegraphics[width=0.8\linewidth]{plots/dqpsk_snap_rtl.pdf}
+  \caption{}
+  \label{fig:dqpsk_snap_rtl}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \includegraphics[width=0.8\linewidth]{plots/dqpsk_snap_rtl-alt.pdf}
+  \caption{}
+  \label{fig:dqpsk_snap_rtl-alt}
+\end{figure}
+
 \subsection{Error Correction \label{subsect:dab-proc_error-correct}}
 
 \section{Remodulation \label{sect:dab-proc_remodulate}}
