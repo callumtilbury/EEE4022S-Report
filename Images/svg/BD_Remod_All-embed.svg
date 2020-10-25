@@ -225,11 +225,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.7226186"
-     inkscape:cx="1117.0487"
-     inkscape:cy="244.14771"
+     inkscape:zoom="1.6655026"
+     inkscape:cx="416.15866"
+     inkscape:cy="251.73846"
      inkscape:document-units="px"
-     inkscape:current-layer="g14636"
+     inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -256,7 +256,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -376,8 +376,10 @@
          x="154.16147"
          y="124.46207"
          style="text-align:center;text-anchor:middle;stroke-width:0.0296596"
-         id="tspan300-0-3"
-         dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0">{\tiny \texttt{\makecell{dab\_data\_\\deinterleaved}}}</tspan></text>
+         id="tspan434531"><tspan
+   dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+   id="tspan434533"
+   style="text-align:center;text-anchor:middle;stroke-width:0.0296596">{\tiny \texttt{\makecell{dab\_data\_\\</tspan>interleaved}}}</tspan></text>
     <g
        id="g1597"
        transform="matrix(0.69328373,0,0,0.96248641,309.27049,23.775645)"
@@ -550,55 +552,50 @@
          id="tspan2347"
          dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0">{\tiny \texttt{\makecell{dab\_symbols\_\\remod}}}</tspan></text>
     <g
-       id="g14636"
-       transform="matrix(0,-0.69328373,0.96248641,0,-13.405229,230.55188)"
-       style="stroke:#666666;stroke-width:0.572633;stroke-miterlimit:4;stroke-dasharray:none">
-      <g
-         id="g13436"
-         transform="matrix(0,1.3395045,-1.3883009,0,301.38526,3.7603608)"
-         style="stroke:#666666;stroke-width:0.418969;stroke-miterlimit:4;stroke-dasharray:none">
-        <path
-           style="fill:none;stroke:#666666;stroke-width:0.418969;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker13568)"
-           d="M 83.361959,161.70918 V 138.42969"
-           id="path13434"
-           sodipodi:nodetypes="cc" />
-      </g>
-      <text
-         xml:space="preserve"
-         style="font-size:3.32314px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0830778"
-         x="138.95219"
-         y="-52.077511"
-         id="text3327-9-9-4-3-3-8-8-7-4"
-         transform="matrix(0,0.83099719,-1.2033735,0,0,0)"><tspan
-           sodipodi:role="line"
-           x="138.95219"
-           y="-52.077511"
-           style="text-align:center;text-anchor:middle;stroke-width:0.0830778"
-           id="tspan300-0-3-3-5"
-           dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0">{\scriptsize \texttt{interleave\_map}}</tspan></text>
-      <g
-         id="g15746"
-         transform="matrix(0,1.3395045,-1.3883009,0,301.38526,113.32095)"
-         style="stroke:#666666;stroke-width:0.418969;stroke-miterlimit:4;stroke-dasharray:none">
-        <path
-           style="fill:none;stroke:#666666;stroke-width:0.418969;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker15754)"
-           d="M 83.361959,161.70918 V 138.42969"
-           id="path15744"
-           sodipodi:nodetypes="cc" />
-      </g>
-      <text
-         xml:space="preserve"
-         style="font-size:3.32314px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0830778"
-         x="270.46286"
-         y="-52.077511"
-         id="text15750"
-         transform="matrix(0,0.83099719,-1.2033735,0,0,0)"><tspan
-           sodipodi:role="line"
-           x="270.46286"
-           y="-52.077511"
-           style="text-align:center;text-anchor:middle;stroke-width:0.0830778"
-           id="tspan15748"
-           dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0">{\scriptsize \texttt{phase\_reference\_symbol}}</tspan></text>
+       id="g13436"
+       transform="matrix(1.2892549,0,0,0.96248643,-9.7859328,21.606383)"
+       style="stroke:#666666;stroke-width:0.418969;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         style="fill:none;stroke:#666666;stroke-width:0.418969;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker13568)"
+         d="M 83.361959,161.70918 V 138.42969"
+         id="path13434"
+         sodipodi:nodetypes="cc" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:2.71457px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke:#666666;stroke-width:0.0678637;stroke-miterlimit:4;stroke-dasharray:none"
+       x="99.814911"
+       y="183.20024"
+       id="text3327-9-9-4-3-3-8-8-7-4"
+       transform="scale(0.97913225,1.0213125)"><tspan
+         sodipodi:role="line"
+         x="99.814911"
+         y="183.20024"
+         style="text-align:center;text-anchor:middle;stroke-width:0.0678637"
+         id="tspan300-0-3-3-5"
+         dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0">{\scriptsize \texttt{interleave\_map}}</tspan></text>
+    <g
+       id="g15746"
+       transform="matrix(1.2892549,0,0,0.96248643,95.664645,21.606383)"
+       style="stroke:#666666;stroke-width:0.418969;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         style="fill:none;stroke:#666666;stroke-width:0.418969;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker15754)"
+         d="M 83.361959,161.70918 V 138.42969"
+         id="path15744"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:2.71457px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke:#666666;stroke-width:0.0678637;stroke-miterlimit:4;stroke-dasharray:none"
+       x="207.242"
+       y="183.20024"
+       id="text15750"
+       transform="scale(0.97913225,1.0213125)"><tspan
+         sodipodi:role="line"
+         x="207.242"
+         y="183.20024"
+         style="text-align:center;text-anchor:middle;stroke-width:0.0678637"
+         id="tspan15748"
+         dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0">{\scriptsize \texttt{phase\_reference\_symbol}}</tspan></text>
   </g>
 </svg>

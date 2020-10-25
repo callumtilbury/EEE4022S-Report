@@ -184,7 +184,7 @@ Once the index of the \gls{prs} has been detected, extracting a frame is trivial
 \subsection{Overview}
 The purpose of the demodulation block is to extract \gls{dab} "information" from a given frame. This not a \emph{decoder}, as it does not extract any audio signal or similar. Rather, it returns the bitstream with which the \gls{ofdm} carrier waves were modulated. Importantly, this demodulator block is not intended to stand alone, and its output is useless in isolation. Instead, the demodulation and remodulation blocks are designed to operate in tandem, where the output of the demodulate block is the input to the remodulate block. Ultimately, this is all for the purpose of perfectly reconstructing a given \gls{dab} frame, to be used in a \gls{pr} chain.
 
-The demodulation pipeline has six key stages: the \gls{dab} frame is unpacked into a collection of symbols, which is then demultiplexed into \gls{ofdm} carriers, which are then demapped into \gls{dab} data via \gls{dqpsk} demodulation. Thereafter, this \gls{dab} data is interleaved in frequency, snapped to their closest \gls{dqpsk} values, and finally are put through an error-correction algorithm. The overview of this chain is given in Figure~\ref{fig:BD_Demod_All}. Take special note of the nomenclature for the variables before and after each block, as well as their dimensions---provided for \gls{dab} Mode 1.
+The demodulation pipeline has six key stages: the \gls{dab} frame is unpacked into a collection of symbols, which is then demultiplexed into \gls{ofdm} carriers, which are then §demapped into \gls{dab} data via \gls{dqpsk} demodulation. Thereafter, this \gls{dab} data is interleaved in frequency, snapped to their closest \gls{dqpsk} values, and finally are put through an error-correction algorithm. The overview of this chain is given in Figure~\ref{fig:BD_Demod_All}. Take special note of the nomenclature for the variables before and after each block, as well as their dimensions---provided for \gls{dab} Mode 1.
 
 \begin{figure}[htbp]
     \centering
@@ -246,6 +246,7 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
 
 \begin{figure}[htbp]
   \centering
+  \captionsetup{type=figure}
   \begin{subfigure}[t]{0.45\textwidth}
     \centering
     \captionsetup{type=figure}
@@ -299,6 +300,7 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
 
 \begin{figure}[htbp]
   \centering
+  \captionsetup{type=figure}
   \begin{subfigure}[t]{0.3\textwidth}
     \centering
     \captionsetup{type=figure}
@@ -329,6 +331,7 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
 
 \begin{figure}[htbp]
   \centering
+  \captionsetup{type=figure}
   \begin{subfigure}[t]{0.3\textwidth}
     \centering
     \captionsetup{type=figure}
@@ -359,6 +362,7 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
 
 \begin{figure}[htbp]
   \centering
+  \captionsetup{type=figure}
   \begin{subfigure}[t]{0.3\textwidth}
     \centering
     \captionsetup{type=figure}
@@ -399,6 +403,16 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
 
 \subsection{Frequency Deinterleaving \label{subsect:dab-proc_freq-deinterleave}}
 
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/freq_deinterleave.pdf_tex}}
+  \caption{Frequency deinterleaving}
+  \label{fig:freq_deinterleave}
+\end{figure}
+
 \subsection{DQPSK Snapping \label{subsect:dab-proc_dqpsk-snap}}
 
 \begin{figure}[htbp]
@@ -412,9 +426,21 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
-  \includegraphics[width=0.8\linewidth]{plots/dqpsk_snap_rtl-alt.pdf}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/dqpsk_snap_rtl-alt.pdf_tex}}
   \caption{}
   \label{fig:dqpsk_snap_rtl-alt}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/dqpsk_snap.pdf_tex}}
+  \caption{\gls{dqpsk} snapping}
+  \label{fig:dqpsk_snap}
 \end{figure}
 
 \subsection{Error Correction \label{subsect:dab-proc_error-correct}}
@@ -429,14 +455,57 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/BD_Remod_All-embed.pdf_tex}}
-    \caption{Block diagram showing demodulation section of processing chain}
+    \caption{Block diagram showing remodulation section of processing chain}
     \label{fig:BD_Remod_All}
 \end{figure}
 
 \subsection{Frequency Interleaving \label{subsect:dab-proc_freq-interleave}}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+  \input{../Images/freq_interleave.pdf_tex}}
+  \caption{Frequency interleaving process}
+  \label{fig:freq_interleave}
+\end{figure}
+
 \subsection{DQPSK Mapping \label{subsect:dab-proc_dqpsk-map}}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+  \input{../Images/dqpsk_map.pdf_tex}}
+  \caption{\gls{dqpsk} mapping process}
+  \label{fig:dqpsk_map}
+\end{figure}
+
 \subsection{OFDM Multiplexing \label{subsect:dab-proc_ofdm-mux}}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+  \input{../Images/ofdm_mux.pdf_tex}}
+  \caption{\gls{ofdm} multiplexing process}
+  \label{fig:ofdm_mux}
+\end{figure}
+
 \subsection{Symbols Packing \label{subsect:dab-proc_symbols-pack}}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+  \input{../Images/symbols_pack.pdf_tex}}
+  \caption{Symbols packing process}
+  \label{fig:symbols_pack}
+\end{figure}
 
 \section{Summary}
 

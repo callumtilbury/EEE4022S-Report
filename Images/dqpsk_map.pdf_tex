@@ -1,0 +1,74 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'dqpsk_map.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1135.16952689bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.61341706)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{dqpsk_map.pdf}}%
+    \put(0.50920653,0.35917979){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}dqpsk\\map\end{tabular}}}}%
+    \put(0.36000038,0.3309628){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.64975134,0.37739311){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_carriers\_\\remod}}}\end{tabular}}}}%
+    \put(0.65745264,0.3309628){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.35542858,0.37653909){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_data\_\\interleaved}}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{dqpsk_map.pdf}}%
+    \put(0.07629719,0.3096017){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{dqpsk_map.pdf}}%
+    \put(0.17398307,0.01995714){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$T_u$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{dqpsk_map.pdf}}%
+    \put(0.07629719,0.3096017){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{dqpsk_map.pdf}}%
+    \put(0.93998242,0.35793371){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{dqpsk_map.pdf}}%
+    \put(0.82127312,0.02935789){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{dqpsk_map.pdf}}%
+  \end{picture}%
+\endgroup%

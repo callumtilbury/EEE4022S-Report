@@ -4,3 +4,4 @@
 *.synctex.gz
 *.bib.bak
 *.bib.sav
+!Images/*.pdf

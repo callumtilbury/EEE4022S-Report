@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1340.30382613bp}%
+    \setlength{\unitlength}{1311.95736865bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,26 +50,20 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.40000384)%
+  \begin{picture}(1,0.32549115)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{symbols_unpack.pdf}}%
-    \put(0.58176994,0.20259716){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}symbols\\unpack\end{tabular}}}}%
-    \put(0.43220069,0.21153749){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\texttt{dab\_frame}\end{tabular}}}}%
-    \put(0.43187995,0.17251301){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times196608$}\end{tabular}}}}%
-    \put(0.72801914,0.17366584){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
-    \put(0.72829563,0.21093055){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\texttt{dab\_symbols}\end{tabular}}}}%
+    \put(0.58353668,0.19617141){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}symbols\\unpack\end{tabular}}}}%
+    \put(0.4307358,0.2053049){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\texttt{dab\_frame}\end{tabular}}}}%
+    \put(0.43040814,0.16543725){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times196608$}\end{tabular}}}}%
+    \put(0.73294578,0.16661499){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.73322824,0.20468485){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\texttt{dab\_symbols}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{symbols_unpack.pdf}}%
-    \put(0.18425115,0.10441415){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_f$\end{tabular}}}}%
+    \put(0.17742901,0.09586703){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_f$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{symbols_unpack.pdf}}%
-    \put(0.93941426,0.19208197){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L$\end{tabular}}}}%
+    \put(0.94890834,0.18542902){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{symbols_unpack.pdf}}%
-    \put(0.86411449,0.02481554){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{symbols_unpack.pdf}}%
-    \put(0.1531376,0.30812023){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$|x[n]|$\end{tabular}}}}%
-    \put(0.19357728,0.25827024){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=6]{symbols_unpack.pdf}}%
-    \put(0.85104884,0.37277732){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$|x[n]|$\end{tabular}}}}%
-    \put(0.88259817,0.33388646){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
+    \put(0.87198163,0.01454859){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

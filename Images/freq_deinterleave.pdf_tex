@@ -1,0 +1,75 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'freq_deinterleave.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1172.47485319bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.50405915)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{freq_deinterleave.pdf}}%
+    \put(0.07330446,0.29711863){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{freq_deinterleave.pdf}}%
+    \put(0.16701675,0.01925594){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$T_u$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{freq_deinterleave.pdf}}%
+    \put(0.92663308,0.29638569){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L-1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{freq_deinterleave.pdf}}%
+    \put(0.83491229,0.01925594){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{freq_deinterleave.pdf}}%
+    \put(0.50044988,0.34533979){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\makecell{freq\\{\scriptsize deinterleave}}\end{tabular}}}}%
+    \put(0.35504682,0.32844309){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.35515044,0.36515284){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
+    \put(0.64744668,0.32844309){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
+    \put(0.64754995,0.36515284){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{freq_deinterleave.pdf}}%
+    \put(0.50014665,0.22445228){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{deinterleave\_map}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{freq_deinterleave.pdf}}%
+    \put(0.07330446,0.29711863){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

@@ -1,0 +1,72 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'ofdm_mux.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1238.39135933bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.55369807)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{ofdm_mux.pdf}}%
+    \put(0.08432626,0.312726){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{ofdm_mux.pdf}}%
+    \put(0.20494124,0.018231){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{ofdm_mux.pdf}}%
+    \put(0.91555957,0.3198392){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{ofdm_mux.pdf}}%
+    \put(0.80226786,0.018231){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{ofdm_mux.pdf}}%
+    \put(0.49644527,0.32189039){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ofdm\\demux\end{tabular}}}}%
+    \put(0.34988544,0.29332051){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.35005159,0.33412004){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_carriers\\remod}}}\end{tabular}}}}%
+    \put(0.64128561,0.29332051){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{ofdm_mux.pdf}}%
+    \put(0.64123388,0.33412004){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_symbols\\remod}}}\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
