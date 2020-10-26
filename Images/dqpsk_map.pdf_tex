@@ -55,9 +55,9 @@
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{dqpsk_map.pdf}}%
     \put(0.50920653,0.35917979){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}dqpsk\\map\end{tabular}}}}%
-    \put(0.36000038,0.3309628){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.36000038,0.3309628){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
     \put(0.64975134,0.37739311){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_carriers\_\\remod}}}\end{tabular}}}}%
-    \put(0.65745264,0.3309628){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.65745264,0.3309628){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
     \put(0.35542858,0.37653909){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_data\_\\interleaved}}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dqpsk_map.pdf}}%
     \put(0.07629719,0.3096017){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
@@ -70,5 +70,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=6]{dqpsk_map.pdf}}%
     \put(0.82127312,0.02935789){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{dqpsk_map.pdf}}%
+    \put(0.5088335,0.22326501){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{phase\_reference\_symbol}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{dqpsk_map.pdf}}%
   \end{picture}%
 \endgroup%

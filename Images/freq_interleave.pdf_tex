@@ -62,12 +62,12 @@
     \put(0,0){\includegraphics[width=\unitlength,page=4]{freq_interleave.pdf}}%
     \put(0.83237961,0.01914959){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_u$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{freq_interleave.pdf}}%
-    \put(0.34633802,0.29922515){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
-    \put(0.34644166,0.33594301){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data}}\end{tabular}}}}%
-    \put(0.64747939,0.29922515){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
-    \put(0.64757999,0.33662829){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{\makecell{dab\_data\_\\interleaved}}}\end{tabular}}}}%
+    \put(0.34633802,0.29922515){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
+    \put(0.34644166,0.335943){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data}}\end{tabular}}}}%
+    \put(0.64747939,0.29922515){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
+    \put(0.64758,0.33662829){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{\makecell{dab\_data\_\\interleaved}}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{freq_interleave.pdf}}%
-    \put(0.50014671,0.19521126){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{interleave\_map}}\end{tabular}}}}%
+    \put(0.50014671,0.19521125){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{interleave\_map}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{freq_interleave.pdf}}%
     \put(0.07320987,0.29707386){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{freq_interleave.pdf}}%

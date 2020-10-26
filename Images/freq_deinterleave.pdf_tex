@@ -63,9 +63,9 @@
     \put(0.83491229,0.01925594){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{freq_deinterleave.pdf}}%
     \put(0.50044988,0.34533979){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\makecell{freq\\{\scriptsize deinterleave}}\end{tabular}}}}%
-    \put(0.35504682,0.32844309){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.35504682,0.32844309){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
     \put(0.35515044,0.36515284){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
-    \put(0.64744668,0.32844309){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 1536$}\end{tabular}}}}%
+    \put(0.64744668,0.32844309){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
     \put(0.64754995,0.36515284){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{freq_deinterleave.pdf}}%
     \put(0.50014665,0.22445228){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{deinterleave\_map}}\end{tabular}}}}%

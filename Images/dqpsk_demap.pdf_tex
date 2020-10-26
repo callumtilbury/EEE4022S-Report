@@ -56,12 +56,12 @@
     \put(0,0){\includegraphics[width=\unitlength,page=1]{dqpsk_demap.pdf}}%
     \put(0.08242187,0.31360932){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dqpsk_demap.pdf}}%
-    \put(0.20505091,0.01781927){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
+    \put(0.20018681,0.01781927){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dqpsk_demap.pdf}}%
     \put(0.48424373,0.31330047){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}dqpsk\\demap\end{tabular}}}}%
-    \put(0.3505629,0.28801953){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.3505629,0.28801953){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
     \put(0.35065863,0.32199033){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_carriers}}\end{tabular}}}}%
-    \put(0.61706442,0.28801953){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.61706442,0.28801953){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
     \put(0.62008592,0.32199033){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{dqpsk_demap.pdf}}%
     \put(0.87934932,0.26742847){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L-1$\end{tabular}}}}%

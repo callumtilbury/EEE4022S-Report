@@ -293,9 +293,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.96806967"
-     inkscape:cx="751.12898"
-     inkscape:cy="80.538743"
+     inkscape:zoom="3.7438875"
+     inkscape:cx="1822.5284"
+     inkscape:cy="324.84192"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -303,9 +303,9 @@
      units="px"
      inkscape:showpageshadow="false"
      inkscape:window-width="1600"
-     inkscape:window-height="813"
+     inkscape:window-height="875"
      inkscape:window-x="1280"
-     inkscape:window-y="23"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:pagecheckerboard="false"
      borderlayer="false"
@@ -492,7 +492,7 @@
          id="tspan3657-0"
          x="482.76324"
          y="167.0087"
-         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $1\times 196608$}</tspan></text>
+         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $1\times T_f$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:1.48565px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0371409"

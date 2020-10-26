@@ -126,9 +126,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.43587851"
-     inkscape:cx="1083.2501"
-     inkscape:cy="979.02826"
+     inkscape:zoom="0.4214263"
+     inkscape:cx="971.30143"
+     inkscape:cy="429.8807"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -136,9 +136,9 @@
      units="px"
      inkscape:showpageshadow="false"
      inkscape:window-width="1600"
-     inkscape:window-height="812"
-     inkscape:window-x="1291"
-     inkscape:window-y="23"
+     inkscape:window-height="875"
+     inkscape:window-x="1280"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:pagecheckerboard="false"
      borderlayer="false"
@@ -189,7 +189,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1921,7 +1921,7 @@
          id="tspan3796"
          x="198.71877"
          y="150.69595"
-         style="font-size:5.14753px;text-align:center;text-anchor:middle;stroke-width:0.102951">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:5.14753px;text-align:center;text-anchor:middle;stroke-width:0.102951">{\tiny $L\times T_u$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.88462px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0721152"
@@ -1945,7 +1945,7 @@
          id="tspan3866"
          x="326.02478"
          y="150.69595"
-         style="font-size:5.14753px;text-align:center;text-anchor:middle;stroke-width:0.102951">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:5.14753px;text-align:center;text-anchor:middle;stroke-width:0.102951">{\tiny $L\times T_u$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.88462px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0721152"

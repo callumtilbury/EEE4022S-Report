@@ -56,8 +56,8 @@
     \put(0,0){\includegraphics[width=\unitlength,page=1]{symbols_unpack.pdf}}%
     \put(0.58353668,0.19617141){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}symbols\\unpack\end{tabular}}}}%
     \put(0.4307358,0.2053049){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\texttt{dab\_frame}\end{tabular}}}}%
-    \put(0.43040814,0.16543725){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times196608$}\end{tabular}}}}%
-    \put(0.73294578,0.16661499){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.43040814,0.16543725){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times T_f$}\end{tabular}}}}%
+    \put(0.73294578,0.16661499){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
     \put(0.73322824,0.20468485){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\texttt{dab\_symbols}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{symbols_unpack.pdf}}%
     \put(0.17742901,0.09586703){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_f$\end{tabular}}}}%

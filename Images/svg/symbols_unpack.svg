@@ -120,9 +120,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.61642529"
-     inkscape:cx="1705.2979"
-     inkscape:cy="363.3226"
+     inkscape:zoom="1.6857052"
+     inkscape:cx="1263.4742"
+     inkscape:cy="432.43281"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -130,9 +130,9 @@
      units="px"
      inkscape:showpageshadow="false"
      inkscape:window-width="1600"
-     inkscape:window-height="812"
+     inkscape:window-height="875"
      inkscape:window-x="1280"
-     inkscape:window-y="23"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:pagecheckerboard="false"
      borderlayer="false"
@@ -232,7 +232,7 @@
          id="tspan3657"
          x="155.69452"
          y="142.73625"
-         style="font-size:5.55268px;text-align:center;text-anchor:middle;stroke-width:0.111054">{\tiny $1\times196608$}</tspan></text>
+         style="font-size:5.55268px;text-align:center;text-anchor:middle;stroke-width:0.111054">{\tiny $1\times T_f$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:5.55268px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.111054"
@@ -243,7 +243,7 @@
          id="tspan3796"
          x="295.71783"
          y="142.19116"
-         style="font-size:5.55268px;text-align:center;text-anchor:middle;stroke-width:0.111054">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:5.55268px;text-align:center;text-anchor:middle;stroke-width:0.111054">{\tiny $L\times T_u$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:5.40564px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.13514"

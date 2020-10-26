@@ -63,9 +63,9 @@
     \put(0.80844277,0.01816425){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{ofdm_demux.pdf}}%
     \put(0.50373981,0.32071193){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ofdm\\demux\end{tabular}}}}%
-    \put(0.35771655,0.29224665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.35771655,0.29224665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
     \put(0.35782032,0.32904451){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_symbols}}\end{tabular}}}}%
-    \put(0.64804988,0.29224665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.64804988,0.29224665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
     \put(0.64815372,0.32904451){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_carriers}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{ofdm_demux.pdf}}%
   \end{picture}%

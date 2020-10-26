@@ -86,95 +86,181 @@ Fortunately, MATLAB provides a neat abstraction of this process with the \texttt
 % -----------------
 \subsection{Frame Synchronization via Phase Reference Symbol Detection \label{subsect:dab-proc_prs-detect}}
 
-One of the most important parts of the entire \gls{dab} processing chain is correct synchronization. If the frame that is output from the pre-processing block is misaligned, the entire demodulation process can break due to misalignment of the \gls{ofdm} symbols. It will later be shown how negatively a result is affected by the incorrect alignment of a \gls{dab} frame.
+One of the most important parts of the entire \gls{dab} processing chain is correct time-synchronization. If the frame from the pre-processing block is misaligned, the entire demodulation process can break due to misalignment of the \gls{ofdm} symbols, thus causing havoc in the \gls{dqpsk} demodulation. Fortunately, the inclusion of a guard interval with cyclic prefixing provides some leeway, but errors can easily arise if one is not careful. It will later be shown how negatively a result is affected by the incorrect alignment of a \gls{dab} frame.
 
-There are two mechanisms built into the \gls{dab} signal for synchronization, namely the \acrfull{ns} and the \acrfull{prs}. As specified in the \gls{dab} standard document~\cite{dabstandard}, the former symbol can be used for coarse synchronization, whereas the latter is used for fine synchronization. Essentially, then, there are two approaches to frame alignment: to locate the approximate beginning of a frame with the \gls{ns} and then finely align the frame with the \gls{prs}, or to use only the \gls{prs} without first coarsely detecting the \gls{ns}.
+There are two mechanisms built into the \gls{dab} signal for synchronization, namely the \acrfull{ns} and the \acrfull{prs}. As specified in the \gls{dab} standard document~\cite{dabstandard}, the former symbol is to be used for so-called "coarse" synchronization---detecting an approximate location of the frame's beginning; whereas the latter symbol is used for "fine" synchronization---detecting the exact sample at which the frame starts. 
 
-For each of these detection processes, only a short chunk of the data will be considered at once. Let the length of this window be notated as \(T_w\), and let the interval between successive chunks be called the "advancement" interval, \(T_a\). In order not to skip any sections of the signal, it is clear that,
+Naturally, for each of these detection processes, one cannot consider the entirety of a signal---stretching back from the dawn of time to the eventual collapse of the universe far in the future---more than just practically impossible, it would be unnecessary. Instead only a chunk of the data can be considered at once, as a subset of the longer signal. This process is termed "windowing," where the signal is truncated to a finite domain over which it will be examined. Let the length of this window be notated\footnote{The is not necessarily standardised notation.} as \(T_w\), and let the interval between successive windows be called the "advancement interval", \(T_a\). Graphically, these values are depicted in Figure~\ref{fig:window_advance_illustration}.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/window_advance_illustration.pdf_tex}}
+      \caption{}
+      \label{fig:window_advance_illustration}
+\end{figure}
+
+In order not to skip any sections of the signal, it is clear that the following must hold:
 \begin{equation}
   T_a \le T_w
 \end{equation}
 
-Graphically, the frame synchronization situation is depicted in Figure~\ref{fig:sliding-window-illustration}.
-
-\begin{figure}[htbp]
-  \centering
-  \captionsetup{type=figure}
-  \def\svgwidth{\linewidth}
-  {\setstretch{0.7} % Line spacing
-      \input{../Images/sliding-window-illustration.pdf_tex}}
-      \caption{Depiction of sliding window across a recorded \gls{dab} signal}
-      \label{fig:sliding-window-illustration}
-\end{figure}
-
-
-Recall that the Null Symbol is a period during which all \gls{ofdm} carriers are turned off. In order to detect this symbol, one can, for example, look for a significant drop in the average power of the incoming signal, \(P_x\):
+Consider firstly the detection of the \gls{ns}. Recall that this symbol is a period in the signal during which all \gls{ofdm} carriers are turned off and no power is transmitted. On the receiver's end, there will still be noise recorded from the environment and elsewhere, but the received power over the length of the null symbol, \(T_\textrm{null}\), will be significantly less than in other parts of the signal. Hence, in order to detect this symbol, one can calculate the average power, \(P_{n_0}\), starting at index \(n_0\) over a window of \(T_w = T_\textrm{null}\):
 \begin{equation}
-  P_x = \frac{1}{T} \cdot \sum^{T-1}_{n=0} \Big| x[n] \Big|^2
+  P_{n_0} = \frac{1}{T_w} \cdot \sum^{n_0 + T_w - 1}_{n=n_0} \left| x[n] \right|^2
 \end{equation}
-where \(x[n]\) is the sampled signal, and \(T\) is the length of the chunk of signal to be considered---likely set to \(T_\textrm{null}\), the length of the Null Symbol.
+where \(x[n]\) is the sampled signal, windowed on the domain \([n_0, n_0 + T_w)\). This window can be moved along the original signal, in increments of \(T_a\). Since the \gls{ns} only provides a coarse result, and further synchronisation steps would always be required, the specific value of \(T_a\) is not too important, provided it is less than or equal to \(T_w\). When the average power of a window decreases below a particular threshold---for example, it could be compared to the average power of a \emph{frame}-lengthed chunk of the signal---the \gls{ns} has been approximately detected. If things are working correctly, the symbol detection should occur within the first \(T_f\) samples---if not, there is a problem.
 
-The \gls{prs}, on the other hand, can be detected via a Matched Filtering process, which is essentially a time-domain correlation. Conceptually, this filter, \(H(\Omega)\), is designed as:
-\begin{equation}
-  H(\Omega) = R^*(\Omega)
-\end{equation}
-where \(R^*(\Omega)\) is the conjugate of the continuous-time Fourier transform of the \gls{prs}. Of course, since the system is implemented digitally, the filter must be defined discretely,
-\begin{equation}
-  \mathbf{H} = \mathbf{R}^* = \mathrm{DFT} \{ r[n] \}^*
-\end{equation}
-
-Then, the output of the filter in the Fourier domain, \(\mathbf{Y}\), can be calculated via a simple Hadamard product:
-\begin{equation}
-  \mathbf{Y} = \mathbf{H} \odot \mathbf{X}
-\end{equation}
-
-Notice that for each of these symbol detection processes, only a certain chunk of the original signal is considered at once---there is a window applied. Thus there is a decision on the so-called "Window Advancement Interval"---the interval between successive windows for the detection process. This is depicted in Figure~\ref{fig:sliding-window-illustration}.
-
-At a maximum, this interval should be as long as a window itself, in order not to skip any sections of the original signal. Alternatively, for a variety of reasons, the interval may be shorter than the window length. Two possibilities for the Window Advancement Interval are shown in figure~\ref{fig:matched-filter-sliding-window-advance}.
-
-\begin{figure}[htbp]
-  \centering
-  \captionsetup{type=figure}
-  \def\svgwidth{\linewidth}
-  {\setstretch{0.7} % Line spacing
-      \input{../Images/matched-filter-sliding-window-advance.pdf_tex}}
-      \caption{Depiction of two Window Advancement Intervals alongside a \gls{dab} signal}
-      \label{fig:matched-filter-sliding-window-advance}
-\end{figure}
-
-To simplify the processing chain, the frame synchronization was done using only the phase reference symbol.
-
-% For \gls{dab} Mode 1, the \gls{prs} has a length of 2048 samples. Thus, in order to detect the symbol within an incoming \gls{dab} signal, one can use a Matched Filter, designed around the \gls{prs}. This Matched Filter will naturally have 2048 samples, and so a sliding window of 2048 samples must also be used. The most straightforward way of doing this would be to look at chunks of the incoming signal, in steps of 2048. This is depicted in Figure~\ref{fig:matched-filter-sliding-window}.
+An outline of the coarse detection process is given in Algorithm~\ref{alg:null_symbol_detect}.
 
 \begin{figure}[ht]
-    \centering
-    \captionsetup{type=figure}
-    \begin{minipage}{.6\linewidth}
-      \begin{algorithm}[H]
-        \caption{How to write algorithms \label{alg:test}}
+  \vspace{0.5cm}
+  \centering
+  \captionsetup{type=figure}
+  \begin{minipage}{.75\linewidth}
+    \begin{algorithm}[H]
+      \caption{Coarse Frame Synchronization via Null Symbol Detection\label{alg:null_symbol_detect}}
 
-        \SetAlgoLined
-        
-        \KwData{this text}
-        
-        \KwResult{how to write algorithm with \LaTeX2e }
-        initialization\;
-        
-        \While{not at end of this document}{
-          read current\;
-          \eIf{understand}{
-            go to next section\;
-            current section becomes this one\;
-          }{
-            go back to the beginning of current section\;
+      \DontPrintSemicolon
+      \SetAlgoLined
+      \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+      \Input{A sampled \gls{dab} signal, $x[n]$}
+      \Output{The approximate index of the first \acrlong{ns}}
+      \BlankLine
+          \Begin{
+          $P_\textrm{frame} \leftarrow \frac{1}{T_f} \cdot \sum^{T_f - 1}_{n=0} \left| x[n] \right|^2$\;
+          $n_0 \leftarrow 0$ \;
+          \While(){$(n_0 < T_f)$}{
+            $P_{n_0} \leftarrow \frac{1}{T_w} \cdot \sum^{n_0 + T_w - 1}_{n=n_0} \left| x[n] \right|^2$ \;
+
+            \eIf{$(\gamma P_{n_0} < P_\mathrm{frame})$}{
+              \Return $n_0$ \;
+            }{
+              $n_0 \leftarrow n_0 + T_a$ \;
+            } 
           }
         }
-
-      \end{algorithm}
-    \end{minipage}
+      \vspace{0.5cm}
+    \end{algorithm}
+  \end{minipage}
 \end{figure}
 
-An important question when integrating the \gls{dab} processing chain into a larger \gls{pr} system is the regularity of frame synchronization. Ideally, one would only need to synchronize once, if the clock of the transmitter and receiver are perfectly accurate. Unfortunately, in real scenarios, there are a host of unwanted effects, including clock drift, that may cause synchronization errors over time. The other extreme is to synchronize on every frame---which is possible because every frame is preceded by both a Null Symbol and a \gls{prs}. However, this may prove to be too computationally expensive. Naturally, fixed rules cannot be set for this decision, and are largely context-specific. Further details are thus omitted here.
+Consider next the detection of the \gls{prs}. Because this symbol is precisely defined by the \gls{dab} standard, it was known \emph{a priori} and thus could be detected via a Matched Filtering process, which is essentially a time-domain correlation. Conceptually, this entailed designing a filter, \(H(\omega)\), based on the \gls{prs}:
+\begin{equation}
+  H(\omega) = R^*(\omega)
+\end{equation}
+where \(R^*(\omega)\) was the conjugate of the continuous-time Fourier transform of the \gls{prs}. Of course, since the system was implemented digitally, the filter had to be defined discretely:
+\begin{equation}
+  H[k] = R^*[k] = \mathrm{DFT} \{ r[n] \}^*
+\end{equation}
+
+Since the \gls{dft} is a \(\mathbb{C}^N \rightarrow \mathbb{C}^N\) transformation, the filter length---and thus the window size, \(T_w\)---is constrained to the length of \(r[n]\). This length is equal to \(T_u\), the "useful symbol length" in the \gls{dab} standard.
+
+The output of the Matched Filter in the Fourier domain, \(Y[k]\), for a given input signal, \(x[n]\), can be calculated via a simple Hadamard (pointwise) product:
+\begin{equation}
+  Y[k] = H[k] \odot X[k] = H[k] \odot \mathrm{DFT} \{ x[n] \}
+\end{equation}
+
+The output of this filter in time, \(y[n]\), will contain a peak value at the location within \(x[n]\) where \(r[n]\) is most highly correlated. In an arbitrary section of the \gls{dab} signal, the output will simply be noise, as the signals are not correlated; however, in a section containing the \gls{prs}, the peak value will be noticeably larger than surrounding values, even when using a non-perfect recording. Figure~\ref{fig:mf_out_good} shows an example of the filtering process when the \gls{prs} falls within the window of \(x[n]\).
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=0.7\linewidth]{plots/mf_out_good_signal.pdf}
+    \caption{Input to Matched Filter, \(x[n]\)}
+    \label{fig:mf_out_good_signal}
+  \end{subfigure}%
+  \\
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=0.7\linewidth]{plots/mf_out_good_peak.pdf}
+    \caption{Output from Matched Filter, \(y[n]\), with peak detected}
+    \label{fig:mf_out_good_peak}
+  \end{subfigure}
+  \caption{Plots showing the input to- and output from the Matched Filter, when the \gls{prs} symbol is detected}
+  \label{fig:mf_out_good}
+\end{figure}
+
+By moving a window of length \(T_w = T_u\) across the input \gls{dab} signal until a peak is detected in the Matched Filter output, one can locate the \gls{prs}---and thus the beginning of the \gls{dab} frame---precisely. This detection should occur within the first \(T_f\) samples. There are two important points to make here. Firstly, note that the magnitude of the Matched Filter's output, \(|y[n]|\), decreases as the offset of the recorded \gls{prs} within the window increases. That is, suppose the \gls{prs} begins at the sample index \(n_p\). If the windowed \gls{dab} signal, \(x[n]\), covers the domain \(n \in [n_p, n_p + T_u]\), then \(x[n]\) is perfectly correlated with the \gls{prs} (ignoring noise in the recording); thus, the output of the Matched Filter will be large. However, as \(n_p\) increases, less of the \gls{prs} signal will be included in \(x[n]\), and the correlation peak will decrease. The smaller the correlation peak, the less distinct it will be from other peaks, and the less likely it will be successfully found.
+
+Secondly, notice that the peak of the Matched Filter output, in Figure~\ref{fig:mf_out_good_peak}, does not occur at the onset of the input signal, \(x[n]\); rather, it occurs around 500 samples later. This was expected, due to the inclusion of a guard interval---since the Matched Filter, \(H[k]\), is defined around the original \gls{prs} signal of length~\(T_u\), without the guard interval. However, unfortunately, this causes an unwanted effect in the detection process. Consider a situation in which \(x[n]\) only contains the guard interval of the \gls{prs}, before the actual "useful" symbol begins, as shown in Figure~\ref{fig:mf_out_prefix-problem_signal}.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=0.7\linewidth]{plots/mf_out_prefix-problem_signal.pdf}
+    \caption{Input to Matched Filter, \(x[n]\)}
+    \label{fig:mf_out_prefix-problem_signal}
+  \end{subfigure}%
+  \\
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=0.7\linewidth]{plots/mf_out_prefix-problem_peak.pdf}
+    \caption{Output from Matched Filter, \(y[n]\), with peak erroneously detected}
+    \label{fig:mf_out_prefix-problem_peak}
+  \end{subfigure}
+  \caption{Plots showing the input to- and output from the Matched Filter, when the \gls{prs} symbol is erroneously detected due to the guard interval}
+  \label{fig:mf_out_prefix-problem}
+\end{figure}
+
+Notice that the peak identified in the Matched Filter output, seen in Figure~\ref{fig:mf_out_prefix-problem_peak}, is erroneous---the actual \gls{prs} has, in fact, not yet begun. Recall that the guard interval is duplicated from the tail-end of the original symbol; thus, the end of the \gls{prs} in the Matched Filter has correlated with the guard interval of the input signal, \(x[n]\). Though this peak is not massive, it can nevertheless be incorrectly identified as the beginning of the \gls{dab} frame.
+
+Both of these points---the decreasing correlation peak, and the guard interval problem---motivate the choice of the advancement interval to be less than the window period. Of course, there is a trade-off, as a shorter advancement interval increases the computation required to detect the \gls{prs}. For this project's implementation of the \gls{dab} processing chain, the values were chosen as \(T_a = \frac{1}{2} T_w\). This ensures that any small peak occurring in the second half of a window interval is guaranteed to occur again, as a much larger peak, in the first half of the next interval. Therefore, the threshold for a "true peak" value can be stricter, which also solves the guard interval problem.
+
+An outline of the \gls{prs} detection process is given in Algorithm~\ref{alg:prs_detect}.
+
+\begin{figure}[ht]
+  \vspace{0.5cm}
+  \centering
+  \captionsetup{type=figure}
+  \begin{minipage}{.75\linewidth}
+    \begin{algorithm}[H]
+      \caption{Fine Frame Synchronization via \gls{prs} Detection\label{alg:prs_detect}}
+
+      \DontPrintSemicolon
+      \SetAlgoLined
+      \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+      \Input{A sampled \gls{dab} signal, $x[n]$; The \gls{prs}, $R[k]$}
+      \Output{The exact index of the first \gls{prs} in $x[n]$}
+      \BlankLine
+          \Begin{
+          
+          $n_0 \leftarrow 0$ \;
+          \While(){$(n_0 < T_f)$}{
+            
+            $X[k] \leftarrow \mathrm{FFT} \{x[n_0 : n_0 + T_u]\} $\;
+            
+            $Y[k] \leftarrow R^*[k] \odot X[k]$\;
+
+            $y[n] \leftarrow \mathrm{iFFT} \{Y[k]\} $\;
+
+            \eIf{$(\mathrm{max} |y[n]| > \gamma)$}{
+              \Return $\mathrm{argmax} |y[n]|$ \;
+            }{
+              $n_0 \leftarrow n_0 + T_a$ \;
+            }
+          }
+        }
+      \vspace{0.5cm}
+    \end{algorithm}
+  \end{minipage}
+\end{figure}
+
+Recall that detection of the \gls{ns} was designed for coarse synchronisation, while the \gls{prs} was intended for fine synchronisation. Essentially, then, there were two broad algorithms for frame alignment: to locate the approximate beginning of a frame with the \gls{ns} and thereafter finely align the frame with the \gls{prs}, or to use only the \gls{prs} without first coarsely detecting the \gls{ns}. For a robust design decision between these two approaches, one should consider the various computational complexities involved in each of the algorithms, as well as possible optimisations that could be made. Nonetheless, for the sake of simplicity, the latter choice was taken in this project: to use only the \gls{prs} for detection. Further work could be done analysing the best decision to make, but such work was outside of the scope of this report.
+
+Another important question when integrating the \gls{dab} processing chain into a larger \gls{pr} system is the regularity of frame synchronization. Ideally, one would only need to synchronize once, if the clock of the transmitter and receiver are perfectly accurate. Unfortunately, in real scenarios, there are a host of unwanted effects, including clock drift, that may cause synchronization errors over time. The other extreme is to synchronize on every frame---which is possible because every frame is preceded by both a \gls{ns} and a \gls{prs}. However, this may prove to be too computationally expensive. Naturally, fixed rules cannot be set for this decision, and are largely context-specific. Further details are thus omitted here.
 
 \subsection{Frame Extraction \label{subsect:dab-proc_frame-extract}}
 Once the index of the \gls{prs} has been detected, extracting a frame is trivial, as it simply entails subsetting the original data array. This block and subsection are included for the sake of completeness.
@@ -184,7 +270,7 @@ Once the index of the \gls{prs} has been detected, extracting a frame is trivial
 \subsection{Overview}
 The purpose of the demodulation block is to extract \gls{dab} "information" from a given frame. This not a \emph{decoder}, as it does not extract any audio signal or similar. Rather, it returns the bitstream with which the \gls{ofdm} carrier waves were modulated. Importantly, this demodulator block is not intended to stand alone, and its output is useless in isolation. Instead, the demodulation and remodulation blocks are designed to operate in tandem, where the output of the demodulate block is the input to the remodulate block. Ultimately, this is all for the purpose of perfectly reconstructing a given \gls{dab} frame, to be used in a \gls{pr} chain.
 
-The demodulation pipeline has six key stages: the \gls{dab} frame is unpacked into a collection of symbols, which is then demultiplexed into \gls{ofdm} carriers, which are then §demapped into \gls{dab} data via \gls{dqpsk} demodulation. Thereafter, this \gls{dab} data is interleaved in frequency, snapped to their closest \gls{dqpsk} values, and finally are put through an error-correction algorithm. The overview of this chain is given in Figure~\ref{fig:BD_Demod_All}. Take special note of the nomenclature for the variables before and after each block, as well as their dimensions---provided for \gls{dab} Mode 1.
+The demodulation pipeline has six key stages: the \gls{dab} frame is unpacked into a collection of symbols, which is then demultiplexed into \gls{ofdm} carriers, which are then demapped into \gls{dab} data via \gls{dqpsk} demodulation. Thereafter, this \gls{dab} data is interleaved in frequency, snapped to their closest \gls{dqpsk} values, and finally are put through an error-correction algorithm. The overview of this chain is given in Figure~\ref{fig:BD_Demod_All}. Take special note of the nomenclature for the variables before and after each block, as well as their dimensions---provided for \gls{dab} Mode 1.
 
 \begin{figure}[htbp]
     \centering
@@ -297,6 +383,30 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
 
 
 \subsection{DQPSK Demapping \label{subsect:dab-proc_dqpsk-demap}}
+
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/ofdm-carriers-perfect-angle.pdf}
+    \caption{Perfect Data}
+    \label{fig:ofdm-carriers-perfect-angle}
+  \end{subfigure}%
+  ~ 
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/ofdm-carriers-raw-angle.pdf}
+    \caption{Actual Data}
+    \label{fig:ofdm-carriers-raw-angle}
+  \end{subfigure}
+  \caption{Plots showing the phase of the \gls{ofdm} carriers for a single \gls{dab} symbol}
+  \label{fig:dqpsk_demap_perfect}
+\end{figure}
+
 
 \begin{figure}[htbp]
   \centering

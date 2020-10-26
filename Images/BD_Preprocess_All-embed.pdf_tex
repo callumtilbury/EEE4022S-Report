@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1504.61839516bp}%
+    \setlength{\unitlength}{1465.47737236bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,27 +50,27 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.2769323)%
+  \begin{picture}(1,0.26498599)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{BD_Preprocess_All-embed.pdf}}%
-    \put(0.15910764,0.2203694){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\Large pre-process}\end{tabular}}}}%
+    \put(0.1536858,0.21658377){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\Large pre-process}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{BD_Preprocess_All-embed.pdf}}%
-    \put(0.21025464,0.10646991){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_iq-read]{{\makecell{iq\\read}}}\end{tabular}}}}%
-    \put(0.39919971,0.10646991){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_iq-resample]{{\makecell{iq\\resample}}}\end{tabular}}}}%
-    \put(0.30457967,0.12676795){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{iq\_data\_\\raw}}}\end{tabular}}}}%
+    \put(0.20619887,0.09964218){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_iq-read]{{\makecell{iq\\read}}}\end{tabular}}}}%
+    \put(0.40019042,0.09964218){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_iq-resample]{{\makecell{iq\\resample}}}\end{tabular}}}}%
+    \put(0.30304319,0.12048235){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{iq\_data\_\\raw}}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{BD_Preprocess_All-embed.pdf}}%
-    \put(0.80561034,0.10646991){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_frame-extract]{{\makecell{frame\\extract}}}\end{tabular}}}}%
-    \put(0.01835754,0.1332732){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{\makecell{dab\_\\recording}}\end{tabular}}}}%
-    \put(0.8940762,0.12520855){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{\makecell{dab\_frame}}\end{tabular}}}}%
-    \put(0.93557023,0.09354958){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times 196608$}\end{tabular}}}}%
-    \put(0.49081224,0.12326463){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{iq\_data}}}\end{tabular}}}}%
-    \put(0.61617925,0.15830072){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_prs-detect]{{\makecell{prs\\detect}}}\end{tabular}}}}%
-    \put(0.70252997,0.07806061){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{iq\_data}}}\end{tabular}}}}%
-    \put(0.68080046,0.17614392){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize \texttt{\makecell{prs\_idx}}}\end{tabular}}}}%
-    \put(0.39919327,0.0341841){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $F_s$}\end{tabular}}}}%
+    \put(0.81745576,0.09964218){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_frame-extract]{{\makecell{frame\\extract}}}\end{tabular}}}}%
+    \put(0.00917644,0.12716135){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{\makecell{dab\_\\recording}}\end{tabular}}}}%
+    \put(0.90828442,0.1188813){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{\makecell{dab\_frame}}\end{tabular}}}}%
+    \put(0.9508867,0.08637676){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times T_f$}\end{tabular}}}}%
+    \put(0.4942498,0.11688547){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{iq\_data}}}\end{tabular}}}}%
+    \put(0.6229652,0.15285732){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_prs-detect]{{\makecell{prs\\detect}}}\end{tabular}}}}%
+    \put(0.71162224,0.0704741){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{iq\_data}}}\end{tabular}}}}%
+    \put(0.68931236,0.17117709){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize \texttt{\makecell{prs\_idx}}}\end{tabular}}}}%
+    \put(0.40018381,0.0254257){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $F_s$}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{BD_Preprocess_All-embed.pdf}}%
-    \put(0.61597475,0.23369088){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{phase\_reference\_symbol}}\end{tabular}}}}%
+    \put(0.62275523,0.23026106){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{phase\_reference\_symbol}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{BD_Preprocess_All-embed.pdf}}%
   \end{picture}%
 \endgroup%

@@ -227,9 +227,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="4.3036505"
-     inkscape:cx="565.96098"
-     inkscape:cy="563.63706"
+     inkscape:zoom="1.4711203"
+     inkscape:cx="382.77119"
+     inkscape:cy="386.41672"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -258,7 +258,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -483,7 +483,7 @@
          id="tspan3657"
          x="18.220243"
          y="122.43744"
-         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $1\times196608$}</tspan></text>
+         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $1\times T_f$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:1.32863px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.147625"
@@ -549,7 +549,7 @@
          id="tspan3796"
          x="171.62231"
          y="121.96191"
-         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $L\times T_u$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.71458px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0678638"
@@ -573,7 +573,7 @@
          id="tspan3866"
          x="291.42325"
          y="121.96191"
-         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $L\times T_u$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.71458px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0678638"
@@ -597,7 +597,7 @@
          id="tspan3892"
          x="410.54178"
          y="121.96191"
-         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $(L-1)\times T_u$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.71458px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0678638"
@@ -621,7 +621,7 @@
          id="tspan3796-8"
          x="89.344711"
          y="179.08536"
-         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $(L-1) \times T_u$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.71457px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0678638"
@@ -645,7 +645,7 @@
          id="tspan5624"
          x="210.28799"
          y="179.08536"
-         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $76\times 1536$}</tspan></text>
+         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $(L-1)\times K$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.71457px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0678638"
@@ -669,7 +669,7 @@
          id="tspan5632"
          x="338.46881"
          y="179.08536"
-         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $76\times 1536$}</tspan></text>
+         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $(L-1)\times K$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.71457px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0678638"
@@ -706,7 +706,7 @@
          id="tspan3657-0"
          x="488.39374"
          y="179.41461"
-         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $76\times 1536$}</tspan></text>
+         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $(L-1)\times K$}</tspan></text>
     <g
        id="g13436"
        transform="matrix(1.2892548,0,0,0.96248641,41.843392,58.663607)"

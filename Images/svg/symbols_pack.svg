@@ -120,9 +120,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.8428526"
-     inkscape:cx="864.54187"
-     inkscape:cy="305.32757"
+     inkscape:zoom="1.6298131"
+     inkscape:cx="992.93669"
+     inkscape:cy="269.70103"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -216,9 +216,9 @@
          y="117.36782"
          style="text-align:center;text-anchor:middle;stroke-width:0.0809271"
          id="tspan579095"><tspan
-   dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
-   id="tspan579097"
-   style="text-align:center;text-anchor:middle;stroke-width:0.0809271">\texttt{\makecell{dab\_frame\_</tspan></tspan><tspan
+           dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+           id="tspan579097"
+           style="text-align:center;text-anchor:middle;stroke-width:0.0809271">\texttt{\makecell{dab\_frame\_</tspan></tspan><tspan
          sodipodi:role="line"
          x="220.23868"
          y="121.41421"
@@ -234,7 +234,7 @@
          id="tspan3657"
          x="210.96101"
          y="142.73625"
-         style="font-size:5.55268px;text-align:center;text-anchor:middle;stroke-width:0.111054">{\tiny $1\times196608$}</tspan></text>
+         style="font-size:5.55268px;text-align:center;text-anchor:middle;stroke-width:0.111054">{\tiny $1\times T_f $}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:5.55268px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.111054"
@@ -245,7 +245,7 @@
          id="tspan3796"
          x="70.937706"
          y="142.19116"
-         style="font-size:5.55268px;text-align:center;text-anchor:middle;stroke-width:0.111054">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:5.55268px;text-align:center;text-anchor:middle;stroke-width:0.111054">{\tiny $L\times T_u$}</tspan></text>
     <g
        id="g1346"
        transform="matrix(0.35277776,0,0,0.35277776,-120.10119,70.404068)" />
@@ -2180,9 +2180,9 @@
          y="117.36782"
          style="text-align:center;text-anchor:middle;stroke-width:0.0809271"
          id="tspan579121"><tspan
-   dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
-   id="tspan579119"
-   style="text-align:center;text-anchor:middle;stroke-width:0.0809271">\texttt{\makecell{dab\_symbols\_</tspan></tspan><tspan
+           dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+           id="tspan579119"
+           style="text-align:center;text-anchor:middle;stroke-width:0.0809271">\texttt{\makecell{dab\_symbols\_</tspan></tspan><tspan
          sodipodi:role="line"
          x="73.977112"
          y="121.41421"

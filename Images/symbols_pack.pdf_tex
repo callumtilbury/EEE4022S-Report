@@ -56,8 +56,8 @@
     \put(0,0){\includegraphics[width=\unitlength,page=1]{symbols_pack.pdf}}%
     \put(0.40988164,0.19956789){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}symbols\\pack\end{tabular}}}}%
     \put(0.561623,0.21256889){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\texttt{\makecell{dab\_frame\_\\remod}}\end{tabular}}}}%
-    \put(0.56187759,0.16830161){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times196608$}\end{tabular}}}}%
-    \put(0.25410187,0.16949974){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $76\times 2048$}\end{tabular}}}}%
+    \put(0.56187759,0.16830161){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times T_f $}\end{tabular}}}}%
+    \put(0.25410187,0.16949974){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{symbols_pack.pdf}}%
     \put(0.83352409,0.09752686){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_f$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{symbols_pack.pdf}}%

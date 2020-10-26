@@ -148,9 +148,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5959868"
-     inkscape:cx="1167.793"
-     inkscape:cy="534.33777"
+     inkscape:zoom="0.57622596"
+     inkscape:cx="1205.0344"
+     inkscape:cy="526.36079"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -211,7 +211,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1943,7 +1943,7 @@
          id="tspan3796"
          x="198.71877"
          y="150.69595"
-         style="font-size:5.14753px;text-align:center;text-anchor:middle;stroke-width:0.102951">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:5.14753px;text-align:center;text-anchor:middle;stroke-width:0.102951">{\tiny $L\times T_u$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.03926px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0509812"
@@ -1972,7 +1972,7 @@
          id="tspan3866"
          x="326.02478"
          y="150.69595"
-         style="font-size:5.14753px;text-align:center;text-anchor:middle;stroke-width:0.102951">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:5.14753px;text-align:center;text-anchor:middle;stroke-width:0.102951">{\tiny $L\times T_u$}</tspan></text>
     <g
        aria-label="..."
        transform="matrix(0,0.60296454,-0.60296454,0,-104.28061,100.37729)"

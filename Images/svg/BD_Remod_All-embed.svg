@@ -225,9 +225,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.6655026"
-     inkscape:cx="416.15866"
-     inkscape:cy="251.73846"
+     inkscape:zoom="2.2772803"
+     inkscape:cx="811.27989"
+     inkscape:cy="218.89871"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -256,7 +256,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -364,7 +364,7 @@
          id="tspan3796"
          x="150.37396"
          y="144.40257"
-         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $(L-1)\times T_u$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:1.18639px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0296596"
@@ -428,7 +428,7 @@
          id="tspan1435"
          x="255.79042"
          y="144.40257"
-         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $L\times T_u$}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:0;stroke:#000000;stroke-width:0.75658;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
        id="rect1593"
@@ -459,7 +459,7 @@
          id="tspan1603"
          x="361.07123"
          y="144.40257"
-         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $76\times 2048$}</tspan></text>
+         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $L\times T_u$}</tspan></text>
     <g
        id="g913-3-1-7"
        transform="matrix(1.0147431,0,0,0.80202783,360.71094,20.192398)">
@@ -500,7 +500,7 @@
          id="tspan3657"
          x="18.220243"
          y="144.87811"
-         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $76\times1536$}</tspan></text>
+         style="font-size:4.84408px;text-align:center;text-anchor:middle;stroke-width:0.0968813">{\tiny $(L-1)\times K$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.33619px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:start;word-spacing:0px;text-anchor:start;stroke-width:0.0584043"
@@ -524,7 +524,7 @@
          id="tspan3657-0"
          x="482.76324"
          y="144.52666"
-         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $1\times 196608$}</tspan></text>
+         style="font-size:4.84407px;text-align:center;text-anchor:middle;stroke-width:0.0968814">{\tiny $1\times T_f$}</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:1.18639px;line-height:1.25;font-family:'Andale Mono';-inkscape-font-specification:'Andale Mono';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:0.0296596"
