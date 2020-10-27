@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1101.54396332bp}%
+    \setlength{\unitlength}{1093.20123428bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,16 +50,17 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.40949035)%
+  \begin{picture}(1,0.42269272)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{window_advance_illustration.pdf}}%
-    \put(0.83931717,0.28970639){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_a > T_w$\end{tabular}}}}%
-    \put(0.83931717,0.20626992){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_a = T_w$\end{tabular}}}}%
-    \put(0.83931717,0.08729196){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_a < T_w$\end{tabular}}}}%
+    \put(0.83809092,0.29191727){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_a > T_w$\end{tabular}}}}%
+    \put(0.83809092,0.20784406){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_a = T_w$\end{tabular}}}}%
+    \put(0.83809092,0.08795812){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_a < T_w$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{window_advance_illustration.pdf}}%
-    \put(0.54429969,0.37109607){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_w$\end{tabular}}}}%
+    \put(0.54082203,0.37392808){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_w$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{window_advance_illustration.pdf}}%
-    \put(0.15095822,0.37256015){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_a$\end{tabular}}}}%
+    \put(0.14173455,0.38548069){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_a$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{window_advance_illustration.pdf}}%
   \end{picture}%
 \endgroup%

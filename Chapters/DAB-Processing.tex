@@ -35,6 +35,9 @@ Notice in the figure that each of the aforementioned blocks---the pre-process, d
 
 Each of the three blocks will be unpacked in the sections that follow this one, with subsections dedicated to the relevant sub-blocks.
 
+% ##############################################################################################################################
+%   P R E - P R O C E S S I N G
+% ##############################################################################################################################
 \section{Pre-processing \label{sect:dab-proc_preprocessing}}
 \subsection{Overview}
 The pre-processing chain was designed to read in an \gls{iq} data file, synchronize it appropriately, and extract a single frame from it. Note that in an actual \gls{pr} system---where this \gls{dab} processing chain would be only a small part of a larger chain---this block would be markedly different. If nothing else, a real-world chain would probably stream the \gls{iq} data, rather than read it from a pre-recorded file. Moreover, a real chain might process several \gls{dab} frames at once. However, such details are largely context-specific, and it would be superfluous to include every use-case in this report. Importantly, the other two blocks---used to demodulate and remodulate---would mostly remain the same in various other scenarios. Thus, to make matters simpler, the pre-processing block was designed to be straightforward: to read in data and extract a single frame. That is not to say the block is trivial, and there were some important design decisions made for it.
@@ -107,7 +110,7 @@ In order not to skip any sections of the signal, it is clear that the following 
   T_a \le T_w
 \end{equation}
 
-Consider firstly the detection of the \gls{ns}. Recall that this symbol is a period in the signal during which all \gls{ofdm} carriers are turned off and no power is transmitted. On the receiver's end, there will still be noise recorded from the environment and elsewhere, but the received power over the length of the null symbol, \(T_\textrm{null}\), will be significantly less than in other parts of the signal. Hence, in order to detect this symbol, one can calculate the average power, \(P_{n_0}\), starting at index \(n_0\) over a window of \(T_w = T_\textrm{null}\):
+Consider firstly the detection of the \gls{ns}. Recall that this symbol is a period in the signal during which all \gls{ofdm} carriers are turned off and no power is transmitted. On the receiver's end, there will still be noise recorded from the environment and elsewhere, but the received power over the length of the null symbol, \(T_\textrm{null}\), will be significantly less than in other parts of the signal. Hence, in order to detect this symbol, one can calculate the average power starting at index \(n_0\) over a window of~\(T_w = T_\textrm{null}\). Let this be notated as \(P_{n_0}\), and calculated as:
 \begin{equation}
   P_{n_0} = \frac{1}{T_w} \cdot \sum^{n_0 + T_w - 1}_{n=n_0} \left| x[n] \right|^2
 \end{equation}
@@ -125,10 +128,12 @@ An outline of the coarse detection process is given in Algorithm~\ref{alg:null_s
 
       \DontPrintSemicolon
       \SetAlgoLined
-      \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+      \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}\SetKwInOut{Parameter}{parameter}
 
       \Input{A sampled \gls{dab} signal, $x[n]$}
       \Output{The approximate index of the first \acrlong{ns}}
+      \Parameter{Threshold constant, $\gamma > 1$}
+
       \BlankLine
           \Begin{
           $P_\textrm{frame} \leftarrow \frac{1}{T_f} \cdot \sum^{T_f - 1}_{n=0} \left| x[n] \right|^2$\;
@@ -136,7 +141,7 @@ An outline of the coarse detection process is given in Algorithm~\ref{alg:null_s
           \While(){$(n_0 < T_f)$}{
             $P_{n_0} \leftarrow \frac{1}{T_w} \cdot \sum^{n_0 + T_w - 1}_{n=n_0} \left| x[n] \right|^2$ \;
 
-            \eIf{$(\gamma P_{n_0} < P_\mathrm{frame})$}{
+            \eIf{$(P_\mathrm{frame} > \gamma P_{n_0})$}{
               \Return $n_0$ \;
             }{
               $n_0 \leftarrow n_0 + T_a$ \;
@@ -164,7 +169,7 @@ The output of the Matched Filter in the Fourier domain, \(Y[k]\), for a given in
   Y[k] = H[k] \odot X[k] = H[k] \odot \mathrm{DFT} \{ x[n] \}
 \end{equation}
 
-The output of this filter in time, \(y[n]\), will contain a peak value at the location within \(x[n]\) where \(r[n]\) is most highly correlated. In an arbitrary section of the \gls{dab} signal, the output will simply be noise, as the signals are not correlated; however, in a section containing the \gls{prs}, the peak value will be noticeably larger than surrounding values, even when using a non-perfect recording. Figure~\ref{fig:mf_out_good} shows an example of the filtering process when the \gls{prs} falls within the window of \(x[n]\).
+The output of this filter in time, \(y[n]\), will contain a peak value at the location within \(x[n]\) where \(r[n]\) is most highly correlated. In an arbitrary section of the \gls{dab} signal, the output will simply be noise, as the signals are not correlated; however, in a section containing the \gls{prs}, the peak value will be noticeably larger than surrounding values, even when using a non-perfect recording. One could detect this peak by comparing it to the average value of the Matched Filter output, for example. Figure~\ref{fig:mf_out_good} shows an example of the filtering process when the \gls{prs} falls within the window of \(x[n]\).
 
 \begin{figure}[htbp]
   \centering
@@ -230,10 +235,12 @@ An outline of the \gls{prs} detection process is given in Algorithm~\ref{alg:prs
 
       \DontPrintSemicolon
       \SetAlgoLined
-      \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+      \SetKwInOut{Input}{inputs}\SetKwInOut{Output}{output}\SetKwInOut{Parameter}{parameter}
 
       \Input{A sampled \gls{dab} signal, $x[n]$; The \gls{prs}, $R[k]$}
       \Output{The exact index of the first \gls{prs} in $x[n]$}
+      \Parameter{Threshold constant, $\gamma > 1$}
+
       \BlankLine
           \Begin{
           
@@ -246,7 +253,7 @@ An outline of the \gls{prs} detection process is given in Algorithm~\ref{alg:prs
 
             $y[n] \leftarrow \mathrm{iFFT} \{Y[k]\} $\;
 
-            \eIf{$(\mathrm{max} |y[n]| > \gamma)$}{
+            \eIf{$(\mathrm{max} |y[n]| > \gamma \cdot \mathrm{mean} |y[n]|)$}{
               \Return $\mathrm{argmax} |y[n]|$ \;
             }{
               $n_0 \leftarrow n_0 + T_a$ \;
@@ -265,12 +272,14 @@ Another important question when integrating the \gls{dab} processing chain into 
 \subsection{Frame Extraction \label{subsect:dab-proc_frame-extract}}
 Once the index of the \gls{prs} has been detected, extracting a frame is trivial, as it simply entails subsetting the original data array. This block and subsection are included for the sake of completeness.
 
-
+% ##############################################################################################################################
+%   D E M O D U L A T I O N
+% ##############################################################################################################################
 \section{Demodulation \label{sect:dab-proc_demodulate}}
 \subsection{Overview}
-The purpose of the demodulation block is to extract \gls{dab} "information" from a given frame. This not a \emph{decoder}, as it does not extract any audio signal or similar. Rather, it returns the bitstream with which the \gls{ofdm} carrier waves were modulated. Importantly, this demodulator block is not intended to stand alone, and its output is useless in isolation. Instead, the demodulation and remodulation blocks are designed to operate in tandem, where the output of the demodulate block is the input to the remodulate block. Ultimately, this is all for the purpose of perfectly reconstructing a given \gls{dab} frame, to be used in a \gls{pr} chain.
+The purpose of the demodulation block was to extract \gls{dab} "information" from a given frame. This was not a \emph{decoder}, as the intention was not to extract an actual audio signal or similar---as would be the case in a conventional \gls{dab} receiver. Rather, it returned the bitstream with which the \gls{ofdm} carrier waves were modulated at the transmitter. Importantly, this demodulator block was not intended to stand alone, and its output was frankly useless in isolation. Instead, the demodulation and remodulation blocks were designed to operate in tandem, where the output of the demodulate block was the input to the remodulate block. Ultimately, this was for the higher purpose of perfectly reconstructing a given \gls{dab} frame, to be used in a \gls{pr} chain.
 
-The demodulation pipeline has six key stages: the \gls{dab} frame is unpacked into a collection of symbols, which is then demultiplexed into \gls{ofdm} carriers, which are then demapped into \gls{dab} data via \gls{dqpsk} demodulation. Thereafter, this \gls{dab} data is interleaved in frequency, snapped to their closest \gls{dqpsk} values, and finally are put through an error-correction algorithm. The overview of this chain is given in Figure~\ref{fig:BD_Demod_All}. Take special note of the nomenclature for the variables before and after each block, as well as their dimensions---provided for \gls{dab} Mode 1.
+Figure~\ref{fig:BD_Demod_All} shows a block diagram for the demodulation processing chain, with the various sub-blocks, the nomenclature for their respective inputs and outputs, and their associated dimensions.
 
 \begin{figure}[htbp]
     \centering
@@ -282,19 +291,33 @@ The demodulation pipeline has six key stages: the \gls{dab} frame is unpacked in
     \label{fig:BD_Demod_All}
 \end{figure}
 
-The details for each sub-block are given in the following sections.
+The demodulation pipeline had six key stages: the \gls{dab} frame was first unpacked into a collection of symbols, which was then demultiplexed into \gls{ofdm} carriers. These carriers could then be "demapped" into \gls{dab} data via \gls{dqpsk} demodulation. Thereafter, these \gls{dab} data points were deinterleaved in frequency, then snapped to their closest \gls{dqpsk} values, and finally, put through an error-correction algorithm. Note that the final step of error correction fell outside of the scope of the project, and is included here for the sake of completeness. Ideally, a real-world processing chain would include this stage for increased robustness. The details for each sub-block are given in the following sections.
 
+%----------
 \subsection{Symbols Unpacking \label{subsect:dab-proc_symbols-unpack}}
-The purpose of this function is to split a \gls{dab} frame into its symbols, which can then be demultiplexed and further processed. This sub-block also includes the removal of guard intervals from the symbols, thus extracting only the "useful symbol" component. As a result, the function receives a vector of size \(1\times T_f\), and outputs a matrix of size \(L\times T_u\). Note that
+The purpose of this sub-block was simply to split a given \gls{dab} frame into its symbols, which could then be demultiplexed and further processed by subsequent sub-blocks. In doing so, this function also removed the symbols' guard intervals, thus extracting only the "useful symbol" components of length~\(T_u\). Figure~\ref{fig:symbols_unpack_illustration} illustrates how the symbols were extracted into the \texttt{dab\_symbols} variable, while the guard intervals, indicated as \(\Delta\), were skipped.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+    \scriptsize
+      \input{../Images/symbols_unpack_illustration.pdf_tex}}
+  \caption{Illustration of the \texttt{symbol\_unpack} functionality}
+  \label{fig:symbols_unpack_illustration}
+\end{figure}
+
+In total, there are \(L\) symbols in a single \gls{dab} frame. As a result, the function receives a vector of size \(1\times T_f\), and outputs a matrix of size \(L\times T_u\). Note that:
 \begin{equation}
   T_f \ne L\times T_u
 \end{equation}
-since the original frame length, \(T_f\), includes the guard intervals of length \(Tg\), as well as the \gls{ns}. Instead,
+since the original frame length, \(T_f\), includes the guard intervals of length \(T_g\), as well as the \gls{ns} of length~\(T_\mathrm{null}\). Instead, the following relationship holds:
 \begin{equation}
   T_f = L\times (T_u + T_g) + T_\mathrm{null}
 \end{equation}
 
-The symbol unpacking process is depicted graphically in figure~\ref{fig:symbols_unpack}.
+A graphical summary of the \texttt{symbol\_unpack} sub-block is given in Figure~\ref{fig:symbols_unpack}.
 
 \begin{figure}[htbp]
   \centering
@@ -302,33 +325,43 @@ The symbol unpacking process is depicted graphically in figure~\ref{fig:symbols_
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/symbols_unpack.pdf_tex}}
-  \caption{Illustration of the \texttt{symbol\_unpack} functionality}
+  \caption{Graphical summary for \texttt{symbol\_unpack} function}
   \label{fig:symbols_unpack}
 \end{figure}
 
-In MATLAB, the unpacking process is fairly straightforward, with complications only arising in off-by-one errors. Consider the simple code segment in Listing~\ref{code:symbols_unpack} for this functionality.
+% In MATLAB, the unpacking process is fairly straightforward, with complications only arising in off-by-one errors. Consider the simple code segment in Listing~\ref{code:symbols_unpack} for this functionality.
 
-\begin{lstlisting}[caption={Code used in the \texttt{symbols\_unpack} function}, label={code:symbols_unpack}]
-function dab_symbols = symbols_unpack(dab_frame, dab_mode)
-  % Pre-allocate space for the result
-  dab_symbols = zeros(dab_mode.L, dab_mode.Tu);
+% \begin{lstlisting}[caption={Code used in the \texttt{symbols\_unpack} function}, label={code:symbols_unpack}]
+% function dab_symbols = symbols_unpack(dab_frame, dab_mode)
+%   % Pre-allocate space for the result
+%   dab_symbols = zeros(dab_mode.L, dab_mode.Tu);
 
-  % Start after null & first guard interval
-  ii = dab_mode.Tnull + dab_mode.Tg + 1;
+%   % Start after null & first guard interval
+%   ii = dab_mode.Tnull + dab_mode.Tg + 1;
 
-  % Iterate through L symbols
-  for l = 1:dab_mode.L
-      % Read symbol of length Tu
-      dab_symbols(l,:) = dab_frame(ii:ii+dab_mode.Tu-1);
-      % Jump ahead 1 symbol, incl. guard (Ts = Tu + Tg)
-      ii = ii + dab_mode.Ts;
-  end
-end
-\end{lstlisting}
+%   % Iterate through L symbols
+%   for l = 1:dab_mode.L
+%       % Read symbol of length Tu
+%       dab_symbols(l,:) = dab_frame(ii:ii+dab_mode.Tu-1);
+%       % Jump ahead 1 symbol, incl. guard (Ts = Tu + Tg)
+%       ii = ii + dab_mode.Ts;
+%   end
+% end
+% \end{lstlisting}
 
 % -------------
 \subsection{OFDM Demultiplexing \label{subsect:dab-proc_ofdm-demux}}
-With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} carriers can then be extracted via a \gls{fft} operation, as explained in the previous chapter. Consider first the case of a single symbol.
+Recall that a \gls{dab} signal is actually the sum of \(K\) carrier waves, each modulated by an individual bitstream. The use of multiple carriers is termed \acrlong{fdm}, and when the carriers are chosen to be mathematically orthogonal, it is called \acrlong{ofdm}. There are other varieties of multiplexing, and the precise terminology may differ depending on the application; however, for the sake of clarity, some simplifications will be made here. While the carrier waves are technically multiplexed in the frequency domain (hence, the term \acrshort{fdm}), the bitstream from a particular carrier can be easily extracted in this form, without further transformations. In contrast, the time-domain version of the signal must first be manipulated in order to extract the bitstream information. Thus, the latter perspective was denoted as "multiplexed," and the former "demultiplexed." Of course, these signals are, in fact, the same physical signal, viewed through two different lenses.
+
+This sub-block, then, was designed to "demultiplex" the \gls{ofdm} signal---i.e. to extract the \gls{dab} carriers from the provided symbols. Recall from the previous chapter that this extraction can be done via a \gls{dft}/\gls{fft} operation.
+
+Consider the case of a single symbol---for example, the first symbol in a recorded frame, which will always be the \gls{prs}. To demultiplex this \gls{ofdm} symbol, one can use the simple code given in Listing~\ref{code:ofdm_demux}.
+
+\begin{lstlisting}[caption={MATLAB code for demultiplexing an \gls{ofdm} symbol}, label={code:ofdm_demux}]
+dab_carriers(1,:) = fftshift(fft(dab_symbols(1,:))) ./ length(dab_symbols(1,:));
+\end{lstlisting}
+
+Figure~\ref{fig:ofdm-carriers-perfect} shows the plot of the magnitude of the \gls{dab} carriers for the perfect data signal. Notice the distinct rectangular shape of the spectrum, and the virtually non-existent noise-floor. As was expected, only the \(K\) central carriers were modulated, barring the middle carrier itself, and this can be seen in the plot. Figure~\ref{fig:ofdm-carriers-raw} shows the same plot for some real-world data. Notice that the noise floor here is considerably higher, at around \(-40\si{\deci\bel}\). Moreover, the region containing the \(K\) central carriers is not perfectly flat. Nonetheless, the rectangular shape remains.
 
 \begin{figure}[htbp]
   \centering
@@ -352,23 +385,23 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
   \label{fig:dqpsk_demap_perfect}
 \end{figure}
 
+Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_g\), including a guard interval. One can thus view the demultiplexed frame as a three-dimensional surface plot, with \(L\) layers of Frequency vs. Magnitude plots. This is depicted in Figure~\ref{fig:ofdm-surface-perfect} and Figure~\ref{fig:ofdm-surface-raw} for the perfect and real-world data respectively.
+
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
-  \includegraphics[width=0.9\linewidth]{plots/ofdm-surface-perfect.png}
-  \caption{Surface plot}
+  \includegraphics[width=0.7\linewidth]{plots/ofdm-surface-perfect.png}
+  \caption{Surface plot of \gls{ofdm} carriers for perfect data}
   \label{fig:ofdm-surface-perfect}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
-  \includegraphics[width=0.9\linewidth]{plots/ofdm-surface-raw.png}
-  \caption{Surface plot}
+  \includegraphics[width=0.7\linewidth]{plots/ofdm-surface-raw.png}
+  \caption{Surface plot of \gls{ofdm} carriers for real-world data}
   \label{fig:ofdm-surface-raw}
 \end{figure}
-
-
 
 \begin{figure}[htbp]
   \centering
@@ -404,7 +437,7 @@ With the individual symbols extracted from the \gls{dab} frame, the \gls{ofdm} c
     \label{fig:ofdm-carriers-raw-angle}
   \end{subfigure}
   \caption{Plots showing the phase of the \gls{ofdm} carriers for a single \gls{dab} symbol}
-  \label{fig:dqpsk_demap_perfect}
+  \label{fig:ofdm-carriers-angle}
 \end{figure}
 
 
