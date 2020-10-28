@@ -464,7 +464,7 @@ This process can be easily be achieved in software---for example, using the simp
 dab_data_raw(l-1,mask) = dab_carriers(l,mask) ./ dab_carriers(l-1,mask);
 \end{lstlisting}
 
-It is also useful to view the angles of the carrier waves on a complex plane. Though this perspective does not show the progression of the angles over time, nor the relationships between the angles of the carriers in nearby frequency regions, it does show the spread of the data. Consider once again the carriers from two symbols, \(S_{l-1}\) and \(S_{l}\), of the perfect data. These are shown plotted on the complex plane in Figure~\ref{fig:dqpsk_demap_perfect-1} and Figure~\ref{fig:dqpsk_demap_perfect-2}. These plots essentially show the same information as Figure~\ref{fig:ofdm-carriers-perfect-angle-1} and Figure~\ref{fig:ofdm-carriers-perfect-angle-2}. Figure~\ref{fig:dqpsk_demap_perfect-2over1} then shows \(D_{l-1}\), which is the quotient of \(S_{l}\) by \(S_{l-1}\). Because this data is perfect, the angles are perfectly assigned to one of the four differential values.
+It was also useful to view the angles of the carrier waves on a complex plane. Though this perspective does not show the progression of the angles over time, nor the relationships between the angles of the carriers in nearby frequency regions, it does show the spread of the data. Consider once again the carriers from two symbols, \(S_{l-1}\) and \(S_{l}\), of the perfect data. These are shown plotted on the complex plane in Figure~\ref{fig:dqpsk_demap_perfect-1} and Figure~\ref{fig:dqpsk_demap_perfect-2}. These plots essentially show the same information as Figure~\ref{fig:ofdm-carriers-perfect-angle-1} and Figure~\ref{fig:ofdm-carriers-perfect-angle-2}. Figure~\ref{fig:dqpsk_demap_perfect-2over1} then shows \(D_{l-1}\), which is the quotient of \(S_{l}\) by \(S_{l-1}\). Because this data is perfect, the angles are perfectly assigned to one of the four differential values.
 
 \begin{figure}[htbp]
   \centering
@@ -562,7 +562,7 @@ Consider an even more extreme example, from some poor-quality \gls{dab} data. Fi
   \label{fig:dqpsk_demap_raw}
 \end{figure}
 
-In summary, this block "demaps" the \gls{dqpsk}-modulated data from the \gls{dab} carriers by calculating the phase-difference between the carriers from consecutive symbols. This is done for all \(L\) arrays of carriers provided, thus producing \((L-1)\) sets of data. This functionality is shown graphically in Figure~\ref{fig:dqpsk_demap}.
+In summary, this block "demapped" the \gls{dqpsk}-modulated data from the \gls{dab} carriers by calculating the phase-difference between the carriers from consecutive symbols. This was done for all of the \(L\) sets of carriers provided, thus producing \((L-1)\) sets of data. This functionality is shown graphically in Figure~\ref{fig:dqpsk_demap}.
 
 \begin{figure}[htbp]
   \centering
@@ -570,12 +570,34 @@ In summary, this block "demaps" the \gls{dqpsk}-modulated data from the \gls{dab
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/dqpsk_demap.pdf_tex}}
-  \caption{}
+      \caption{Graphical summary of the \texttt{dqpsk\_demap} function}
   \label{fig:dqpsk_demap}
 \end{figure}
 
-
 \subsection{Frequency Deinterleaving \label{subsect:dab-proc_freq-deinterleave}}
+In the previous chapter, the problem of frequency-selective fading was discussed, along with the \gls{dab} standard's mitigation strategy of interleaving the \gls{ofdm} carriers in a particular way. The precise motivation and details of the specific map used for interleaving are given in \gls{etsi}'s document in~\cite{dabstandard}. This sub-block, termed \texttt{freq\_deinterleave}, was created to receive \((L-1)\) interleaved sets of \gls{dqpsk}-demodulated data, and return the same data but deinterleaved according to a given map. Note that the input data, the output of the \texttt{dqpsk\_demap} block, included all \(T_u\) carriers, including those which were outside the band of the central \(K\) carriers. In performing the frequency deinterleaving process, this function also removed the out-of-band carriers, leaving only the \(K\) relevant carriers.
+
+For convenience, a helper function was written in MATLAB, called \texttt{build\_interleave\_map()}, which returned an array mapping the \(K\) indices of an array to \(K\) corresponding interleaved indices. Importantly, note that the mapping used differs for each of the four \gls{dab} transmission modes. Since this project was designed using Mode I signals, the code was implemented with Mode I's interleaving map, and with \(K = 1536\). The full code for this function is provided in Appendix (?). Future work should be done to enable this functionality for all four \gls{dab} modes.
+
+Once the interleave map was created, deinterleaving the frequency components was trivial, as it simply entailed indexing the MATLAB matrices appropriately. The \texttt{freq\_deinterleave} function is given in Listing~\ref{code:freq_deinterleave}. Notice that this code is independent of the \gls{dab} mode used, relying only on a generic interleaving map.
+
+\begin{lstlisting}[caption={MATLAB code for the frequency deinterleaving functionality.},label={code:freq_deinterleave}]
+function dab_data_deinterleaved = freq_deinterleave(dab_data_raw, interleave_map)
+    dab_data_deinterleaved = dab_data_raw(:,interleave_map);
+end
+\end{lstlisting}
+
+When visualized, the deinterleaving of the frequency components is not particularly insightful, as it simply entails rearranging the \gls{ofdm} carriers. Even the plot of the interleaving map looks somewhat arbitrary, as seen in Figure~\ref{fig:interleave_map}.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \includegraphics[width=\linewidth]{plots/interleave_map.pdf}
+  \caption{Interleave map for \gls{dab} Transmission Mode I}
+  \label{fig:interleave_map}
+\end{figure}
+
+Nevertheless, since the out-of-band carriers---which were set to a phase of 0 in the \texttt{dqpsk\_demap} sub-block---were removed, one will no longer see a \((0,0)\) point on the complex plane. The graphical summary for the \texttt{freq\_deinterleave} function is given in Figure~\ref{fig:freq_deinterleave}.
 
 \begin{figure}[htbp]
   \centering
@@ -583,19 +605,24 @@ In summary, this block "demaps" the \gls{dqpsk}-modulated data from the \gls{dab
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/freq_deinterleave.pdf_tex}}
-  \caption{Frequency deinterleaving}
+  \caption{Graphical summary of the \texttt{freq\_deinterleave} function}
   \label{fig:freq_deinterleave}
 \end{figure}
 
 \subsection{DQPSK Snapping \label{subsect:dab-proc_dqpsk-snap}}
+As seen in Figure~\ref{fig:dqpsk_demap_rtl-2over1} and Figure~\ref{fig:dqpsk_demap_raw-2over1}, the \texttt{dqpsk\_demap} sub-block did well to distinguish four groups of differential phase values from the \gls{ofdm} carriers, despite being provided with input data that was fairly spread-out. Nonetheless, the spread of the data within these groups was still a problem---the groups each needed to be assigned to one of four values. Fortunately, provided one can assume that the original, transmitted signal was modulated correctly according the \gls{dab} standard in~\cite{dabstandard}, the four possible \emph{correct} phase-difference angles were known \emph{a priori}. Those being, \(\{-\frac{3\pi}{4}, -\frac{\pi}{4},\frac{\pi}{4}, \frac{3\pi}{4}\}\). Since only the phase is modulated, the magnitude of the carriers should remain constant from symbol to symbol, and thus the magnitude of the complex ratio between any two symbols should be 1. In rectangular co-ordinates, then, the four possible points correspond to the values, \(\pm \frac{1}{\sqrt{2}} \pm j\frac{1}{\sqrt{2}}\).
+
+The easiest way to correct the spread of the \gls{dqpsk} symbols was to re-assign them with the value that was closest to them out of the four possible points. Due to their angles, the four points fall exacly in the centre of each of the four quadrants respectively. Thus, if a given point was in quadrant \(X\), it was guaranteed to be closest to the correct \gls{dqpsk} point in that quadrant. Of course, this method of correcting real-world \gls{dab} data was not perfect, in that it did not apply any robust error-correction techniques to the data, and it likely assigned some edge cases incorrectly. Nonetheless, it was a quick and easy way to extract meaningful \gls{dqpsk} data. This process was termed "snapping", as it snapped given points to their closest possible values. Figure~\ref{fig:dqpsk_snap_rtl} shows an example symbol from real-world data (perfect data need not be snapped, as it is perfect already), where the four groups from the \gls{dqpsk}-demapping fell within the four quadrants on a complex plane. Any given point, then, was simply snapped to the value for that quadrant. The groupings are shown by the different colours, and the snapped values are shown by the large blue crosses.
 
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
-  \includegraphics[width=0.8\linewidth]{plots/dqpsk_snap_rtl.pdf}
-  \caption{}
+  \includegraphics[width=0.8\linewidth]{dqpsk_snap-rtl.pdf}
+  \caption{Graphic showing the assignment of \gls{dqpsk} data to one of four known values, based on the quadrant in which the data lies.}
   \label{fig:dqpsk_snap_rtl}
 \end{figure}
+
+The same data points are plotted against their corresponding carrier indices in Figure~\ref{fig:dqpsk_snap_rtl-alt}, with the snapped value lines and decision boundaries both shown. This is simply an alternative perspective of the previous plot.
 
 \begin{figure}[htbp]
   \centering
@@ -607,13 +634,17 @@ In summary, this block "demaps" the \gls{dqpsk}-modulated data from the \gls{dab
   \label{fig:dqpsk_snap_rtl-alt}
 \end{figure}
 
+In MATLAB, this snapping action was done via a simple quadrant-check and appropriate assignment, and this was performed over the entire input matrix.
+
+A graphical summary of the \texttt{dqpsk\_snap} function is shown in Figure~\ref{fig:dqpsk_snap}.
+
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/dqpsk_snap.pdf_tex}}
-  \caption{\gls{dqpsk} snapping}
+      \caption{Graphical summary of the \texttt{dqpsk\_snap} function}
   \label{fig:dqpsk_snap}
 \end{figure}
 

@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{977.82157272bp}%
+    \setlength{\unitlength}{968.46355056bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,25 +50,24 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.42716983)%
+  \begin{picture}(1,0.50349431)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{dqpsk_snap_rtl-alt.pdf}}%
-    \put(0.50565612,0.03774166){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize Carrier Index}\end{tabular}}}}%
+    \put(0.52377381,0.05274111){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize Carrier Index}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dqpsk_snap_rtl-alt.pdf}}%
-    \put(0.06866528,0.37465197){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$\pi$\end{tabular}}}}%
-    \put(0.06866528,0.3112151){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$\frac{\pi}{2}$\end{tabular}}}}%
-    \put(0.06866528,0.11747547){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$-\pi$\end{tabular}}}}%
-    \put(0.06866528,0.18159816){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$-\frac{\pi}{2}$\end{tabular}}}}%
-    \put(0.06816654,0.24481061){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $0$}\end{tabular}}}}%
+    \put(0.0881134,0.3606604){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$\frac{3\pi}{4}$\end{tabular}}}}%
+    \put(0.0881134,0.16706799){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$-\frac{3\pi}{4}$\end{tabular}}}}%
+    \put(0.0881134,0.23181028){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$-\frac{\pi}{4}$\end{tabular}}}}%
+    \put(0.82700017,0.02372462){\color[rgb]{0.83137255,0,0}\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}\textcolor[HTML]{d40000}{Decision Boundaries}\end{tabular}}}}%
+    \put(0.37589325,0.0799978){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $500$}\end{tabular}}}}%
+    \put(0.65702009,0.0799978){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $1000$}\end{tabular}}}}%
+    \put(0.93745451,0.0799978){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $1500$}\end{tabular}}}}%
+    \put(0.09729806,0.0799978){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $0$}\end{tabular}}}}%
+    \put(0.03829314,0.26543299){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize Phase [rad]}\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dqpsk_snap_rtl-alt.pdf}}%
-    \put(0.91397709,0.00900287){\color[rgb]{0.83137255,0,0}\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}\textcolor[HTML]{d40000}{Decision Boundaries}\end{tabular}}}}%
+    \put(0.19713997,0.46044435){\color[rgb]{0,0,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{Snapped Values}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{dqpsk_snap_rtl-alt.pdf}}%
-    \put(0.35919082,0.0647375){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $500$}\end{tabular}}}}%
-    \put(0.6376272,0.0647375){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $1000$}\end{tabular}}}}%
-    \put(0.91537778,0.0647375){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $1500$}\end{tabular}}}}%
-    \put(0.08326186,0.0647375){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize $0$}\end{tabular}}}}%
-    \put(0.03082144,0.24839803){\color[rgb]{0.14901961,0.14901961,0.14901961}\rotatebox{90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize Phase [rad]}\end{tabular}}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{dqpsk_snap_rtl-alt.pdf}}%
+    \put(0.0881134,0.29592182){\color[rgb]{0,0,0}\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$\frac{\pi}{4}$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

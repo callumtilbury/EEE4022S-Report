@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.4784192"
-     inkscape:cx="464.77979"
-     inkscape:cy="350.1556"
+     inkscape:zoom="0.87175701"
+     inkscape:cx="741.6482"
+     inkscape:cy="325.27231"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -53,7 +53,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -41113,41 +41113,41 @@
     </g>
     <g
        id="g46711"
-       style="stroke:#ff2a2a">
+       style="stroke:#0000ff">
       <g
          id="g19137"
          transform="matrix(0.62139552,0,0,0.62139552,194.97981,205.24384)"
-         style="stroke:#ff2a2a">
+         style="stroke:#0000ff">
         <path
            d="M -7.0710678,-7.0710678 7.0710678,7.0710678 m -14.1421356,0 14.1421356,-14.1421356"
-           style="fill:none;stroke:#ff2a2a;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           style="fill:none;stroke:#0000ff;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            id="path19139" />
       </g>
       <g
          id="g19145"
          transform="matrix(0.62139552,0,0,0.62139552,353.8936,79.650685)"
-         style="stroke:#ff2a2a">
+         style="stroke:#0000ff">
         <path
            d="M -7.0710678,-7.0710678 7.0710678,7.0710678 m -14.1421356,0 14.1421356,-14.1421356"
-           style="fill:none;stroke:#ff2a2a;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           style="fill:none;stroke:#0000ff;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            id="path19147" />
       </g>
       <g
          id="g19149"
          transform="matrix(0.62139552,0,0,0.62139552,353.8936,205.24384)"
-         style="stroke:#ff2a2a">
+         style="stroke:#0000ff">
         <path
            d="M -7.0710678,-7.0710678 7.0710678,7.0710678 m -14.1421356,0 14.1421356,-14.1421356"
-           style="fill:none;stroke:#ff2a2a;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           style="fill:none;stroke:#0000ff;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            id="path19151" />
       </g>
       <g
          id="g19153"
          transform="matrix(0.62139552,0,0,0.62139552,194.97981,79.650685)"
-         style="stroke:#ff2a2a">
+         style="stroke:#0000ff">
         <path
            d="M -7.0710678,-7.0710678 7.0710678,7.0710678 m -14.1421356,0 14.1421356,-14.1421356"
-           style="fill:none;stroke:#ff2a2a;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           style="fill:none;stroke:#0000ff;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            id="path19155" />
       </g>
     </g>
@@ -41156,31 +41156,34 @@
        transform="matrix(0.62139552,0,0,0.62139552,94.232001,16.614672)">
       <path
          d="M 290,202.5 507.05173,30.959106"
-         style="fill:none;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-dasharray:10, 6;stroke-dashoffset:0;stroke-opacity:1"
+         style="fill:none;stroke:#0000ff;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-dasharray:10, 6;stroke-dashoffset:0;stroke-opacity:1"
          id="path19159" />
     </g>
     <g
        id="g19161"
-       transform="matrix(0.62139552,0,0,0.62139552,94.232001,16.614672)">
+       transform="matrix(0.62139552,0,0,0.62139552,94.232001,16.614672)"
+       style="stroke:#0000ff">
       <path
          d="M 290,202.5 507.05173,374.04089"
-         style="fill:none;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-dasharray:10, 6;stroke-dashoffset:0;stroke-opacity:1"
+         style="fill:none;stroke:#0000ff;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-dasharray:10, 6;stroke-dashoffset:0;stroke-opacity:1"
          id="path19163" />
     </g>
     <g
        id="g19165"
-       transform="matrix(0.62139552,0,0,0.62139552,94.232001,16.614672)">
+       transform="matrix(0.62139552,0,0,0.62139552,94.232001,16.614672)"
+       style="stroke:#0000ff">
       <path
          d="M 290,202.5 72.94825,30.959099"
-         style="fill:none;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-dasharray:10, 6;stroke-dashoffset:0;stroke-opacity:1"
+         style="fill:none;stroke:#0000ff;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-dasharray:10, 6;stroke-dashoffset:0;stroke-opacity:1"
          id="path19167" />
     </g>
     <g
        id="g19169"
-       transform="matrix(0.62139552,0,0,0.62139552,94.232001,16.614672)">
+       transform="matrix(0.62139552,0,0,0.62139552,94.232001,16.614672)"
+       style="stroke:#0000ff">
       <path
          d="M 290,202.5 72.948257,374.04089"
-         style="fill:none;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-dasharray:10, 6;stroke-dashoffset:0;stroke-opacity:1"
+         style="fill:none;stroke:#0000ff;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-dasharray:10, 6;stroke-dashoffset:0;stroke-opacity:1"
          id="path19171" />
     </g>
     <g
