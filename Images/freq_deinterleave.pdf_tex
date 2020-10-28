@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1172.47485319bp}%
+    \setlength{\unitlength}{1200.82131067bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,26 +50,25 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.50405915)%
+  \begin{picture}(1,0.51576628)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{freq_deinterleave.pdf}}%
-    \put(0.07330446,0.29711863){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
+    \put(0.08337699,0.30190783){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{freq_deinterleave.pdf}}%
-    \put(0.16701675,0.01925594){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$T_u$\end{tabular}}}}%
+    \put(0.17487712,0.03060433){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$T_u$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{freq_deinterleave.pdf}}%
-    \put(0.92663308,0.29638569){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L-1$\end{tabular}}}}%
+    \put(0.91656202,0.30119219){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L-1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{freq_deinterleave.pdf}}%
-    \put(0.83491229,0.01925594){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
+    \put(0.82700638,0.03060433){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{freq_deinterleave.pdf}}%
-    \put(0.50044988,0.34533979){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\makecell{freq\\{\scriptsize deinterleave}}\end{tabular}}}}%
-    \put(0.35504682,0.32844309){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
-    \put(0.35515044,0.36515284){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
-    \put(0.64744668,0.32844309){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
-    \put(0.64754995,0.36515284){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
+    \put(0.50043926,0.31346292){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\makecell{freq\\{\scriptsize deinterleave}}\end{tabular}}}}%
+    \put(0.35846857,0.29696509){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
+    \put(0.35856975,0.33280836){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
+    \put(0.64396607,0.29696509){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
+    \put(0.6440669,0.33280836){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{freq_deinterleave.pdf}}%
-    \put(0.50014665,0.22445228){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{deinterleave\_map}}\end{tabular}}}}%
+    \put(0.50014319,0.19542921){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{deinterleave\_map}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{freq_deinterleave.pdf}}%
-    \put(0.07330446,0.29711863){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

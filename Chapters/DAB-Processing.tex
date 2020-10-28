@@ -351,17 +351,15 @@ A graphical summary of the \texttt{symbol\_unpack} sub-block is given in Figure~
 
 % -------------
 \subsection{OFDM Demultiplexing \label{subsect:dab-proc_ofdm-demux}}
-Recall that a \gls{dab} signal is actually the sum of \(K\) carrier waves, each modulated by an individual bitstream. The use of multiple carriers is termed \acrlong{fdm}, and when the carriers are chosen to be mathematically orthogonal, it is called \acrlong{ofdm}. There are other varieties of multiplexing, and the precise terminology may differ depending on the application; however, for the sake of clarity, some simplifications will be made here. While the carrier waves are technically multiplexed in the frequency domain (hence, the term \acrshort{fdm}), the bitstream from a particular carrier can be easily extracted in this form, without further transformations. In contrast, the time-domain version of the signal must first be manipulated in order to extract the bitstream information. Thus, the latter perspective was denoted as "multiplexed," and the former "demultiplexed." Of course, these signals are, in fact, the same physical signal, viewed through two different lenses.
+Recall that a \gls{dab} signal is actually the sum of \(K\) carrier waves, each modulated by an individual bitstream. The use of multiple carriers is termed \acrlong{fdm}, and when the carriers are chosen to be mathematically orthogonal, it is called \acrlong{ofdm}. Regarding the nomenclature for the \gls{dab} processing chain, for the sake of clarity, some simplifications were made. While the carrier waves were technically multiplexed in the frequency domain (hence, the term \acrshort{fdm}), the bitstream from a particular carrier could be be easily extracted in this form, without further transformations. In contrast, the time-domain version of the signal first had to be manipulated in order to extract the bitstream information. Thus, for this project, the time-domain perspective was said to be the "multiplexed signal," and the frequency-domain pespective was said to be "demultiplexed." Of course, these signals were, in fact, the same \emph{physical} signal, viewed only through two different lenses.
 
-This sub-block, then, was designed to "demultiplex" the \gls{ofdm} signal---i.e. to extract the \gls{dab} carriers from the provided symbols. Recall from the previous chapter that this extraction can be done via a \gls{dft}/\gls{fft} operation.
-
-Consider the case of a single symbol---for example, the first symbol in a recorded frame, which will always be the \gls{prs}. To demultiplex this \gls{ofdm} symbol, one can use the simple code given in Listing~\ref{code:ofdm_demux}.
+This sub-block, then, was designed to "demultiplex" the \gls{ofdm} signal---i.e. to extract the \gls{dab} carriers from the provided time-domain symbol data. Recall from the previous chapter that this extraction can be done via a \gls{dft}/\gls{fft} operation. Consider firstly the case of a single symbol from \texttt{dab\_symbols}, which is just a row in the \(L \times T_u\) matrix. To demultiplex this \gls{ofdm} symbol, one can use the simple code given in Listing~\ref{code:ofdm_demux}, where the \gls{fft} of the symbol is divided by its length for correct scaling, and the \texttt{fftshift} command is used to center the frequency axis on \(0\si{\hertz}\).
 
 \begin{lstlisting}[caption={MATLAB code for demultiplexing an \gls{ofdm} symbol}, label={code:ofdm_demux}]
 dab_carriers(1,:) = fftshift(fft(dab_symbols(1,:))) ./ length(dab_symbols(1,:));
 \end{lstlisting}
 
-Figure~\ref{fig:ofdm-carriers-perfect} shows the plot of the magnitude of the \gls{dab} carriers for the perfect data signal. Notice the distinct rectangular shape of the spectrum, and the virtually non-existent noise-floor. As was expected, only the \(K\) central carriers were modulated, barring the middle carrier itself, and this can be seen in the plot. Figure~\ref{fig:ofdm-carriers-raw} shows the same plot for some real-world data. Notice that the noise floor here is considerably higher, at around \(-40\si{\deci\bel}\). Moreover, the region containing the \(K\) central carriers is not perfectly flat. Nonetheless, the rectangular shape remains.
+Figure~\ref{fig:ofdm-carriers-perfect} shows the plot of the magnitude of the \gls{dab} carriers for the perfect data signal. Notice the distinct rectangular shape of the spectrum, and the virtually non-existent noise-floor, at \(-140\si{\deci\bel}\). As was expected, only the \(K\) central carriers were modulated, barring the middle carrier itself, and this can be seen in the plot. Figure~\ref{fig:ofdm-carriers-raw} shows the same plot for some real-world data. Notice that the noise floor here is considerably higher, at around \(-40\si{\deci\bel}\). Moreover, the region containing the \(K\) central carriers is not perfectly flat. Nonetheless, the rectangular shape remains.
 
 \begin{figure}[htbp]
   \centering
@@ -378,20 +376,20 @@ Figure~\ref{fig:ofdm-carriers-perfect} shows the plot of the magnitude of the \g
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/ofdm-carriers-raw.pdf}
-    \caption{Actual Data}
+    \caption{Real-world Data}
     \label{fig:ofdm-carriers-raw}
   \end{subfigure}
-  \caption{Plots showing the magnitude of the \gls{ofdm} carriers for a single \gls{dab} symbol}
-  \label{fig:dqpsk_demap_perfect}
+  \caption{Plots showing the magnitude of the \gls{ofdm} carriers for a \gls{dab} symbol}
+  \label{fig:ofdm-carriers}
 \end{figure}
 
-Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_g\), including a guard interval. One can thus view the demultiplexed frame as a three-dimensional surface plot, with \(L\) layers of Frequency vs. Magnitude plots. This is depicted in Figure~\ref{fig:ofdm-surface-perfect} and Figure~\ref{fig:ofdm-surface-raw} for the perfect and real-world data respectively.
+Recall that the \texttt{symbols\_unpack} sub-block from earlier transformed the \gls{dab} frame into \(L\) symbols of length \(T_u\). Thus, the \texttt{ofdm\_demux} sub-block was designed to receive these symbols, and output \(L\) corresponding arrays of the \(T_u\) carriers for each symbol. One can thus view the output of the function as a three-dimensional surface plot, with \(L\) successive layers of plots like those shown in Figure~\ref{fig:ofdm-carriers}. This is depicted in Figure~\ref{fig:ofdm-surface-perfect} and Figure~\ref{fig:ofdm-surface-raw} for the perfect and real-world data respectively.
 
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=0.7\linewidth]{plots/ofdm-surface-perfect.png}
-  \caption{Surface plot of \gls{ofdm} carriers for perfect data}
+  \caption{Surface plot of the magnitude of the \gls{ofdm} carriers for perfect data}
   \label{fig:ofdm-surface-perfect}
 \end{figure}
 
@@ -399,9 +397,11 @@ Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=0.7\linewidth]{plots/ofdm-surface-raw.png}
-  \caption{Surface plot of \gls{ofdm} carriers for real-world data}
+  \caption{Surface plot of the magnitude of the \gls{ofdm} carriers for real-world data}
   \label{fig:ofdm-surface-raw}
 \end{figure}
+
+A graphical summary of the \texttt{ofdm\_demux} sub-block is given in Figure~\ref{fig:ofdm_demux}, with the illustrations showing an example of real-world data.
 
 \begin{figure}[htbp]
   \centering
@@ -409,37 +409,62 @@ Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/ofdm_demux.pdf_tex}}
-  \caption{Illustration of the \texttt{ofdm\_demux} functionality}
+  \caption{Graphical summary of the \texttt{ofdm\_demux} function}
   \label{fig:ofdm_demux}
 \end{figure}
 
-
-
 \subsection{DQPSK Demapping \label{subsect:dab-proc_dqpsk-demap}}
+This sub-block was designed to extract the modulating signal (the original \gls{dab} "data") from the \gls{dab} carriers. Notice that the plots of the carriers shown in the previous subsection were essentially identical from symbol to symbol, especially for the perfect data case. This is because they were showing the \emph{magnitude} of the carriers' spectra, which remains constant over time---recall that the \gls{ofdm} carriers for a \gls{dab} signal are modulated using a \(\pi/4\)-\gls{dqpsk} modulation scheme. The rectangular shape seen in the magnitude plots thus provides a good indication that the \gls{ofdm} symbols were correctly demultiplexed. From that perspective, these plots were an important graphic to consider. However, one must not forget that it is the \emph{phases} of the carriers' spectra that are modulated with actual information.
 
+Consider the carriers from three consecutive symbols---call them \(S_{l-1}\), \(S_{l}\), and \(S_{l+1}\)---of the perfect data. The phase plots for these carriers are shown in Figure~\ref{fig:ofdm-carriers-perfect-angle}.
 
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
-  \begin{subfigure}[t]{0.45\textwidth}
+  \begin{subfigure}[t]{0.3\textwidth}
     \centering
     \captionsetup{type=figure}
-    \includegraphics[width=\linewidth]{plots/ofdm-carriers-perfect-angle.pdf}
-    \caption{Perfect Data}
-    \label{fig:ofdm-carriers-perfect-angle}
+    \includegraphics[width=\linewidth]{plots/ofdm-carriers-perfect-angle-1.pdf}
+    \caption{\(\angle S_{l-1}\)}
+    \label{fig:ofdm-carriers-perfect-angle-1}
   \end{subfigure}%
   ~ 
-  \begin{subfigure}[t]{0.45\textwidth}
+  \begin{subfigure}[t]{0.3\textwidth}
     \centering
     \captionsetup{type=figure}
-    \includegraphics[width=\linewidth]{plots/ofdm-carriers-raw-angle.pdf}
-    \caption{Actual Data}
-    \label{fig:ofdm-carriers-raw-angle}
+    \includegraphics[width=\linewidth]{plots/ofdm-carriers-perfect-angle-2.pdf}
+    \caption{\(\angle S_{l}\)}
+    \label{fig:ofdm-carriers-perfect-angle-2}
   \end{subfigure}
-  \caption{Plots showing the phase of the \gls{ofdm} carriers for a single \gls{dab} symbol}
-  \label{fig:ofdm-carriers-angle}
+  ~ 
+  \begin{subfigure}[t]{0.3\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/ofdm-carriers-perfect-angle-3.pdf}
+    \caption{\(\angle S_{l+1}\)}
+    \label{fig:ofdm-carriers-perfect-angle-3}
+  \end{subfigure}
+  \caption{Plots showing the phase of \gls{ofdm} carriers for a three consecutive \gls{dab} symbols of perfect data}
+  \label{fig:ofdm-carriers-perfect-angle}
 \end{figure}
 
+One can see that the phases of the carriers indeed changed from \(S_{l-1}\) to \(S_{l}\), and again from \(S_{l}\) to \(S_{l+1}\). The angles of the relevant carriers (the central \(K\) carriers, excluding the middle carrier) clearly correspond to one of four values, which is logical due to the \emph{quadrature} modulation scheme. Notice, though, that the possible values of these angles were different in Figure~\ref{fig:ofdm-carriers-perfect-angle-1} and Figure~\ref{fig:ofdm-carriers-perfect-angle-3}, consisting of the angles \(\{-\frac{\pi}{2}, 0, \frac{\pi}{2}, \pi\}\), compared to Figure~\ref{fig:ofdm-carriers-perfect-angle-2}, consisting of \(\{-\frac{3\pi}{4}, -\frac{\pi}{4},\frac{\pi}{4}, \frac{3\pi}{4}\}\). As explained in the previous chapter, this is because the data was \emph{differentially} modulated, with a \(\pi/4\) offset added after each symbol.
+
+In line with this modulation scheme, the process of extracting the \gls{dab} data from the carriers involved considering the phase difference between consecutive symbols, with the first symbol, the \gls{prs}, used as a reference for subsequent symbols (hence its name). This process was termed "demapping" the \gls{dqpsk} data. Since the data was demapped using the difference of two symbols, a given set of \(L\)~symbols mapped to \((L-1)\) streams of \gls{dab} data.
+
+Consider the extraction of the data for an arbitrary index, \((l-1)\), call this data \(D_{l-1}\), from the symbols \(S_{l-1}\) and \(S_{l}\). Using a simple complex relation,
+\begin{align}
+  D_{l-1} &= \angle S_{l} - \angle S_{l-1}\\
+          &= \angle\left(\frac{S_{l}}{S_{l-1}}\right)
+\end{align}
+
+This process can be easily be achieved in software---for example, using the simple code given in Listing~\ref{code:dqpsk_demap}. To avoid unnecessary division computation, this calculation was only done for the relevant carriers, indexed in MATLAB using the variable called \texttt{mask}. Here, \texttt{dab\_carriers(n,:)} refers to \(S_n\), and \texttt{dab\_data\_raw(n,:)} refers to \(D_n\).
+
+\begin{lstlisting}[caption={MATLAB code for demapping \gls{dab} carriers into \gls{dqpsk} data},label={code:dqpsk_demap}]
+dab_data_raw(l-1,mask) = dab_carriers(l,mask) ./ dab_carriers(l-1,mask);
+\end{lstlisting}
+
+It is also useful to view the angles of the carrier waves on a complex plane. Though this perspective does not show the progression of the angles over time, nor the relationships between the angles of the carriers in nearby frequency regions, it does show the spread of the data. Consider once again the carriers from two symbols, \(S_{l-1}\) and \(S_{l}\), of the perfect data. These are shown plotted on the complex plane in Figure~\ref{fig:dqpsk_demap_perfect-1} and Figure~\ref{fig:dqpsk_demap_perfect-2}. These plots essentially show the same information as Figure~\ref{fig:ofdm-carriers-perfect-angle-1} and Figure~\ref{fig:ofdm-carriers-perfect-angle-2}. Figure~\ref{fig:dqpsk_demap_perfect-2over1} then shows \(D_{l-1}\), which is the quotient of \(S_{l}\) by \(S_{l-1}\). Because this data is perfect, the angles are perfectly assigned to one of the four differential values.
 
 \begin{figure}[htbp]
   \centering
@@ -448,7 +473,7 @@ Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/dqpsk_demap_perfect-1.pdf}
-    \caption{}
+    \caption{\(S_{l-1}\)}
     \label{fig:dqpsk_demap_perfect-1}
   \end{subfigure}%
   ~ 
@@ -456,7 +481,7 @@ Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/dqpsk_demap_perfect-2.pdf}
-    \caption{}
+    \caption{\(S_{l}\)}
     \label{fig:dqpsk_demap_perfect-2}
   \end{subfigure}
   ~ 
@@ -464,13 +489,14 @@ Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/dqpsk_demap_perfect-2over1.pdf}
-    \caption{}
+    \caption{\(D_{l-1} = S_{l}/S_{l-1}\)}
     \label{fig:dqpsk_demap_perfect-2over1}
   \end{subfigure}
-  \caption{}
+  \caption{Plots shown on the complex plane of various data derived from a perfect \gls{dab} signal}
   \label{fig:dqpsk_demap_perfect}
 \end{figure}
 
+Though the plots in Figure~\ref{fig:dqpsk_demap_perfect} are correct, they do not demonstrate the power of \gls{dqpsk} clearly. One may wonder whether simple \gls{qpsk} modulation would be good enough, given how neat the angles were shown to be. Therefore, it is important to consider some real-world signals. Firstly, consider Figure~\ref{fig:dqpsk_demap_rtl}, which shows the same plots as before, but for an actual, recorded \gls{dab} signal.
 
 \begin{figure}[htbp]
   \centering
@@ -479,7 +505,7 @@ Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/dqpsk_demap_rtl-1.pdf}
-    \caption{}
+    \caption{\(S_{l-1}\)}
     \label{fig:dqpsk_demap_rtl-1}
   \end{subfigure}%
   ~ 
@@ -487,7 +513,7 @@ Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/dqpsk_demap_rtl-2.pdf}
-    \caption{}
+    \caption{\(S_{l}\)}
     \label{fig:dqpsk_demap_rtl-2}
   \end{subfigure}
   ~ 
@@ -495,13 +521,16 @@ Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/dqpsk_demap_rtl-2over1.pdf}
-    \caption{}
+    \caption{\(D_{l-1} = S_{l}/S_{l-1}\)}
     \label{fig:dqpsk_demap_rtl-2over1}
   \end{subfigure}
-  \caption{}
+  \caption{Plots shown on the complex plane of various data derived from a real-world \gls{dab} signal}
   \label{fig:dqpsk_demap_rtl}
 \end{figure}
 
+Notice how the spread of the angles in Figure~\ref{fig:dqpsk_demap_rtl-1} and Figure~\ref{fig:dqpsk_demap_rtl-2} is far worse than seen previously with the perfect data. Though one can see four broad groups of data, the precise decision boundary between these groups is uncertain. In contrast, see how much more distinct these groups become in Figure~\ref{fig:dqpsk_demap_rtl-2over1}, thanks to the differential modulation. Indeed, there is still spreading, but the decision boundary is far clearer.
+
+Consider an even more extreme example, from some poor-quality \gls{dab} data. Figure~\ref{fig:dqpsk_demap_raw-1} and Figure~\ref{fig:dqpsk_demap_raw-2} show the angles of the carriers for the two symbols---notice how there are no distinct groupings whatsoever. In fact, the data seems to be randomly spread. Nonetheless, by looking at the phase-difference between the two symbols, the four groups become far more coherent, as shown in Figure~\ref{fig:dqpsk_demap_raw-2over1}. Granted, there seems to be a phase offset in the differences of around \(\frac{\pi}{8}\) radians, but the \gls{dqpsk} values are nonetheless distinct.
 
 \begin{figure}[htbp]
   \centering
@@ -510,28 +539,30 @@ Recall that a \gls{dab} frame is composed of \(L\) symbols, in intervals of \(T_
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/dqpsk_demap_raw-1.pdf}
-    \caption{}
-    \label{fig:dqpsk_demap_rtl-1}
+    \caption{\(S_{l-1}\)}
+    \label{fig:dqpsk_demap_raw-1}
   \end{subfigure}%
   ~ 
   \begin{subfigure}[t]{0.3\textwidth}
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/dqpsk_demap_raw-2.pdf}
-    \caption{}
-    \label{fig:dqpsk_demap_rtl-2}
+    \caption{\(S_{l}\)}
+    \label{fig:dqpsk_demap_raw-2}
   \end{subfigure}
   ~ 
   \begin{subfigure}[t]{0.3\textwidth}
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=\linewidth]{plots/dqpsk_demap_raw-2over1.pdf}
-    \caption{}
+    \caption{\(D_{l-1} = S_{l}/S_{l-1}\)}
     \label{fig:dqpsk_demap_raw-2over1}
   \end{subfigure}
-  \caption{}
+  \caption{Plots shown on the complex plane of various data derived from a poor-quality \gls{dab} signal}
   \label{fig:dqpsk_demap_raw}
 \end{figure}
+
+In summary, this block "demaps" the \gls{dqpsk}-modulated data from the \gls{dab} carriers by calculating the phase-difference between the carriers from consecutive symbols. This is done for all \(L\) arrays of carriers provided, thus producing \((L-1)\) sets of data. This functionality is shown graphically in Figure~\ref{fig:dqpsk_demap}.
 
 \begin{figure}[htbp]
   \centering
