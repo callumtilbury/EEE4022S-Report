@@ -492,7 +492,7 @@ It was also useful to view the angles of the carrier waves on a complex plane. T
     \caption{\(D_{l-1} = S_{l}/S_{l-1}\)}
     \label{fig:dqpsk_demap_perfect-2over1}
   \end{subfigure}
-  \caption{Plots shown on the complex plane of various data derived from a perfect \gls{dab} signal}
+  \caption{Plots shown on the complex plane of various data derived from a perfect \gls{dab} signal.}
   \label{fig:dqpsk_demap_perfect}
 \end{figure}
 
@@ -524,7 +524,7 @@ Though the plots in Figure~\ref{fig:dqpsk_demap_perfect} are correct, they do no
     \caption{\(D_{l-1} = S_{l}/S_{l-1}\)}
     \label{fig:dqpsk_demap_rtl-2over1}
   \end{subfigure}
-  \caption{Plots shown on the complex plane of various data derived from a real-world \gls{dab} signal}
+  \caption{Plots shown on the complex plane of various data derived from a real-world \gls{dab} signal.}
   \label{fig:dqpsk_demap_rtl}
 \end{figure}
 
@@ -558,7 +558,7 @@ Consider an even more extreme example, from some poor-quality \gls{dab} data. Fi
     \caption{\(D_{l-1} = S_{l}/S_{l-1}\)}
     \label{fig:dqpsk_demap_raw-2over1}
   \end{subfigure}
-  \caption{Plots shown on the complex plane of various data derived from a poor-quality \gls{dab} signal}
+  \caption{Plots shown on the complex plane of various data derived from a poor-quality \gls{dab} signal.}
   \label{fig:dqpsk_demap_raw}
 \end{figure}
 
@@ -570,12 +570,12 @@ In summary, this block "demapped" the \gls{dqpsk}-modulated data from the \gls{d
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/dqpsk_demap.pdf_tex}}
-      \caption{Graphical summary of the \texttt{dqpsk\_demap} function}
+      \caption{Graphical summary of the \texttt{dqpsk\_demap} function.}
   \label{fig:dqpsk_demap}
 \end{figure}
 
 \subsection{Frequency Deinterleaving \label{subsect:dab-proc_freq-deinterleave}}
-In the previous chapter, the problem of frequency-selective fading was discussed, along with the \gls{dab} standard's mitigation strategy of interleaving the \gls{ofdm} carriers in a particular way. The precise motivation and details of the specific map used for interleaving are given in \gls{etsi}'s document in~\cite{dabstandard}. This sub-block, termed \texttt{freq\_deinterleave}, was created to receive \((L-1)\) interleaved sets of \gls{dqpsk}-demodulated data, and return the same data but deinterleaved according to a given map. Note that the input data, the output of the \texttt{dqpsk\_demap} block, included all \(T_u\) carriers, including those which were outside the band of the central \(K\) carriers. In performing the frequency deinterleaving process, this function also removed the out-of-band carriers, leaving only the \(K\) relevant carriers.
+This sub-block, termed \texttt{freq\_deinterleave}, was created to receive \((L-1)\) interleaved sets of \gls{dqpsk}-demodulated data, and return the same data but deinterleaved according to a given map. In the previous chapter, the problem of frequency-selective fading was discussed, along with the \gls{dab} standard's mitigation strategy of interleaving the \gls{ofdm} carriers in a particular way. The precise motivation and details of the specific map used for interleaving are given in \gls{etsi}'s document in~\cite{dabstandard}. Note that the input data, the output of the \texttt{dqpsk\_demap} block, included all \(T_u\) carriers, including those which were outside the band of the central \(K\) carriers. In performing the frequency deinterleaving process, this function also removed the out-of-band carriers, leaving only the \(K\) relevant carriers.
 
 For convenience, a helper function was written in MATLAB, called \texttt{build\_interleave\_map()}, which returned an array mapping the \(K\) indices of an array to \(K\) corresponding interleaved indices. Importantly, note that the mapping used differs for each of the four \gls{dab} transmission modes. Since this project was designed using Mode I signals, the code was implemented with Mode I's interleaving map, and with \(K = 1536\). The full code for this function is provided in Appendix (?). Future work should be done to enable this functionality for all four \gls{dab} modes.
 
@@ -583,21 +583,33 @@ Once the interleave map was created, deinterleaving the frequency components was
 
 \begin{lstlisting}[caption={MATLAB code for the frequency deinterleaving functionality.},label={code:freq_deinterleave}]
 function dab_data_deinterleaved = freq_deinterleave(dab_data_raw, interleave_map)
-    dab_data_deinterleaved = dab_data_raw(:,interleave_map);
+  dab_data_deinterleaved = dab_data_raw(:,interleave_map); % Use interleave map for indexing
 end
 \end{lstlisting}
 
-When visualized, the deinterleaving of the frequency components is not particularly insightful, as it simply entails rearranging the \gls{ofdm} carriers. Even the plot of the interleaving map looks somewhat arbitrary, as seen in Figure~\ref{fig:interleave_map}.
+When visualized, the deinterleaving of the frequency components is not particularly insightful, as the large number of sub-carriers involved can make the plots messy. Consider, for example, the plot of the carriers' phases for a real-world \gls{dab} symbol in Figure~\ref{fig:freq_deinterleave_plot}.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \includegraphics[width=0.9\linewidth]{plots/freq_deinterleave_plot.pdf}
+  \caption{Phase plot for the carriers of a real-world \gls{dab} symbol, before and after frequency deinterleaving.}
+  \label{fig:freq_deinterleave_plot}
+\end{figure}
+
+Even the plot of the interleaving map for Mode I looks somewhat arbitrary, as seen in Figure~\ref{fig:interleave_map}.
+%This makes sense, as the \gls{dab} standard intended to distribute the carriers as (randomly ...) as possible.
 
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=\linewidth]{plots/interleave_map.pdf}
-  \caption{Interleave map for \gls{dab} Transmission Mode I}
+  \caption{Interleave map for \gls{dab} Transmission Mode I.}
   \label{fig:interleave_map}
 \end{figure}
 
-Nevertheless, since the out-of-band carriers---which were set to a phase of 0 in the \texttt{dqpsk\_demap} sub-block---were removed, one will no longer see a \((0,0)\) point on the complex plane. The graphical summary for the \texttt{freq\_deinterleave} function is given in Figure~\ref{fig:freq_deinterleave}.
+%Nevertheless, since the out-of-band carriers---which were set to a phase of 0 in the \texttt{dqpsk\_demap} sub-block---were removed, one will no longer see a \((0,0)\) point on the complex plane.
+Nonetheless, the graphical summary for the \texttt{freq\_deinterleave} function is given in Figure~\ref{fig:freq_deinterleave}.
 
 \begin{figure}[htbp]
   \centering
@@ -605,7 +617,7 @@ Nevertheless, since the out-of-band carriers---which were set to a phase of 0 in
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/freq_deinterleave.pdf_tex}}
-  \caption{Graphical summary of the \texttt{freq\_deinterleave} function}
+  \caption{Graphical summary of the \texttt{freq\_deinterleave} function.}
   \label{fig:freq_deinterleave}
 \end{figure}
 
@@ -630,7 +642,7 @@ The same data points are plotted against their corresponding carrier indices in 
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/dqpsk_snap_rtl-alt.pdf_tex}}
-  \caption{}
+  \caption{Alternative plot of the \gls{dqpsk} snapping situation, viewed across the \(K\) carriers, showing the snapped values and decision boundaries.}
   \label{fig:dqpsk_snap_rtl-alt}
 \end{figure}
 
@@ -644,7 +656,7 @@ A graphical summary of the \texttt{dqpsk\_snap} function is shown in Figure~\ref
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/dqpsk_snap.pdf_tex}}
-      \caption{Graphical summary of the \texttt{dqpsk\_snap} function}
+      \caption{Graphical summary of the \texttt{dqpsk\_snap} function.}
   \label{fig:dqpsk_snap}
 \end{figure}
 
@@ -658,7 +670,7 @@ Conceptually, this sub-block would receive snapped \gls{dqpsk} data with the dim
 \section{Remodulation \label{sect:dab-proc_remodulate}}
 
 \subsection{Overview}
-The purpose of this block was to take the data output from the demodulation block, and modulate it anew, back into a \gls{dab} frame, but perfectly reconstructed. Once again, this block was somewhat nugatory on its own, as it was specifically designed to be used in conjunction with the demodulator block.
+The purpose of this block was to take the data output from the demodulation block, and modulate it anew, back into a \gls{dab} frame. Since the demodulated \gls{dqpsk} data was snapped, the output of the remodulation block was a perfectly reconstructed \gls{dab} signal\footnote{Owing to possible errors in the received signal, the reconstructed signal might not match the original, transmitted signal perfectly; instead, it is "perfectly reconstructed" in the sense of being a perfect \gls{dab} signal.}. Once again, this block was somewhat nugatory on its own, as it was specifically designed to be used in conjunction with the demodulator block.
 
 Figure~\ref{fig:BD_Remod_All} shows a block diagram for the remodulation block, with the various sub-blocks, nomenclature, and dimensions shown.
 
@@ -668,11 +680,30 @@ Figure~\ref{fig:BD_Remod_All} shows a block diagram for the remodulation block, 
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/BD_Remod_All-embed.pdf_tex}}
-    \caption{Block diagram showing remodulation section of processing chain}
+    \caption{Block diagram showing remodulation section of processing chain.}
     \label{fig:BD_Remod_All}
 \end{figure}
 
+The remodulation process had four key stages: firstly, the data points from the demodulation chain were interleaved in frequency, and then were mapped to a set of \gls{dab} carriers via \gls{dqpsk} modulation. Thereafter, the carriers were multiplexed into \gls{ofdm} symbols, and were finally packed into a single \gls{dab} frame.
+
+Notice that these four sub-blocks in the remodulation chain were designed as inverses of the first four sub-blocks in the demodulation chain, shown previously in Figure~\ref{fig:BD_Demod_All}. For example, the first step in the demodulation block was \texttt{symbols\_unpack}, while the last step in the remodulation block was \texttt{symbols\_pack}, and so on. In fact, if perfect data was put through the chain---such that the \texttt{dqpsk\_snap} and \texttt{error\_correction} sub-blocks had no effect---the \texttt{demodulate} and \texttt{remodulate} functions would be perfectly symmetrical. This design choice was intentional, as it enabled a logical flow of operations, forwards and backwards through the chain, and also enabled individual blocks to be tested with their inverses---which will be discussed further in the validation chapter.
+
+The details for each sub-block are given in the following sections.
+
 \subsection{Frequency Interleaving \label{subsect:dab-proc_freq-interleave}}
+The purpose of this sub-block was to re-interleave the data from the \texttt{demodulate} block, essentially to undo the effects of the \texttt{freq\_deinterleave} function. This process was termed frequency interleaving.
+%Note that this sub-block could have been placed after the next sub-block, \texttt{dqpsk\_map}, without any changes in overall functionality, and if it was, the name would make more sense---as it would then be interleaving the \gls{dab} carriers, which are \emph{frequency} components. However, to create the conveninent forwards-backwards relationship for the demodulation and remodulation chains, its position was chosen as presented above. Thus, even though it was designed to interleave the \gls{dqpsk} data, its name was chosen to be consistent with the \gls{dab} standard's terminology~\cite{dabstandard}.
+
+Interestingly, the same interleaving map as that created for the \texttt{freq\_deinterleave} functionality could be used here, only with a slightly different method of assigning the values. Whereas the previous function used the map to index elements on the right-hand side of the assignment, this function used the map to index elements on the left-hand side---see Listing~\ref{code:freq_interleave} for the code showing this. In this way, the same \texttt{build\_interleave\_map} tool could be used for both the interleaving and deinterleaving functionality. Note, however, that in the frequency interleaving function required knowledge the \gls{dab} mode, in order to pre-allocate the arrays correctly.
+
+\begin{lstlisting}[caption={MATLAB code for the frequency interleaving functionality.},label={code:freq_interleave}]
+function dab_data_interleaved = freq_interleave(dab_data, interleave_map, dab_mode)
+  dab_data_interleaved = zeros(dab_mode.L-1,dab_mode.Tu);   % Pre-allocate space
+  dab_data_interleaved(:,interleave_map) = dab_data;        % Use interleave map
+end
+\end{lstlisting}
+
+In terms of dimensions, the sub-block received \((L-1)\) sets of \(K\) carriers, which it then transformed to \((L-1)\) sets of \(T_u\) carriers, with the middlemost and out-of-band carriers reintroduced with a value of 0. As was the case for frequency deinterleaving, visualizing the interleaving process was not particularly helpful---see Figure~\ref{fig:interleave_map} for a reminder of the messy interleaving map for Transmission Mode I. Nonetheless, the graphical summary of the functionality is given in Figure~\ref{fig:freq_deinterleave}.
 
 \begin{figure}[htbp]
   \centering
@@ -680,11 +711,39 @@ Figure~\ref{fig:BD_Remod_All} shows a block diagram for the remodulation block, 
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
   \input{../Images/freq_interleave.pdf_tex}}
-  \caption{Frequency interleaving process}
+  \caption{Graphical summary of the \texttt{frequency\_interleave} function.}
   \label{fig:freq_interleave}
 \end{figure}
 
 \subsection{DQPSK Mapping \label{subsect:dab-proc_dqpsk-map}}
+With the \gls{dab} data values re-interleaved from the previous block, they were then used to modulate the \(T_u\) \gls{ofdm} carriers---a process termed \gls{dqpsk} mapping, in contrast to the demapping process discussed previously. Since differential modulation was used, the \((L-1)\) sets of \gls{dab} data at the input of the sub-block mapped to \(L\)~sets of \gls{dab} carriers. To provide a reference for the differential phase values, the \gls{prs} was assigned to be the first output symbol---recall that this was the other purpose of the \gls{prs}, in addition to the frame synchronization discussed previously. Consider Listing~\ref{code:dqpsk_map-1}, which shows the function set-up, with memory allocation and the assignment of the first symbol.
+
+\begin{lstlisting}[caption={MATLAB code for setting up the \texttt{dqpsk\_map} function.},label={code:dqpsk_map-1}]
+dab_carriers_remod = zeros(dab_mode.L, dab_mode.Tu); % Pre-allocate space
+dab_carriers_remod(1,:) = prs; % First carrier is the phase reference symbol
+\end{lstlisting}
+
+With the first symbol then set, subsequent symbol values were calculated by mutliplying the previous symbol by the interleaved \gls{dab} data values for that index. Programmatically, this process was simple, and is shown in Listing~\ref{code:dqpsk_map-2}, where \texttt{dab\_data\_interleaved} was the output of the \texttt{freq\_interleave} sub-block.
+
+\begin{lstlisting}[caption={MATLAB code for the actual \texttt{dqpsk\_map} functionality of differential modulation.},label={code:dqpsk_map-2}]
+for l = 2:dab_mode.L
+  dab_carriers_remod(l,:) = dab_data_interleaved(l-1,:) .* dab_carriers_remod(l-1,:);
+end
+\end{lstlisting}
+
+Recall that the \gls{dab} data used in this sub-block ultimately came from the output of the demodulation block, which had snapped the \gls{dqpsk} values to one of four possible phase values, all with a magnitude of 1. As a consequence of this, the output of this \texttt{dqpsk\_map} sub-block was now "perfect," much like the data plotted in Figure~\ref{fig:ofdm-carriers-perfect}---that is, the resulting \gls{ofdm} symbols were now flat and rectangular in magnitude, and containing only four possible values in phase. Importantly, note that this was the case, even when using real-world data. Consider, for example, the illustration provided in Figure~\ref{fig:dqpsk_map-demo}, where the input \gls{ofdm} symbol was imperfect and had a high noise-floor; then, after being processed by the intervening blocks in the chain, the output \gls{ofdm} symbol was cleaned-up, with a low noise-floor and a perfectly rectangular magnitude.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+    \input{../Images/dqpsk_map-demo.pdf_tex}}
+  \caption{Demonstration of a section of the processing chain converting a noisy \gls{ofdm} symbol into a clean one.}
+  \label{fig:dqpsk_map-demo}
+\end{figure}
+
+Graphically, the functionality of the \gls{dqpsk} mapping is shown in Figure~\ref{fig:dqpsk_map}. For clarity, the \texttt{phase\_reference\_symbol} input is coloured green, which corresponds to the first output of the \gls{dab} carriers.
 
 \begin{figure}[htbp]
   \centering
@@ -692,11 +751,22 @@ Figure~\ref{fig:BD_Remod_All} shows a block diagram for the remodulation block, 
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
   \input{../Images/dqpsk_map.pdf_tex}}
-  \caption{\gls{dqpsk} mapping process}
+  \caption{Graphical summary of the \texttt{dqpsk\_map} function.}
   \label{fig:dqpsk_map}
 \end{figure}
 
 \subsection{OFDM Multiplexing \label{subsect:dab-proc_ofdm-mux}}
+The purpose of this sub-block was to convert the modulated \gls{ofdm} carriers into time-domain signals, now reconstructed as perfect \gls{dab} signals. As explained in the \gls{ofdm} \emph{de}-multiplexing subsection, these two perspectives of the signal were, in fact, the same. However, since the data was being transformed from multiple signals from which data could easily be extracted (the \gls{ofdm} carriers), to single signals containing the sum of many carriers, this process was broadly termed "multiplexing."
+
+As was the case for demultiplexing, the \gls{dft}/\gls{fft} could be used for easy extraction and reconstruction of the \gls{ofdm} symbols. Whereas the previous function used the a normal, forward \gls{fft}, this function used the \gls{ifft}---which is logical, considering the inverse relationship of the two blocks: one multiplexes, the other demultiplexes.
+
+In code, this functionality looked mostly identical to that for the demultiplexing, shown previously in Listing~\ref{code:ofdm_demux}. Here, in Listing~\ref{code:ofdm_mux}, the only differences were that the \gls{ifft} was used, and the result was \emph{multiplied} by the length of the array, rather than being divided by it. Once again, this is logical, considering the inverse relationship.
+
+\begin{lstlisting}[caption={MATLAB code for multiplexing an \gls{ofdm} symbol}, label={code:ofdm_mux}]
+dab_symbols_remod = ifft(fftshift(dab_carriers_remod,2),[],2) .* length(dab_carriers_remod);
+\end{lstlisting}
+
+Since the \gls{ifft} is also a \(\mathbb{C}^N \to \mathbb{C}^N\) transformation, the \texttt{ofdm\_mux} function took an input of \(L\times T_u\) carriers, and output \(L\) symbols, each of length \(T_u\). A graphical summary of this functionality is provided in Figure~\ref{fig:ofdm_mux}.
 
 \begin{figure}[htbp]
   \centering
@@ -704,11 +774,23 @@ Figure~\ref{fig:BD_Remod_All} shows a block diagram for the remodulation block, 
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
   \input{../Images/ofdm_mux.pdf_tex}}
-  \caption{\gls{ofdm} multiplexing process}
+  \caption{Graphical summary of the \texttt{ofdm\_mux} function.}
   \label{fig:ofdm_mux}
 \end{figure}
 
 \subsection{Symbols Packing \label{subsect:dab-proc_symbols-pack}}
+Finally, the purpose of this function was to take the matrix of remodulated \gls{dab} symbols, of size \(L \times T_u\), and transform it into a single array of the reconstructed \gls{dab} frame, with a total length of \(T_f\). In doing this, the sub-block was also responsible for adding the guard intervals and the null symbol.
+
+Combining the guard interval for a particular symbol with the symbol itself was straightforward, as is shown in Listing~\ref{code:symbols_pack-1}, where \texttt{l} is the symbol index, and \texttt{dab\_symbols\_remod} is the data coming from the \texttt{ofdm\_mux} sub-block
+
+\begin{lstlisting}[caption={},label={code:symbols_pack-1}]
+lth_guard = dab_symbols_remod(l, end - dab_mode.Tg + 1 : end); % Last Tg values
+lth_symbol = [lth_guard, dab_symbols_remod(l,:)]; % Full Symbol = [Guard , Original Symbol]
+\end{lstlisting}
+
+Packing the symbols then was a trivial process via a simple for-loop. Including the null symbol entailed simply padding the front of the array with \(T_\mathrm{null}\) zeros.
+
+Graphically, this function is summarised in Figure~\ref{fig:symbols_pack}.
 
 \begin{figure}[htbp]
   \centering
@@ -716,11 +798,12 @@ Figure~\ref{fig:BD_Remod_All} shows a block diagram for the remodulation block, 
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
   \input{../Images/symbols_pack.pdf_tex}}
-  \caption{Symbols packing process}
+  \caption{Graphical summary of the \texttt{symbols\_pack} function.}
   \label{fig:symbols_pack}
 \end{figure}
 
 \section{Summary}
+This chapter thoroughly explored the design of a \gls{dab} processing chain, starting with a high-level overview of the system via block diagrams, and later moving into the details of each block and sub-block. Plots were provided where appropriate, both to demonstrate the functionality of the code, and to provide a summarised graphical reference of each block, to be used when working with the chain. Short code snippets were given where necessary, in order to convey the essence of the chain's functioning. Longer form algorithms were provided for the frame synchronisation methods, since these were non-trivial.
 
 % ----------------------------------------------------
 \ifstandalone

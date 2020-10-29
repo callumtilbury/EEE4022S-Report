@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1135.16952689bp}%
+    \setlength{\unitlength}{1163.51596275bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,27 +50,27 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.61341706)%
+  \begin{picture}(1,0.62283533)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{dqpsk_map.pdf}}%
-    \put(0.50920653,0.35917979){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}dqpsk\\map\end{tabular}}}}%
-    \put(0.36000038,0.3309628){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
-    \put(0.64975134,0.37739311){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_carriers\_\\remod}}}\end{tabular}}}}%
-    \put(0.65745264,0.3309628){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
-    \put(0.35542858,0.37653909){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_data\_\\interleaved}}}\end{tabular}}}}%
+    \put(0.50898222,0.36261061){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}dqpsk\\map\end{tabular}}}}%
+    \put(0.36341114,0.33508105){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
+    \put(0.646103,0.38038022){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_carriers\_\\remod}}}\end{tabular}}}}%
+    \put(0.65361665,0.33508105){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
+    \put(0.35895074,0.379547){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{\makecell{dab\_data\_\\interleaved}}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dqpsk_map.pdf}}%
-    \put(0.07629719,0.3096017){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
+    \put(0.08661976,0.31424037){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dqpsk_map.pdf}}%
-    \put(0.17398307,0.01995714){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$T_u$\end{tabular}}}}%
+    \put(0.18192574,0.03165231){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$T_u$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{dqpsk_map.pdf}}%
-    \put(0.07629719,0.3096017){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
+    \put(0.08661976,0.31424037){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{dqpsk_map.pdf}}%
-    \put(0.93998242,0.35793371){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L$\end{tabular}}}}%
+    \put(0.92926324,0.36139488){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{dqpsk_map.pdf}}%
-    \put(0.82127312,0.02935789){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
+    \put(0.81344602,0.04082403){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{dqpsk_map.pdf}}%
-    \put(0.5088335,0.22326501){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{phase\_reference\_symbol}}\end{tabular}}}}%
+    \put(0.5086183,0.23000707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{phase\_reference\_symbol}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{dqpsk_map.pdf}}%
   \end{picture}%
 \endgroup%
