@@ -270,7 +270,7 @@ Recall that detection of the \gls{ns} was designed for coarse synchronisation, w
 Another important question when integrating the \gls{dab} processing chain into a larger \gls{pr} system is the regularity of frame synchronization. Ideally, one would only need to synchronize once, if the clock of the transmitter and receiver are perfectly accurate. Unfortunately, in real scenarios, there are a host of unwanted effects, including clock drift, that may cause synchronization errors over time. The other extreme is to synchronize on every frame---which is possible because every frame is preceded by both a \gls{ns} and a \gls{prs}. However, this may prove to be too computationally expensive. Naturally, fixed rules cannot be set for this decision, and are largely context-specific. Further details are thus omitted here.
 
 \subsection{Frame Extraction \label{subsect:dab-proc_frame-extract}}
-Once the index of the \gls{prs} has been detected, extracting a frame is trivial, as it simply entails subsetting the original data array. This block and subsection are included for the sake of completeness.
+Once the index of the \gls{prs} has been detected, extracting a frame is trivial, as it simply entails subsetting the original data array. This subsection is included for the sake of completeness.
 
 % ##############################################################################################################################
 %   D E M O D U L A T I O N
@@ -351,7 +351,7 @@ A graphical summary of the \texttt{symbol\_unpack} sub-block is given in Figure~
 
 % -------------
 \subsection{OFDM Demultiplexing \label{subsect:dab-proc_ofdm-demux}}
-Recall that a \gls{dab} signal is actually the sum of \(K\) carrier waves, each modulated by an individual bitstream. The use of multiple carriers is termed \acrlong{fdm}, and when the carriers are chosen to be mathematically orthogonal, it is called \acrlong{ofdm}. Regarding the nomenclature for the \gls{dab} processing chain, for the sake of clarity, some simplifications were made. While the carrier waves were technically multiplexed in the frequency domain (hence, the term \acrshort{fdm}), the bitstream from a particular carrier could be be easily extracted in this form, without further transformations. In contrast, the time-domain version of the signal first had to be manipulated in order to extract the bitstream information. Thus, for this project, the time-domain perspective was said to be the "multiplexed signal," and the frequency-domain pespective was said to be "demultiplexed." Of course, these signals were, in fact, the same \emph{physical} signal, viewed only through two different lenses.
+Recall that a \gls{dab} signal is actually the sum of \(K\) carrier waves, each modulated by an individual bitstream. The use of multiple carriers is termed \acrlong{fdm}, and when the carriers are chosen to be mathematically orthogonal, it is called \acrlong{ofdm}. Regarding the nomenclature for the \gls{dab} processing chain, for the sake of clarity, some simplifications were made. While the carrier waves were technically multiplexed in the frequency domain (hence, the term \acrshort{fdm}), the bitstream from a particular carrier could be easily extracted in this form, without further transformations. In contrast, the time-domain version of the signal first had to be manipulated in order to extract the bitstream information. Thus, for this project, the time-domain perspective was said to be the "multiplexed signal," and the frequency-domain perspective was said to be "demultiplexed." Of course, these signals were, in fact, the same \emph{physical} signal, viewed only through two different lenses.
 
 This sub-block, then, was designed to "demultiplex" the \gls{ofdm} signal---i.e. to extract the \gls{dab} carriers from the provided time-domain symbol data. Recall from the previous chapter that this extraction can be done via a \gls{dft}/\gls{fft} operation. Consider firstly the case of a single symbol from \texttt{dab\_symbols}, which is just a row in the \(L \times T_u\) matrix. To demultiplex this \gls{ofdm} symbol, one can use the simple code given in Listing~\ref{code:ofdm_demux}, where the \gls{fft} of the symbol is divided by its length for correct scaling, and the \texttt{fftshift} command is used to center the frequency axis on \(0\si{\hertz}\).
 
@@ -612,7 +612,7 @@ Nevertheless, since the out-of-band carriers---which were set to a phase of 0 in
 \subsection{DQPSK Snapping \label{subsect:dab-proc_dqpsk-snap}}
 As seen in Figure~\ref{fig:dqpsk_demap_rtl-2over1} and Figure~\ref{fig:dqpsk_demap_raw-2over1}, the \texttt{dqpsk\_demap} sub-block did well to distinguish four groups of differential phase values from the \gls{ofdm} carriers, despite being provided with input data that was fairly spread-out. Nonetheless, the spread of the data within these groups was still a problem---the groups each needed to be assigned to one of four values. Fortunately, provided one can assume that the original, transmitted signal was modulated correctly according the \gls{dab} standard in~\cite{dabstandard}, the four possible \emph{correct} phase-difference angles were known \emph{a priori}. Those being, \(\{-\frac{3\pi}{4}, -\frac{\pi}{4},\frac{\pi}{4}, \frac{3\pi}{4}\}\). Since only the phase is modulated, the magnitude of the carriers should remain constant from symbol to symbol, and thus the magnitude of the complex ratio between any two symbols should be 1. In rectangular co-ordinates, then, the four possible points correspond to the values, \(\pm \frac{1}{\sqrt{2}} \pm j\frac{1}{\sqrt{2}}\).
 
-The easiest way to correct the spread of the \gls{dqpsk} symbols was to re-assign them with the value that was closest to them out of the four possible points. Due to their angles, the four points fall exacly in the centre of each of the four quadrants respectively. Thus, if a given point was in quadrant \(X\), it was guaranteed to be closest to the correct \gls{dqpsk} point in that quadrant. Of course, this method of correcting real-world \gls{dab} data was not perfect, in that it did not apply any robust error-correction techniques to the data, and it likely assigned some edge cases incorrectly. Nonetheless, it was a quick and easy way to extract meaningful \gls{dqpsk} data. This process was termed "snapping", as it snapped given points to their closest possible values. Figure~\ref{fig:dqpsk_snap_rtl} shows an example symbol from real-world data (perfect data need not be snapped, as it is perfect already), where the four groups from the \gls{dqpsk}-demapping fell within the four quadrants on a complex plane. Any given point, then, was simply snapped to the value for that quadrant. The groupings are shown by the different colours, and the snapped values are shown by the large blue crosses.
+The easiest way to correct the spread of the \gls{dqpsk} symbols was to re-assign them with the value that was closest to them out of the four possible points. Due to their angles, the four points fall exactly in the centre of each of the four quadrants respectively. Thus, if a given point was in quadrant \(X\), it was guaranteed to be closest to the correct \gls{dqpsk} point in that quadrant. Of course, this method of correcting real-world \gls{dab} data was not perfect, in that it did not apply any robust error-correction techniques to the data, and it likely assigned some edge cases incorrectly. Nonetheless, it was a quick and easy way to extract meaningful \gls{dqpsk} data. This process was termed "snapping", as it snapped given points to their closest possible values. Figure~\ref{fig:dqpsk_snap_rtl} shows an example symbol from real-world data (perfect data need not be snapped, as it is perfect already), where the four groups from the \gls{dqpsk}-demapping fell within the four quadrants on a complex plane. Any given point, then, was simply snapped to the value for that quadrant. The groupings are shown by different colours, and the snapped values are shown by the large blue crosses.
 
 \begin{figure}[htbp]
   \centering
@@ -634,7 +634,7 @@ The same data points are plotted against their corresponding carrier indices in 
   \label{fig:dqpsk_snap_rtl-alt}
 \end{figure}
 
-In MATLAB, this snapping action was done via a simple quadrant-check and appropriate assignment, and this was performed over the entire input matrix.
+In MATLAB, this snapping action was done by simply checking in which quadrant a point was, and assigning it to its correct value accordingly. For the function, this was performed for all points in the input matrix.
 
 A graphical summary of the \texttt{dqpsk\_snap} function is shown in Figure~\ref{fig:dqpsk_snap}.
 
@@ -649,10 +649,18 @@ A graphical summary of the \texttt{dqpsk\_snap} function is shown in Figure~\ref
 \end{figure}
 
 \subsection{Error Correction \label{subsect:dab-proc_error-correct}}
+Though the snapping of the \gls{dqpsk} values was a straightforward way to eliminate the spreading in the phase data, it could not account for any errors that may have arisen in the signal. These errors could have come from various sources, including environmental noise and multipath effects. Moreover, some of the values in real-world data fell close to the decision boundary, and may have been assigned incorrectly. The \gls{dab} standard provides for this by integrating an error-correction method into any \gls{dab} signal, as described in the previous chapter during the discussion around \gls{fec}. Essentially, the transmitted data is convolutionally encoded, and can be decoded on the receiver's end with a Viterbi decoder.
+
+Having said that, the original scope of this project did not include any error-correction implementation, and the sub-block is included here for completeness only. Ideally, in a fully-functional chain that is integrated into a \gls{pr} system, such functionality would indeed be included; however, its necessity depends on the quality of the \gls{dab} signals used in the system.
+
+Conceptually, this sub-block would receive snapped \gls{dqpsk} data with the dimensions \((L-1)\times K\), and then output data with the same dimensions, after adjusting the possibly-erroneous values if necessary.
 
 \section{Remodulation \label{sect:dab-proc_remodulate}}
 
 \subsection{Overview}
+The purpose of this block was to take the data output from the demodulation block, and modulate it anew, back into a \gls{dab} frame, but perfectly reconstructed. Once again, this block was somewhat nugatory on its own, as it was specifically designed to be used in conjunction with the demodulator block.
+
+Figure~\ref{fig:BD_Remod_All} shows a block diagram for the remodulation block, with the various sub-blocks, nomenclature, and dimensions shown.
 
 \begin{figure}[htbp]
     \centering
