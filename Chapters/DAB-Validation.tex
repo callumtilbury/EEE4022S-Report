@@ -15,10 +15,73 @@
 % ----------------------------------------------------
 
 \section{Overview}
+This chapter aims to report on the validation steps that were undertaken when designing the \gls{dab} processing chain. These steps formed an integral part of the design task, by both assisting with the debugging of errors while coding, and further ensuring that the final result was achieving the project goals. At the end of the chapter, one should be confident that the created \gls{dab} chain indeed worked correctly.
+
+The structure of the chapter follows logically with how the design process itself unfolded. It starts with a validation method that was fairly non-rigorous, but was massively useful for early-stage understanding and debugging: that being, graphical validation---simply looking at the features of the outputs at various points in the chain. Thereafter, since most the demodulation and remodulation sub-blocks were designed as inverses of each other, corresponding pairs of functions were tested together with random input data, in the so-called "Inverse Relationship" validation tests. Thirdly, the entire chain was tested by running various data through the demodulation-remodulation process \emph{twice}, and comparing the results from the first and second iterations. Ultimately, then, the entire chain was tested using provided reference data---real-world \gls{dab} signals and the perfect reconstructions thereof. These sections follow.
 
 \section{Graphical Validation}
+This initial validation step consisted of looking at the output values at various points in the processing chain, and considering them graphically. There were two important caveats to this approach. Firstly, it was not an infallible method of testing, as certain correct graphical features could have arisen even with an incorrect underlying algorithm. Secondly, it could not be done for all sub-blocks---only a handful of the chain's functionality lent itself to such analysis. Nonetheless, it was an important tool in the early stages of the design process. The benefit of doing this validation technique was that problems would manifest close their source: for example, a problem with the demultiplexing of the \gls{ofdm} carriers would be immediately visible in its output, and could thus be fixed.
 
+\subsection{Methodology}
+For at least three points in the chain, one could know \emph{a priori} the correct shape or features of the output data: these points being, after the frame synchronisation step (involving the \texttt{prs\_detect} function), after the demultiplexing of the \gls{ofdm} symbols (involving both the \texttt{symbols\_unpacking} and \texttt{ofdm\_demux} functions), and after the demapping of the \gls{dqpsk} data (involving the \texttt{dqpsk\_demap} functions). The inverses of the latter functions were also considered, but are not covered here, as the procedures were almost identical. The three points will be covered in the upcoming subsections.
 
+Validating these sub-blocks' functionality, then, simply involved looking at their outputs and comparing them to what was expected. Some of the plots were already provided in the previous chapter, and shown to be correct, but a handful more will be provided here for clarity.
+
+\subsection{Frame Synchronisation}
+Recall that the frame synchronisation process involved using a Matched Filter to detect the location of a pre-defined \gls{prs} within a given \gls{dab} signal. Since the \gls{prs} is usually fairly distinct from the data-carrying symbols, and because each frame is always preceded by the \gls{ns}, it was easy to recognize the beginning of the frame visually. Thus, by comparing the output index from the \texttt{prs\_detect} function to a plot of the original data, one could quickly see if the algorithm was working correctly. As a reminder, this was not a flawless mode of validation, but it provided good initial insight.
+
+The plot in Figure~\ref{fig:mf_out_good} from the previous chapter has already shown the Matched Filter working on perfect data. Graphically, one can easily see that the \gls{prs} was detected, after the guard interval. It was also via graphical intuition that the problem shown in Figure~\ref{fig:mf_out_prefix-problem} was discovered.
+
+For two further examples, Figure~\ref{fig:validation_mf_rtl} and Figure~\ref{fig:validation_mf_raw}, given here, show the detection process working with real-world data. Importantly, the latter of the two figures displays a situation where the input data was not sampled at \(F_s = 2.048\si{\mega\hertz}\), but rather at \(F_s = 2.5\si{\mega\hertz}\). Thus, inadvertently, this plot additionally demonstrated the correct functioning of the \texttt{iq\_resample} sub-block, since the Matched Filter was designed around the \gls{prs}, which was sampled at \(F_s = 2.048\si{\mega\hertz}\). If the resampling was not working, neither would the \gls{prs} detection process.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=0.6\linewidth]{plots/validation_mf_rtl_signal.pdf}
+    \caption{Input to Matched Filter}
+    \label{fig:validation_mf_rtl_signal}
+  \end{subfigure}%
+  \\
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=0.6\linewidth]{plots/validation_mf_rtl_peak.pdf}
+    \caption{Output from Matched Filter with peak detected}
+    \label{fig:validation_mf_rtl_peak}
+  \end{subfigure}
+  \caption{Plots demonstrating correct functioning of the \texttt{prs\_detect} sub-block using real-world data.}
+  \label{fig:validation_mf_rtl}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=0.6\linewidth]{plots/validation_mf_raw_signal.pdf}
+    \caption{Input to Matched Filter}
+    \label{fig:validation_mf_raw_signal}
+  \end{subfigure}%
+  \\
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=0.6\linewidth]{plots/validation_mf_raw_peak.pdf}
+    \caption{Output from Matched Filter with peak detected}
+    \label{fig:validation_mf_raw_peak}
+  \end{subfigure}
+  \caption{More plots demonstrating correct functioning of the \texttt{prs\_detect} sub-block, but using real-world data that was sampled at \(F_s \ne 2.048\si{\mega\hertz}\).}
+  \label{fig:validation_mf_raw}
+\end{figure}
+
+\subsection{Symbols Unpacking \& OFDM Demultiplexing}
+The next two sub-blocks considered were the \texttt{symbols\_unpack} and \texttt{ofdm\_demux}. Both were fairly simple blocks, but the validity of the latter's output relied heavily on the validity of the former's correct functionality. Recall that the \gls{ofdm} demultiplexing stage received the \gls{dab} data, after it was split into \(L\) symbols, and the guard intervals were removed. The sub-block then performed a \gls{fft} on the data, thus extracting the \gls{dab} carriers. The plot given in Figure~\ref{fig:ofdm-carriers-perfect}, from the previous chapter, shows an example magnitude plot of these carriers, where the spectrum is clearly rectangular and flat in the passband.
+
+However, for completeness, it was worth understanding how such plots would change were the \gls{dab} symbols unpacked \emph{incorrectly}. Suppose the given \gls{dab} frame began at sample \(n_0\), as detected via the \gls{prs}, but the \texttt{symbols\_unpack} function erroneously misaligned the symbols during its unpacking process. The resulting magnitude plots of the \gls{dab} carriers of a single symbol are shown in Figure~\ref{fig:ofdm-carriers-prs} for two situations---one where the symbols have been aligned at \((n_0 - 1)\) samples, the other at \((n_0 + 1)\) samples.
 
 \begin{figure}[htbp]
     \centering
@@ -26,24 +89,78 @@
     \begin{subfigure}[t]{0.45\textwidth}
       \centering
       \captionsetup{type=figure}
-      \includegraphics[width=\linewidth]{plots/ofdm-carriers-prs-50.pdf}
-      \caption{Symbol aligned \(n_0 - 50\) samples}
-      \label{fig:ofdm-carriers-prs-50}
+      \includegraphics[width=\linewidth]{plots/ofdm-carriers-prs-1.pdf}
+      \caption{Symbol aligned at \((n_0 - 1)\) samples}
+      \label{fig:ofdm-carriers-prs-1}
     \end{subfigure}%
     ~ 
     \begin{subfigure}[t]{0.45\textwidth}
       \centering
       \captionsetup{type=figure}
-      \includegraphics[width=\linewidth]{plots/ofdm-carriers-prs+50.pdf}
-      \caption{Symbol aligned \(n_0 + 50\) samples}
-      \label{fig:ofdm-carriers-prs+50}
+      \includegraphics[width=\linewidth]{plots/ofdm-carriers-prs+1.pdf}
+      \caption{Symbol aligned at \((n_0 + 1)\) samples}
+      \label{fig:ofdm-carriers-prs+1}
     \end{subfigure}
     \caption{Plots showing the magnitude of the \gls{ofdm} carriers for a misaligned \gls{dab} symbol}
     \label{fig:ofdm-carriers-prs}
   \end{figure}
-  
 
-\section{Block}
+Notice how aligning the symbol prematurely at \((n_0 - 1)\), as shown in Figure~\ref{fig:ofdm-carriers-prs-1}, produced an identical output to that shown before, in Figure~\ref{fig:ofdm-carriers-perfect}, where the passband was flat and the out-of-band noise-floor was virtually zero. However, when the symbol was aligned incorrectly at \(n_0 + 1\), as shown in Figure~\ref{fig:ofdm-carriers-prs+1}, the noise-floor increased by over \(100\si{\deci\bel}\). As the symbol becomes more misaligned in the "forward" direction, the resulting \gls{ofdm} carriers become increasingly imperfect. On the other hand, there is leeway for the symbol to be aligned prematurely, without any effect on the resulting functionality.
+
+This effect is due to the guard interval. Remember that a guard interval \emph{precedes} each \gls{dab} symbol. Thus, quite simply, reading a symbol prematurely involves reading the original symbol and some of its guard interval. Reading the symbol too late, however, involves reading the original symbol, as well as the guard interval of the following symbol---which contains completely different data. 
+
+It is important to note that these effects were easily visualised when using perfect data, but not so much when using real-world data. The real-world \gls{ofdm} carriers indeed look somewhat rectangular, but the impact of symbol misalignment is far less pronounced. It is thus recommended that these sub-blocks be designed and initially tested using perfect data.
+  
+\subsection{DQPSK Demapping}
+The demapping of the \gls{dqpsk} data was already discussed somewhat extensively in the previous chapter, and Figures~\ref{fig:dqpsk_demap_perfect},~\ref{fig:dqpsk_demap_rtl} and~\ref{fig:dqpsk_demap_raw} all demonstrated the success of \gls{dqpsk} demodulation, which was able to split the data in four groups of angles, albeit spread out at times. Once again, though, it was worth considering the impact of symbol misalignment on the \texttt{dqpsk\_demap} functionality---using perfect data for clarity. Building on the same examples from Figure~\ref{fig:ofdm-carriers-prs}, Figure~\ref{fig:dqpsk-demap-prs} demonstrates the impact that misalignment has on the \gls{dqpsk} values.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk-demap-prs-1.pdf}
+    \caption{Symbol aligned at \((n_0 - 1)\) samples}
+    \label{fig:dqpsk-demap-prs-1}
+  \end{subfigure}%
+  ~ 
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=\linewidth]{plots/dqpsk-demap-prs+1.pdf}
+    \caption{Symbol aligned at \((n_0 + 1)\) samples}
+    \label{fig:dqpsk-demap-prs+1}
+  \end{subfigure}
+  \caption{Plots showing the values from the \gls{dqpsk} demapping of a misaligned \gls{dab} symbol.}
+  \label{fig:dqpsk-demap-prs}
+\end{figure}
+
+As to be expected, aligning the symbol prematurely, as in Figure~\ref{fig:dqpsk-demap-prs-1}, had no impact on the extracted \gls{dqpsk} data; whereas, aligning the symbol belatedly, as in Figure~\ref{fig:dqpsk-demap-prs+1}, spread out the resulting angles. This is, of course, the same effect of the guard interval as before.
+
+% These considerations of misalignment indirectly validate the correct alignment of the chain.
+
+\section{Inverse Relationship Validation}
+
+
+
+\subsection{Methodology}
+\subsection{Symbols Packing \& Unpacking}
+\subsection{OFDM Multiplexing \& Demultiplexing}
+\subsection{DQPSK Mapping \& Demapping}
+
+\subsection{Frequency Interleaving \& Deinterleaving}
+
+\subsection{Remodulation \& Demodulation}
+
+\section{Repeated Processing Validation}
+\subsection{Methodology}
+\subsection{Results}
+
+\section{Reference Data Validation}
+\subsection{Methodology}
+\subsection{Perfect Data}
+\subsection{Real-world Data}
 
 \section{Summary}
 
