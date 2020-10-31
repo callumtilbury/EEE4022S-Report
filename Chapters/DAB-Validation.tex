@@ -145,7 +145,7 @@ As was expected, aligning the symbol prematurely, as in Figure~\ref{fig:dqpsk-de
 An important part of the design rationale for the \gls{dab} processing chain was the idea of "inverse relationships." Essentially, for as many parts of the pipeline as possible, the sub-blocks were designed to have an inverse counterpart. For example, the \texttt{symbols\_pack} function had an inverse in the \texttt{symbols\_unpack} function. Zooming out, the \texttt{demodulation} and \texttt{remodulation} blocks were also somewhat inverted, with one taking a recorded \gls{dab} signal and producing \gls{dab} data, and the other doing the opposite. In fact, this demodulation-remodulation process was the essence of the entire project, with the additional intention that real-world data could be put in on one end, and a perfect reconstruction of this data would be returned. These inverse relationships provided a logical flow to the processing chain, but also provided a good way to test functionality.
 
 \subsection{Methodology}
-The essence of this validation process is shown in Figure~\ref{fig:inverse-overview}, where \(f\) and \(f^{-1}\) are two sub-blocks that are being tested together. The sub-blocks would be considered valid inverses if \(\mathbf{X} = \mathbf{\tilde{X}}\). Since this relationship should hold for any input \(\mathbf{X}\), a set of pseudorandom data can be provided, and even then, the data should remain the same at the output.
+The essence of this validation process is shown in Figure~\ref{fig:inverse-overview}, where \(f\) and \(f^{-1}\) are two sub-blocks that are being tested together.
 
 \begin{figure}[htbp]
   \centering
@@ -153,9 +153,15 @@ The essence of this validation process is shown in Figure~\ref{fig:inverse-overv
   \def\svgwidth{0.8\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/inverse-overview.pdf_tex}}
-  \caption{Depiction of the inverse relationship validation process}
+  \caption{Depiction of the inverse relationship validation process for a generic pair of blocks.}
   \label{fig:inverse-overview}
 \end{figure}
+
+The sub-blocks would be considered valid inverses if there was no net change on the input data; thus, an error value was defined:
+\begin{equation}
+  \mathbf{E} = \mathbf{\tilde{X}} - \mathbf{X}  
+\end{equation}
+Since this relationship should hold for any input \(\mathbf{X}\), sets of pseudorandom data were provided, and even then, the data was to remain the same at the output. For a valid inverse relationship, then, the maximum value of \(\mathbf{E}\) had to be zero (or extremely close to zero, accounting for numerical inaccuracies) for multiple iterations of arbitrary complex-data as \(\mathbf{X}\).
 
 There are two important notes to make here. Firstly, as was the case for graphical validation, this method was not unerring. Showing that two given sub-blocks demonstrated the above relationship proved that their functionality was inverted, but it said nothing about the correctness of that functionality itself. The block performing \(f^{-1}(\mathbf{X})\) could have been built around the same, incorrect underlying algorithm as \(f(\mathbf{X})\), and the validation step would not reveal this truth.
 
@@ -164,12 +170,108 @@ Secondly, in some cases within the \gls{dab} chain, a function \(f(\mathbf{X})\)
 Nonetheless, testing these inverse relationships was a good step in validating the code written for the \gls{dab} chain. The following subsections show results for the four sub-block pairs, and thereafter, show an inverse test for the remodulation and demodulation blocks, with certain restrictions on the data used.
 
 \subsection{Symbols Packing \& Unpacking}
+The inverse validation test for the \texttt{symbols\_pack} and \texttt{symbols\_unpack} functions is depicted in Figure~\ref{fig:inverse-symbols-pack-unpack}.
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{0.95\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/inverse-symbols-pack-unpack.pdf_tex}}
+  \caption{Depiction of the inverse relationship validation process for the \texttt{symbols\_pack} and \texttt{symbols\_unpack} functions.}
+  \label{fig:inverse-symbols-pack-unpack}
+\end{figure}
+
+Recall that the \texttt{symbols\_unpack} function did discard some data by removing the guard intervals and the null symbol. Therefore, if this function was placed first in the testing pipeline, the input data used for \(\mathbf{X_s}\) would have to be structured in a certain way for a correct inverse relationship. Instead, the order was chosen as shown in the figure: after a matrix of pseudorandom symbols was generated, they were first packed by the \texttt{symbols\_pack} function (which included the insertion of guard intervals and the null symbol), and thereafter unpacked by the \texttt{symbols\_unpack} function.
+
+Over multiple iterations, the results of this test were:
+\begin{equation}
+  \mathrm{max} \{ \mathbf{E_s} \} = 0
+\end{equation}
+That is, the functions were \emph{exact} inverses of each other. This makes sense, since the data was simply rearranged in the two sub-blocks, without any changes to the actual data values.
+
 \subsection{OFDM Multiplexing \& Demultiplexing}
+The inverse validation test for the \texttt{ofdm\_mux} and \texttt{ofdm\_demux} functions is depicted in Figure~\ref{fig:inverse-ofdm-mux-demux}.
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{0.95\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/inverse-ofdm-mux-demux.pdf_tex}}
+  \caption{Depiction of the inverse relationship validation process for the \texttt{ofdm\_mux} and \texttt{ofdm\_demux} functions.}
+  \label{fig:inverse-ofdm-mux-demux}
+\end{figure}
+Due to the straightforward nature of these functions---simply a \gls{ifft} and \gls{fft}, respectively---they could also be tested in the opposite direction.
+
+Over multiple iterations, the order of magnitude of these test results was:
+\begin{equation}
+  \mathrm{max} \{ \mathbf{E_o} \} \approx 10^{-13}
+\end{equation}
+Notice that the difference between the input and output signals was not exactly zero, but was nonetheless very small. This was due to the numerical inaccuracies involving the use of double-precision floating-point values, together with multiplication, division, \gls{fft} and \gls{ifft} operations. Such an error was sufficiently small to be regarded as zero, implying that the functions were indeed inverses of each other.
+
 \subsection{DQPSK Mapping \& Demapping}
+The inverse validation test for the \texttt{dqpsk\_map} and \texttt{dqpsk\_demap} functions is depicted in Figure~\ref{fig:inverse-dqpsk-map-demap}.
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{0.95\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/inverse-dqpsk-map-demap.pdf_tex}}
+  \caption{Depiction of the inverse relationship validation process for the \texttt{dqpsk\_map} and \texttt{dqpsk\_demap} functions.}
+  \label{fig:inverse-dqpsk-map-demap}
+\end{figure}
+
+In order to save computation time, the \texttt{dqpsk\_demap} function was designed to demap only the central~\(K\)~carriers (barring the centremost carrier) of the provided \gls{ofdm} symbols, despite being given all~\(T_u\)~carriers. As a consequence of this, the inverse relationship test could only be considered for these~\(K\)~carriers, rather than for the entire set of values. As mentioned previously, this was not a problem, since the ignored data was unimportant for the \gls{dab} chain.
+
+Note that for additional testing, the pipeline from Figure~\ref{fig:inverse-dqpsk-map-demap} was also arranged such that~\(\mathbf{X_d}\) was first fed into the \texttt{dqpsk\_demap} function, and then into the \texttt{dqpsk\_map} function. However, in that case, the \texttt{phase\_reference\_symbol} provided to the latter function had to be set to the first row of the original input data,~\(\mathbf{X_d}\).
+
+Across multiple iterations of both of these tests, considering only the relevant \(K\) values in each row, the order of magnitude of the maximum error was:
+\begin{equation}
+  \mathrm{max} \{ \mathbf{E_d} \} \approx 10^{-15}
+\end{equation}
+Once again, there was a tiny error that existed between the input and output data. This was caused by a numerical inaccuracy involving the multiplication and division operations on the double-precision floating-point values. With such a negligible error, there was no doubt that these functions were indeed true inverses of each other.
 
 \subsection{Frequency Interleaving \& Deinterleaving}
+The inverse validation test for the \texttt{freq\_interleave} and \texttt{freq\_deinterleave} functions is depicted in Figure~\ref{fig:inverse-freq-interleave-deinterleave}.
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/inverse-freq-interleave-deinterleave.pdf_tex}}
+  \caption{Depiction of the inverse relationship validation process for the \texttt{freq\_interleave} and \texttt{freq\_deinterleave} functions.}
+  \label{fig:inverse-freq-interleave-deinterleave}
+\end{figure}
+
+As discussed at the beginning of this section, the \texttt{freq\_deinterleave} sub-block was designed to discard the out-of-band carriers, and thus the inverse relationship validation test had to be run in the direction shown, with \texttt{freq\_interleave} placed first. Notice that the same \texttt{interleave\_map} was used for both sub-blocks---recall that this ability was an intentional design decision for simplicity: both of the sub-blocks can use the \texttt{build\_interleave\_map()} utility function.
+
+This validation test was run several times, and across all of these tests, the results were:
+\begin{equation}
+  \mathrm{max} \{ \mathbf{E_f} \} = 0
+\end{equation}
+In other words, the two functions were exact inverses. As with the \texttt{symbols\_pack} and \texttt{symbols\_unpack} test, this result makes sense, since the data was only being shuffled, not operated on. 
 
 \subsection{Remodulation \& Demodulation}
+The final inverse relationship test was between the system's main two blocks: \texttt{remodulate} and \texttt{demodulate}. There were a couple of important caveats when testing this relationship, though. Firstly, in order for the demodulation process to have worked correctly, the provided \texttt{dab\_frame} must have had a specific structure---with the \gls{ns}, \gls{prs}, and guard intervals all placed appropriately. Thus, an arbitrary, pseudorandom input could not be used as the \texttt{dab\_frame}, for it would not have met such criteria. Moreover, recall that a crucial part of the demodulation functionality was the \texttt{dqpsk\_snap} sub-block (together with the \texttt{error\_correct} sub-block, which was not implemented in this project). By running arbitrary, imperfect data through the chain (even if it met the structural requirements of a \gls{dab} signal), the output data values would be snapped to one of the four correct \gls{dqpsk} angles. Remodulation of the data, then, would produce a completely different result---rendering the inverse test pointless.
+
+As a consequence, the test was set-up in a specific way: the data was first remodulated, and thereafter demodulated, rather than the other way around. Furthermore, the generated \texttt{dab\_data} used as an input was constrained to have four possible \gls{dqpsk} angles---essentially making it a perfect \gls{dab} bitstream, and thus eliminating any action required by the \texttt{dqpsk\_snap} and \texttt{error\_correct blocks}.
+
+A graphical depiction of the inverse validation test for the \texttt{remodulate} and \texttt{demodulate} functions is given in Figure~\ref{fig:inverse-remod-demod}, where \(\mathbf{X_p}\) is pseudorandomly-generated \gls{dab} data meeting the constraints discussed above.
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{type=figure}
+  \def\svgwidth{\linewidth}
+  {\setstretch{0.7} % Line spacing
+      \input{../Images/inverse-remod-demod.pdf_tex}}
+  \caption{Depiction of the inverse relationship validation process for the \texttt{remodulate} and \texttt{demodulate} blocks, using pseudorandomly-generated \gls{dab} data.}
+  \label{fig:inverse-remod-demod}
+\end{figure}
+
+Multiple iterations of the test were run, and the order of magnitude of the error was:
+\begin{equation}
+  \mathrm{max} \{ \mathbf{E_p} \} \approx 10^{-16}
+\end{equation}
+This negligible value therefore confirmed that the demodulation and remodulation processes were indeed inverses, when working with perfect \gls{dab} data.
 
 \section{Repeated Processing Validation}
 \subsection{Methodology}
