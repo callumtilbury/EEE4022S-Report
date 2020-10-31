@@ -68,7 +68,7 @@
     \put(0.64396607,0.29696509){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
     \put(0.6440669,0.33280836){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{freq_deinterleave.pdf}}%
-    \put(0.50014319,0.19542921){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{deinterleave\_map}}\end{tabular}}}}%
+    \put(0.50014319,0.19542921){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{interleave\_map}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{freq_deinterleave.pdf}}%
   \end{picture}%
 \endgroup%
