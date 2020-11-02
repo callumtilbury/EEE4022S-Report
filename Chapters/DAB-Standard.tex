@@ -138,24 +138,27 @@ How, then, does that influence the ability to perform \gls{fdm}?
 
 Suppose one has three carriers, each with a \(\textrm{Sa}(\omega) = \frac{\sin \omega}{\omega}\) spectrum. If the centre frequencies of these carriers are sufficiently distant from the others, there will be negligible interference from one spectrum's sidelobes to another spectrum's mainlobe. This is seen in Figure~\ref{fig:three-sincs-good-distance}.
 
-
-\begin{figure}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=\linewidth]{three-sincs-bad-distance.pdf}
-    \caption{Three spectra spaced insufficiently far away from each other}
-    \label{fig:three-sincs-bad-distance}
-\end{figure}
-
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
-    \includegraphics[width=\linewidth]{three-sincs-good-distance.pdf}
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \captionsetup{type=figure}
+        \includegraphics[width=\linewidth]{three-sincs-bad-distance.pdf}
+        \caption{Three spectra spaced insufficiently far away from each other}
+        \label{fig:three-sincs-bad-distance}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.545\textwidth}
+        \centering
+        \captionsetup{type=figure}
+        \includegraphics[width=\linewidth]{three-sincs-good-distance.pdf}
+        \caption{Three spectra spaced sufficiently far away from each other}
+        \label{fig:three-sincs-good-distance}
+    \end{subfigure}
     \caption{Three spectra spaced sufficiently far away from each other}
-    \label{fig:three-sincs-good-distance}
-\end{figure}
-
-
+    \label{fig:fig:three-sincs-good-and-bad}
+  \end{figure}
 
 \subsection{Using Orthogonal Carriers}
 As shown, a straightforward \gls{fdm} approach requires the carriers to be sufficiently spaced from each other, to avoid cross-talk. There is an important exception to this requirement, provided one chooses the carrier frequencies very carefully: specifically, by spacing the carriers precisely with \(\Delta \omega = \frac{2\pi}{T}\). This is shown graphically in Figure~\ref{fig:ofdm-three-sincs}.
@@ -163,7 +166,7 @@ As shown, a straightforward \gls{fdm} approach requires the carriers to be suffi
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
-    \def\svgwidth{1\linewidth}
+    \def\svgwidth{0.7\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/ofdm-three-sincs.pdf_tex}}
     \caption{Three spectra arranged orthogonally}

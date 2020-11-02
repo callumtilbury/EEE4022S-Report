@@ -224,7 +224,6 @@ Notice that the peak identified in the Matched Filter output, seen in Figure~\re
 Both of these points---the decreasing correlation peak, and the guard interval problem---motivate the choice of the advancement interval to be less than the window period. Of course, there is a trade-off, as a shorter advancement interval increases the computation required to detect the \gls{prs}. For this project's implementation of the \gls{dab} processing chain, the values were chosen as \(T_a = \frac{1}{2} T_w\). This ensures that any small peak occurring in the second half of a window interval is guaranteed to occur again, as a much larger peak, in the first half of the next interval. Therefore, the threshold for a "true peak" value can be stricter, which also solves the guard interval problem.
 
 An outline of the \gls{prs} detection process is given in Algorithm~\ref{alg:prs_detect}.
-
 \begin{figure}[ht]
   \vspace{0.5cm}
   \centering
