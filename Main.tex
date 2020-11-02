@@ -13,7 +13,12 @@
 \input{FrontMatter/Abstract.tex}
 
 \tableofcontents
-% \listoffigures        % To include?? Hmm.
+\listoffigures
+
+{
+\setstretch{0.7}
+\printnoidxglossary[type=\acronymtype,nonumberlist] % Page numbers or not?? Hmm.
+}
 \newpage
 
 \pagenumbering{arabic}
@@ -34,11 +39,5 @@
 \clearpage
 \addcontentsline{toc}{chapter}{References}
 \bibliography{Bibliography/References.bib}
-
-{
-\setstretch{0.7}
-\printnoidxglossary[type=\acronymtype,nonumberlist] % Page numbers or not?? Hmm.
-}
-\newpage
 
 \end{document}
