@@ -16,26 +16,28 @@
 % ----------------------------------------------------
 
 \section{Overview}
+This brief chapter serves to provide a rudimentary insight into the context for which the \gls{dab} processing chain was designed: integration into a \gls{pr} system. The scope of this project did not facilitate a thorough analysis into such integration, and the details surrounding its performance, accuracy, efficiency, etc., were not considered. Instead, the work done for this chapter was purely illustrative, included to demonstrate the bigger picture to a reader, in a way that omits dense mathematical analysis. 
 
-\section{Modern Baseband Receiver}
+\section{System Description}
+Recall that the demodulation-remodulation pipeline was not intended for the \emph{decoding} of a \gls{dab} signal---it did not enable one to listen to the audio data of a particular \gls{dab} radio station, for example. Instead, it was to be used in a \gls{pr} system. A conventional, bistatic \gls{pr} system requires two signals for its operation: a reference signal, and a surveillance signal. The former is the signal that arrives via the direct-path, from the uncooperative transmitter to system's receiver. The latter is the signal that is aimed at the scene, as a recording of the scatterings and reflections of the \gls{em} energy emitted by the transmitter. However, when a digital signal is used---one which has an open and accessible standard---the reference data can be generated using the surveillance data. This enables the system to use only one antenna for operations. Various authors have discussed these advantages in great detail~\cite{Fang2018,Barott2014}.
 
-\section{Phantom Reference Signal}
+With this in mind, a block diagram depicting the larger \gls{pr}~system's set-up is provided in Figure~\ref{fig:BD_pr-integration}.
 
-\section{Surveillance Signal}
+\begin{figure}[htbp]
+    \centering
+    \captionsetup{type=figure}
+    \def\svgwidth{\linewidth}
+    {\setstretch{0.7} % Line spacing
+    \scriptsize
+    \input{../Images/BD_pr-integration.pdf_tex}}
+    \caption{Block diagram showing }
+    \label{fig:BD_pr-integration}
+\end{figure}
 
-\section{Passive Radar Processing Chain}
 
-\section{Sample Results}
-
+\section{Simulated Results}
 
 \section{Summary}
-
-
-
-
-
-
-
 
 % ----------------------------------------------------
 \ifstandalone
