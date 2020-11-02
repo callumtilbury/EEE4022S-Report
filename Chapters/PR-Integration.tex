@@ -7,22 +7,17 @@
 \begin{document}
 % ----------------------------------------------------
 \chapter{Passive Radar Integration}
-% \epigraph{If you wish to make an apple pie from scratch, you must first invent the universe.}%
-%     {\emph{Carl Sagan}}
-% \epigraph{Philosophers have hitherto only interpreted the world in various ways; the point is to change it.}%
-%     {\emph{---Karl Marx}}
 \epigraph{Oh, to see without my eyes.}%
     {\emph{---Sufjan Stevens}}
 % ----------------------------------------------------
 
 \section{Overview}
-This brief chapter serves to provide a rudimentary insight into the context for which the \gls{dab} processing chain was designed: integration into a \gls{pr} system. The scope of this project did not facilitate a thorough analysis into such integration, and the details surrounding its performance, accuracy, efficiency, etc., were not considered. Instead, the work done for this chapter was purely illustrative, included to demonstrate the bigger picture to a reader, in a way that omits dense mathematical analysis. 
+This brief chapter serves to provide a rudimentary insight into the context for which the \gls{dab} processing chain was designed: integration into a \gls{pr} system. The scope of this project did not facilitate a thorough analysis into such integration, and the details surrounding its performance, accuracy, and efficiency were not considered in any way. Instead, the work done for this chapter was purely illustrative, included to demonstrate the bigger picture to the reader, in a way that omits dense mathematical analysis.
 
 \section{System Description}
-Recall that the demodulation-remodulation pipeline was not intended for the \emph{decoding} of a \gls{dab} signal---it did not enable one to listen to the audio data of a particular \gls{dab} radio station, for example. Instead, it was to be used in a \gls{pr} system. A conventional, bistatic \gls{pr} system requires two signals for its operation: a reference signal, and a surveillance signal. The former is the signal that arrives via the direct-path, from the uncooperative transmitter to system's receiver. The latter is the signal that is aimed at the scene, as a recording of the scatterings and reflections of the \gls{em} energy emitted by the transmitter. However, when a digital signal is used---one which has an open and accessible standard---the reference data can be generated using the surveillance data. This enables the system to use only one antenna for operations. Various authors have discussed these advantages in great detail~\cite{Fang2018,Barott2014}.
+A conventional, bistatic \gls{pr} system requires two signals for its operation: a reference signal, and a surveillance signal. The former is the signal that arrives via the direct-path, from the uncooperative transmitter to system's receiver. The latter is the signal that comes from the scene, as a recording of the scatterings and reflections of the \gls{em} energy. However, when a \emph{digitally}-modulated signal is used---one which has an open and accessible standard, such as the \gls{etsi}'s \gls{dab} standard---the reference data can be generated using the surveillance data. This trick enables the system to use only one antenna for operations, which is advantageous in various ways. Several authors have discussed such systems in further detail, such as in~\cite{Fang2018} and~\cite{Barott2014}.
 
-With this in mind, a block diagram depicting the larger \gls{pr}~system's set-up is provided in Figure~\ref{fig:BD_pr-integration}.
-
+The aim of this project was to design the functionality for converting surveillance data into reference data for a given \gls{dab} signal. This was done via the demodulation of the received signal, and then the remodulation thereof, thereby producing a "pristine" copy of the received signal. This pristine copy (used as reference data), together with the original recorded signal (used as surveillance data), could be provided to a standard \gls{pr} algorithm for further processing and analysis. A block diagram depicting the larger \gls{pr}~system's set-up is provided in Figure~\ref{fig:BD_pr-integration}.
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -30,14 +25,66 @@ With this in mind, a block diagram depicting the larger \gls{pr}~system's set-up
     {\setstretch{0.7} % Line spacing
     \scriptsize
     \input{../Images/BD_pr-integration.pdf_tex}}
-    \caption{Block diagram showing }
+    \caption{Block diagram showing how the \texttt{demodulate} and \texttt{remodulate} blocks fit into a larger \gls{pr} system.}
     \label{fig:BD_pr-integration}
 \end{figure}
+One can see in the figure how the \texttt{pre-process}, \texttt{demodulate}, and \texttt{remodulate} blocks fit into the context of a \gls{pr} system. Note, however, that the \texttt{pre-process} block would likely be markedly different in such a system, compared to the one designed in this project. For example, the data from the baseband receiver would likely be streamed, rather than read from a file, as it was done here. The other two blocks may also be slightly different when implemented in a real system, but their fundamental routines would remain the same. As shown, the reference and surveillance data from the \gls{dab} processing chain must always be synchronised before being used in the \gls{pr} processing chain.
 
+For the sake of brevity, details of the \texttt{baseband receiver} and \texttt{synchronise} blocks are not given here. Moreover, specifics of the \texttt{passive radar processing} chain are similarly omitted.
 
-\section{Simulated Results}
+\section{Illustration}
+A common output that is plotted for a particular \gls{pr} situation is the \gls{ard} map, which shows the two-dimensional cross-correlation of the reference and surveillance data over a finite integration period. This plot can be used to identify targets from a scene. To illustrate the use of a \gls{dab} signal in a \gls{pr} chain, and what an \gls{ard} map might look like in such a situation, a simple simulation was performed.
 
-\section{Summary}
+The simulation was based off an arbitrary, perfect \gls{dab} signal, \(x[n]\). To simulate an object in a scene, a delayed and doppler-shifted version of this signal was created, called \(y[n]\), with a bistatic range of~\(d_0\) and doppler shift of \(f_0\). A normally-distributed random noise signal was also defined, \(\eta[n]\). The surveillance signal was then defined as the sum of these signals, with the latter two scaled by constants~\(K\) and~\(\sigma\) respectively, to control their relative weightings in the simulation:
+\begin{equation}
+    s[n] = x[n] + K \cdot y[n] + \sigma \cdot \eta[n]
+\end{equation}
+Ideally, by passing the surveillance signal through the demodulation-remodulation processing chain, the original \gls{dab} signal, \(x[n]\), would have been recovered. However, depending on the echo and noise signals added, some bit-errors may have arisen in the processed signal. Nonetheless, this pristine signal was used as the reference signal:
+\begin{equation}
+    r[n] = \mathrm{Remod}\bigg\{\:\mathrm{Demod}\Big\{\; s[n]\;\Big\}\:\bigg\}
+\end{equation}
+
+These two signals, the surveillance and reference, were passed into a provided \gls{pr} processing chain, with an \gls{ard} map as the output. A variety of situations were simulated, with different values chosen for each parameter. Note that the parameter \(\sigma\) controlled the \gls{snr}. Four of the simulation results are shown in Figure~\ref{fig:integration-simulation-all}, with red circles superimposed to highlight the simulated object's location in each.
+
+\begin{figure}[htbp]
+    \centering
+    \captionsetup{type=figure}
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \captionsetup{type=figure}
+        \includegraphics[width=\linewidth]{plots/integration-30km-2000Hz-K20-noise0.pdf}
+        \caption{\(d_0 = 30\si{\kilo\metre}\); \(f_0 = -2\si{\kilo\hertz}\); \(K = 0.2\); \(\textrm{SNR} = 0\si{\deci\bel}\)}
+        \label{fig:integration-simulation-1}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \captionsetup{type=figure}
+        \includegraphics[width=\linewidth]{plots/integration-30km-2000Hz-K20-noise10dB.pdf}
+        \caption{\(d_0 = 30\si{\kilo\metre}\); \(f_0 = -2\si{\kilo\hertz}\); \(K = 0.2\); \(\textrm{SNR} = 10\si{\deci\bel}\)}
+        \label{fig:integration-simulation-2}
+    \end{subfigure}%
+    \\
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \captionsetup{type=figure}
+        \includegraphics[width=\linewidth]{plots/integration-30km-2000Hz-K80-noise0.pdf}
+        \caption{\(d_0 = 30\si{\kilo\metre}\); \(f_0 = -2\si{\kilo\hertz}\); \(K = 0.8\); \(\textrm{SNR} = 0\si{\deci\bel}\)}
+        \label{fig:integration-simulation-3}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \captionsetup{type=figure}
+        \includegraphics[width=\linewidth]{plots/integration-65km-3000Hz-K20-noise0.pdf}
+        \caption{\(d_0 = 65\si{\kilo\metre}\); \(f_0 = +3\si{\kilo\hertz}\); \(K = 0.2\); \(\textrm{SNR} = 0\si{\deci\bel}\)}
+        \label{fig:integration-simulation-4}
+    \end{subfigure}%
+    \caption{Results from four of the simulations of a \gls{dab} signal in a \gls{pr} processing chain.}
+    \label{fig:integration-simulation-all}
+\end{figure}
+
+This short chapter has simply illustrated how the \gls{dab} processing blocks fit into a larger \gls{pr} chain, and how an output thereof might appear. There is clearly scope for further investigation, both in simulation and in real-world testing.
 
 % ----------------------------------------------------
 \ifstandalone
