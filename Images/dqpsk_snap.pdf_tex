@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1164.83589631bp}%
+    \setlength{\unitlength}{1221.52880841bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,22 +50,23 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.50150429)%
+  \begin{picture}(1,0.52464019)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0.35485911,0.31332707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
+    \put(0.3615953,0.32199082){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_deint}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{dqpsk_snap.pdf}}%
-    \put(0.07378519,0.29784509){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
+    \put(0.09356643,0.30722739){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L-1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dqpsk_snap.pdf}}%
-    \put(0.16811204,0.01471392){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$K$\end{tabular}}}}%
+    \put(0.18351544,0.03723675){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$K$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dqpsk_snap.pdf}}%
-    \put(0.84038761,0.01471392){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
+    \put(0.82458973,0.03723675){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$K$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{dqpsk_snap.pdf}}%
-    \put(0.65169261,0.27637676){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
-    \put(0.50396329,0.29234484){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\makecell{dqpsk\\snap}\end{tabular}}}}%
-    \put(0.35475499,0.27637676){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
-    \put(0.6558039,0.31332707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_snapped}}\end{tabular}}}}%
+    \put(0.64465234,0.28675543){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
+    \put(0.50377935,0.30198242){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\makecell{dqpsk\\snap}\end{tabular}}}}%
+    \put(0.36149602,0.28675543){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
+    \put(0.64857281,0.32199082){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_snapped}}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{dqpsk_snap.pdf}}%
-    \put(0.92836845,0.29925323){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L-1$\end{tabular}}}}%
+    \put(0.90848725,0.30857018){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L-1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{dqpsk_snap.pdf}}%
   \end{picture}%
 \endgroup%

@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{569.65610933bp}%
+    \setlength{\unitlength}{578.34896708bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,13 +50,13 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.42602964)%
+  \begin{picture}(1,0.45903178)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ofdm-three-sincs.pdf}}%
-    \put(0.78617271,0.23906188){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}No interference\end{tabular}}}}%
-    \put(0.06164993,0.39623719){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$F_n(\omega)$\end{tabular}}}}%
-    \put(0.11706603,0.3333299){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega$\end{tabular}}}}%
-    \put(0.39665021,0.37653129){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\LARGE $\frac{2\pi}{T}$}\end{tabular}}}}%
+    \put(0.759979,0.2648763){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}No interference\end{tabular}}}}%
+    \put(0.09013094,0.32813917){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$F_n(\omega)$\end{tabular}}}}%
+    \put(0.14471411,0.26617741){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega$\end{tabular}}}}%
+    \put(0.37631121,0.40027948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\LARGE $\frac{2\pi}{T}$}\end{tabular}}}}%
   \end{picture}%
 \endgroup%

@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{2080.69531284bp}%
+    \setlength{\unitlength}{2368.81779546bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,45 +50,52 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.46936037)%
+  \begin{picture}(1,0.42663124)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ofdm-multipliers.pdf}}%
-    \put(0.08567586,0.22409609){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$X_{0}$\end{tabular}}}}%
+    \put(0.08243489,0.20401888){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$X_{0}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ofdm-multipliers.pdf}}%
-    \put(0.27173492,0.27864858){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.24586334,0.25193608){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{ofdm-multipliers.pdf}}%
-    \put(0.43996452,0.15966053){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x(t)$\end{tabular}}}}%
+    \put(0.39363094,0.14742071){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x(t)$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{ofdm-multipliers.pdf}}%
-    \put(0.53999462,0.1167625){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Channel\end{tabular}}}}%
-    \put(0.10709921,0.11101307){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.48149425,0.10974042){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Channel\end{tabular}}}}%
+    \put(0.10125248,0.1046903){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{ofdm-multipliers.pdf}}%
-    \put(0.08567586,0.14478376){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$X_{K/2}$\end{tabular}}}}%
-    \put(0.08567586,0.06674872){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$X_{K}$\end{tabular}}}}%
-    \put(0.22668195,0.34836251){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0$\end{tabular}}}}}%
+    \put(0.08243489,0.13435342){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$X_{K/2}$\end{tabular}}}}%
+    \put(0.08243489,0.06580988){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$X_{K}$\end{tabular}}}}%
+    \put(0.20629022,0.31317061){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0$\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{ofdm-multipliers.pdf}}%
-    \put(0.13546365,0.34958457){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 - \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
-    \put(0.19217392,0.27864858){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
-    \put(0.29357198,0.34958458){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 + \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
-    \put(0.10709921,0.18954){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.12616692,0.31424403){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 - \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
+    \put(0.17597945,0.25193608){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.26504432,0.31424404){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 + \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
+    \put(0.10125248,0.1736659){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{ofdm-multipliers.pdf}}%
-    \put(0.91923845,0.22320901){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{0}$\end{tabular}}}}%
+    \put(0.92752659,0.2032397){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{0}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{ofdm-multipliers.pdf}}%
-    \put(0.79838183,0.27864858){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.70845347,0.25193608){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{ofdm-multipliers.pdf}}%
-    \put(0.87449942,0.11101307){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.77531278,0.1046903){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{ofdm-multipliers.pdf}}%
-    \put(0.91923845,0.14389668){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{K/2}$\end{tabular}}}}%
-    \put(0.91709322,0.06586163){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{K}$\end{tabular}}}}%
-    \put(0.75303747,0.34836249){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0$\end{tabular}}}}}%
+    \put(0.92752659,0.13357423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{K/2}$\end{tabular}}}}%
+    \put(0.92564229,0.0650307){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{K}$\end{tabular}}}}%
+    \put(0.66862442,0.3131706){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0$\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{ofdm-multipliers.pdf}}%
-    \put(0.66211056,0.34958458){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 - \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
-    \put(0.71882089,0.27864858){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
-    \put(0.82021892,0.34958459){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 + \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
-    \put(0.87449942,0.18954){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.58875706,0.31424404){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 - \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
+    \put(0.63856964,0.25193608){\rotatebox{-180}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
+    \put(0.72763449,0.31424405){\rotatebox{30}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_0 + \frac{K}{2} \Delta \omega$\end{tabular}}}}}%
+    \put(0.77531278,0.1736659){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}...\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{ofdm-multipliers.pdf}}%
-    \put(0.19963567,0.44906313){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Transmitter\end{tabular}}}}%
+    \put(0.18253361,0.40162288){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Transmitter\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{ofdm-multipliers.pdf}}%
-    \put(0.74555024,0.44906313){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Receiver\end{tabular}}}}%
+    \put(0.72162977,0.40162288){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Receiver\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{ofdm-multipliers.pdf}}%
+    \put(0.83437992,0.20230016){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}LPF\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{ofdm-multipliers.pdf}}%
+    \put(0.83437992,0.13334453){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}LPF\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{ofdm-multipliers.pdf}}%
+    \put(0.83437992,0.06450988){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}LPF\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{ofdm-multipliers.pdf}}%
   \end{picture}%
 \endgroup%

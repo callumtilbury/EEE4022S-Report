@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1562.71808616bp}%
+    \setlength{\unitlength}{1596.73383514bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,21 +50,21 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.52168659)%
+  \begin{picture}(1,0.53759655)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{multipath-symbol-morethan.pdf}}%
-    \put(0.02160212,0.32185652){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}+\end{tabular}}}}%
+    \put(0.03179359,0.33137186){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}+\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{multipath-symbol-morethan.pdf}}%
-    \put(0.86109455,0.40481708){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Direct Signal\end{tabular}}}}%
-    \put(0.86175008,0.28375789){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Delayed Signal\end{tabular}}}}%
-    \put(0.86109455,0.10771296){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Received Signal\end{tabular}}}}%
+    \put(0.85340204,0.41256509){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Direct Signal\end{tabular}}}}%
+    \put(0.8540436,0.29408486){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Delayed Signal\end{tabular}}}}%
+    \put(0.85340204,0.12179027){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Received Signal\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{multipath-symbol-morethan.pdf}}%
-    \put(0.37472105,0.50214254){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_d$\end{tabular}}}}%
-    \put(0.85217225,0.19273378){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0.37738991,0.50781719){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_d$\end{tabular}}}}%
+    \put(0.84466981,0.20499987){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{multipath-symbol-morethan.pdf}}%
-    \put(0.37735865,0.01027706){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize Integration Period}\end{tabular}}}}%
+    \put(0.37978037,0.02070979){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny Integration Period}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{multipath-symbol-morethan.pdf}}%
-    \put(0.20232457,0.50013724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_s$\end{tabular}}}}%
+    \put(0.20866605,0.50585461){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_s$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

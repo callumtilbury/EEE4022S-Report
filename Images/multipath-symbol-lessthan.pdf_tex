@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1426.81133187bp}%
+    \setlength{\unitlength}{1460.82707163bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,21 +50,21 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.56903293)%
+  \begin{picture}(1,0.58352956)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{multipath-symbol-lessthan.pdf}}%
-    \put(0.02365977,0.35236494){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}+\end{tabular}}}}%
+    \put(0.03475148,0.3602641){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}+\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{multipath-symbol-lessthan.pdf}}%
-    \put(0.84786352,0.44322766){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Direct Signal\end{tabular}}}}%
-    \put(0.84786352,0.31063733){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Delayed Signal\end{tabular}}}}%
-    \put(0.84786352,0.11782375){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Received Signal\end{tabular}}}}%
+    \put(0.83976342,0.44901107){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Direct Signal\end{tabular}}}}%
+    \put(0.83976342,0.31950814){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Delayed Signal\end{tabular}}}}%
+    \put(0.83976342,0.13118428){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Received Signal\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{multipath-symbol-lessthan.pdf}}%
-    \put(0.36575577,0.54762727){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_d$\end{tabular}}}}%
-    \put(0.93334344,0.21094298){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0.36888169,0.5509797){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_d$\end{tabular}}}}%
+    \put(0.92325292,0.2221352){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{multipath-symbol-lessthan.pdf}}%
-    \put(0.41156185,0.01125597){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize Integration Period}\end{tabular}}}}%
+    \put(0.41362116,0.02263651){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny Integration Period}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{multipath-symbol-lessthan.pdf}}%
-    \put(0.22090563,0.54762727){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_s$\end{tabular}}}}%
+    \put(0.22740442,0.5509797){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$t_s$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

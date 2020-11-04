@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{731.6624138bp}%
+    \setlength{\unitlength}{764.26908412bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,22 +50,18 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.01261324)%
+  \begin{picture}(1,0.99103598)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{serial-carrier.pdf}}%
-    \put(0.07351424,0.18193495){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$\omega$\end{tabular}}}}%
-    \put(0.09828939,0.62873406){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\frac{7\pi}{4}$}\end{tabular}}}}%
-    \put(0.08468222,0.74699264){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\large $\angle F(\omega)$}\end{tabular}}}}%
-    \put(0.30838924,0.09498516){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\large $\omega_0$}\end{tabular}}}}}%
-    \put(0.96708806,0.45629263){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
-    \put(0.09782633,0.52500656){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\frac{5\pi}{4}$}\end{tabular}}}}%
-    \put(0.09782633,0.41155461){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\frac{3\pi}{4}$}\end{tabular}}}}%
-    \put(0.09782633,0.30551178){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\frac{\pi}{4}$}\end{tabular}}}}%
-    \put(0.55781893,0.01856005){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 0}\end{tabular}}}}%
-    \put(0.63516063,0.09721873){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 2}\end{tabular}}}}%
-    \put(0.71734791,0.18006088){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 4}\end{tabular}}}}%
-    \put(0.79838913,0.26142957){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 6}\end{tabular}}}}%
-    \put(0.88172242,0.34427172){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 8}\end{tabular}}}}%
+    \put(0.09078793,0.17354386){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$\omega$\end{tabular}}}}%
+    \put(0.11450607,0.60128079){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\theta_4$}\end{tabular}}}}%
+    \put(0.10147943,0.714494){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\large $\angle F(\omega)$}\end{tabular}}}}%
+    \put(0.31564225,0.09030368){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\large $\omega_0$}\end{tabular}}}}}%
+    \put(0.94623843,0.43619637){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0.11406276,0.50197871){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\theta_3$}\end{tabular}}}}%
+    \put(0.11406276,0.39336705){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\theta_2$}\end{tabular}}}}%
+    \put(0.11406276,0.29184842){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\theta_1$}\end{tabular}}}}%
+    \put(0.75451993,0.17274449){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize $t_d$}\end{tabular}}}}%
   \end{picture}%
 \endgroup%

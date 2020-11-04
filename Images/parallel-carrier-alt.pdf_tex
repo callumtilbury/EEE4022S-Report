@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'dqpsk_demap.pdf' (pdf, eps, ps)
+%% Accompanies image file 'parallel-carrier-alt.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1323.69782241bp}%
+    \setlength{\unitlength}{841.1313879bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,23 +50,18 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.56221634)%
+  \begin{picture}(1,0.73458529)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{dqpsk_demap.pdf}}%
-    \put(0.10030641,0.32159228){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{dqpsk_demap.pdf}}%
-    \put(0.21302757,0.03847069){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{dqpsk_demap.pdf}}%
-    \put(0.48491856,0.32129666){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}dqpsk\\demap\end{tabular}}}}%
-    \put(0.35696317,0.29709848){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
-    \put(0.35705481,0.32961434){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_carriers}}\end{tabular}}}}%
-    \put(0.61205065,0.29709848){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
-    \put(0.61494273,0.32961434){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{dqpsk_demap.pdf}}%
-    \put(0.86310209,0.32082021){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L-1$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{dqpsk_demap.pdf}}%
-    \put(0.77355884,0.08190158){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_u$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=6]{dqpsk_demap.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{parallel-carrier-alt.pdf}}%
+    \put(0.0817077,0.25542171){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$\omega$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{parallel-carrier-alt.pdf}}%
+    \put(0.36885406,0.14091733){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{$\omega_0$}\end{tabular}}}}}%
+    \put(0.21854968,0.19797351){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{$\omega_0 + \Delta \omega$}\end{tabular}}}}}%
+    \put(0.5326117,0.07535473){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{$\omega_0 - \Delta \omega$}\end{tabular}}}}}%
+    \put(0.95115114,0.42977382){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{parallel-carrier-alt.pdf}}%
+    \put(0.78883288,0.20545418){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize $t_d$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{parallel-carrier-alt.pdf}}%
   \end{picture}%
 \endgroup%

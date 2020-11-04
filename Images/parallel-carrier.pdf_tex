@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{807.1157891bp}%
+    \setlength{\unitlength}{841.13153632bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,26 +50,22 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.98555559)%
+  \begin{picture}(1,0.98613973)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{parallel-carrier.pdf}}%
-    \put(0.06407901,0.24511398){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$\omega$\end{tabular}}}}}%
-    \put(0.11201965,0.64040096){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\frac{7\pi}{4}$}\end{tabular}}}}}%
-    \put(0.09968459,0.74760415){\rotatebox{0.00000513}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\large $\angle F(\omega)$}\end{tabular}}}}}%
-    \put(0.11159992,0.54637045){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\frac{5\pi}{4}$}\end{tabular}}}}}%
-    \put(0.11159992,0.44352457){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\frac{3\pi}{4}$}\end{tabular}}}}}%
-    \put(0.11159992,0.34739519){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\frac{\pi}{4}$}\end{tabular}}}}}%
+    \put(0.08170786,0.25542169){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$\omega$\end{tabular}}}}}%
+    \put(0.12770975,0.63472308){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\theta_4$}\end{tabular}}}}}%
+    \put(0.11587353,0.73759092){\rotatebox{0.00000513}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\large $\angle F(\omega)$}\end{tabular}}}}}%
+    \put(0.127307,0.54449521){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\theta_3$}\end{tabular}}}}}%
+    \put(0.127307,0.44580847){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\theta_2$}\end{tabular}}}}}%
+    \put(0.127307,0.3535666){\rotatebox{0.00000513}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{\scriptsize $\theta_1$}\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{parallel-carrier.pdf}}%
-    \put(0.36332703,0.12578382){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{$\omega_0$}\end{tabular}}}}}%
-    \put(0.20668813,0.18524462){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{$\omega_0 + \Delta \omega$}\end{tabular}}}}}%
-    \put(0.53398618,0.05745812){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{$\omega_0 - \Delta \omega$}\end{tabular}}}}}%
-    \put(0.97016484,0.42681408){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
-    \put(0.60972919,0.03512356){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 0}\end{tabular}}}}%
-    \put(0.67666835,0.10320254){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 2}\end{tabular}}}}%
-    \put(0.74780131,0.17490226){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 4}\end{tabular}}}}%
-    \put(0.81794237,0.24532678){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 6}\end{tabular}}}}%
-    \put(0.89006718,0.31702651){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize 8}\end{tabular}}}}%
+    \put(0.36885415,0.1409173){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{$\omega_0$}\end{tabular}}}}}%
+    \put(0.2185498,0.19797347){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{$\omega_0 + \Delta \omega$}\end{tabular}}}}}%
+    \put(0.53261176,0.07535472){\rotatebox{15}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}{$\omega_0 - \Delta \omega$}\end{tabular}}}}}%
+    \put(0.95115115,0.42977375){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{parallel-carrier.pdf}}%
+    \put(0.78778098,0.19072738){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\scriptsize $t_d$}\end{tabular}}}}%
   \end{picture}%
 \endgroup%

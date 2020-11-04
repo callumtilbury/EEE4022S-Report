@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:ns1="http://www.iki.fi/pav/software/textext/"
+   xmlns:ns2="http://www.iki.fi/pav/software/textext/"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -8,15 +8,92 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="2744.0242"
+   width="3082.8333"
    height="1271.8917"
-   viewBox="0 0 726.02307 336.52136"
+   viewBox="0 0 815.66631 336.52136"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (c497b03c, 2020-09-10)"
    sodipodi:docname="ofdm-multipliers.svg">
   <defs
      id="defs2">
+    <marker
+       style="overflow:visible"
+       id="marker15151"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path15149" />
+    </marker>
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect15147"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <marker
+       style="overflow:visible"
+       id="marker14635"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path14633" />
+    </marker>
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect14631"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <marker
+       style="overflow:visible"
+       id="marker14085"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path14083" />
+    </marker>
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect14081"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
     <inkscape:path-effect
        effect="bspline"
        id="path-effect9134"
@@ -88,7 +165,8 @@
        refY="0"
        orient="auto"
        inkscape:stockid="Arrow2Lend"
-       inkscape:isstock="true">
+       inkscape:isstock="true"
+       inkscape:collect="always">
       <path
          transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
          d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
@@ -1938,9 +2016,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7857331"
-     inkscape:cx="1495.9961"
-     inkscape:cy="758.85192"
+     inkscape:zoom="0.26858777"
+     inkscape:cx="1384.3708"
+     inkscape:cy="344.37208"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -1955,12 +2033,7 @@
      inkscape:pagecheckerboard="false"
      borderlayer="false"
      showguides="true"
-     inkscape:guide-bbox="true">
-    <sodipodi:guide
-       position="371.88485,309.2293"
-       orientation="0,-1"
-       id="guide12443" />
-  </sodipodi:namedview>
+     inkscape:guide-bbox="true" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -1969,7 +2042,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2126,15 +2199,15 @@
     </g>
     <g
        transform="matrix(2.204992,0,0,2.204992,251.66489,129.44922)"
-       ns1:version="1.1.0"
-       ns1:texconverter="pdflatex"
-       ns1:pdfconverter="inkscape"
-       ns1:text="$\\sum$\n"
-       ns1:preamble="/Users/callumtilbury/Desktop/UCT/IV/S/EEE4022S/Report/Style/ChapterStyle.tex"
-       ns1:scale="3.367006163299654"
-       ns1:alignment="middle center"
-       ns1:inkscapeversion="1.0.1"
-       ns1:jacobian_sqrt="1.18781"
+       ns2:version="1.1.0"
+       ns2:texconverter="pdflatex"
+       ns2:pdfconverter="inkscape"
+       ns2:text="$\\sum$\n"
+       ns2:preamble="/Users/callumtilbury/Desktop/UCT/IV/S/EEE4022S/Report/Style/ChapterStyle.tex"
+       ns2:scale="3.367006163299654"
+       ns2:alignment="middle center"
+       ns2:inkscapeversion="1.0.1"
+       ns2:jacobian_sqrt="1.18781"
        id="g13357">
       <defs
          id="id-434e613e-6955-407b-9a15-835f68d2d496">
@@ -2410,12 +2483,12 @@
     <text
        xml:space="preserve"
        style="font-size:7.07196px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:start;word-spacing:0px;text-anchor:start;stroke-width:0.156437;stroke-miterlimit:4;stroke-dasharray:none"
-       x="640.41394"
+       x="734.77441"
        y="87.162148"
        id="text6307"><tspan
          sodipodi:role="line"
          id="tspan6305"
-         x="640.41394"
+         x="734.77441"
          y="87.162148"
          style="text-align:start;text-anchor:start;stroke-width:0.156437">$X_{0}$</tspan></text>
     <path
@@ -2501,23 +2574,23 @@
     <text
        xml:space="preserve"
        style="font-size:7.07196px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:start;word-spacing:0px;text-anchor:start;stroke-width:0.156437;stroke-miterlimit:4;stroke-dasharray:none"
-       x="640.41394"
+       x="734.77441"
        y="145.37923"
        id="text6351"><tspan
          sodipodi:role="line"
          id="tspan6349"
-         x="640.41394"
+         x="734.77441"
          y="145.37923"
          style="text-align:start;text-anchor:start;stroke-width:0.156437">$X_{K/2}$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.07196px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:start;word-spacing:0px;text-anchor:start;stroke-width:0.156437;stroke-miterlimit:4;stroke-dasharray:none"
-       x="638.83929"
+       x="733.19977"
        y="202.65875"
        id="text6355"><tspan
          sodipodi:role="line"
          id="tspan6353"
-         x="638.83929"
+         x="733.19977"
          y="202.65875"
          style="text-align:start;text-anchor:start;stroke-width:0.156437">$X_{K}$</tspan></text>
     <text
@@ -2649,7 +2722,7 @@
     <rect
        style="fill:none;stroke:#000000;stroke-width:1.00476;stroke-miterlimit:4;stroke-dasharray:3.01424, 3.01424;stroke-dashoffset:0;stroke-opacity:0.984849;paint-order:stroke fill markers"
        id="rect12419"
-       width="298.48135"
+       width="388.1246"
        height="308.73102"
        x="396.70914"
        y="-62.23608"
@@ -2657,13 +2730,105 @@
     <text
        xml:space="preserve"
        style="font-size:15.6965px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';word-spacing:0px;stroke-width:0.156965"
-       x="512.92279"
+       x="562.71338"
        y="-78.619987"
        id="text12423"><tspan
          sodipodi:role="line"
          id="tspan12421"
-         x="512.92279"
+         x="562.71338"
          y="-78.619987"
          style="stroke-width:0.156965">Receiver</tspan></text>
+    <g
+       id="g14607">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke"
+         id="rect13110"
+         width="52.408516"
+         height="32.390247"
+         x="630.57214"
+         y="66.868912"
+         ry="6.0949383"
+         rx="6.0949383" />
+      <text
+         xml:space="preserve"
+         style="font-size:14.7506px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:1.05361"
+         x="656.93488"
+         y="87.947289"
+         id="text14071"><tspan
+           sodipodi:role="line"
+           id="tspan14069"
+           x="656.93488"
+           y="87.947289"
+           style="stroke-width:1.05361">LPF</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.948149;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker14085)"
+         d="m 683.06898,83.080739 c 12.12118,0 24.24205,0 36.36258,0"
+         id="path14079"
+         inkscape:path-effect="#path-effect14081"
+         inkscape:original-d="m 683.06898,83.080739 c 12.12118,2.65e-4 24.24205,2.65e-4 36.36258,0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g14629"
+       transform="translate(0,57.623892)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke"
+         id="rect14621"
+         width="52.408516"
+         height="32.390247"
+         x="630.57214"
+         y="66.868912"
+         ry="6.0949383"
+         rx="6.0949383" />
+      <text
+         xml:space="preserve"
+         style="font-size:14.7506px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:1.05361"
+         x="656.93488"
+         y="87.947289"
+         id="text14625"><tspan
+           sodipodi:role="line"
+           id="tspan14623"
+           x="656.93488"
+           y="87.947289"
+           style="stroke-width:1.05361">LPF</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.948149;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker14635)"
+         d="m 683.06898,83.080739 c 12.12118,0 24.24205,0 36.36258,0"
+         id="path14627"
+         inkscape:path-effect="#path-effect14631"
+         inkscape:original-d="m 683.06898,83.080739 c 12.12118,2.65e-4 24.24205,2.65e-4 36.36258,0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g15145"
+       transform="translate(0,115.14669)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke"
+         id="rect15137"
+         width="52.408516"
+         height="32.390247"
+         x="630.57214"
+         y="66.868912"
+         ry="6.0949383"
+         rx="6.0949383" />
+      <text
+         xml:space="preserve"
+         style="font-size:14.7506px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';text-align:center;word-spacing:0px;text-anchor:middle;stroke-width:1.05361"
+         x="656.93488"
+         y="87.947289"
+         id="text15141"><tspan
+           sodipodi:role="line"
+           id="tspan15139"
+           x="656.93488"
+           y="87.947289"
+           style="stroke-width:1.05361">LPF</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.948149;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker15151)"
+         d="m 683.06898,83.080739 c 12.12118,0 24.24205,0 36.36258,0"
+         id="path15143"
+         inkscape:path-effect="#path-effect15147"
+         inkscape:original-d="m 683.06898,83.080739 c 12.12118,2.65e-4 24.24205,2.65e-4 36.36258,0"
+         sodipodi:nodetypes="cc" />
+    </g>
   </g>
 </svg>

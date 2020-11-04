@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'dqpsk_demap.pdf' (pdf, eps, ps)
+%% Accompanies image file 'three-sincs-good-distance.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1323.69782241bp}%
+    \setlength{\unitlength}{752.52338229bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,23 +50,17 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.56221634)%
+  \begin{picture}(1,0.64221947)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{dqpsk_demap.pdf}}%
-    \put(0.10030641,0.32159228){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$L$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{dqpsk_demap.pdf}}%
-    \put(0.21302757,0.03847069){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$T_u$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{dqpsk_demap.pdf}}%
-    \put(0.48491856,0.32129666){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}dqpsk\\demap\end{tabular}}}}%
-    \put(0.35696317,0.29709848){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
-    \put(0.35705481,0.32961434){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_carriers}}\end{tabular}}}}%
-    \put(0.61205065,0.29709848){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
-    \put(0.61494273,0.32961434){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \texttt{dab\_data\_raw}}\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{dqpsk_demap.pdf}}%
-    \put(0.86310209,0.32082021){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L-1$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{dqpsk_demap.pdf}}%
-    \put(0.77355884,0.08190158){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_u$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=6]{dqpsk_demap.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{three-sincs-good-distance.pdf}}%
+    \put(0.60095244,0.43860161){\color[rgb]{0,0.50196078,0.2}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Negligible\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{three-sincs-good-distance.pdf}}%
+    \put(0.0748735,0.58412098){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$F_n(\omega)$\end{tabular}}}}%
+    \put(0.11682319,0.53650051){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega$\end{tabular}}}}%
+    \put(0.86520983,0.55030533){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$F_1(\omega)$\end{tabular}}}}%
+    \put(0.86520983,0.44539971){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$F_2(\omega)$\end{tabular}}}}%
+    \put(0.86520983,0.32706617){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$F_3(\omega)$\end{tabular}}}}%
+    \put(0.87444153,0.16844887){\color[rgb]{0,0.50196078,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\Sigma F_n(\omega)$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
