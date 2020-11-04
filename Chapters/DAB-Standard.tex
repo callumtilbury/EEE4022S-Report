@@ -17,22 +17,16 @@
 \section{Overview}
 This chapter aims to outline the salient aspects of the \gls{dab} standard, as prescribed by the \gls{etsi} in~\cite{dabstandard}. Fundamentally, the \gls{dab} standard was built upon two important communication technologies: \acrfull{cofdm}, and \acrfull{dqpsk}. Without the innovations witnessed in these domains in the latter half of the twentieth century, it is unlikely that the \gls{dab} system could have been adequately designed, while maintaining a suitable degree of spectral efficiency and information robustness. Each of these concepts will thus be thoroughly discussed in the following sections. Thereafter, the \gls{dab} frame structure will be outlined, with the key regions highlighted where appropriate.
 
-Note, however, that this project focused on \gls{dab} signals within the context of \gls{pr}; therefore, it was unnecessary to provide a complete and thorough description of the \gls{dab} format itself. Instead, information was presented only insofar as it was relevant to the broader picture of a \gls{pr} processing chain. As a consequence, details surrounding \gls{dab}'s audio coding, configuration information, and other data features were omitted for simplicity.
+Note, however, that this project focused on \gls{dab} signals within the context of \gls{pr}; therefore, it was unnecessary to provide a complete and thorough description of the \gls{dab} format itself. Instead, information was considered only insofar as it was relevant to the broader picture of a \gls{pr} processing chain. As a consequence, the details surrounding \gls{dab}'s audio coding, configuration information, and other data features were omitted for simplicity.
 
 \section{Coded Orthogonal Frequency Division Multiplexing}
-\gls{cofdm} is the first pillar upon which the \gls{dab} standard was built. As its name suggests, this technology is a special case of \gls{ofdm}, which itself is a special case of \gls{fdm}. Each of these concepts will be explored in the coming text, starting with the motivation for their adoption.
-
-% In 1966, Robert W. Chang published an incredibly important paper~\cite{Chang1966}, outlining the idea of \gls{ofdm}.
+\gls{cofdm} is the first pillar upon which the \gls{dab} standard was built. As its name suggests, this technology is a special case of \gls{ofdm}, which itself is a special case of \gls{fdm}. Each of these concepts will be explored in the coming text, along with other important considerations surrounding the implementation of \gls{ofdm}, starting with the motivation for it.
 
 \subsection{Motivation: The Problem of Multipath \label{subsect:multipath}}
 
-The \gls{dab} standard was designed to replace the conventional \gls{fm} and \gls{am} analogue modes of broadcasting, with the intention of audio and data reception in both fixed and mobile environments~\cite{dabstandard}. Of these two listening contexts, the more common one was---and still is---certainly the latter. Despite living in an era saturated by computers and the internet, consumer radio has remained a staple for many people in their cars---enabling them to listen to something while commuting. The reception environment for a \gls{dab} signal was thus known beforehand as one that would be highly dynamic and somewhat unpredictable. This situation was made worse by the reality that many receivers would be in urban centres, which contain numerous high-rise buildings and other "clutter."
+The \gls{dab} standard was designed to replace the conventional \gls{fm} and \gls{am} analogue modes of broadcasting, with the intention of audio and data reception in both fixed and mobile environments~\cite{dabstandard}. Of these two listening contexts, the more common one was---and still is---certainly the latter. Despite living in an era saturated by computers and the internet, radio has remained a staple for many people in their cars---enabling them to listen to content while commuting. The reception environment for a \gls{dab} signal was thus known beforehand as one that would be highly dynamic and somewhat unpredictable. This situation was made worse by the reality that many receivers would be in urban centres, which contain numerous high-rise buildings and other "clutter."
 
-% Each of these characteristics presents notable challenges, and thus required clever design. "Mobile reception" is because most radio listening occurs in moving vehicles, while people are commuting; "urban environments" is because many of these listeners will reside in or near city centres.
-
-% A detailed description of \gls{psk} modulation will follow in the next section, but the intracacies are unimportant for now. Essentially, the phase of a sinusoidal carrier wave was successively modulated by the symbols in \(\mathcal{D}\), each for for a period of \(t_s\). For example, the system could assign a value of \(0\) to a phase of \(0\) radians, and a value of \(1\) to a phase of \(\pi\) radians.
-
-To understand the challenges of such an environment, consider the following simple scenario: suppose one transmitted a set of symbols, \(\mathcal{D}\), using an arbitrary digital modulation scheme with a carrier frequency,~\(\omega_0\), to a mobile receiver in an urban setting. Once modulated, the carrier wave would be transmitted by a stationary antenna and travel through the environment, at times bouncing off surrounding objects, such as buildings, cars, mountains, and trees. Provided there was a direct path from the transmitter to the receiver, the signal---the "direct signal"---would travel along this path. Additionally, due to the surrounding clutter, duplicate versions of the signal---"delayed signals"---would also arrive at the receiver. This effect is called \emph{multipath}. Figure~\ref{fig:multipath-illustration} illustrates this scenario with dashed lines indicating the various signal paths.
+To understand the challenges of such environments, consider the following simple scenario: suppose one transmitted a set of symbols, \(\mathcal{D}\), using an arbitrary digital modulation scheme with a carrier frequency~\(\omega_0\), to a mobile receiver in an urban setting. Once modulated, the carrier wave would be transmitted by a stationary antenna and travel through the environment, at times bouncing off surrounding objects, such as buildings, cars, mountains, and trees. Provided there was a direct path from the transmitter to the receiver, the signal---the "direct signal"---would travel along this path. Additionally, due to the surrounding clutter, duplicate versions of the signal---"delayed signals"---would also arrive at the receiver. This effect is called \emph{multipath}. Figure~\ref{fig:multipath-illustration} illustrates this scenario with dashed lines indicating the various signal paths.
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -44,9 +38,9 @@ To understand the challenges of such an environment, consider the following simp
     \label{fig:multipath-illustration}
 \end{figure}
 
-Logically, the direct signal would take the shortest path from the transmitter to the receiver, and thus the time to receive this signal would be shorter than for all the others---it would "arrive" first at the receiver. The delayed signals, each taking a longer route than the direct path, would be received later, each after a certain amount of time. How many delayed copies were received, and how large these delays were, would depend on the clutter contained within the scene. Importantly, the receiving antenna would \emph{not} be able simply to separate the direct signal and the delayed signals; rather, it would record a superposition of them, as a single "received signal."
+By definition, the direct signal would take the shortest path from the transmitter to the receiver, and thus the time to receive this signal would be shorter than for all the others---it would "arrive" first at the receiver. The delayed signals, each taking a longer route than the direct path, would be received later, each after a certain amount of time. The number of delayed copies that were received, and how long these delays were, would depend on the clutter contained within the scene. Importantly, the receiving antenna would \emph{not} be able simply to separate the direct signal and the delayed signals; rather, it would record a superposition of them, as a single "received signal."
 
-For the sake of simplicity, suppose only one delayed signal is received, with a delay period of \(t_d\). Consider the two possible situations that could arise in such a scenario for the received signal---the sum of the direct and delayed signals. Firstly, the delay period could be \emph{shorter} than the symbol period; that is, \(t_d < t_s\). Figure~\ref{fig:multipath-symbol-lessthan} depicts such a situation graphically, with three symbols---blue, pink, green---used for illustration.
+For the sake of simplicity, suppose only one delayed signal is received, with a delay period of~\(t_d\). Consider the two possible situations that could arise in such a scenario for the received signal---the sum of the direct and delayed signals. Firstly, the delay period could be \emph{shorter} than the symbol period; that is, \(t_d < t_s\). Figure~\ref{fig:multipath-symbol-lessthan} depicts such a situation graphically, with three symbols---blue, pink, green---used for illustration.
 
 \begin{figure}[htbp]
     \centering
@@ -58,7 +52,7 @@ For the sake of simplicity, suppose only one delayed signal is received, with a 
     \label{fig:multipath-symbol-lessthan}
 \end{figure}
 
-For the receiver's demodulation system to extract the information of an incoming signal, it must measure the data over a particular "integration period"---equal to the symbol length, \(t_d\). Notice in the figure how the extraction of the second, pink symbol from the direct signal is affected by the delayed signal. For the first half of the intergration period for this symbol, the blue and pink symbols overlap, causing \gls{isi}---depicted as a pattern of striped blue and pink in the received signal. Recovering the correct information from this region becomes unreliable. Fortunately, though, since the symbol period is longer than the delay period, some of the original pink symbol is superimposed with some of the pink symbol in the delayed signal, creating a pink-only region within the integration period. While the demodulator is not guaranteed to extract this symbol successfully---since some of the integration period is corrupted---it remains possible. Naturally, the less of the symbol period that is corrupted, the more likely correct demodulation will occur.
+For the receiver's demodulation system to extract the information of an incoming signal, it must measure the data over a particular "integration period"---in this case, equal to the symbol length, \(t_s\). Notice in the figure how the extraction of the second, pink symbol from the direct signal is affected by the presence of the delayed signal. For the first half of the integration period for this symbol, the blue and pink symbols overlap, causing \gls{isi}---depicted as a pattern of striped blue and pink in the received signal. The severity of this interference depends on the magnitude of the delayed signal, compared to the magnitude of the original signal. In any case, recovering the correct information from this region becomes unreliable. Fortunately, though, since the symbol period is longer than the delay period, some of the original pink symbol is superimposed with some of the pink symbol in the delayed signal, creating a "pink-only" region within the integration period. While the demodulator is not guaranteed to extract this symbol successfully---since some of the integration period is still corrupted---it remains possible. Naturally, the less of the symbol period that is corrupted, the more likely correct demodulation will occur. An additional strategy for improving these chances is by adding a so-called "guard interval," which will be covered in a later section.
 
 In contrast, consider the second situation for the received signal, where the delay period is \emph{longer} than the symbol period; that is, \(t_d \ge t_s\). An illustration for this situation is provided in Figure~\ref{fig:multipath-symbol-morethan}, with the same three coloured symbols shown.
 
@@ -78,7 +72,7 @@ From this example, it is clear that the symbol length, \(t_s\), determines the m
 %  This is a challenging tradeoff to navigate.
 
 \subsection{Frequency Division Multiplexing}
-The discussion from the previous example assumed a "serial" approach, where the phase of a \emph{single} carrier wave was modulated with successive elements of \(\mathcal{D}\). Instead of this, one could take a "parallel" approach, by splitting \(\mathcal{D}\) into \(n\) subsets, and then using these subsets to modulate \(n\) independent carriers respectively---sometimes called "sub-carriers". As a result, each symbol could be \(n\) times longer---increasing its multipath resilience---while maintaining the original, faster data-rate. This approach is termed \gls{fdm}\footnote{Strictly speaking, \gls{fdm} is the fairly general concept of sharing a communication channel between multiple frequency bands---including, for example, transmitting multiple \gls{fm} radio stations at different centre frequencies simultaneously. On the other hand, transmitting multiple \emph{bitstreams} by multiplexing them in the frequency domain is sometimes specifically termed \gls{mcm}~\cite{Bingham1990}---a special case of \gls{fdm}. Nonetheless, since the \gls{dab} standard simply refers to the concept as \gls{fdm}, the distinction will not be further considered.}. Figure~\ref{fig:carrier-illustration} illustrates these situations with two simplified spectrograms---for the sake of clarity, the frequency components are shown to be perfectly impulsive, and the modulation parameter is not depicted.
+The discussion from the previous example assumed a "serial" approach, where a \emph{single} carrier wave was modulated with successive elements of \(\mathcal{D}\). Instead of this, one could take a "parallel" approach, by splitting \(\mathcal{D}\) into \(n\) subsets, and then using these subsets to modulate \(n\) independent carriers respectively---sometimes called "sub-carriers". As a result, each symbol could be \(n\) times longer---increasing its multipath resilience---while maintaining the original, faster data-rate. This approach is termed \gls{fdm}\footnote{Strictly speaking, \gls{fdm} is the fairly general concept of sharing a communication channel between multiple frequency bands---including, for example, transmitting multiple \gls{fm} radio stations at different centre frequencies simultaneously. On the other hand, transmitting multiple \emph{bitstreams} by multiplexing them in the frequency domain is sometimes specifically termed \gls{mcm}~\cite{Bingham1990}---a special case of \gls{fdm}. Nonetheless, since the \gls{dab} standard simply refers to the concept as \gls{fdm}, the distinction will not be further considered.}. Figure~\ref{fig:carrier-illustration} illustrates these situations with two simplified spectrograms. For the sake of clarity, the frequency components are shown to be perfectly impulsive, and no modulation parameter is depicted.
 
 \begin{figure}[htbp]
     \centering
@@ -103,16 +97,15 @@ The discussion from the previous example assumed a "serial" approach, where the 
     \label{fig:carrier-illustration}
 \end{figure}
 
-Figure~\ref{fig:serial-carrier} shows the serial case, where all three symbols---blue, pink, and green---are successively modulated (in some unspecified way) on the carrier wave with a frequency of \(\omega_0\). Figure~\ref{fig:parallel-carrier}, on the other hand, shows the parallel case, with the three symbols split into three separate groups, respectively modulating sub-carriers with frequencies of \((\omega_0 - \Delta \omega)\), \(\omega_0\), and \((\omega_0 + \Delta \omega)\). Notice the symbol period, \(t_d\), for the latter situation is three times longer than that of the former. It is clear from these plots that in each scenario, the same amount of data is transmitted over the same amount of time---i.e. the data-rate is the same.
+Figure~\ref{fig:serial-carrier} shows the serial case, where all three symbols---blue, pink, and green---are successively modulated (in some unspecified way) on the carrier wave with a frequency of \(\omega_0\). Figure~\ref{fig:parallel-carrier}, on the other hand, shows the parallel case, with the three symbols split into three separate groups, respectively modulating sub-carriers with frequencies of \((\omega_0 - \Delta \omega)\), \(\omega_0\), and \((\omega_0 + \Delta \omega)\). Notice the symbol period,~\(t_d\), for the latter situation is three times longer than that of the former. Nonetheless, it is clear from these plots that in each scenario, the same amount of data is transmitted over the same amount of time---i.e. the data-rate is the same. Therefore, the \gls{fdm} signal can be more resilient to multipath effects, while not compromising on the rate of transmission of the data.
 
-\subsection{Using Orthogonal Carriers}
-There is an important caveat to note with the previous example. The frequency components, as shown, were assumed to be impulsive. This was done for the sake of simplicity, to convey the advantage of using multiple sub-carriers instead of only one carrier. However, this assumption implies that adjacent sub-carriers could be infinitely close to each other without any crosstalk---that is, without interference between them. Unfortunately, this cannot be the case when considering the time-domain signals over a finite integration period---further details of this phenomenon are given in the appendix. Instead, each sub-carrier has an associated \emph{spectrum}, with parameters of the spectrum dependent on the window function used in the system. For example, a rectangular window as used in this project, \(w(t)\), with an integration period of \(T\), has the following spectrum:
+However, there is an important caveat to note with this example---one which presents the tradeoff that exists when using \gls{fdm}. The frequency components, as shown in the example, were assumed to be impulsive. This was done for the sake of simplicity, to convey the advantage of using multiple sub-carriers instead of only one carrier. Yet, this assumption implies that adjacent sub-carriers can be infinitely close to each other without any crosstalk---that is, without interference between them. If this were true, the increased bandwidth requirements for an \gls{fdm} signal, compared to a single carrier wave, would be negligible. Unfortunately, this cannot be the case when considering the time-domain signals over a finite integration period. Instead, each sub-carrier has an associated \emph{spectrum}---which largely depends on the window function used in the system. For example, the straightforward rectangular window used in this project, \(w(t)\), with an integration period of \(T\), has the following spectrum in the frequency domain:
 \begin{equation}
     w(t) = \textrm{rect}\bigg(\frac{t}{T}\bigg) \xLeftrightarrow{\quad\mathcal{F}\quad} W(\omega) = T \cdot \textrm{Sa}\bigg(\frac{\omega T}{2}\bigg)
 \end{equation}
-where \(\textrm{Sa}(x)=\frac{\sin{x}}{x}\). Since multiplication with this function in time is equivalent to convolution with its spectrum in frequency, the previously-impulsive frequency components for the \gls{fdm} signal are actually shaped like \(\textrm{Sa}(\omega)\) functions. This is important because such spectra have large sidelobes, which can potentially cause interference between adjacent sub-carriers.
+where \(\textrm{Sa}(x)=\frac{\sin{x}}{x}\). Since multiplication with this function in time is equivalent to convolution with its spectrum in frequency, the previously-impulsive frequency components for the \gls{fdm} signal were, in fact, shaped like \(\textrm{Sa}(\omega)\) functions. This is important because such spectra have large sidelobes, which can potentially cause interference between adjacent sub-carriers.
 
-For example, suppose one uses three carrier waves, each with a \(\textrm{Sa}(\omega)\) spectrum. If the centre frequencies of these carriers are sufficiently distant from each other, there is negligible interference from one spectrum's sidelobes to another spectrum's main lobe. This is seen in Figure~\ref{fig:three-sincs-good-distance}. However, if the carriers are placed too close to each other in frequency, such interference is no longer be negligible---causing crosstalk---and the system's performance would degrade.
+For example, suppose one uses three carrier waves, each with a \(\textrm{Sa}(\omega)\) spectrum, in an \gls{fdm} system. If the centre frequencies of these carriers are sufficiently distant from each other, there will be negligible interference from one spectrum's sidelobes to another spectrum's main lobe, and there will be minimal crosstalk. This is depicted in Figure~\ref{fig:three-sincs-good-distance}. However, if the carriers are placed too close to each other in frequency---as depicted in Figure~\ref{fig:three-sincs-bad-distance}---such interference will no longer be negligible, and the robustness of the system will degrade.
 
 \begin{figure}[htbp]
     \centering
@@ -138,30 +131,35 @@ For example, suppose one uses three carrier waves, each with a \(\textrm{Sa}(\om
     \end{subfigure}%
     \caption{Three spectra spaced sufficiently far away from each other}
     \label{fig:three-sincs-good-and-bad}
-  \end{figure}
+\end{figure}
 
-Clearly, then, for a reliable system using \gls{fdm}, the sub-carriers used must be sufficiently spaced from each other in the frequency domain. Consequently, the total bandwidth requirements of a \gls{fdm} system can be fairly large, and will increase if more sub-carriers are used, thus presenting another tradeoff.
-
-There is an important exception to this requirement, provided one chooses the carrier frequencies very carefully: specifically, by spacing the carriers precisely with \(\Delta \omega = \frac{2\pi}{T}\). This is shown graphically in Figure~\ref{fig:ofdm-three-sincs}.
-
+Clearly, for a reliable system using \gls{fdm}, the sub-carriers must be sufficiently spaced from each other in the frequency domain. Consequently, there exists another tradeoff. As shown previously, if the number of sub-carriers increases, the system's resilience to multipath will improve; yet, as the number of sub-carriers increases, the total bandwidth required for the \gls{fdm} system similarly increases. Since the carriers need to be placed far apart in frequency, these bandwidth requirements can become untenable for a large number of sub-carriers. 
+  
+\subsection{Using Orthogonal Carriers}
+\gls{fdm} is not a particularly efficient mode of transmitting parallel streams of data, because of the aforementioned bandwidth limits. However, in 1966, Robert W. Chang published an incredibly important paper~\cite{Chang1966}, outlining the idea of so-called \gls{ofdm}---a special case of \gls{fdm} using "orthogonal" carrier waves. In essence, by choosing specific sub-carrier frequencies for a system, one can reduce the total bandwidth requirements massively, and eliminate the concern of crosstalk between sub-carriers. For a given integration period of \(T\), the requirement is that the spacing between adjacent carrier waves,~\(\Delta\omega\), must be set to
+\begin{equation}
+    \Delta \omega = \frac{2\pi}{T}
+\end{equation}
+The reason that the sub-carriers can be placed so close together, without crosstalk, becomes evident when viewed graphically. Consider the plot for three \(\mathrm{Sa}(\omega)\) spectra arranged in this way, as shown in Figure~\ref{fig:ofdm-three-sincs}.
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
     \def\svgwidth{0.8\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/ofdm-three-sincs.pdf_tex}}
-    \caption{Three spectra arranged orthogonally}
+    \caption{Three \(\mathrm{Sa}(\omega)\) spectra arranged orthogonally.}
     \label{fig:ofdm-three-sincs}
 \end{figure}
+Notice how the peak of each spectrum, occuring at the respective carrier frequencies of \(\omega\) and \(\omega\pm\Delta\omega\), is perfectly aligned with the zero crossings of the other spectra. This relationship results in zero cross-talk at those frequencies, despite the spectra being packed together tightly. Mathematically, these signals are said to be "orthogonal" over the integration period---for detailed proofs, see the appendix.
 
-Notice how the peak of each carrier wave is perfectly aligned with the zero crossings of the other carriers---resulting in zero cross-talk at those frequencies. Mathematically, choosing the carrier waves in this way results in the signals being \emph{orthogonal}---hence the term, \acrlong{ofdm}. For detailed proofs of how this happens, see the appendix. %~\ref{sect:proofs_ofdm-time} and~\ref{sect:proofs_ofdm-freq}.
+Therefore, by arranging the carrier frequencies in this specific way, many sub-carriers can be used within a limited bandwidth, creating an efficient method of transmitting bitstreams in parallel. A collection of such sub-carriers over a single integration period is usually termed an \gls{ofdm} "symbol."
 
 \subsection{Leveraging the Discrete Fourier Transform}
-While the \gls{ofdm} system is conceptually clever, it was not adopted for some time due to practical constraints. Suppose one had \(K\) independent bitstreams to be modulated onto \(K\)~sub-carriers arranged orthogonally---an \gls{ofdm} transmission. A na\"ive approach to this problem would involve using \(K\)~independent oscillators---with each one tuned uniquely to one of the sub-carrier frequencies---and \(K\)~independent multiplers. On the receiving end, a similar set-up would be required. Such a set-up is depicted in Figure~\ref{fig:ofdm-multipliers}.
+While the \gls{ofdm} method is a conceptually clever one, it could not be easily adopted for some time due to major practical constraints. Suppose one had~\(K\)~independent bitstreams to be modulated onto \(K\)~sub-carriers arranged orthogonally, in an \gls{ofdm} transmission. A na\"ive approach to this problem would involve using~\(K\)~independent oscillators---with each one tuned uniquely to one of the sub-carrier frequencies---and~\(K\)~independent multipliers. On the receiving end, a similar set-up would be required, along with a bank of narrowband low-pass filters. Such a set-up is depicted in Figure~\ref{fig:ofdm-multipliers}.
 \begin{figure}
     \centering
     \captionsetup{type=figure}
-    \def\svgwidth{0.95\linewidth}
+    \def\svgwidth{0.90\linewidth}
     {
         \setstretch{0.7} % Line spacing
         \scriptsize
@@ -170,23 +168,38 @@ While the \gls{ofdm} system is conceptually clever, it was not adopted for some 
     \caption{Depicting of a multiplier approach to \gls{ofdm}}
     \label{fig:ofdm-multipliers}
 \end{figure}
-While this approach would indeed work, it would be expensive and impractical---the number of possible \gls{ofdm} sub-carriers used would depend on both the funds and space available for the transmitter and receiver systems. As a consequence, such receivers were limited to a small number of sub-carriers.
+While this approach would indeed work theoretically, it would be expensive, difficult to implement correctly, and frankly impractical---the number of possible \gls{ofdm} sub-carriers used would depend on both the money and space available for the transmitters and receivers. As a consequence, such systems are limited to a small number of sub-carriers, making them fairly useless for anything that requires both a high data-rate and resilience to multipath effects.
 
-However, if one analyses the \gls{ofdm} signal mathematically, one can find an equivalance to the \gls{dft}---performed efficiently by the \gls{fft} algorithm. This is shown in the appendix.
+Fortunately, in~\cite{Weinstein1971}, Weinstein and Ebert demonstrated how one could perform the same functionality as shown in Figure~\ref{fig:ofdm-multipliers}, using only the \gls{dft} algorithm. By taking this approach, one can implement a system that uses a large number of sub-carriers---for example, over one thousand sub-carriers in the \gls{dab} standard---yet remains small, efficient, and affordable. This approach is even more attractive when using the more-efficient \gls{fft} algorithm. A mathematical for the \gls{dft} equivalence is provided in the appendix.
 
 \subsection{Cyclic Prefixing \& Guard Intervals}
-
+As discussed previously, the use of a longer symbol period enables a more robust signal reception process within a multipath environment. Furthermore, the use of \gls{ofdm} symbols enables an additional protective measure: that being, the implementation of so-called "guard intervals." A guard interval is a section of a given symbol that is prepended to the symbol itself, via a process called "cyclic prefixing." This is illustrated in Figure~\ref{fig:cyclic-prefix}.
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/cyclic-prefix.pdf_tex}}
-    \caption{}
+    \caption{Illustration of the creation of a guard interval via cyclic prefixing.}
     \label{fig:cyclic-prefix}
 \end{figure}
+There are several things to note here. Firstly, notice that the guard interval data is defined from a \emph{latter} section of the original symbol. That is, a guard interval of time \(T_g\) will be equal to the last \(T_g\) seconds of its original symbol. Secondly, observe that when this guard interval is prepended to the original symbol, the order of the data is maintained---this is demonstrated by the gradient shown in the illustration. Thirdly, one can clearly see that the transmitted symbol is longer than the original symbol.
 
-Note: still same sampling period!
+Importantly, though, the integration period---the time over which the symbol is considered---remains the same, as the length of the original symbol. To understand why this is the case, and why the inclusion of a guard interval is helpful, consider the graphic shown in Figure~\ref{fig:guard-intervals-demo}.
+\begin{figure}[htbp]
+    \centering
+    \captionsetup{type=figure}
+    \def\svgwidth{1\linewidth}
+    {\setstretch{0.7} % Line spacing
+        \input{../Images/guard-intervals-demo.pdf_tex}}
+    \caption{Depiction of why a guard interval is useful.}
+    \label{fig:guard-intervals-demo}
+\end{figure}
+This illustration shows two received symbols in a multipath situation---named as before, the "direct" and "delayed" symbols---one of which is received slightly later than the other. The guard interval for each symbol is indicated with a \(\Delta\) character\footnote{The \(\Delta\) character is used to notate the duration of the guard interval in the \gls{dab} standard~\cite{dabstandard}}. The integration period, as shown, spans the original symbol exactly. However, notice that the end section of the delayed symbol---underlined in red---is excluded from this period. Yet, because of the guard interval, the section underlined in red is identical to the section underlined in green, which \emph{is} included in the integration period. Thus, the guard interval has enabled the entirety of a delayed symbol to be recorded simultaneously with the original symbol. Moreover, the delayed symbol will not impact the demodulation of the \emph{following} symbol, since it falls outside of the following symbol's integration period.
+
+Of course, the mere inclusion of the red section in the green section does not guarantee that the entire symbol will be correctly demodulated when it is superimposed with the direct symbol. This is where another strength of \gls{ofdm} lies: since all of the carrier waves are, by definition, orthogonal over the symbol period, it can be shown that cyclicly shifted versions of the symbol will not cause \gls{isi} when summed. The mathematical details of this fact are unimportant for this context, but the point remains---provided the delay period is shorter than the guard interval, there will be \emph{no} \gls{isi} in the received signal whatsoever.
+
+Guard intervals are hence a powerful mechanism to mitigate the effects of multipath. Once again, though, there exists a tradeoff: with this situation, between increased robustness (by increasing the length of the guard interval) and decreated data-rates (since a longer guard interval means less actual data per unit of time).
 
 
 \subsection{Time \& Frequency Interleaving}

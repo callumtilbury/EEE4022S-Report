@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'ofdm-three-sincs.pdf' (pdf, eps, ps)
+%% Accompanies image file 'guard-intervals-demo.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{578.3489871bp}%
+    \setlength{\unitlength}{801.75993415bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,16 +50,16 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.50234177)%
+  \begin{picture}(1,0.40832172)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{ofdm-three-sincs.pdf}}%
-    \put(0.75997901,0.3081863){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}No interference\end{tabular}}}}%
-    \put(0.09013093,0.37144916){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$F_n(\omega)$\end{tabular}}}}%
-    \put(0.14471411,0.3094874){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega$\end{tabular}}}}%
-    \put(0.37631119,0.44358948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\LARGE $\frac{2\pi}{T}$}\end{tabular}}}}%
-    \put(0.43673341,0.05293097){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\omega$\end{tabular}}}}%
-    \put(0.3152958,0.05493445){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\omega-\Delta\omega$\end{tabular}}}}%
-    \put(0.55710422,0.05493445){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\omega+\Delta\omega$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{guard-intervals-demo.pdf}}%
+    \put(0.77275893,0.29171879){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Direct Symbol\end{tabular}}}}%
+    \put(0.77252695,0.18775117){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Delayed Symbol\end{tabular}}}}%
+    \put(0.12363872,0.29095783){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\Delta$\end{tabular}}}}%
+    \put(0.18620755,0.18525861){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\Delta$\end{tabular}}}}%
+    \put(0.42933078,0.05933238){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Integration Period\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{guard-intervals-demo.pdf}}%
+    \put(0.85644668,0.06403505){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
