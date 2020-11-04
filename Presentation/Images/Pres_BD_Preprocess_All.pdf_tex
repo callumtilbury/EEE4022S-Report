@@ -1,0 +1,76 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Pres_BD_Preprocess_All.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1495.78196373bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.27856829)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Pres_BD_Preprocess_All.pdf}}%
+    \put(0.16135669,0.22167124){\transparent{0.5}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\large pre-process}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Pres_BD_Preprocess_All.pdf}}%
+    \put(0.21280584,0.10709889){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_iq-read]{{\makecell{iq\\read}}}\end{tabular}}}}%
+    \put(0.40286711,0.10709889){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_iq-resample]{{\makecell{iq\\resample}}}\end{tabular}}}}%
+    \put(0.3076881,0.12751684){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{\makecell{iq\_data\_\\raw}}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Pres_BD_Preprocess_All.pdf}}%
+    \put(0.81167865,0.10709889){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperref[subsect:dab-proc_frame-extract]{{\makecell{frame\\extract}}}\end{tabular}}}}%
+    \put(0.11352297,0.13406052){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}\texttt{\makecell{dab\_recording}}\end{tabular}}}}%
+    \put(0.90066712,0.13257622){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{\makecell{dab\_frame}}\end{tabular}}}}%
+    \put(0.94240627,0.0902359){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times T_f$}\end{tabular}}}}%
+    \put(0.49502085,0.12399283){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{\makecell{iq\_data}}}\end{tabular}}}}%
+    \put(0.62112848,0.15923589){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperlink{slide:dab-proc_prs-detect}{{\makecell{prs\\detect}}}\end{tabular}}}}%
+    \put(0.70798932,0.07852176){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{\makecell{iq\_data}}}\end{tabular}}}}%
+    \put(0.68613144,0.1771845){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}{\tiny \texttt{\makecell{prs\_idx}}}\end{tabular}}}}%
+    \put(0.40286064,0.03438604){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $F_s$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Pres_BD_Preprocess_All.pdf}}%
+    \put(0.62092276,0.23507143){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{phase\_reference\_symbol}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Pres_BD_Preprocess_All.pdf}}%
+  \end{picture}%
+\endgroup%

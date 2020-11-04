@@ -1,0 +1,81 @@
+%% Creator: Inkscape 1.0.1 (c497b03c, 2020-09-10), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Prers_BD_Remod_All.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1528.04095101bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.25965213)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Prers_BD_Remod_All.pdf}}%
+    \put(0.50455928,0.20395625){\transparent{0.5}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\normalsize remodulate}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Prers_BD_Remod_All.pdf}}%
+    \put(0.21181984,0.13154547){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperlink{slide:dab-proc_freq-interleave}{{\makecell{freq\\{\tiny interleave}}}}\end{tabular}}}}%
+    \put(0.40743975,0.13154547){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperlink{slide:dab-proc_dqpsk-map}{{\makecell{dqpsk\\map}}}\end{tabular}}}}%
+    \put(0.30940711,0.11835004){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times T_u$}\end{tabular}}}}%
+    \put(0.31046544,0.15308721){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{\makecell{dab\_data\_\\interleaved}}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Prers_BD_Remod_All.pdf}}%
+    \put(0.60293279,0.13154547){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperlink{slide:dab-proc_ofdm-mux}{{\makecell{ofdm\\mux}}}\end{tabular}}}}%
+    \put(0.50496358,0.12101667){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Prers_BD_Remod_All.pdf}}%
+    \put(0.79804963,0.13154547){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\hyperlink{slide:dab-proc_symbols-pack}{{\makecell{symbols\\pack}}}\end{tabular}}}}%
+    \put(0.70026841,0.12101667){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $L\times T_u$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Prers_BD_Remod_All.pdf}}%
+    \put(0.01751217,0.14999615){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{dab\_data}\end{tabular}}}}%
+    \put(0.06425075,0.11835675){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $(L-1)\times K$}\end{tabular}}}}%
+    \put(0.88515944,0.16324913){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\texttt{\makecell{dab\_frame\_\\remod}}\end{tabular}}}}%
+    \put(0.92601742,0.11500879){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny $1\times T_f$}\end{tabular}}}}%
+    \put(0.50504034,0.15308721){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{\makecell{dab\_carriers\_\\remod}}}\end{tabular}}}}%
+    \put(0.70034515,0.15308721){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{\makecell{dab\_symbols\_\\remod}}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Prers_BD_Remod_All.pdf}}%
+    \put(0.2117518,0.04180061){\color[rgb]{0.4,0.4,0.4}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{interleave\_map}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{Prers_BD_Remod_All.pdf}}%
+    \put(0.40687951,0.04180061){\color[rgb]{0.4,0.4,0.4}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\tiny \texttt{phase\_reference\_symbol}}\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

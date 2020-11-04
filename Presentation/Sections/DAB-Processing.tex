@@ -1,0 +1,296 @@
+\documentclass[class=beamer,10pt,crop=false]{standalone}
+\input{../../Style/PresentationStyle.tex}
+
+\begin{document} 
+
+\section{Digital Audio Broadcasting: Processing Chain Design}
+
+\subsection{Overview}
+\begin{frame}
+    \label{slide:dab-proc_overview}
+    \frametitle{\subsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+        \tiny
+        \input{../Images/Pres_BD_Overview_All.pdf_tex}}
+        \caption{Block diagram showing entire DAB processing chain}
+        \label{fig:BD_Overview_All}
+    \end{figure}
+    
+\end{frame}
+
+
+\subsection{Pre-processing}
+\begin{frame}
+    \label{slide:dab-proc_preprocess}
+    \frametitle{\subsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../Images/Pres_BD_Preprocess_All.pdf_tex}}
+        \caption{Block diagram showing pre-processing block}
+        \label{fig:BD_Preprocess_All}
+      \end{figure}
+      
+\end{frame}
+
+% \subsubsection{Frame Synchronisation via PRS detection}
+% \begin{frame}
+%     \label{slide:dab-proc_prs-detect}
+%     \frametitle{\subsubsecname}
+    
+      
+% \end{frame}
+
+
+\subsection{Demodulation}
+\begin{frame}
+    \label{slide:dab-proc_demod}
+    \frametitle{\subsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../Images/Pres_BD_Demod_All.pdf_tex}}
+        \caption{Block diagram showing demodulation block}
+        \label{fig:BD_Demod_All}
+      \end{figure}
+      
+\end{frame}
+
+\subsubsection{Symbols Unpacking}
+\begin{frame}
+    \label{slide:dab-proc_symbols-unpack}
+    \frametitle{\subsecname : \subsubsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../../Images/symbols_unpack.pdf_tex}}
+        \caption{Graphical summary of \texttt{symbols\_unpack} function}
+        \label{fig:symbols_unpack}
+      \end{figure}
+      
+\end{frame}
+
+\subsubsection{OFDM Demultiplexing}
+% \begin{frame}[fragile]
+%     \frametitle{\subsecname : \subsubsecname}
+
+%     Use FFT for demultiplexing OFDM symbols.
+
+%     \begin{figure}[htbp]
+%         \centering
+%         \captionsetup{type=figure}
+%         \def\svgwidth{\linewidth}
+%         \includegraphics[width=0.6\linewidth]{../Images/plots/ofdm-surface-raw.png}
+%         \caption{Surface plot of a DAB frame's OFDM symbols}
+%         \label{fig:ofdm-surface}
+%       \end{figure}
+      
+% \end{frame}
+
+\begin{frame}
+    \label{slide:dab-proc_ofdm-demux}
+    \frametitle{\subsecname : \subsubsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../../Images/ofdm_demux.pdf_tex}}
+        \caption{Graphical summary of \texttt{ofdm\_demux} function}
+        \label{fig:ofdm_demux}
+      \end{figure}
+      
+\end{frame}
+
+\subsubsection{DQPSK Demapping}
+\begin{frame}
+    \label{slide:dab-proc_dqpsk-demap}
+    \frametitle{\subsecname : \subsubsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../../Images/dqpsk_demap.pdf_tex}}
+        \caption{Graphical summary of \texttt{dqpsk\_demap} function}
+        \label{fig:dqpsk_demap}
+      \end{figure}
+      
+\end{frame}
+
+
+\subsubsection{Frequency Deinterleaving}
+\begin{frame}
+    \label{slide:dab-proc_freq-deinterleave}
+    \frametitle{\subsecname : \subsubsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../../Images/freq_deinterleave.pdf_tex}}
+        \caption{Graphical summary of \texttt{freq\_deinterleave} function}
+        \label{fig:freq_deinterleave}
+      \end{figure}
+      
+\end{frame}
+
+\subsubsection{DQPSK Snapping}
+% \begin{frame}
+%     \frametitle{\subsecname : \subsubsecname}
+    
+%     \begin{figure}[htbp]
+%         \centering
+%         \captionsetup{type=figure}
+%         \def\svgwidth{\linewidth}
+%         \includegraphics[width=0.6\textwidth]{../Images/dqpsk_snap-rtl.pdf}
+%         \caption{Depiction of the DQPSK snapping functionality}
+%         \label{fig:dqpsk_snap-rtl}
+%       \end{figure}
+      
+% \end{frame}
+
+\begin{frame}
+    \label{slide:dab-proc_dqpsk-snap}
+    \frametitle{\subsecname : \subsubsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../../Images/dqpsk_snap.pdf_tex}}
+        \caption{Graphical summary of \texttt{dqpsk\_snap} function}
+        \label{fig:dqpsk_snap}
+      \end{figure}
+      
+\end{frame}
+    
+\subsubsection{Error Correction}
+\begin{frame}
+    \label{slide:dab-proc_error-correct}
+    \frametitle{\subsecname : \subsubsecname}
+        
+    Not completed due to the scope of this project; nevertheless, an important part of a demodulation-remodulation chain.
+        
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% REMODULATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Remodulation}
+\begin{frame}
+    \label{slide:dab-proc_remod}
+    \frametitle{\subsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../Images/Prers_BD_Remod_All.pdf_tex}}
+        \caption{Block diagram showing remodulation block}
+        \label{fig:BD_Demod_All}
+      \end{figure}
+      
+\end{frame}
+
+\subsubsection{Frequency Interleaving}
+\begin{frame}
+    \label{slide:dab-proc_freq-interleave}
+    \frametitle{\subsecname : \subsubsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../../Images/freq_interleave.pdf_tex}}
+        \caption{Graphical summary of \texttt{freq\_interleave} function}
+        \label{fig:freq_interleave}
+      \end{figure}
+      
+\end{frame}
+
+\subsubsection{DQPSK Mapping}
+\begin{frame}
+    \label{slide:dab-proc_dqpsk-map}
+    \frametitle{\subsecname : \subsubsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{0.9\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../../Images/dqpsk_map.pdf_tex}}
+        \caption{Graphical summary of \texttt{dqpsk\_map} function}
+        \label{fig:dqpsk_map}
+      \end{figure}
+      
+\end{frame}
+
+\subsubsection{OFDM Multiplexing}
+\begin{frame}
+    \label{slide:dab-proc_ofdm-mux}
+    \frametitle{\subsecname : \subsubsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../../Images/ofdm_mux.pdf_tex}}
+        \caption{Graphical summary of \texttt{ofdm\_mux} function}
+        \label{fig:ofdm_mux}
+      \end{figure}
+      
+\end{frame}
+
+\subsubsection{Symbols Packing}
+\begin{frame}
+    \label{slide:dab-proc_symbols-pack}
+    \frametitle{\subsecname : \subsubsecname}
+    
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \def\svgwidth{\linewidth}
+        {\linespread{0.8}
+            \scriptsize
+            \input{../../Images/symbols_pack.pdf_tex}}
+        \caption{Graphical summary of \texttt{symbols\_pack} function}
+        \label{fig:symbols_pack}
+      \end{figure}
+      
+\end{frame}
+
+\end{document}
