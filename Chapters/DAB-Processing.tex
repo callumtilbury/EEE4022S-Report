@@ -14,9 +14,11 @@
     {\emph{---Friedrich Nietzsche}}
 % ----------------------------------------------------
 
-This chapter details the core design component of the project: a \gls{dab} processing chain. While the broader context of this report falls within the realm of \gls{pr}, the fundamental task at hand was to demodulate and remodulate a given \gls{dab} signal, in order to create a perfect reference signal of given recorded data. Fortunately, as outlined in the previous chapter, not all of the intricacies of the \gls{dab} standard were required to be understood or even considered for integration into a passive radar chain.
+This chapter details the core design component of the project: a \gls{dab} processing chain. While the broader context of this report falls within the realm of \gls{pr}, the fundamental task at hand was to demodulate and remodulate a given \gls{dab} signal, in order to create a perfect reference signal of given recorded data. Fortunately, as outlined in the previous chapter, not all of the intricacies of the \gls{dab} standard were required to be understood or even considered for integration into a \gls{pr} chain.
 
-The design of the chain involved studying the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, as well as using a reference signal which was known to be perfectly modulated for initial testing. For some functionality, real-world data was also used for design and testing. For the sake of simplicity, the entire chain---including all the dimensions shown in this chapter---was designed around \gls{dab} Mode 1. Nonetheless, altering the chain for implementation with other modes will be trivial. All MATLAB functions were designed with a \texttt{dab\_mode} input, if necessary, to allow for easy changes in future designs. Note, however, that this mode input parameter is not shown in any of the upcoming diagrams.
+The design of the chain involved studying the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, as well as using pristine reference data for initial testing. For some functionality, real-world data was also used for design and testing. All of the data provided was of transmission Mode I, and thus the ( ). Nonetheless, altering the chain for implementation with other modes will be trivial. All MATLAB functions were designed with a \texttt{dab\_mode} input, if necessary, to allow for easy changes in future designs. Note, however, that this mode input parameter is not shown in any of the upcoming diagrams.
+
+(Make a note of diagrams showing generic dimensions)
 
 \section{Overview}
 Within the \gls{dab} processing chain, three main functional blocks were identified: pre-processing, demodulation, and remodulation. The first block reads in a \gls{dab} recording of \gls{iq} data saved as a binary file, and outputs a single \gls{dab} frame from this file. This frame can then be input to the demodulate block, which extracts the \gls{dab} data from it. This data is not the decoded information from the \gls{dab} recording---such as the audio signal---rather, it is simply an extracted bitstream. This bitstream can then be perfectly reconstructed as a \gls{dab} frame, by the remodulate block. A diagrammatic overview of this chain is given in Figure~\ref{fig:BD_Overview_All}.
@@ -76,7 +78,7 @@ A perfect \gls{dab} recording that would be output from the \texttt{iq\_read} fu
 \end{figure}
 
 \subsection{Resampling IQ data \label{subsect:dab-proc_iq-resample}}
-In order for one to utilise the \gls{fft} to demodulate an \gls{ofdm} symbol, certain requirements must be met. Recall that the window for a single symbol, notated as \(T_u\), is 2048 samples for \gls{dab} Mode 1. This means that a 2048-point \gls{fft} must be used, with a resulting 2048 points in the frequency domain. Recall also that \gls{ofdm} has a strict requirement for the spacing between adjacent carriers---\(1 \si{\kilo \hertz}\) for \gls{dab} Mode1. Notice, then, if the sample rate for the original signal is precisely set at \(F_s = 2.048 \si{\mega \hertz}\), for \gls{dab} Mode 1, then the bins from the \gls{fft} will be perfectly aligned on the \gls{ofdm} carriers---enabling proper demouldation.
+In order for one to utilise the \gls{fft} to demodulate an \gls{ofdm} symbol, certain requirements must be met. Recall that the window for a single symbol, notated as \(T_u\), is 2048 samples for \gls{dab} Mode 1. This means that a 2048-point \gls{fft} must be used, with a resulting 2048 points in the frequency domain. Recall also that \gls{ofdm} has a strict requirement for the spacing between adjacent carriers---\(1 \si{\kilo \hertz}\) for \gls{dab} Mode 1. Notice, then, if the sample rate for the original signal is precisely set at \(F_s = 2.048 \si{\mega \hertz}\), for \gls{dab} Mode 1, then the bins from the \gls{fft} will be perfectly aligned on the \gls{ofdm} carriers---enabling proper demouldation.
 
 However, in a real-world scenario, the desired sampling rate might not necessarily be used in the receiver. Thus, in such a situation, the \gls{iq} data must be resampled. Consider an original sampling rate of \(F_s\), a desired sampling rate of \(\tilde{F_s} = 2.048 \si{\mega \hertz}\), with \(F_s \ne \tilde{F_s}\), and with
 \begin{equation}
@@ -101,7 +103,7 @@ Naturally, for each of these detection processes, one cannot consider the entire
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/window_advance_illustration.pdf_tex}}
-      \caption{}
+      \caption{Three possible scenarios for the values of \(T_w\) and \(T_a\).}
       \label{fig:window_advance_illustration}
 \end{figure}
 

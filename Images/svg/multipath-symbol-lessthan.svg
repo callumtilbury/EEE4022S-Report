@@ -114,12 +114,12 @@
        inkscape:collect="always"
        xlink:href="#pattern5345"
        id="pattern5359"
-       patternTransform="matrix(0.17321795,-0.11572741,0.17321795,0.11572741,239.54065,193.81594)" />
+       patternTransform="matrix(0.09052386,-0.06047928,0.09052397,0.06047929,239.54065,193.81594)" />
     <pattern
        inkscape:collect="always"
        xlink:href="#pattern5333"
        id="pattern5357"
-       patternTransform="matrix(0.17304051,-0.11572745,0.17304051,0.11572745,143.33616,193.81595)" />
+       patternTransform="matrix(0.0964512,-0.05568622,0.0883005,0.06787364,143.33616,193.81595)" />
     <pattern
        inkscape:collect="always"
        xlink:href="#pattern4987"
@@ -533,11 +533,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.3019495"
-     inkscape:cx="844.17624"
-     inkscape:cy="858.60998"
+     inkscape:zoom="0.65097475"
+     inkscape:cx="842.48365"
+     inkscape:cy="844.48776"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g9818"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -564,7 +564,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

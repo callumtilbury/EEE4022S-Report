@@ -7,26 +7,24 @@
 \begin{document}
 % ----------------------------------------------------
 \chapter{Introduction}
-% \epigraph{And we now find, that it is not only right to strike while the iron is hot, but that it may be very practicable to heat it by continually striking.}%
-%     {\emph{---Benjamin Franklin}}
 \epigraph{Philosophers have hitherto only interpreted the world in various ways; the point is to change it.}%
     {\emph{---Karl Marx}}
 % ----------------------------------------------------
 
-This report describes an investigation done into using \acrfull{dab} signals for Passive Radar. Much of the report focuses on the \acrshort{dab} standard, and the algorithms used for modulating and demodulating such signals. Some basic tests are then done, integrating the processed \acrshort{dab} signals into various Passive Radar processing algorithms.
+% This report describes an investigation done into using \acrfull{dab} signals for Passive Radar. Much of the report focuses on the \acrshort{dab} standard, and the algorithms used for modulating and demodulating such signals. Some basic tests are then done, integrating the processed \acrshort{dab} signals into various Passive Radar processing algorithms.
 
 \section{Background}
-Passive radar has been around for as long as radar itself. Though it garnered some initial interest in the 1950s, the topic remained was neglected in favour of active radar systems. However, in recent decades there has been fresh excitement surrounding the field, for a host of reasons.
+% Passive radar has been around for as long as radar itself. Though it garnered some initial interest in the 1950s, the topic remained was neglected in favour of active radar systems. However, in recent decades there has been fresh excitement surrounding the field, for a host of reasons.
 
-Most of the existing work done in passive radar uses the ubiquitous analog modulation signals, most notably Frequency Modulation (FM). While a popular standard, \acrfull{fm} presents several important problems for passive radar. Digital modulation techniques, on the other hand, present several advantages for passive radar processing.
+% Most of the existing work done in passive radar uses the ubiquitous analog modulation signals, most notably Frequency Modulation (FM). While a popular standard, \acrfull{fm} presents several important problems for passive radar. Digital modulation techniques, on the other hand, present several advantages for passive radar processing.
 
 \section{Objectives}
-The primary objective for this investigation was to research, design, and implement a working \acrshort{dab} modulator and demodulator in software. In doing this, recorded \acrshort{dab} signals could be fed into existing passive radar processing chains. 
+% The primary objective for this investigation was to research, design, and implement a working \gls{dab} modulator and demodulator in software. In doing this, recorded \gls{dab} signals could be fed into existing passive radar processing chains. 
 
 \section{System Requirements}
 
 \section{Scope \& Limitations}
-The project for which this report is written was considerably time-bound---with approximately twelve weeks from start to finish. Owing to this, the study was intentionally kept fairly narrow in scope. Though the field of passive radar formed an important underpinning for the intentions of the project, actual passive radar \emph{implementation} was not a primary focus. Instead, with the radar requirements in mind, the project focused on manipulating \acrshort{dab} signals in a useful way.
+% The project for which this report is written was considerably time-bound---with approximately twelve weeks from start to finish. Owing to this, the study was intentionally kept fairly narrow in scope. Though the field of passive radar formed an important underpinning for the intentions of the project, actual passive radar \emph{implementation} was not a primary focus. Instead, with the radar requirements in mind, the project focused on manipulating \acrshort{dab} signals in a useful way.
 
 \subsection{Scope}
 Formally, the scope of this project included:
@@ -35,16 +33,16 @@ Formally, the scope of this project included:
 \end{itemize}
 
 \subsection{Limitations}
-In any given year, there are a host of major limitations to undergraduate projects. This year, these limitations were massively aggravated by the ongoing global COVID-19 pandemic. They include:
-\begin{itemize}
-    \item Lack of lab equipment access
-    \item In-person consultation difficulties
-    \item Budget constraints
-\end{itemize}
+% In any given year, there are a host of major limitations to undergraduate projects. This year, these limitations were massively aggravated by the ongoing global COVID-19 pandemic. They include:
+% \begin{itemize}
+%     \item Lack of lab equipment access
+%     \item In-person consultation difficulties
+%     \item Budget constraints
+% \end{itemize}
 
 
 \section{Report Outline}
-This report begins in Chapter ( ) with a broad but brief literature review, looking at both digital audio and passive radar research, as well as existing implementations of the former in the latter. Thereafter, a detailed unpacking of the Digital Audio Broadcasting standard is provided in Chapter ( ), with specific highlights made to key concepts in the standard. Then, Chapter ( ) presents an in-depth look at how one can actually process the \acrshort{dab} signals---exploring algorithms for both demodulation and re-modulation. With the important foundations set, Chapter ( ) looks at integrating the \acrshort{dab} processing chains into existing and robust passive radar chains.
+% This report begins in Chapter ( ) with a broad but brief literature review, looking at both digital audio and passive radar research, as well as existing implementations of the former in the latter. Thereafter, a detailed unpacking of the Digital Audio Broadcasting standard is provided in Chapter ( ), with specific highlights made to key concepts in the standard. Then, Chapter ( ) presents an in-depth look at how one can actually process the \acrshort{dab} signals---exploring algorithms for both demodulation and re-modulation. With the important foundations set, Chapter ( ) looks at integrating the \acrshort{dab} processing chains into existing and robust passive radar chains.
 
 
 

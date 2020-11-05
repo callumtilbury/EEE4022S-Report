@@ -21,7 +21,7 @@
        inkscape:collect="always"
        xlink:href="#pattern828"
        id="pattern831"
-       patternTransform="matrix(0.25332752,-0.25332752,0.3553491,-0.04557053,143.36273,193.81595)" />
+       patternTransform="matrix(0.13999873,-0.13999873,0.19637988,-0.02518407,143.36273,193.81595)" />
     <pattern
        inkscape:collect="always"
        xlink:href="#pattern5357"
@@ -74,7 +74,7 @@
        inkscape:collect="always"
        xlink:href="#pattern5345"
        id="pattern5359"
-       patternTransform="matrix(0.25665833,-0.25665833,0.35959849,-0.04935502,246.83657,201.63304)" />
+       patternTransform="matrix(0.14178447,-0.14178447,0.19865124,-0.02726494,242.67134,201.63304)" />
     <pattern
        inkscape:collect="always"
        xlink:href="#pattern5333"
@@ -494,8 +494,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.76226344"
-     inkscape:cx="769.32133"
-     inkscape:cy="727.68378"
+     inkscape:cx="1023.1706"
+     inkscape:cy="719.81249"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -503,9 +503,9 @@
      units="px"
      inkscape:showpageshadow="false"
      inkscape:window-width="1600"
-     inkscape:window-height="900"
+     inkscape:window-height="855"
      inkscape:window-x="1280"
-     inkscape:window-y="0"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
      inkscape:pagecheckerboard="false"
      borderlayer="false"
@@ -606,7 +606,9 @@
        height="58.602558"
        x="239.54068"
        y="193.81595"
-       id="rect5355" />
+       id="rect5355"
+       rx="0"
+       ry="0" />
     <g
        id="g7957"
        style="stroke:#000000;stroke-width:1.00013;stroke-miterlimit:4;stroke-dasharray:none">
