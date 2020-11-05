@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{801.75993415bp}%
+    \setlength{\unitlength}{801.75996445bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,16 +50,18 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.40832172)%
+  \begin{picture}(1,0.47425662)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{guard-intervals-demo.pdf}}%
     \put(0.77275893,0.29171879){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Direct Symbol\end{tabular}}}}%
-    \put(0.77252695,0.18775117){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Delayed Symbol\end{tabular}}}}%
+    \put(0.77252695,0.18775116){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Delayed Symbol\end{tabular}}}}%
     \put(0.12363872,0.29095783){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\Delta$\end{tabular}}}}%
     \put(0.18620755,0.18525861){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\Delta$\end{tabular}}}}%
     \put(0.42933078,0.05933238){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Integration Period\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{guard-intervals-demo.pdf}}%
     \put(0.85644668,0.06403505){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{guard-intervals-demo.pdf}}%
+    \put(0.42927877,0.42980816){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Original Symbol Length\end{tabular}}}}%
   \end{picture}%
 \endgroup%
