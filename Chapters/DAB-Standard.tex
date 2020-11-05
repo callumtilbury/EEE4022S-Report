@@ -183,7 +183,7 @@ As discussed previously, the use of a longer symbol period enables a more robust
     \caption{Illustration of the creation of a guard interval via cyclic prefixing.}
     \label{fig:cyclic-prefix}
 \end{figure}
-There are several things to note here. Firstly, notice that the guard interval data is defined from the \emph{ending}of the original symbol. That is, a guard interval with a period of \(T_g\) will be equal to the last \(T_g\) time-units of its original symbol. Secondly, observe that when this guard interval is prepended to the original symbol, the order of the data is maintained---this is demonstrated by the gradient shown in the illustration. Together these approaches are termed "cyclic prefixing." Thirdly, one can clearly see that the transmitted symbol is longer than the original symbol.
+There are several things to note here. Firstly, notice that the guard interval data is defined from the \emph{ending} of the original symbol. That is, a guard interval with a period of \(T_g\) will be equal to the last \(T_g\) time-units of its original symbol. Secondly, observe that when this guard interval is prepended to the original symbol, the order of the data is maintained---this is demonstrated by the gradient shown in the illustration. Together these approaches are termed "cyclic prefixing." Thirdly, one can clearly see that the transmitted symbol is longer than the original symbol.
 
 Importantly, though, the integration period---the time over which the symbol is considered---remains the same, equal to the length of the original symbol, despite the transmitted symbol's additional length. To understand why this is the case, and why the inclusion of a guard interval is helpful, consider the graphic shown in Figure~\ref{fig:guard-intervals-demo-2}.
 \begin{figure}[htbp]
@@ -225,50 +225,72 @@ The final consideration for \gls{cofdm} is the "coded" part of \emph{coded}-\gls
 
 The scope of this project did not enable a thorough analysis or design of the error coding methods used in \gls{cofdm}. It is included here for completeness' sake, and further investigation is certainly recommended.
 
-\section{Differential Quadrature Phase Shift Keying \label{sect:dab-std_psk}}
-The second pillar upon which the \gls{dab} standard was built is \gls{dqpsk}. Whereas \gls{cofdm} defines how the sub-carriers are arranged in a \gls{dab} symbol, \gls{dqpsk} defines how data is modulated onto these sub-carriers over consecutive symbols. To understand the mechanisms behind \gls{dqpsk}, one should first understand the concepts of \gls{psk}, \gls{qpsk}, and differential modulation. Since these ideas are somewhat simpler than those in the previous section, they are covered briefly in the coming text.
+%------------------------------------------------------------------------------------------
+% D Q P S K
+%------------------------------------------------------------------------------------------
+\section{Differential Quadrature Phase-Shift Keying \label{sect:dab-std_psk}}
+The second pillar upon which the \gls{dab} standard was built is \gls{dqpsk}. Whereas \gls{cofdm} defines how the sub-carriers are arranged in a \gls{dab} symbol, \gls{dqpsk} defines how data is modulated onto these sub-carriers over consecutive symbols. To understand the mechanisms behind \gls{dqpsk}, one should first understand the concepts of \gls{psk}, \gls{qpsk}, and differential modulation. Since these ideas are somewhat simpler than those in the previous section, they are covered briefly in the coming text, followed by a description of \gls{dqpsk} itself. Importantly, the \gls{dab} standard uses a slight variation of conventional \gls{dqpsk}, termed \(\pi/4\)-\gls{dqpsk}, which will also be discussed.
 
-\subsection{Phase Shift Keying}
-Consider a sinusoidal carrier wave with a frequency of \(\omega_0\) and an amplitude of \(A\). Unlike in \gls{ask}---where the amplitude of the carrier wave is modulated, and in \gls{fsk}---where the frequency of the carrier wave is modulated, \gls{psk} keeps both the amplitude and frequency constant over time. Instead, it modulates the \emph{phase} of the carrier wave. Mathematically,
+\subsection{Phase-Shift Keying}
+Consider a sinusoidal carrier wave with a frequency of \(\omega_0\) and an amplitude of \(A\). Unlike in \gls{ask} or \gls{fsk} scheme, where the amplitude or frequency of the carrier wave is modulated, a \gls{psk} scheme keeps both of these parameters constant over time. Instead, the \emph{phase} of the carrier wave is modulated. Mathematically, one can think of the modulated wave as follows:
 \begin{equation}
-    f(t, n) = A \cdot \sin(\omega_0t + \phi[n])
+    f(t) = A \cdot \sin(\omega_0t + \phi[n])
 \end{equation}
-where \(\phi[n]\) is the corresponding phase for the symbol at the discrete-time step \(n\).
+where \(n=\left\lfloor \frac{t}{T} \right\rfloor\), with \(T\) as the symbol period; or, in other words, where \(\phi[n]\) is the corresponding phase for the symbol at the discrete-time step \(n\).
 
-In the simplest case, one could take a bitstream of values---either 0 or 1---and correspondingly modulate the carrier with a phase of either~\(0\) or \(\pi\) radians. Such an approach is called \emph{binary} phase-shift keying, since only two values are used. Figure~\ref{fig:binary-psk} shows a simple example of this.
-
+In the simplest case, one could take a bitstream of two possible values, either 0 or 1, and correspondingly modulate the carrier with a phase of either~\(0\) or \(\pi\) radians. Such an approach is called \emph{binary} phase-shift keying, since only two values are used. Figure~\ref{fig:binary-psk} shows a simple illustration of this process, with an arbitrary bitstream.
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
     \def\svgwidth{1\linewidth}
-    {\setstretch{0.7} % Line spacing
+    {\scriptsize
+        \setstretch{0.7} % Line spacing
         \input{../Images/binary-psk.pdf_tex}}
-    \caption{Example of binary phase shift keying}
+    \caption{Illustration of binary phase-shift keying with an arbitrary bitstream.}
     \label{fig:binary-psk}
 \end{figure}
+Notice in the figure how the value at each point in the bitstream directly affects the corresponding phase of the modulated signal---when the bit is 0, the phase is \(0\) radians; when the bit is 1, the phase is \(\pi\) radians. These mappings are emphasised by the colours of red and blue respectively.
+
+\subsection{Quadrature Phase-Shift Keying}
+The idea of \gls{qpsk} is simply an extension of \gls{bpsk}, where four possible angles are used instead of two---hence the word \emph{quadrature}. Having four phase-values enables one to transmit two bits of data with each symbol---for example, the bit-pair "00" could map to an angle of 0 radians, the bit-pair "01" to an angle of \(\frac{\pi}{2}\) radians, and so on. Intuitively, this approach can send twice as much information as a \gls{bpsk} approach, in the same amount of time and constrained by the same bandwidth.
 
 \subsection{Differential Modulation}
-In order to be demodulate a \gls{qpsk} signal properly, a receiver must be "fully coherent,"~\cite{Moosea}.
+Consider the task of demodulation for a \gls{psk}-modulated signal, whether \gls{bpsk}, \gls{qpsk}, or of a higher order. On the surface, it may be tempting simply to split the incoming data into chunks, and measure the phase values of each of these chunks. Unfortunately, though, when a modulated signal travels from a transmitter to a receiver, various nonideal effects can alter the signal adversely---the details of which fall outside of the scope of this report. Consequently, such signals require a demodulation procedure which is "coherent," as explored thoroughly in~\cite{Grami2016}. This requirement results in receivers that are more complicated and more expensive than they would be otherwise.
 
-Otherwise, phase ambiguity problems.
+A straightforward alternative to \gls{psk} which solves this problem is called \gls{dpsk}. In essence, instead of using the actual phase value of a carrier wave for modulation, a \gls{dpsk} scheme uses the \emph{difference} between the phase values of consecutive symbols. For example, if one was using differential-\gls{bpsk}---where two possible bits are available---one could map the bit \(0\) to a phase-difference of \(0\) radians between symbols, and the bit \(1\) to a phase-difference of \(\pi\) radians. Figure~\ref{fig:differential-binary-psk} illustrates this example.
+\begin{figure}[htbp]
+    \centering
+    \captionsetup{type=figure}
+    \def\svgwidth{1\linewidth}
+    {\scriptsize
+        \setstretch{1.1} % Line spacing
+        \input{../Images/differential-binary-psk.pdf_tex}}
+    \caption{Illustration of a differential binary phase-shift keying with an arbitrary bitstream.}
+    \label{fig:differential-binary-psk}
+\end{figure}
+Notice carefully the distinction between Figure~\ref{fig:binary-psk}, which illustrated a \gls{bpsk} scenario, and the figure here, which is showing a differential-\gls{bpsk} scenario. In the latter's case, no information can be garnered from the actual phase of the modulated signal, \(f(t)\), at any point in time. Instead, one must consider a symbol's phase, and compare it to the phase of the symbol before it. In this way, the demodulation process no longer needs to be coherent, which enables cheaper and more efficient receiver systems.
 
-% Notice in the previous example that the demodulator would need to have knowledge about the
-
+\subsection{Adding a $\pi/4$ Phase-Offset Between Consecutive Symbols}
+The modulation scheme used by the \gls{dab} standard is essentially \gls{dqpsk}, with one minor revision: the four possible phase values are rotated by \(\frac{\pi}{4}\) radians after each symbol. Figure~\ref{fig:pi-by-4-dqpsk-illustration} illustrates this approach.
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
-        \input{../Images/differential-binary-psk.pdf_tex}}
-    \caption{Example of differential binary phase shift keying}
-    \label{fig:differential-binary-psk}
+    \scriptsize
+    \input{../Images/pi-by-4-dqpsk-illustration.pdf_tex}}
+    \caption{Illustration of a \(\pi/4\)-\gls{dqpsk} modulation scheme.}
+    \label{fig:pi-by-4-dqpsk-illustration}
 \end{figure}
+Accordingly, because of the \emph{differential} modulation, the possible \gls{dqpsk} values for this approach are:
+\begin{equation}
+    \Delta\phi \in \left\{ \frac{\pi}{4}, \frac{3\pi}{4}, -\frac{\pi}{4}, -\frac{3\pi}{4} \right\}
+\end{equation}
+This scheme is usually termed \(\pi/4\)-\gls{dqpsk}, but hereafter this distinction will not be made.
 
-\subsection{Quadrature Phase Shift Keying}
-
-\subsection{Adding $\pi/4$ Phase Offset}
-
-
+%------------------------------------------------------------------------------------------
+% T R A N S M I S S I O N  F R A M E
+%------------------------------------------------------------------------------------------
 \section{Transmission Frame}
 \begin{figure}[htbp]
     \centering
