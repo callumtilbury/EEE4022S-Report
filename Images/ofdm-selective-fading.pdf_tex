@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{847.38338274bp}%
+    \setlength{\unitlength}{796.44826377bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,10 +50,11 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.32450654)%
+  \begin{picture}(1,0.37071892)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ofdm-selective-fading.pdf}}%
-    \put(0.41240594,0.29702507){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Selective Fading\end{tabular}}}}%
+    \put(0.30411814,0.32012528){\color[rgb]{0.83137255,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Selective Fading\end{tabular}}}}%
+    \put(0.9131103,0.04876424){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

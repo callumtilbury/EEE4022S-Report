@@ -195,31 +195,36 @@ Importantly, though, the integration period---the time over which the symbol is 
     \caption{Depiction of why a guard interval is useful.}
     \label{fig:guard-intervals-demo}
 \end{figure}
-This illustration shows two received symbols in a multipath situation---named as before, the "direct" and "delayed" symbols---one of which is received slightly later than the other. The guard interval for each symbol is indicated with a \(\Delta\) character\footnote{The \(\Delta\) character is used to notate the duration of the guard interval in the \gls{dab} standard~\cite{dabstandard}}. The integration period, as shown, spans the original symbol exactly. However, notice that the end section of the delayed symbol---underlined in red---is excluded from this period. Yet, because of the guard interval, the section underlined in red is identical to the section underlined in green, which \emph{is} included in the integration period. Thus, the guard interval has enabled the entirety of a delayed symbol to be recorded simultaneously with the original symbol. Moreover, the delayed symbol will not impact the demodulation of the \emph{following} symbol, since it falls outside of the following symbol's integration period.
+This illustration shows two received symbols in a multipath situation---named, as before, the "direct" and "delayed" symbols---one of which is received slightly later than the other. The guard interval for each symbol is indicated with a \(\Delta\) character\footnote{The \(\Delta\) character is used to notate the duration of the guard interval in the \gls{dab} standard~\cite{dabstandard}}. The integration period, as shown, spans the original symbol exactly. However, notice that the end section of the delayed symbol---underlined in red---is excluded from this period. Yet, because of the guard interval, the section underlined in red is identical to the section underlined in green, which \emph{is} included in the integration period. Thus, the guard interval has enabled the entirety of a delayed symbol to be recorded simultaneously with the original symbol. Moreover, the delayed symbol will not impact the demodulation of the \emph{following} symbol, since it falls outside of the following symbol's integration period.
 
 Of course, the mere inclusion of the red section in the green section does not guarantee that the entire symbol will be correctly demodulated when it is superimposed with the direct symbol. This is where another strength of \gls{ofdm} lies: since all of the carrier waves are, by definition, orthogonal over the symbol period, it can be shown that cyclicly shifted versions of the symbol will not cause \gls{isi} when summed. The mathematical details of this fact are unimportant for this context, but the point remains---provided the delay period is shorter than the guard interval, there will be \emph{no} \gls{isi} in the received signal whatsoever.
 
-Guard intervals are hence a powerful mechanism to mitigate the effects of multipath. Once again, though, there exists a tradeoff: with this situation, between increased robustness (by increasing the length of the guard interval) and decreated data-rates (since a longer guard interval means less actual data per unit of time).
+Guard intervals are hence a powerful mechanism to mitigate the effects of multipath. Once again, though, there exists a tradeoff: in this aspect, between increased robustness (via an increased guard interval length) and a decreased data-rate (since a longer guard interval means less actual data transmitted per unit of time).
 
+\subsection{Frequency Interleaving}
+There is another challenge to overcome in multipath situations that has not yet been discussed. When signals travel along different paths to a receiver, the superposition thereof could occur in various ways. Consider the two extreme cases: firstly, the signals could arrive in phase with each other, and thus add purely "constructively"---resulting in a larger received signal; alternatively, the signals could arrive out of phase with each other, and add purely "destructively"---resulting in no received signal. In reality, some intermediate situation would likely occur, where the received signal is either somewhat attenuated, or somewhat amplified.
 
-\subsection{Time \& Frequency Interleaving}
-In a multipath situation, as discussed in section~\ref{subsect:multipath}, there is a problem of inter-symbol interference. These effects are mitigated in the \gls{dab} standard by utilizing the \gls{ofdm} scheme, together with cyclic prefixing. There is an additional problem, however. 
-
+Whatever the case may be, the nature of this observed superposition is clearly dependent on the \emph{phases} of the waves received. Because a wave is made up of many frequency components, a particular scene may cause a received signal to be amplified at some frequencies, and attenuated at others. The latter phenomenon is more commonplace, and is called "frequency selective fading." Naturally, fading will often occur in localized regions of a particular spectrum---since nearby frequencies will have similar phases. Consequently, in the case of an \gls{ofdm} symbol, this fading can cause clusters of sub-carriers to be degraded simultaneously. Figure~\ref{fig:ofdm-selective-fading} illustrates such an effect.
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/ofdm-selective-fading.pdf_tex}}
-    \caption{}
+    \caption{Illustration of frequency selective fading in an \gls{ofdm} spectrum.}
     \label{fig:ofdm-selective-fading}
 \end{figure}
+While the selective fading of sub-carriers cannot itself be completely avoided, one \emph{can} reduce its impact on the overall system performance. Ideally, if errors are going to arise in the transmission of a signal, it is better for these errors to occur randomly---this is partly motivated by the nature of the error correction algorithm used in \gls{cofdm}. Since selective fading would consistently affect clusters of carriers, causing repeated errors in the same bitstreams, the idea of "frequency interleaving" is introduced.
 
+Essentially, before the data is modulated for transmission, it is distributed---i.e. interleaved---amongst the \gls{ofdm} sub-carriers. For example, the first data point might end up modulating the 100th carrier, while the 100th data point might modulate the 60th carrier, and so on. A specifc, known mapping is used to interleave the data, the details for which are given in the appendix. The inverse process of deinterleaving can then applied at the receiver's end. In doing this, the errors caused by frequency selective fading will be less localized and more sproadic in the signal---making the system more robust.
 
 \subsection{Forward Error Correction}
+The final consideration for \gls{cofdm} is the "coded" part of \emph{coded}-\gls{ofdm}. In essence, this approach is almost equivalent to \gls{ofdm}, except that the data is convolutionally encoded before modulation (hence the name). Redundant data is consequently added to the signal---which is called a "Forward Error Correction" approach. At the receiver's end, a Viterbi decoder can then be used to predict the most likely bits that were transmitted, thus completeing the error correction process.
+
+The scope of this project did not enable a thorough analysis or design of the error coding methods used in \gls{cofdm}. It is included here for completeness' sake, and further investigation is certainly recommendeded.
 
 \section{Differential Quadrature Phase Shift Keying \label{sect:dab-std_psk}}
-
+The second pillar upon which the \gls{dab} standard was built is \acrfull{dqpsk}. As was the case for \gls{cofdm}, understanding \gls{dqpsk} involves first understanding \gls{psk}, differential modulation, \gls{qpsk}, 
 The \gls{dab} standard utilizes a modulation technique called \acrlong{psk}, specifically a variant thereof called \(\frac{\pi}{4}-\)\gls{dqpsk}.
 
 \subsection{Binary Phase Shift Keying}
