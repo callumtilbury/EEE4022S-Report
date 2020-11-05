@@ -170,7 +170,7 @@ While the \gls{ofdm} method is a conceptually clever one, it could not be easily
 \end{figure}
 While this approach would indeed work theoretically, it would be expensive, difficult to implement correctly, and frankly impractical---the number of possible \gls{ofdm} sub-carriers used would depend on both the money and space available for the transmitters and receivers. As a consequence, such systems are limited to a small number of sub-carriers, making them fairly useless for anything that requires both a high data-rate and resilience to multipath effects.
 
-Fortunately, in~\cite{Weinstein1971}, Weinstein and Ebert demonstrated how one could perform the same functionality as shown in Figure~\ref{fig:ofdm-multipliers}, using only the \gls{dft} algorithm. By taking this approach, one can implement a system that uses a large number of sub-carriers---for example, over one thousand sub-carriers in the \gls{dab} standard---yet remains small, efficient, and affordable. This approach is even more attractive when using the more-efficient \gls{fft} algorithm. A mathematical for the \gls{dft} equivalence is provided in the appendix.
+Fortunately, in~\cite{Weinstein1971}, Weinstein and Ebert demonstrated how one could perform the same functionality as shown in Figure~\ref{fig:ofdm-multipliers}, using only the \gls{dft} algorithm. By taking this approach, one can implement a system that uses a large number of sub-carriers---for example, over one thousand sub-carriers in the \gls{dab} standard---yet remains small, efficient, and affordable. A mathematical proof for the \gls{dft} equivalence is provided in the appendix. This approach is even more attractive when using the more-efficient \gls{fft} algorithm.
 
 \subsection{Cyclic Prefixing \& Guard Intervals}
 As discussed previously, the use of a longer symbol period enables a more robust signal reception process within a multipath environment. Furthermore, the use of \gls{ofdm} symbols enables an additional protective measure: that being, the implementation of so-called "guard intervals." A guard interval is a section of a given symbol that is prepended to the symbol itself, via a process called "cyclic prefixing." This is illustrated in Figure~\ref{fig:cyclic-prefix}.
@@ -282,6 +282,7 @@ The modulation scheme used by the \gls{dab} standard is essentially \gls{dqpsk},
     \caption{Illustration of a \(\pi/4\)-\gls{dqpsk} modulation scheme.}
     \label{fig:pi-by-4-dqpsk-illustration}
 \end{figure}
+
 Accordingly, because of the \emph{differential} modulation, the possible \gls{dqpsk} values for this approach are:
 \begin{equation}
     \Delta\phi \in \left\{ \frac{\pi}{4}, \frac{3\pi}{4}, -\frac{\pi}{4}, -\frac{3\pi}{4} \right\}
@@ -292,6 +293,39 @@ This scheme is usually termed \(\pi/4\)-\gls{dqpsk}, but hereafter this distinct
 % T R A N S M I S S I O N  F R A M E
 %------------------------------------------------------------------------------------------
 \section{Transmission Frame}
+The previous two sections have detailed the two core technologies that underpin the \gls{dab} standard: \gls{cofdm}, and \gls{dqpsk}. It is important now to discuss how these concepts are practically implemented in a \gls{dab} signal. This section begins with an overview of a \gls{dab} symbol, and then the "transmission frame" structure, followed by a brief mention of the various \gls{dab} transmission modes that exist. Thereafter, the three relevant sections of the \gls{dab} frame are considered more deeply. "Relevant" in this context reflects that which is useful in a broader \gls{pr} system, not necessarily what is relevant in a \gls{dab} radio receiver system.
+
+\subsection{Overview}
+Fundamentally, a \gls{dab} signal is constituted of a series of \gls{dab} transmission "frames", where each frame is a collection of \gls{dab} "symbols" (i.e. \gls{ofdm} symbols). Each \gls{dab} symbol contains \(K\) adjacent \gls{ofdm} sub-carriers, arranged symmetrically around a central frequency, which itself is not a sub-carrier\footnote{The centremost frequency in the spectrum is not a sub-carrier for a simple reason. Recall that the \gls{dab} standard uses a \gls{dqpsk} modulation scheme, which means the \emph{phases} of the sub-carriers are modulated with information. However, when the spectrum is multiplied down to baseband, the central sub-carrier moves to \(0\si{\hertz}\)---i.e. DC. The concept of phase for a DC signal is nonsensical, and thus demodulating this sub-carrier at baseband would be impossible.}. Hence, the \gls{dab} spectrum spans \(K+1\) sub-carriers, with a spacing of \(\Delta\omega\) between each of them\footnote{Recall that, for orthogonality to hold over an integration period of \(T\), the relationship of  \(\Delta\omega = \frac{2\pi}{T}\) must hold.}. The magnitude of the frequency spectrum of a single \gls{dab} symbol is depicted in Figure~\ref{fig:dab-single-symbol-diagram}, along with various annotations of the aforementioned information.
+
+Every \gls{dab} frame contains \(L\)~\gls{dab} symbols, where the \(K\)~\gls{ofdm} carriers from symbol to symbol are differentially modulated using \gls{dqpsk}. The first of these symbols is always a known reference symbol, aptly called the \gls{prs}, with specifically defined phase values. Since these phase values are known, the subsequent \(L-1\) symbols can be differentially modulated, and later differentially demodulated, deterministically. The symbols from a frame can be viewed as a surface plot, as illustrated in Figure~\ref{fig:dab-surface-diagram}.
+\begin{figure}[htbp]
+    \centering
+    \captionsetup{type=figure}
+    \begin{subfigure}[t]{0.47\textwidth}
+        \centering
+        \def\svgwidth{1\linewidth}
+        {\scriptsize
+            \setstretch{0.7} % Line spacing
+            \input{../Images/dab-single-symbol-diagram.pdf_tex}}
+        \caption{A single \gls{dab} symbol, with annotations.}
+        \label{fig:dab-single-symbol-diagram}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.52\textwidth}
+        \def\svgwidth{1\linewidth}
+        {\scriptsize
+            \setstretch{0.7} % Line spacing
+            \input{../Images/dab-surface-diagram.pdf_tex}}
+        \caption{The \(L\) symbols of a \gls{dab} frame.}
+        \label{fig:dab-surface-diagram}
+    \end{subfigure}
+    \caption{Illustrations of the magnitude of a \gls{dab} symbol.}
+    \label{ig:dab-symbol-diagrams}
+\end{figure}
+
+In the time domain, each of the \(L\) symbols in a \gls{dab} frame is prepended with a guard interval, as discussed previously. Moreover, at the beginning of frame, a \gls{ns} is added.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -299,13 +333,11 @@ This scheme is usually termed \(\pi/4\)-\gls{dqpsk}, but hereafter this distinct
     {\setstretch{0.7} % Line spacing
     \scriptsize
     \input{../Images/transmission-frame-illustration.pdf_tex}}
-    \caption{}
+    \caption{Illustration of a \gls{dab} transmission frame (not shown to scale).}
     \label{fig:transmission-frame-illustration}
 \end{figure}
 
-
-
-\subsection{Overview}
+The \gls{dab} frame has three important regions: namely, the \gls{ns}, the \gls{prs}, and then the "data-carrying" symbols.
 
 \subsection{Transmission Modes}
 
@@ -316,6 +348,7 @@ This scheme is usually termed \(\pi/4\)-\gls{dqpsk}, but hereafter this distinct
 
 
 \subsection{Data-carrying Symbols \label{subsect:dab-std_data}}
+Note that this classification is markedly different in the \gls{dab} standard itself, where the symbols are split into a "Fast Information Channel" and a "Main Service Channel," and so on.
 
 \section{Summary}
 
