@@ -18,6 +18,7 @@ This brief chapter serves to provide a rudimentary insight into the context for 
 A conventional, bistatic \gls{pr} system requires two signals for its operation: a reference signal, and a surveillance signal. The former is the signal that arrives via the direct-path, from the uncooperative transmitter to system's receiver. The latter is the signal that comes from the scene, as a recording of the scatterings and reflections of the \gls{em} energy. However, when a \emph{digitally}-modulated signal is used---one which has an open and accessible standard, such as the \gls{etsi}'s \gls{dab} standard---the reference data can be generated using the surveillance data. This trick enables the system to use only one antenna for operations, which is advantageous in various ways. Several authors have discussed such systems in further detail, such as in~\cite{Fang2018} and~\cite{Barott2014}.
 
 The aim of this project was to design the functionality for converting surveillance data into reference data for a given \gls{dab} signal. This was done via the demodulation of the received signal, and then the remodulation thereof, thereby producing a "pristine" copy of the received signal. This pristine copy (used as reference data), together with the original recorded signal (used as surveillance data), could be provided to a standard \gls{pr} algorithm for further processing and analysis. A block diagram depicting the larger \gls{pr}~system's set-up is provided in Figure~\ref{fig:BD_pr-integration}.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -28,6 +29,7 @@ The aim of this project was to design the functionality for converting surveilla
     \caption{Block diagram showing how the \texttt{demodulate} and \texttt{remodulate} blocks fit into a larger \gls{pr} system.}
     \label{fig:BD_pr-integration}
 \end{figure}
+
 One can see in the figure how the \texttt{pre-process}, \texttt{demodulate}, and \texttt{remodulate} blocks fit into the context of a \gls{pr} system. Note, however, that the \texttt{pre-process} block would likely be markedly different in such a system, compared to the one designed in this project. For example, the data from the baseband receiver would likely be streamed, rather than read from a file, as it was done here. The other two blocks may also be slightly different when implemented in a real system, but their fundamental routines would remain the same. As shown, the reference and surveillance data from the \gls{dab} processing chain must always be synchronised before being used in the \gls{pr} processing chain.
 
 For the sake of brevity, details of the \texttt{baseband receiver} and \texttt{synchronise} blocks are not given here. Moreover, specifics of the \texttt{passive radar processing} chain are similarly omitted.

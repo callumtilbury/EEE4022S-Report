@@ -27,6 +27,7 @@ Note, however, that this project focused on \gls{dab} signals within the context
 The \gls{dab} standard was designed to replace the conventional \gls{fm} and \gls{am} analogue modes of broadcasting, with the intention of audio and data reception in both fixed and mobile environments~\cite{dabstandard}. Of these two listening contexts, the more common one was---and still is---certainly the latter. Despite living in an era saturated by computers and the internet, radio has remained a staple for many people in their cars---enabling them to listen to content while commuting. The reception environment for a \gls{dab} signal was thus known beforehand as one that would be highly dynamic and somewhat unpredictable. This situation was made worse by the reality that many receivers would be in urban centres, which contain numerous high-rise buildings and other "clutter."
 
 To understand the challenges of such environments, consider the following simple scenario: suppose one transmitted a set of symbols, \(\mathcal{D}\), using an arbitrary digital modulation scheme with a carrier frequency~\(\omega_0\), to a mobile receiver in an urban setting. Once modulated, the carrier wave would be transmitted by a stationary antenna and travel through the environment, at times bouncing off surrounding objects, such as buildings, cars, mountains, and trees. Provided there was a direct path from the transmitter to the receiver, the signal---the "direct signal"---would travel along this path. Additionally, due to the surrounding clutter, duplicate versions of the signal---"delayed signals"---would also arrive at the receiver. This effect is called \emph{multipath}. Figure~\ref{fig:multipath-illustration} illustrates this scenario with dashed lines indicating the various signal paths.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -141,6 +142,7 @@ Clearly, for a reliable system using \gls{fdm}, the sub-carriers must be suffici
     \Delta \omega = \frac{2\pi}{T}
 \end{equation}
 The reason that the sub-carriers can be placed so close together, without crosstalk, becomes evident when viewed graphically. Consider the plot for three \(\mathrm{Sa}(\omega)\) spectra arranged in this way, as shown in Figure~\ref{fig:ofdm-three-sincs}.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -150,12 +152,14 @@ The reason that the sub-carriers can be placed so close together, without crosst
     \caption{Three \(\mathrm{Sa}(\omega)\) spectra arranged orthogonally.}
     \label{fig:ofdm-three-sincs}
 \end{figure}
+
 Notice how the peak of each spectrum, occuring at the respective carrier frequencies of \(\omega\) and \(\omega\pm\Delta\omega\), is perfectly aligned with the zero crossings of the other spectra. This relationship results in zero cross-talk at those frequencies, despite the spectra being packed together tightly. Mathematically, these signals are said to be "orthogonal" over the integration period---for detailed proofs, see the appendix.
 
 Therefore, by arranging the carrier frequencies in this specific way, many sub-carriers can be used within a limited bandwidth, creating an efficient method of transmitting bitstreams in parallel. A collection of such sub-carriers over a single integration period is usually termed an \gls{ofdm} "symbol."
 
 \subsection{Leveraging the Discrete Fourier Transform}
 While the \gls{ofdm} method is a conceptually clever one, it could not be easily adopted for some time due to major practical constraints. Suppose one had~\(K\)~independent bitstreams to be modulated onto \(K\)~sub-carriers arranged orthogonally, in an \gls{ofdm} transmission. A na\"ive approach to this problem would involve using~\(K\)~independent oscillators---with each one tuned uniquely to one of the sub-carrier frequencies---and~\(K\)~independent multipliers. On the receiving end, a similar set-up would be required, along with a bank of narrowband low-pass filters. Such a set-up is depicted in Figure~\ref{fig:ofdm-multipliers}.
+
 \begin{figure}
     \centering
     \captionsetup{type=figure}
@@ -168,12 +172,14 @@ While the \gls{ofdm} method is a conceptually clever one, it could not be easily
     \caption{Depicting of a multiplier approach to \gls{ofdm}}
     \label{fig:ofdm-multipliers}
 \end{figure}
+
 While this approach would indeed work theoretically, it would be expensive, difficult to implement correctly, and frankly impractical---the number of possible \gls{ofdm} sub-carriers used would depend on both the money and space available for the transmitters and receivers. As a consequence, such systems are limited to a small number of sub-carriers, making them fairly useless for anything that requires both a high data-rate and resilience to multipath effects.
 
 Fortunately, in~\cite{Weinstein1971}, Weinstein and Ebert demonstrated how one could perform the same functionality as shown in Figure~\ref{fig:ofdm-multipliers}, using only the \gls{dft} algorithm. By taking this approach, one can implement a system that uses a large number of sub-carriers---for example, over one thousand sub-carriers in the \gls{dab} standard---yet remains small, efficient, and affordable. A mathematical proof for the \gls{dft} equivalence is provided in the appendix. This approach is even more attractive when using the more-efficient \gls{fft} algorithm.
 
 \subsection{Cyclic Prefixing \& Guard Intervals}
 As discussed previously, the use of a longer symbol period enables a more robust signal reception process within a multipath environment. Furthermore, the use of \gls{ofdm} symbols enables an additional protective measure: that being, the implementation of so-called "guard intervals." A guard interval is a section of a given symbol that is prepended to the symbol itself, via a process called "cyclic prefixing." This is illustrated in Figure~\ref{fig:cyclic-prefix}.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -183,9 +189,11 @@ As discussed previously, the use of a longer symbol period enables a more robust
     \caption{Illustration of the creation of a guard interval via cyclic prefixing.}
     \label{fig:cyclic-prefix}
 \end{figure}
+
 There are several things to note here. Firstly, notice that the guard interval data is defined from the \emph{ending} of the original symbol. That is, a guard interval with a period of \(T_g\) will be equal to the last \(T_g\) time-units of its original symbol. Secondly, observe that when this guard interval is prepended to the original symbol, the order of the data is maintained---this is demonstrated by the gradient shown in the illustration. Together these approaches are termed "cyclic prefixing." Thirdly, one can clearly see that the transmitted symbol is longer than the original symbol.
 
 Importantly, though, the integration period---the time over which the symbol is considered---remains the same, equal to the length of the original symbol, despite the transmitted symbol's additional length. To understand why this is the case, and why the inclusion of a guard interval is helpful, consider the graphic shown in Figure~\ref{fig:guard-intervals-demo-2}.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -195,6 +203,7 @@ Importantly, though, the integration period---the time over which the symbol is 
     \caption{Depiction of the usefulness of a guard interval.}
     \label{fig:guard-intervals-demo-2}
 \end{figure}
+
 This illustration shows two received signals in a multipath situation---named, as before, the "direct" and "delayed" signals---one of which is received slightly later than the other. Two symbols are shown, \(p\)~and~\(q\), together with their delayed equivalents, \(\tilde{p}\)~and~\(\tilde{q}\), and the guard intervals are indicated with \(\Delta\) characters\footnote{The \(\Delta\) character is used to notate the duration of the guard interval in the \gls{dab} standard~\cite{dabstandard}.}. Observe that the integration period spans the original symbols exactly. Importantly, notice that the inclusion of guard intervals has ensured that the first symbol of the delayed signal, \(\tilde{p}\), does not interfere with the second symbol of the direct signal, \(q\). In other words, \gls{isi} has been avoided.
 
 Additionally, recall that the guard interval is defined via cyclic prefixing. As a consequence of this, sections of a delayed symbol that fall outside of an integration period will be nonetheless included in the guard interval. For example, consider the chunk of \(\tilde{p}\) that falls outside of the integration period---underlined in red. Because of the guard interval, this chunk is identical to the chunk underlined in green, which \emph{is} included in the integration period. This result ensures that the guard interval of the delayed signal, \(\Delta_{\tilde{p}}\), does not interfere with the original symbol, \(p\).
@@ -207,6 +216,7 @@ Guard intervals are hence a powerful mechanism to mitigate the effects of multip
 There is another challenge to overcome in multipath situations that has not yet been discussed. When signals travel along different paths to a receiver, the superposition thereof could occur in various ways. Consider the two extreme cases: firstly, the signals could arrive in phase with each other, and thus add purely "constructively"---resulting in a larger received signal; alternatively, the signals could arrive out of phase with each other, and add purely "destructively"---resulting in no received signal. In reality, some intermediate situation would likely occur, where the received signal is either somewhat attenuated, or somewhat amplified.
 
 Whatever the case may be, the nature of this observed superposition is clearly dependent on the \emph{phases} of the waves received. Because a wave is made up of many frequency components, a particular multipath-prone scene may cause a received signal to be amplified at some frequencies, and attenuated at others. The latter phenomenon is more commonplace, and is called "frequency selective fading." Naturally, this fading will often occur in localized regions of a particular spectrum---since nearby frequencies will have similar phases. Consequently, in the case of an \gls{ofdm} symbol, the fading can cause clusters of sub-carriers to be degraded simultaneously. Figure~\ref{fig:ofdm-selective-fading} illustrates such an effect.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -216,6 +226,7 @@ Whatever the case may be, the nature of this observed superposition is clearly d
     \caption{Illustration of frequency selective fading in an \gls{ofdm} spectrum.}
     \label{fig:ofdm-selective-fading}
 \end{figure}
+
 While the selective fading of sub-carriers cannot itself be completely avoided, one \emph{can} reduce its impact on the overall system performance. Ideally, if errors are going to arise in the transmission of a signal, it is better for these errors to occur randomly---this is partly motivated by the nature of the error correction algorithm used in \gls{cofdm}. Since selective fading would consistently affect certain clusters of carriers, causing repeated errors in certain bitstreams, the idea of "frequency interleaving" is introduced.
 
 Essentially, before the data is modulated for transmission, it is distributed---i.e. interleaved---amongst the \gls{ofdm} sub-carriers. For example, the first data point might end up modulating the 100th carrier, while the 100th data point might modulate the 60th carrier, and so on. A specific, known mapping is used to interleave the data, the details for which are given in the appendix. The inverse process of deinterleaving can then applied at the receiver's end, undoing the effects of interleaving, and thus extracting the original bitstreams. In doing this, the errors caused by frequency selective fading will be less localized and more sporadic in the signal---making the system more robust.
@@ -239,6 +250,7 @@ Consider a sinusoidal carrier wave with a frequency of \(\omega_0\) and an ampli
 where \(n=\left\lfloor \frac{t}{T} \right\rfloor\), with \(T\) as the symbol period; or, in other words, where \(\phi[n]\) is the corresponding phase for the symbol at the discrete-time step \(n\).
 
 In the simplest case, one could take a bitstream of two possible values, either 0 or 1, and correspondingly modulate the carrier with a phase of either~\(0\) or \(\pi\) radians. Such an approach is called \emph{binary} phase-shift keying, since only two values are used. Figure~\ref{fig:binary-psk} shows a simple illustration of this process, with an arbitrary bitstream.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -249,6 +261,7 @@ In the simplest case, one could take a bitstream of two possible values, either 
     \caption{Illustration of binary phase-shift keying with an arbitrary bitstream.}
     \label{fig:binary-psk}
 \end{figure}
+
 Notice in the figure how the value at each point in the bitstream directly affects the corresponding phase of the modulated signal---when the bit is 0, the phase is \(0\) radians; when the bit is 1, the phase is \(\pi\) radians. These mappings are emphasised by the colours of red and blue respectively.
 
 \subsection{Quadrature Phase-Shift Keying}
@@ -258,6 +271,7 @@ The idea of \gls{qpsk} is simply an extension of \gls{bpsk}, where four possible
 Consider the task of demodulation for a \gls{psk}-modulated signal, whether \gls{bpsk}, \gls{qpsk}, or of a higher order. On the surface, it may be tempting simply to split the incoming data into chunks, and measure the phase values of each of these chunks. Unfortunately, though, when a modulated signal travels from a transmitter to a receiver, various nonideal effects can alter the signal adversely---the details of which fall outside of the scope of this report. Consequently, such signals require a demodulation procedure which is "coherent," as explored thoroughly in~\cite{Grami2016}. This requirement results in receivers that are more complicated and more expensive than they would be otherwise.
 
 A straightforward alternative to \gls{psk} which solves this problem is called \gls{dpsk}. In essence, instead of using the actual phase value of a carrier wave for modulation, a \gls{dpsk} scheme uses the \emph{difference} between the phase values of consecutive symbols. For example, if one was using differential-\gls{bpsk}---where two possible bits are available---one could map the bit \(0\) to a phase-difference of \(0\) radians between symbols, and the bit \(1\) to a phase-difference of \(\pi\) radians. Figure~\ref{fig:differential-binary-psk} illustrates this example.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -268,10 +282,12 @@ A straightforward alternative to \gls{psk} which solves this problem is called \
     \caption{Illustration of a differential binary phase-shift keying with an arbitrary bitstream.}
     \label{fig:differential-binary-psk}
 \end{figure}
+
 Notice carefully the distinction between Figure~\ref{fig:binary-psk}, which illustrated a \gls{bpsk} scenario, and the figure here, which is showing a differential-\gls{bpsk} scenario. In the latter's case, no information can be garnered from the actual phase of the modulated signal, \(f(t)\), at any point in time. Instead, one must consider a symbol's phase, and compare it to the phase of the symbol before it. In this way, the demodulation process no longer needs to be coherent, which enables cheaper and more efficient receiver systems.
 
 \subsection{Adding a $\pi/4$ Phase-Offset Between Consecutive Symbols}
 The modulation scheme used by the \gls{dab} standard is essentially \gls{dqpsk}, with one minor revision: the four possible phase values are rotated by \(\frac{\pi}{4}\) radians after each symbol. Figure~\ref{fig:pi-by-4-dqpsk-illustration} illustrates this approach.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
@@ -299,6 +315,7 @@ The previous two sections have detailed the two core technologies that underpin 
 Fundamentally, a \gls{dab} signal is constituted of a series of \gls{dab} transmission "frames", where each frame is a collection of \gls{dab} "symbols" (i.e. \gls{ofdm} symbols). Each \gls{dab} symbol contains \(K\) adjacent \gls{ofdm} sub-carriers, arranged symmetrically around a central frequency, which itself is not a sub-carrier\footnote{The centremost frequency in the spectrum is not a sub-carrier for a simple reason. Recall that the \gls{dab} standard uses a \gls{dqpsk} modulation scheme, which means the \emph{phases} of the sub-carriers are modulated with information. However, when the spectrum is multiplied down to baseband, the central sub-carrier moves to \(0\si{\hertz}\)---i.e. DC. The concept of phase for a DC signal is nonsensical, and thus demodulating this sub-carrier at baseband would be impossible.}. Hence, the \gls{dab} spectrum spans \(K+1\) sub-carriers, with a spacing of \(\Delta\omega\) between each of them\footnote{Recall that, for orthogonality to hold over an integration period of \(T\), the relationship of  \(\Delta\omega = \frac{2\pi}{T}\) must hold.}. The magnitude of the frequency spectrum of a single \gls{dab} symbol is depicted in Figure~\ref{fig:dab-single-symbol-diagram}, along with various annotations of the aforementioned information.
 
 Every \gls{dab} frame contains \(L\)~\gls{dab} symbols, where the \(K\)~\gls{ofdm} carriers from symbol to symbol are differentially modulated using \gls{dqpsk}. The first of these symbols is always a known reference symbol, aptly called the \gls{prs}, with specifically defined phase values. Since these phase values are known, the subsequent \(L-1\) symbols can be differentially modulated, and later differentially demodulated, deterministically. The symbols from a frame can be viewed as a surface plot, as illustrated in Figure~\ref{fig:dab-surface-diagram}.
+
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}

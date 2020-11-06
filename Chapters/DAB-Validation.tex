@@ -192,6 +192,7 @@ That is, the functions were \emph{exact} inverses of each other. This makes sens
 
 \subsection{OFDM Multiplexing \& Demultiplexing}
 The inverse validation test for the \texttt{ofdm\_mux} and \texttt{ofdm\_demux} functions is depicted in Figure~\ref{fig:inverse-ofdm-mux-demux}.
+
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
@@ -201,6 +202,7 @@ The inverse validation test for the \texttt{ofdm\_mux} and \texttt{ofdm\_demux} 
   \caption{Depiction of the inverse relationship validation process for the \texttt{ofdm\_mux} and \texttt{ofdm\_demux} functions.}
   \label{fig:inverse-ofdm-mux-demux}
 \end{figure}
+
 Due to the straightforward nature of these functions---simply a \gls{ifft} and \gls{fft}, respectively---they could also be tested in the opposite direction.
 
 Over multiple iterations, the order of magnitude of these test results was:
@@ -211,6 +213,7 @@ Notice that the difference between the input and output signals was not exactly 
 
 \subsection{DQPSK Mapping \& Demapping}
 The inverse validation test for the \texttt{dqpsk\_map} and \texttt{dqpsk\_demap} functions is depicted in Figure~\ref{fig:inverse-dqpsk-map-demap}.
+
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
@@ -233,6 +236,7 @@ Once again, there was a tiny error that existed between the input and output dat
 
 \subsection{Frequency Interleaving \& Deinterleaving}
 The inverse validation test for the \texttt{freq\_interleave} and \texttt{freq\_deinterleave} functions is depicted in Figure~\ref{fig:inverse-freq-interleave-deinterleave}.
+
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
@@ -257,6 +261,7 @@ The final inverse relationship test was between the system's main two blocks: \t
 As a consequence, the test was set-up in a specific way: the data was first remodulated, and thereafter demodulated, rather than the other way around. Furthermore, the generated \texttt{dab\_data} used as an input was constrained to have four possible \gls{dqpsk} angles---essentially making it a perfect \gls{dab} bitstream, and thus eliminating any action required by the \texttt{dqpsk\_snap} and \texttt{error\_correct blocks}.
 
 A graphical depiction of the inverse validation test for the \texttt{remodulate} and \texttt{demodulate} functions is given in Figure~\ref{fig:inverse-remod-demod}, where \(\mathbf{X_p}\) is pseudorandomly-generated \gls{dab} data meeting the constraints discussed above.
+
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
@@ -279,6 +284,7 @@ Recall that the overarching purpose of the \gls{dab} processing chain was to rec
 
 \subsection{Methodology}
 The essence of this process is depicted in Figure~\ref{fig:repeated-process-diagram}, with two iterations\footnote{As a side note, if one can demonstrate this validation process successfully for two iterations, then by mathematical induction, one can prove it to be true for \(n\) iterations, with \(n \: \forall \: \mathbb{N}\).} of the demodulation-remodulation process shown.
+
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
@@ -288,6 +294,7 @@ The essence of this process is depicted in Figure~\ref{fig:repeated-process-diag
   \caption{Depiction of the Repeated Processing validation method.}
   \label{fig:repeated-process-diagram}
 \end{figure}
+
 As is clear from the diagram, this validation step was extremely straightforward: it simply involved passing a recorded \gls{dab} frame, notated as \(\mathbf{X}\), through the processing chain---specifically the demodulation and remodulation blocks---twice. Then, the outputs after each iteration were compared, with the intention that they be identical. The error value for this test was defined as:
 \begin{equation}
   \mathbf{E_{Y}} = \mathbf{Y_2} - \mathbf{Y_1}
@@ -308,6 +315,7 @@ All of the data that was provided for this project was accompanied by so-called 
 
 \subsection{Methodology}
 A depiction of this validation step is given in Figure~\ref{fig:reference-data-validation}, where \(\mathbf{X}\)~is the original \gls{dab} frame, \(\mathbf{\tilde{X}}\)~is the output of this project's processing chain for the given frame, and \(\mathbf{\hat{X}}\)~is the provided reference data for that frame---a reconstruction of the \gls{dab} signal that was known to be correct.
+
 \begin{figure}[htbp]
   \centering
   \captionsetup{type=figure}
@@ -317,6 +325,7 @@ A depiction of this validation step is given in Figure~\ref{fig:reference-data-v
   \caption{Depiction of the Reference Data validation method.}
   \label{fig:reference-data-validation}
 \end{figure}
+
 As done before, an error signal was defined as the difference between this chain's output and the reference data:
 \begin{equation}
   \mathbf{E_R} = \mathbf{\tilde{X}} - \mathbf{\hat{X}}
@@ -329,6 +338,7 @@ Unlike the previous validation situations, a valid result from this test would i
 Firstly, the chain was tested with perfect \gls{dab} data, which naturally served as its own reference data---that is, \(\mathbf{\hat{X}} = \mathbf{X}\). Note that this test was subtly different to the Repeated Processing test. In the latter, the demodulation-remodulation chain was used to generate perfect data, and then used again, to check if the same perfect data was regenerated. On the other hand, this test compared the perfect reference data created by an independent system that was known to be correct, to the perfect reference data created by this chain.
 
 This test was run across several frames of the signal, all of which had a similar result. Figure~\ref{fig:validation_perfect-data-error} shows the magnitude of the error signal for one of the provided \gls{dab} frames. Importantly, notice the scale on the vertical axis.
+
 \begin{figure}
   \centering
   \captionsetup{type=figure}
@@ -336,6 +346,7 @@ This test was run across several frames of the signal, all of which had a simila
   \caption{Plot of \(|\mathbf{E_R}|\) for a provided perfect \gls{dab} frame.}
   \label{fig:validation_perfect-data-error}
 \end{figure}
+
 The order of magnitude of the error signal across the various frames was consistently as follows:
 \begin{equation}
   \left| \mathrm{max} \{ \mathbf{E_R} \} \right| \approx 10^{-5}
@@ -393,12 +404,6 @@ In light of this test, it was concluded that the designed \gls{dab} processing c
 %   \caption{Plot of \(|\mathbf{E_R}|\) for a provided real-world \gls{dab} frame.}
 %   \label{fig:validation_rtl-error}
 % \end{figure}
-
-
-\begin{figure}
-
-\end{figure}
-
 
 \section{Summary}
 
