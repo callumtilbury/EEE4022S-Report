@@ -153,11 +153,11 @@ The reason that the sub-carriers can be placed so close together, without crosst
     \label{fig:ofdm-three-sincs}
 \end{figure}
 
-Notice how the peak of each spectrum, occuring at the respective carrier frequencies of \(\omega\) and \(\omega\pm\Delta\omega\), is perfectly aligned with the zero crossings of the other spectra. This relationship results in zero cross-talk at those frequencies, despite the spectra being packed together tightly. Mathematically, these signals are said to be "orthogonal" over the integration period---for detailed proofs, see the appendix.
+Notice how the peak of each spectrum, occurring at the respective carrier frequencies of \(\omega\) and \(\omega\pm\Delta\omega\), is perfectly aligned with the zero crossings of the other spectra. This relationship results in zero cross-talk at those frequencies, despite the spectra being packed together tightly. Mathematically, these signals are said to be "orthogonal" over the integration period---for detailed proofs, see the appendix.
 
 Therefore, by arranging the carrier frequencies in this specific way, many sub-carriers can be used within a limited bandwidth, creating an efficient method of transmitting bitstreams in parallel. A collection of such sub-carriers over a single integration period is usually termed an \gls{ofdm} "symbol."
 
-\subsection{Leveraging the Discrete Fourier Transform}
+\subsection{Leveraging the Discrete Fourier Transform \label{subsect:dab-std_dft}}
 While the \gls{ofdm} method is a conceptually clever one, it could not be easily adopted for some time due to major practical constraints. Suppose one had~\(K\)~independent bitstreams to be modulated onto \(K\)~sub-carriers arranged orthogonally, in an \gls{ofdm} transmission. A na\"ive approach to this problem would involve using~\(K\)~independent oscillators---with each one tuned uniquely to one of the sub-carrier frequencies---and~\(K\)~independent multipliers. On the receiving end, a similar set-up would be required, along with a bank of narrowband low-pass filters. Such a set-up is depicted in Figure~\ref{fig:ofdm-multipliers}.
 
 \begin{figure}
@@ -169,7 +169,7 @@ While the \gls{ofdm} method is a conceptually clever one, it could not be easily
         \scriptsize
         \input{../Images/ofdm-multipliers.pdf_tex}
     }
-    \caption{Depicting of a multiplier approach to \gls{ofdm}}
+    \caption{Depicting of a multiplier approach to \glsentrytext{ofdm}}
     \label{fig:ofdm-multipliers}
 \end{figure}
 
@@ -223,7 +223,7 @@ Whatever the case may be, the nature of this observed superposition is clearly d
     \def\svgwidth{1\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/ofdm-selective-fading.pdf_tex}}
-    \caption{Illustration of frequency selective fading in an \gls{ofdm} spectrum.}
+    \caption{Illustration of frequency selective fading in an \glsentrytext{ofdm} spectrum.}
     \label{fig:ofdm-selective-fading}
 \end{figure}
 
@@ -295,7 +295,7 @@ The modulation scheme used by the \gls{dab} standard is essentially \gls{dqpsk},
     {\setstretch{0.7} % Line spacing
     \scriptsize
     \input{../Images/pi-by-4-dqpsk-illustration.pdf_tex}}
-    \caption{Illustration of a \(\pi/4\)-\gls{dqpsk} modulation scheme.}
+    \caption{Illustration of a \(\pi/4\)-\glsentrytext{dqpsk} modulation scheme.}
     \label{fig:pi-by-4-dqpsk-illustration}
 \end{figure}
 
@@ -309,12 +309,14 @@ This scheme is usually termed \(\pi/4\)-\gls{dqpsk}, but hereafter this distinct
 % T R A N S M I S S I O N  F R A M E
 %------------------------------------------------------------------------------------------
 \section{Transmission Frame}
-The previous two sections have detailed the two core technologies that underpin the \gls{dab} standard: \gls{cofdm}, and \gls{dqpsk}. It is important now to discuss how these concepts are practically implemented in a \gls{dab} signal. This section begins with an overview of a \gls{dab} symbol, and then the "transmission frame" structure, followed by a brief mention of the various \gls{dab} transmission modes that exist. Thereafter, the three relevant sections of the \gls{dab} frame are considered more deeply. "Relevant" in this context reflects that which is useful in a broader \gls{pr} system, not necessarily what is relevant in a \gls{dab} radio receiver system.
+The previous two sections have detailed the two core technologies that underpin the \gls{dab} standard: \gls{cofdm}, and \gls{dqpsk}. It is important now to discuss how these concepts are practically implemented in a \gls{dab} signal. This section begins with an overview of a \gls{dab} "symbol", followed by the structure of a \gls{dab} "transmission frame" in the time domain. The three relevant regions in this structure are then highlighted briefly. Relevance in this context reflects that which is useful in a broader \gls{pr} system, not necessarily what is relevant in a \gls{dab} radio receiver system.
+
+Note that the dimensions provided in the coming text are all generic, independent of the \gls{dab} transmission mode used. Appendix~\textcolor{red}{( )} provides a table showing the actual values for these dimensions for each of the possible modes.
 
 \subsection{Overview}
-Fundamentally, a \gls{dab} signal is constituted of a series of \gls{dab} transmission "frames", where each frame is a collection of \gls{dab} "symbols" (i.e. \gls{ofdm} symbols). Each \gls{dab} symbol contains \(K\) adjacent \gls{ofdm} sub-carriers, arranged symmetrically around a central frequency, which itself is not a sub-carrier\footnote{The centremost frequency in the spectrum is not a sub-carrier for a simple reason. Recall that the \gls{dab} standard uses a \gls{dqpsk} modulation scheme, which means the \emph{phases} of the sub-carriers are modulated with information. However, when the spectrum is multiplied down to baseband, the central sub-carrier moves to \(0\si{\hertz}\)---i.e. DC. The concept of phase for a DC signal is nonsensical, and thus demodulating this sub-carrier at baseband would be impossible.}. Hence, the \gls{dab} spectrum spans \(K+1\) sub-carriers, with a spacing of \(\Delta\omega\) between each of them\footnote{Recall that, for orthogonality to hold over an integration period of \(T\), the relationship of  \(\Delta\omega = \frac{2\pi}{T}\) must hold.}. The magnitude of the frequency spectrum of a single \gls{dab} symbol is depicted in Figure~\ref{fig:dab-single-symbol-diagram}, along with various annotations of the aforementioned information.
+Fundamentally, a \gls{dab} signal is constituted of a series of \gls{dab} transmission "frames", where each frame is a collection of \gls{dab} "symbols" (i.e. \gls{ofdm} symbols). In the frequency domain, each \gls{dab} symbol contains \(K\) adjacent \gls{ofdm} sub-carriers, arranged symmetrically around a central frequency, which itself is not a sub-carrier. Hence, the \gls{dab} spectrum spans \((K+1)\) sub-carriers, with a spacing of \(\Delta\omega\) between each of them\footnote{Recall that, for orthogonality to hold over an integration period of \(T\), the relationship of  \(\Delta\omega = \frac{2\pi}{T}\) must hold.}. The magnitude of the frequency spectrum of a single \gls{dab} symbol is depicted in Figure~\ref{fig:dab-single-symbol-diagram}, along with various annotations of the aforementioned information.
 
-Every \gls{dab} frame contains \(L\)~\gls{dab} symbols, where the \(K\)~\gls{ofdm} carriers from symbol to symbol are differentially modulated using \gls{dqpsk}. The first of these symbols is always a known reference symbol, aptly called the \gls{prs}, with specifically defined phase values. Since these phase values are known, the subsequent \(L-1\) symbols can be differentially modulated, and later differentially demodulated, deterministically. The symbols from a frame can be viewed as a surface plot, as illustrated in Figure~\ref{fig:dab-surface-diagram}.
+Every \gls{dab} frame contains \(L\)~\gls{dab} symbols (as well as the \gls{ns}, which will be discussed shortly), where the \(K\)~\gls{ofdm} carriers from symbol to symbol are differentially modulated using \gls{dqpsk}. The first of these symbols is always a known reference symbol, aptly called the \gls{prs}, with specifically defined phase values. Since these phase values are known, the subsequent \((L-1)\) symbols can be differentially modulated, and later differentially demodulated, deterministically. The symbols from a frame can be viewed as a surface plot, as illustrated in Figure~\ref{fig:dab-surface-diagram}.
 
 \begin{figure}[htbp]
     \centering
@@ -325,7 +327,7 @@ Every \gls{dab} frame contains \(L\)~\gls{dab} symbols, where the \(K\)~\gls{ofd
         {\scriptsize
             \setstretch{0.7} % Line spacing
             \input{../Images/dab-single-symbol-diagram.pdf_tex}}
-        \caption{A single \gls{dab} symbol, with annotations.}
+        \caption{A single \glsentrytext{dab} symbol, with annotations.}
         \label{fig:dab-single-symbol-diagram}
     \end{subfigure}%
     ~ 
@@ -334,14 +336,19 @@ Every \gls{dab} frame contains \(L\)~\gls{dab} symbols, where the \(K\)~\gls{ofd
         {\scriptsize
             \setstretch{0.7} % Line spacing
             \input{../Images/dab-surface-diagram.pdf_tex}}
-        \caption{The \(L\) symbols of a \gls{dab} frame.}
+        \caption{The \(L\) symbols of a \glsentrytext{dab} frame.}
         \label{fig:dab-surface-diagram}
     \end{subfigure}
-    \caption{Illustrations of the magnitude of a \gls{dab} symbol.}
+    \caption{Illustrations of the magnitude of a \glsentrytext{dab} symbol's frequency spectrum.}
     \label{ig:dab-symbol-diagrams}
 \end{figure}
 
-In the time domain, each of the \(L\) symbols in a \gls{dab} frame is prepended with a guard interval, as discussed previously. Moreover, at the beginning of frame, a \gls{ns} is added.
+At this point, it is important to make a note regarding nomenclature. The plots that have been shown of the \gls{dab} symbols have hitherto been in the frequency domain. Of course, the time-domain plots of these symbols would still represent the same underlying physical signal in the real-world, viewed only with a different lens. But, for the sake of clarity, a minor distinction will be made for this report. Notice that the \gls{ofdm} sub-carrier values, when viewed from the frequency-domain perspective, are readily available for consideration without further transformation. That is, if one wanted to know the value of a certain sub-carrier, \(\omega_n\), one could simply index that sub-carrier in the frequency-domain array. In that sense, the signal is "demultiplexed" when in this perspective. In contrast, when the signal has been generated in the time-domain via the \gls{fft} algorithm---as explained in Section~\ref{subsect:dab-std_dft}---the numerous sub-carrier signals are summed into one complex signal. Therefore, this perspective can be considered as "multiplexed."
+
+% TO INCLUDE???? Or nah
+% For clarity, the time-domain, multiplexed version of a \gls{dab} symbol will still be called a symbol, whereas the frequency-domain version thereof will be called the \gls{dab} "carriers" or "sub-carriers" of that symbol. Usually, these terms may be used interchangeably, but as far as possible, the distinction will be made.
+
+In the time domain, a \gls{dab} frame begins with a \gls{ns}, which has a period of~\(T_\mathrm{null}\). This is followed by the \gls{prs}, the first of the~\(L\) \gls{dab} symbols. The remaining~\((L-1)\) symbols come next, and can be broadly termed the "data-carrying" symbols. Each of these~\(L\) \gls{dab} symbols have a "useful" period of~\(T_u\). Prepended to each useful interval is a guard interval, with a period of~\(T_g\) (this period is sometimes notated as~\(\Delta\)). The total symbol period,~\(T_s\), is therefore the sum of these two periods: \(T_s = T_u + T_g\). The entire frame has a period of~\(T_f\), which includes the \gls{ns} and the~\(L\) \gls{dab} symbols. Figure~\ref{fig:transmission-frame-illustration} illustrates all of this information, as annotated on a single \gls{dab} frame.
 
 \begin{figure}[htbp]
     \centering
@@ -350,25 +357,27 @@ In the time domain, each of the \(L\) symbols in a \gls{dab} frame is prepended 
     {\setstretch{0.7} % Line spacing
     \scriptsize
     \input{../Images/transmission-frame-illustration.pdf_tex}}
-    \caption{Illustration of a \gls{dab} transmission frame (not shown to scale).}
+    \caption{Illustration of a \glsentrytext{dab} transmission frame.}
     \label{fig:transmission-frame-illustration}
 \end{figure}
 
-The \gls{dab} frame has three important regions: namely, the \gls{ns}, the \gls{prs}, and then the "data-carrying" symbols.
-
-\subsection{Transmission Modes}
+Each of the three regions of the \gls{dab} frame is explained briefly in the coming subsections.
 
 \subsection{Null Symbol \label{subsect:dab-std_null}}
-
+The \gls{ns} is a period that begins the \gls{dab} frame, where all \gls{ofdm} sub-carriers are "turned off"---i.e. set to a value of 0. Hence, during this time, no power is transmitted. The purpose of this symbol is for "coarse" synchronisation of the frame. That is, to detect the approximate beginning of a \gls{dab} frame.
 
 \subsection{Phase Reference Symbol \label{subsect:dab-std_prs}}
+The \gls{prs} is the first of the \(L\) \gls{dab} symbols within a frame, and is arguably the most important. Fundamentally, it serves two purposes. Firstly, as mentioned previously, it provides a reference for the differential modulation of the subsequent symbols. Secondly, it serves as a mechanism for "fine" synchronisation of the \gls{dab} frame. Because the \gls{prs} consists of known values, detecting the location of these values in a received signal can reveal the precise beginning of a frame. Together, the \gls{ns} and the \gls{prs} are called the "Synchronisation Channel."
 
+The \gls{prs} is generated via a specifically-defined process outlined in the \gls{dab} standard, which uses various formulae and look-up tables~\cite{dabstandard}. The details of this process for Transmission Mode~I are included in Appendix~\textcolor{red}{()}. Note that the values of the \gls{prs} are not arbitrary: they create a so-called \gls{cazac} waveform in time, which facilitates robust detection in the presence of noise and other unwanted effects~\cite{gandy2003dab}.
 
 \subsection{Data-carrying Symbols \label{subsect:dab-std_data}}
-Note that this classification is markedly different in the \gls{dab} standard itself, where the symbols are split into a "Fast Information Channel" and a "Main Service Channel," and so on.
+The "data-carrying" symbols are all those that follow the \gls{prs} in a \gls{dab} frame. Note that this terminology is not used in the \gls{dab} specifications document whatsoever, and is introduced here for the sake of simplicity. The formal \gls{dab} standard delves into the technicalities of these symbols, dividing them into a "Fast Information Channel," and a "Main Service Channel." It further defines concepts such as "Fast Information Blocks," "Common Interleaved Frames," and so on.
+
+Fortunately, because of the context of this project, one can ignore these details. Recall that a \gls{pr} system only requires the \gls{dab} processing chain to \emph{reconstruct} a given \gls{dab} signal perfectly according to the standard. Since no actual data (audio, station information, etc.) needs to be extracted from the signal, the specifics of the data-carrying symbols are safely omitted in this report.
 
 \section{Summary}
-
+This chapter provided an insight into the important concepts surrounding the \gls{dab} standard, as defined in~\cite{dabstandard}. This included a detailed description of \gls{cofdm} and \gls{dqpsk}, both of which are fundamental to the \gls{dab} signal. Thereafter, an overview of the \gls{dab} transmission frame was provided.
 
 % ----------------------------------------------------
 \ifstandalone
