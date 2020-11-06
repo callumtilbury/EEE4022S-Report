@@ -101,7 +101,7 @@ However, it was worth understanding how such plots would change were the \gls{da
       \caption{Symbol aligned at \((n_0 + 1)\) samples}
       \label{fig:ofdm-carriers-prs+1}
     \end{subfigure}
-    \caption{Plots showing the magnitude of the \gls{ofdm} carriers for a misaligned \gls{dab} symbol}
+    \caption{Plots showing the magnitude of the \glsentrytext{ofdm} carriers for a misaligned \gls{dab} symbol}
     \label{fig:ofdm-carriers-prs}
   \end{figure}
 
@@ -132,7 +132,7 @@ The demapping of the \gls{dqpsk} data was already discussed somewhat extensively
     \caption{Symbol aligned at \((n_0 + 1)\) samples}
     \label{fig:dqpsk-demap-prs+1}
   \end{subfigure}
-  \caption{Plots of the complex plane with the values from the \gls{dqpsk} demapping of a misaligned \gls{dab} symbol.}
+  \caption{Plots of the complex plane with the values from the \glsentrytext{dqpsk} demapping of a misaligned \glsentrytext{dab} symbol.}
   \label{fig:dqpsk-demap-prs}
 \end{figure}
 
@@ -190,7 +190,7 @@ Over multiple iterations, the results of this test were:
 \end{equation}
 That is, the functions were \emph{exact} inverses of each other. This makes sense, since the data was simply rearranged in the two sub-blocks, without any changes to the actual data values.
 
-\subsection{OFDM Multiplexing \& Demultiplexing}
+\subsection{\glsentrytext{ofdm} Multiplexing \& Demultiplexing}
 The inverse validation test for the \texttt{ofdm\_mux} and \texttt{ofdm\_demux} functions is depicted in Figure~\ref{fig:inverse-ofdm-mux-demux}.
 
 \begin{figure}[htbp]
@@ -211,7 +211,7 @@ Over multiple iterations, the order of magnitude of these test results was:
 \end{equation}
 Notice that the difference between the input and output signals was not exactly zero, but was nonetheless very small. This was due to the numerical inaccuracies involving the use of double-precision floating-point values, together with multiplication, division, \gls{fft} and \gls{ifft} operations. Such an error was sufficiently small to be regarded as zero, implying that the functions were indeed inverses of each other.
 
-\subsection{DQPSK Mapping \& Demapping}
+\subsection{\glsentrytext{dqpsk} Mapping \& Demapping}
 The inverse validation test for the \texttt{dqpsk\_map} and \texttt{dqpsk\_demap} functions is depicted in Figure~\ref{fig:inverse-dqpsk-map-demap}.
 
 \begin{figure}[htbp]
@@ -268,7 +268,7 @@ A graphical depiction of the inverse validation test for the \texttt{remodulate}
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/inverse-remod-demod.pdf_tex}}
-  \caption{Depiction of the inverse relationship validation process for the \texttt{remodulate} and \texttt{demodulate} blocks, using pseudorandomly-generated \gls{dab} data.}
+  \caption{Depiction of the inverse relationship validation process for the \texttt{remodulate} and \texttt{demodulate} blocks, using pseudorandomly-generated \glsentrytext{dab} data.}
   \label{fig:inverse-remod-demod}
 \end{figure}
 
@@ -343,7 +343,7 @@ This test was run across several frames of the signal, all of which had a simila
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=\linewidth]{plots/validation_perfect-data-error.pdf}
-  \caption{Plot of \(|\mathbf{E_R}|\) for a provided perfect \gls{dab} frame.}
+  \caption{Plot of \(|\mathbf{E_R}|\) for a provided perfect \glsentrytext{dab} frame.}
   \label{fig:validation_perfect-data-error}
 \end{figure}
 

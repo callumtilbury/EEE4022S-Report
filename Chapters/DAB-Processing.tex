@@ -56,7 +56,7 @@ The pre-processing block has four key stages: reading in \gls{iq} data from a bi
     \label{fig:BD_Preprocess_All}
 \end{figure}
 
-\subsection{Reading IQ data from file \label{subsect:dab-proc_iq-read}}
+\subsection{Reading \glsentrytext{iq} data from file \label{subsect:dab-proc_iq-read}}
 The first sub-block is called \texttt{iq\_read}, and, as mentioned previously, would likely be very different in a real \gls{pr} chain. Nonetheless, here it reads in a \gls{dab} recording from a binary file, and outputs so-called "raw" \gls{iq} data. No changes are made to this data in this function, and it essentially just abstracts MATLAB's file-handling functionality conveniently.
 
 As a minor note, one must remember that a \gls{dab} recording contains \gls{iq} data, which is complex-valued. Since a binary file cannot store such a datatype, it will usually be stored as pairs of numbers. To read this correctly in MATLAB, one can use the simple code shown in Listing~\ref{code:iq_read}.
@@ -77,7 +77,7 @@ A perfect \gls{dab} recording that would be output from the \texttt{iq\_read} fu
   \label{fig:plots/perfect-dab-signal}
 \end{figure}
 
-\subsection{Resampling IQ data \label{subsect:dab-proc_iq-resample}}
+\subsection{Resampling \glsentrytext{iq} data \label{subsect:dab-proc_iq-resample}}
 In order for one to utilise the \gls{fft} to demodulate an \gls{ofdm} symbol, certain requirements must be met. Recall that the window for a single symbol, notated as \(T_u\), is 2048 samples for \gls{dab} Mode 1. This means that a 2048-point \gls{fft} must be used, with a resulting 2048 points in the frequency domain. Recall also that \gls{ofdm} has a strict requirement for the spacing between adjacent carriers---\(1 \si{\kilo \hertz}\) for \gls{dab} Mode 1. Notice, then, if the sample rate for the original signal is precisely set at \(F_s = 2.048 \si{\mega \hertz}\), for \gls{dab} Mode 1, then the bins from the \gls{fft} will be perfectly aligned on the \gls{ofdm} carriers---enabling proper demouldation.
 
 However, in a real-world scenario, the desired sampling rate might not necessarily be used in the receiver. Thus, in such a situation, the \gls{iq} data must be resampled. Consider an original sampling rate of \(F_s\), a desired sampling rate of \(\tilde{F_s} = 2.048 \si{\mega \hertz}\), with \(F_s \ne \tilde{F_s}\), and with
@@ -89,11 +89,11 @@ where \(P\) and \(Q\) are integers---preferably chosen such that \(P/Q\) is in i
 Fortunately, MATLAB provides a neat abstraction of this process with the \texttt{resample(X, P, Q)} function, where \(X\) is a uniformly sampled signal, and \(P\) and \(Q\) are as defined above.
 
 % -----------------
-\subsection{Frame Synchronization via Phase Reference Symbol Detection \label{subsect:dab-proc_prs-detect}}
+\subsection{Frame Synchronization via \glsentrytext{prs} Detection \label{subsect:dab-proc_prs-detect}}
 
-One of the most important parts of the entire \gls{dab} processing chain is correct time-synchronization. If the frame from the pre-processing block is misaligned, the entire demodulation process can break due to misalignment of the \gls{ofdm} symbols, thus causing havoc in the \gls{dqpsk} demodulation. Fortunately, the inclusion of a guard interval with cyclic prefixing provides some leeway, but errors can easily arise if one is not careful. It will later be shown how negatively a result is affected by the incorrect alignment of a \gls{dab} frame.
+One of the most important parts of the entire \gls{dab} processing chain is correct time-synchronization. If the frame from the pre-processing block is misaligned, the entire demodulation process can break due to misalignment of the \gls{ofdm} symbols, thus causing havoc in the \gls{dqpsk} demodulation. Fortunately, the inclusion of a guard interval with cyclic prefixing provides some leeway, but errors can easily arise if one is not careful. It will later be shown how a result can be negatively affected by the incorrect alignment of a \gls{dab} frame.
 
-There are two mechanisms built into the \gls{dab} signal for synchronization, namely the \acrfull{ns} and the \acrfull{prs}. As specified in the \gls{dab} standard document~\cite{dabstandard}, the former symbol is to be used for so-called "coarse" synchronization---detecting an approximate location of the frame's beginning; whereas the latter symbol is used for "fine" synchronization---detecting the exact sample at which the frame starts. 
+There are two mechanisms built into the \gls{dab} signal for synchronization, namely the \gls{ns} and the \gls{prs}. As specified in the \gls{dab} standard document~\cite{dabstandard}, the former symbol is to be used for so-called "coarse" synchronization---detecting an approximate location of the frame's beginning; whereas the latter symbol is used for "fine" synchronization---detecting the exact sample at which the frame starts. 
 
 Naturally, for each of these detection processes, one cannot consider the entirety of a signal---stretching back from the dawn of time to the eventual collapse of the universe far in the future---more than just practically impossible, it would be unnecessary. Instead only a chunk of the data can be considered at once, as a subset of the longer signal. This process is termed "windowing," where the signal is truncated to a finite domain over which it will be examined. Let the length of this window be notated\footnote{The is not necessarily standardised notation.} as \(T_w\), and let the interval between successive windows be called the "advancement interval", \(T_a\). Graphically, these values are depicted in Figure~\ref{fig:window_advance_illustration}.
 
@@ -352,10 +352,10 @@ A graphical summary of the \texttt{symbol\_unpack} sub-block is given in Figure~
 % \end{lstlisting}
 
 % -------------
-\subsection{OFDM Demultiplexing \label{subsect:dab-proc_ofdm-demux}}
-Recall that a \gls{dab} signal is actually the sum of \(K\) carrier waves, each modulated by an individual bitstream. The use of multiple carriers is termed \acrlong{fdm}, and when the carriers are chosen to be mathematically orthogonal, it is called \acrlong{ofdm}. Regarding the nomenclature for the \gls{dab} processing chain, for the sake of clarity, some simplifications were made. While the carrier waves were technically multiplexed in the frequency domain (hence, the term \acrshort{fdm}), the bitstream from a particular carrier could be easily extracted in this form, without further transformations. In contrast, the time-domain version of the signal first had to be manipulated in order to extract the bitstream information. Thus, for this project, the time-domain perspective was said to be the "multiplexed signal," and the frequency-domain perspective was said to be "demultiplexed." Of course, these signals were, in fact, the same \emph{physical} signal, viewed only through two different lenses.
+\subsection{\glsentrytext{ofdm} Demultiplexing \label{subsect:dab-proc_ofdm-demux}}
+% Recall that a \gls{dab} signal is actually the sum of \(K\) carrier waves, each modulated by an individual bitstream. The use of multiple carriers is termed \acrlong{fdm}, and when the carriers are chosen to be mathematically orthogonal, it is called \acrlong{ofdm}. Regarding the nomenclature for the \gls{dab} processing chain, for the sake of clarity, some simplifications were made. While the carrier waves were technically multiplexed in the frequency domain (hence, the term \acrshort{fdm}), the bitstream from a particular carrier could be easily extracted in this form, without further transformations. In contrast, the time-domain version of the signal first had to be manipulated in order to extract the bitstream information. Thus, for this project, the time-domain perspective was said to be the "multiplexed signal," and the frequency-domain perspective was said to be "demultiplexed." Of course, these signals were, in fact, the same \emph{physical} signal, viewed only through two different lenses.
 
-This sub-block, then, was designed to "demultiplex" the \gls{ofdm} signal---i.e. to extract the \gls{dab} carriers from the provided time-domain symbol data. Recall from the previous chapter that this extraction can be done via a \gls{dft}/\gls{fft} operation. Consider firstly the case of a single symbol from \texttt{dab\_symbols}, which is just a row in the \(L \times T_u\) matrix. To demultiplex this \gls{ofdm} symbol, one can use the simple code given in Listing~\ref{code:ofdm_demux}, where the \gls{fft} of the symbol is divided by its length for correct scaling, and the \texttt{fftshift} command is used to center the frequency axis on \(0\si{\hertz}\).
+This sub-block was designed to "demultiplex" the \gls{ofdm} signal---i.e. to extract the \gls{dab} carriers from the provided time-domain symbol data. Recall from the previous chapter that this extraction can be done via a \gls{dft}/\gls{fft} operation. Consider firstly the case of a single symbol from \texttt{dab\_symbols}, which is just a row in the \(L \times T_u\) matrix. To demultiplex this \gls{ofdm} symbol, one can use the simple code given in Listing~\ref{code:ofdm_demux}, where the \gls{fft} of the symbol is divided by its length for correct scaling, and the \texttt{fftshift} command is used to center the frequency axis on \(0\si{\hertz}\).
 
 \begin{lstlisting}[caption={MATLAB code for demultiplexing an \gls{ofdm} symbol}, label={code:ofdm_demux}]
 dab_carriers(1,:) = fftshift(fft(dab_symbols(1,:))) ./ length(dab_symbols(1,:));
@@ -415,7 +415,7 @@ A graphical summary of the \texttt{ofdm\_demux} sub-block is given in Figure~\re
   \label{fig:ofdm_demux}
 \end{figure}
 
-\subsection{DQPSK Demapping \label{subsect:dab-proc_dqpsk-demap}}
+\subsection{\glsentrytext{dqpsk} Demapping \label{subsect:dab-proc_dqpsk-demap}}
 This sub-block was designed to extract the modulating signal (the original \gls{dab} "data") from the \gls{dab} carriers. Notice that the plots of the carriers shown in the previous subsection were essentially identical from symbol to symbol, especially for the perfect data case. This is because they were showing the \emph{magnitude} of the carriers' spectra, which remains constant over time---recall that the \gls{ofdm} carriers for a \gls{dab} signal are modulated using a \(\pi/4\)-\gls{dqpsk} modulation scheme. The rectangular shape seen in the magnitude plots thus provides a good indication that the \gls{ofdm} symbols were correctly demultiplexed. From that perspective, these plots were an important graphic to consider. However, one must not forget that it is the \emph{phases} of the carriers' spectra that are modulated with actual information.
 
 Consider the carriers from three consecutive symbols---call them \(S_{l-1}\), \(S_{l}\), and \(S_{l+1}\)---of the perfect data. The phase plots for these carriers are shown in Figure~\ref{fig:ofdm-carriers-perfect-angle}.
@@ -623,7 +623,7 @@ Nonetheless, the graphical summary for the \texttt{freq\_deinterleave} function 
   \label{fig:freq_deinterleave}
 \end{figure}
 
-\subsection{DQPSK Snapping \label{subsect:dab-proc_dqpsk-snap}}
+\subsection{\glsentrytext{dqpsk} Snapping \label{subsect:dab-proc_dqpsk-snap}}
 As seen in Figure~\ref{fig:dqpsk_demap_rtl-2over1} and Figure~\ref{fig:dqpsk_demap_raw-2over1}, the \texttt{dqpsk\_demap} sub-block did well to distinguish four groups of differential phase values from the \gls{ofdm} carriers, despite being provided with input data that was fairly spread-out. Nonetheless, the spread of the data within these groups was still a problem---the groups each needed to be assigned to one of four values. Fortunately, provided one can assume that the original, transmitted signal was modulated correctly according the \gls{dab} standard in~\cite{dabstandard}, the four possible \emph{correct} phase-difference angles were known \emph{a priori}. Those being, \(\{-\frac{3\pi}{4}, -\frac{\pi}{4},\frac{\pi}{4}, \frac{3\pi}{4}\}\). Since only the phase is modulated, the magnitude of the carriers should remain constant from symbol to symbol, and thus the magnitude of the complex ratio between any two symbols should be 1. In rectangular co-ordinates, then, the four possible points correspond to the values, \(\pm \frac{1}{\sqrt{2}} \pm j\frac{1}{\sqrt{2}}\).
 
 The easiest way to correct the spread of the \gls{dqpsk} symbols was to re-assign them with the value that was closest to them out of the four possible points. Due to their angles, the four points fall exactly in the centre of each of the four quadrants respectively. Thus, if a given point was in quadrant \(X\), it was guaranteed to be closest to the correct \gls{dqpsk} point in that quadrant. Of course, this method of correcting real-world \gls{dab} data was not perfect, in that it did not apply any robust error-correction techniques to the data, and it likely assigned some edge cases incorrectly. Nonetheless, it was a quick and easy way to extract meaningful \gls{dqpsk} data. This process was termed "snapping", as it snapped given points to their closest possible values. Figure~\ref{fig:dqpsk_snap_rtl} shows an example symbol from real-world data (perfect data need not be snapped, as it is perfect already), where the four groups from the \gls{dqpsk}-demapping fell within the four quadrants on a complex plane. Any given point, then, was simply snapped to the value for that quadrant. The groupings are shown by different colours, and the snapped values are shown by the large blue crosses.
@@ -717,7 +717,7 @@ In terms of dimensions, the sub-block received \((L-1)\) sets of \(K\) carriers,
   \label{fig:freq_interleave}
 \end{figure}
 
-\subsection{DQPSK Mapping \label{subsect:dab-proc_dqpsk-map}}
+\subsection{\glsentrytext{dqpsk} Mapping \label{subsect:dab-proc_dqpsk-map}}
 With the \gls{dab} data values re-interleaved from the previous block, they were then used to modulate the \(T_u\) \gls{ofdm} carriers---a process termed \gls{dqpsk} mapping, in contrast to the demapping process discussed previously. Since differential modulation was used, the \((L-1)\) sets of \gls{dab} data at the input of the sub-block mapped to \(L\)~sets of \gls{dab} carriers. To provide a reference for the differential phase values, the \gls{prs} was assigned to be the first output symbol---recall that this was the other purpose of the \gls{prs}, in addition to the frame synchronization discussed previously. Consider Listing~\ref{code:dqpsk_map-1}, which shows the function set-up, with memory allocation and the assignment of the first symbol.
 
 \begin{lstlisting}[caption={MATLAB code for setting up the \texttt{dqpsk\_map} function.},label={code:dqpsk_map-1}]
@@ -757,7 +757,7 @@ Graphically, the functionality of the \gls{dqpsk} mapping is shown in Figure~\re
   \label{fig:dqpsk_map}
 \end{figure}
 
-\subsection{OFDM Multiplexing \label{subsect:dab-proc_ofdm-mux}}
+\subsection{\glsentrytext{ofdm} Multiplexing \label{subsect:dab-proc_ofdm-mux}}
 The purpose of this sub-block was to convert the modulated \gls{ofdm} carriers into time-domain signals, now reconstructed as perfect \gls{dab} signals. As explained in the \gls{ofdm} \emph{de}-multiplexing subsection, these two perspectives of the signal were, in fact, the same. However, since the data was being transformed from multiple signals from which data could easily be extracted (the \gls{ofdm} carriers), to single signals containing the sum of many carriers, this process was broadly termed "multiplexing."
 
 As was the case for demultiplexing, the \gls{dft}/\gls{fft} could be used for easy extraction and reconstruction of the \gls{ofdm} symbols. Whereas the previous function used the a normal, forward \gls{fft}, this function used the \gls{ifft}---which is logical, considering the inverse relationship of the two blocks: one multiplexes, the other demultiplexes.
@@ -785,7 +785,7 @@ Finally, the purpose of this function was to take the matrix of remodulated \gls
 
 Combining the guard interval for a particular symbol with the symbol itself was straightforward, as is shown in Listing~\ref{code:symbols_pack-1}, where \texttt{l} is the symbol index, and \texttt{dab\_symbols\_remod} is the data coming from the \texttt{ofdm\_mux} sub-block
 
-\begin{lstlisting}[caption={},label={code:symbols_pack-1}]
+\begin{lstlisting}[caption={MATLAB code for prepending a guard interval to a symbol.},label={code:symbols_pack-1}]
 lth_guard = dab_symbols_remod(l, end - dab_mode.Tg + 1 : end); % Last Tg values
 lth_symbol = [lth_guard, dab_symbols_remod(l,:)]; % Full Symbol = [Guard , Original Symbol]
 \end{lstlisting}
