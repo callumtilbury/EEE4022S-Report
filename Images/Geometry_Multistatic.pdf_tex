@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1444.89245922bp}%
+    \setlength{\unitlength}{1478.9082082bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,13 +50,14 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.46404143)%
+  \begin{picture}(1,0.47636879)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{Geometry_Multistatic.pdf}}%
-    \put(0.09626758,0.29218912){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \textcolor[HTML]{000080}{Transmitter 1}}\end{tabular}}}}%
-    \put(0.61566307,0.00993519){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \textcolor[HTML]{800000}{Receiver 1}}\end{tabular}}}}%
-    \put(0.22210821,0.06192819){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \textcolor[HTML]{000080}{Transmitter 2}}\end{tabular}}}}%
-    \put(0.90184704,0.12376751){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \textcolor[HTML]{800000}{Receiver 2}}\end{tabular}}}}%
+    \put(0.10555366,0.2969689){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \textcolor[HTML]{000080}{Transmitter 1}}\end{tabular}}}}%
+    \put(0.61300275,0.02120697){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \textcolor[HTML]{800000}{Receiver 1}}\end{tabular}}}}%
+    \put(0.22849988,0.0720041){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \textcolor[HTML]{000080}{Transmitter 2}}\end{tabular}}}}%
+    \put(0.89260433,0.13242107){\color[rgb]{0,0,0.50196078}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}{\scriptsize \textcolor[HTML]{800000}{Receiver 2}}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Geometry_Multistatic.pdf}}%
   \end{picture}%
 \endgroup%

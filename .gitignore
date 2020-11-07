@@ -4,6 +4,7 @@
 *.synctex.gz
 *.bib.bak
 *.bib.sav
+*.bak.tex
 !Images/*.pdf
 !Images/plots/*.pdf
 !Presentation/Images/*.pdf
