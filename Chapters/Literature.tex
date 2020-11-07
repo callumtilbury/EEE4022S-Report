@@ -108,17 +108,27 @@ It is also important to note that \gls{pr} systems do not have outright immunity
 % DIGITAL BROADCASTING
 %---------------------------------
 \section{Digital Broadcasting}
-Digital broadcasting involves the use of digital signals for the transmission and reception of data via radio communication.
+When considering the innumerable technological advancements of the past century, one cannot overlook the enormous impact of wireless broadcasting. The advent of mass communication, first via radio and later via television, has undoubtedly shaped our culture, our politics, and frankly, our entire lives. \emph{Digital} broadcasting, in contrast to \emph{analogue} broadcasting, involves the use of digital signals for the modulation of carrier waves in the broadcast. Of course, the \gls{em} signals that are actually transmitted are themselves analogue in nature, but the information encoded in them is discretized to a finite set of possible values.
+
+Understanding the development of digital broadcasting---why it has or has not been adopted in its various instances---is an important question in the context of this project, for the following reason: a \gls{pr} system that uses a digital broadcast as an \gls{ioo} relies entirely on that digital broadcast existing in perpetuity. When a particular broadcasting standard ceases to be relevant, the systems designed around that standard become useless. Therefore, it is vital for one to gauge the ubiquity of a particular standard to contemplate the development effort required to integrate it into a practical \gls{pr} system. This section attempts to show briefly the history of and motivations for digital broadcasting, as well as the dominant standards that presently exist in the world. Since this report focuses specifically on \gls{dab}, the entire following chapter is dedicated to the theory behind the \gls{dab} standard and its associated concepts. To avoid needless repetition, these concepts will not be covered comprehensively here.
 
 \subsection{Brief History}
+Around the same time that H\"ulsmeyer et al. were experimenting with early radar systems, there was development occurring in wireless \emph{audio} transmissions. For example, in the final days of 1906, Reginald Fessenden successfully demonstrated the first wireless broadcast by wishing Merry Christmas to nearby ships of the U.S. Navy, as Belrose reminisces in~\cite{Belrose2012}. In the decades that followed, radio broadcasting became a staple of society.
+
+For most of the twentieth century, radio was operated solely via analogue broadcasting techniques, firstly with \gls{am}, and later with \gls{fm} too. The theoretical foundations for digital broadcasting did exist for some time, arguably beginning with Chang's seminal work on \gls{ofdm} in 1966~\cite{Chang1966}, followed by Weinstein and Ebert's insight into using the \gls{dft} for \gls{ofdm} in 1971~\cite{Weinstein1971}. However, the computational power of the computers at the time was simply inadequate for the demands of a digital modulation scheme. Nonetheless, as computers matured, the scene was set to change: investigations into digital broadcasting techniques could begin. For example, in 1985, McNally wrote an article entitled, "Digital Audio in Broadcasting," for the IEEE's Acoustics, Speech, and Signal Processing magazine~\cite{McNally1985}. Soon after, Alard and Lassalle~\cite{lassalle1987principles, Alard1988} discussed the modulation and channel coding requirements for an \gls{ofdm} system; and in 1988, Weck and Theile laid further foundations with their proposal to use convolutional codes and Viterbi decoding in such contexts~\cite{weck1988dab}. Just before the end of the decade, Rault et al.~\cite{Raulta} then released their work on \gls{cofdm}.
+
+Naturally, these developments spurred on a flurry of research into digital broadcasting, for both television~\cite{Bernard1992, stare1992}, and audio~\cite{shelswell1991, Price1992, Maddocks1992}. Around the same time, work was being done on the \emph{Eureka~147} project~\cite{Halliera} in Europe, which later became the \gls{dab} standard---the focus of this report. In the years that followed, many more concepts, designs, and possible architectures were released for digital broadcasting technology. For a richer history of digital radio, specifically looking at \gls{dab}, see~\cite{ONeill2009}; for an exposition of digital television, see~\cite{Wu2006}.
+
 \subsection{Motivations for Digital Broadcasting}
+The benefits and drawbacks of digital broadcasting depend largely on the particular use-case in question. However, there are a handful of consistent advantages.
+
 \subsection{Current Standards \& Adoption}
 
 %---------------------------------
 % DB-based PR
 %---------------------------------
 \section{Digital Broadcasting-based Passive Radar}
-\subection{Overview}
+\subsection{Overview}
 \subsection{Motivation}
 \subsection{Existing Implementations}
 
