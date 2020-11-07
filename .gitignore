@@ -5,4 +5,5 @@
 *.bib.bak
 *.bib.sav
 !Images/*.pdf
+!Images/plots/*.pdf
 !Presentation/Images/*.pdf
