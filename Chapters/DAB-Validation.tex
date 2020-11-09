@@ -311,10 +311,12 @@ This validation test was run on a variety of data, from both perfect and real-wo
 That is, the output signals from the first and second iterations of the chain were identical for every test. On the surface, it may be peculiar that no numerical inaccuracies crept into the results, since such errors did arise in previous validation tests. Nonetheless, this makes sense: the same rounding-off errors that arose via the first iteration's calculations arose identically in those of the second iteration. Either way, these results demonstrate that the designed \gls{dab} processing chain was indeed consistent.
 
 \section{Reference Data Validation}
-All of the data that was provided for this project was accompanied by so-called "reference data"---the \emph{correct} \gls{dab} reconstruction for a given signal. The ultimate test of the designed processing chain, then, was comparing the output thereof to the reference data provided. This validation step was the most robust of all the tests done, as it compared the chain's output directly to a known \gls{dab} processing chain's output. It was also the least helpful in the case of debugging an error, as there would be so many places for an error to arise; thus, it was saved for last.  This step was simply termed "Reference Data" validation.
+Some of the data provided for this project was termed "perfect" data. Essentially, this data had already been processed by another \gls{dab} chain, and was thus known to be a perfect \gls{dab} reconstruction of some signal. The ultimate test of this designed processing chain, then, was comparing the output of the chain when given the perfect input, to the perfect input data itself. This validation step was the most robust of all the tests done, as it compared the chain's output directly to a known \gls{dab} processing chain's output. It was also the least helpful in the case of debugging an error, as there would be so many places for an error to arise; thus, it was saved for last.  This step was simply termed "Reference Data" validation.
+
+Note that this test was subtly different to the Repeated Processing test, done previously. In the latter, the demodulation-remodulation chain was used to generate perfect data, and then used again, to check if the same perfect data was regenerated. On the other hand, this test compared the perfect reference data created by an independent system that was known to be correct, to the perfect reference data created by this chain.
 
 \subsection{Methodology}
-A depiction of this validation step is given in Figure~\ref{fig:reference-data-validation}, where \(\mathbf{X}\)~is the original \gls{dab} frame, \(\mathbf{\tilde{X}}\)~is the output of this project's processing chain for the given frame, and \(\mathbf{\hat{X}}\)~is the provided reference data for that frame---a reconstruction of the \gls{dab} signal that was known to be correct.
+A depiction of this validation step is given in Figure~\ref{fig:reference-data-validation}, where \(\mathbf{X}\)~is the original \gls{dab} frame, \(\mathbf{\tilde{X}}\)~is the output of this project's processing chain for the given frame, and \(\mathbf{\hat{X}}\)~is the provided reference data for that frame---a reconstruction of the \gls{dab} signal that was known to be correct. Since perfect data is being used for this test, \(\mathbf{X=\hat{X}}\). Non-perfect data could be used as well, provided its reference data was available.
 
 \begin{figure}[htbp]
   \centering
@@ -334,9 +336,7 @@ A valid chain would have the values of \(\mathbf{E_R}\) equal to zero, or close 
 
 Unlike the previous validation situations, a valid result from this test would indicate the correct functioning of the \gls{dab} processing chain as a whole, not only in some limited way. Hence, it was a crucial test.
 
-\subsection{Perfect Data}
-Firstly, the chain was tested with perfect \gls{dab} data, which naturally served as its own reference data---that is, \(\mathbf{\hat{X}} = \mathbf{X}\). Note that this test was subtly different to the Repeated Processing test. In the latter, the demodulation-remodulation chain was used to generate perfect data, and then used again, to check if the same perfect data was regenerated. On the other hand, this test compared the perfect reference data created by an independent system that was known to be correct, to the perfect reference data created by this chain.
-
+\subsection{Results}
 This test was run across several frames of the signal, all of which had a similar result. Figure~\ref{fig:validation_perfect-data-error} shows the magnitude of the error signal for one of the provided \gls{dab} frames. Importantly, notice the scale on the vertical axis.
 
 \begin{figure}
@@ -356,56 +356,8 @@ The magnitude of this error was consistent with what was expected, considering t
 
 In light of this test, it was concluded that the designed \gls{dab} processing chain worked correctly when given perfect data.
 
-% \subsection{Real-world Data}
-% The next test was done using real-world data. Of course, there were many candidate signals to be used here---some were noisier and more imperfect than others, some would result in a higher bit error rate, and so on.
-
-% \begin{figure}[htbp]
-%   \centering
-%   \captionsetup{type=figure}
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \captionsetup{type=figure}
-%     \includegraphics[width=\linewidth]{plots/validation_rtl-data-signal.pdf}
-%     \caption{Zoomed-out}
-%     \label{fig:validation_rtl-data-signal}
-%   \end{subfigure}%
-%   \\
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \captionsetup{type=figure}
-%     \includegraphics[width=\linewidth]{plots/validation_rtl-data-signal-zoomed.pdf}
-%     \caption{Zoomed-in}
-%     \label{fig:validation_rtl-data-signal-zoomed}
-%   \end{subfigure}
-%   \caption{Plot of \(|\mathbf{\tilde{X}}|\) and \(|\mathbf{\hat{X}}|\) for a provided real-world \gls{dab} frame.}
-%   \label{fig:validation_rtl-data}
-% \end{figure}
-
-
-
-% \begin{figure}[htbp]
-%   \centering
-%   \captionsetup{type=figure}
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \captionsetup{type=figure}
-%     \includegraphics[width=\linewidth]{plots/validation_rtl-data-error.pdf}
-%     \caption{Zoomed-out}
-%     \label{fig:validation_rtl-data-error}
-%   \end{subfigure}%
-%   \\
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \captionsetup{type=figure}
-%     \includegraphics[width=\linewidth]{plots/validation_rtl-data-error-zoomed.pdf}
-%     \caption{Zoomed-in}
-%     \label{fig:validation_rtl-data-error-zoomed}
-%   \end{subfigure}
-%   \caption{Plot of \(|\mathbf{E_R}|\) for a provided real-world \gls{dab} frame.}
-%   \label{fig:validation_rtl-error}
-% \end{figure}
-
 \section{Summary}
+This chapter presented a series of four validation tests that were performed on the designed \gls{dab} processing chain. Firstly, certain sub-blocks were considered graphically, using the approximate idea of what a correct output would look like for them. Secondly, many of the sub-blocks were tested using their "inverse relationships", where opposite functions in the demodulation and remodulation blocks were considered together, to check if they were truly inverses of each other. Thirdly, the entire chain was then tested by running data through it \emph{twice}, and comparing the outputs of the first and second iterations. Finally, perfect data was provided to the chain, and the output was compared to the input. All of these tests were passed, and there is thus convincing evidence that the designed \gls{dab} chain indeed functions correctly.
 
 % ----------------------------------------------------
 \ifstandalone
