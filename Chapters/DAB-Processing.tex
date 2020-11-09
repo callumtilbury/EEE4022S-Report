@@ -29,7 +29,7 @@ Within the \gls{dab} processing chain, three main functional blocks were identif
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/BD_Overview_All-embed.pdf_tex}}
-  \caption{Block diagram showing entire DAB processing chain}
+  \caption{Block diagram showing entire DAB processing chain.}
   \label{fig:BD_Overview_All}
 \end{figure}
 
@@ -52,7 +52,7 @@ The pre-processing block has four key stages: reading in \gls{iq} data from a bi
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/BD_Preprocess_All-embed.pdf_tex}}
-    \caption{Block diagram showing preprocessing section of processing chain}
+    \caption{Block diagram showing preprocessing section of processing chain.}
     \label{fig:BD_Preprocess_All}
 \end{figure}
 
@@ -73,7 +73,7 @@ A perfect \gls{dab} recording that would be output from the \texttt{iq\_read} fu
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=\linewidth]{plots/perfect-dab-signal.pdf}
-  \caption{Time-domain plot of a handful of frames of a perfect \gls{dab} signal}
+  \caption{Time-domain plot of a handful of frames of a perfect \glsentrytext{dab} signal.}
   \label{fig:plots/perfect-dab-signal}
 \end{figure}
 
@@ -126,7 +126,7 @@ An outline of the coarse detection process is given in Algorithm~\ref{alg:null_s
   \captionsetup{type=figure}
   \begin{minipage}{.75\linewidth}
     \begin{algorithm}[H]
-      \caption{Coarse Frame Synchronization via Null Symbol Detection\label{alg:null_symbol_detect}}
+      \caption{Coarse Frame Synchronization via Null Symbol Detection.\label{alg:null_symbol_detect}}
 
       \DontPrintSemicolon
       \SetAlgoLined
@@ -191,7 +191,7 @@ The output of this filter in time, \(y[n]\), will contain a peak value at the lo
     \caption{Output from Matched Filter, \(y[n]\), with peak detected}
     \label{fig:mf_out_good_peak}
   \end{subfigure}
-  \caption{Plots showing the input to and output from the Matched Filter, when the \gls{prs} symbol is detected}
+  \caption{Plots showing the input to and output from the Matched Filter, when the \glsentrytext{prs} is detected.}
   \label{fig:mf_out_good}
 \end{figure}
 
@@ -217,7 +217,7 @@ Secondly, notice that the peak of the Matched Filter output, in Figure~\ref{fig:
     \caption{Output from Matched Filter, \(y[n]\), with peak erroneously detected}
     \label{fig:mf_out_prefix-problem_peak}
   \end{subfigure}
-  \caption{Plots showing the input to- and output from the Matched Filter, when the \gls{prs} symbol is erroneously detected due to the guard interval}
+  \caption{Plots showing the input to- and output from the Matched Filter, when the \glsentrytext{prs} is erroneously detected due to the guard interval.}
   \label{fig:mf_out_prefix-problem}
 \end{figure}
 
@@ -233,7 +233,7 @@ An outline of the \gls{prs} detection process is given in Algorithm~\ref{alg:prs
   \captionsetup{type=figure}
   \begin{minipage}{.75\linewidth}
     \begin{algorithm}[H]
-      \caption{Fine Frame Synchronization via \gls{prs} Detection\label{alg:prs_detect}}
+      \caption{Fine Frame Synchronization via \gls{prs} Detection. \label{alg:prs_detect}}
 
       \DontPrintSemicolon
       \SetAlgoLined
@@ -289,7 +289,7 @@ Figure~\ref{fig:BD_Demod_All} shows a block diagram for the demodulation process
     \def\svgwidth{\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/BD_Demod_All-embed.pdf_tex}}
-    \caption{Block diagram showing demodulation section of processing chain}
+    \caption{Block diagram showing demodulation section of processing chain.}
     \label{fig:BD_Demod_All}
 \end{figure}
 
@@ -306,7 +306,7 @@ The purpose of this sub-block was simply to split a given \gls{dab} frame into i
   {\setstretch{0.7} % Line spacing
     \scriptsize
       \input{../Images/symbols_unpack_illustration.pdf_tex}}
-  \caption{Illustration of the \texttt{symbol\_unpack} functionality}
+  \caption{Illustration of the \texttt{symbol\_unpack} functionality.}
   \label{fig:symbols_unpack_illustration}
 \end{figure}
 
@@ -327,7 +327,7 @@ A graphical summary of the \texttt{symbol\_unpack} sub-block is given in Figure~
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/symbols_unpack.pdf_tex}}
-  \caption{Graphical summary for \texttt{symbol\_unpack} function}
+  \caption{Graphical summary for \texttt{symbol\_unpack} function.}
   \label{fig:symbols_unpack}
 \end{figure}
 
@@ -381,7 +381,7 @@ Figure~\ref{fig:ofdm-carriers-perfect} shows the plot of the magnitude of the \g
     \caption{Real-world Data}
     \label{fig:ofdm-carriers-raw}
   \end{subfigure}
-  \caption{Plots showing the magnitude of the \gls{ofdm} carriers for a \gls{dab} symbol}
+  \caption{Plots showing the magnitude of the \glsentrytext{ofdm} carriers for a \glsentrytext{dab} symbol.}
   \label{fig:ofdm-carriers}
 \end{figure}
 
@@ -391,7 +391,7 @@ Recall that the \texttt{symbols\_unpack} sub-block from earlier transformed the 
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=0.7\linewidth]{plots/ofdm-surface-perfect.png}
-  \caption{Surface plot of the magnitude of the \gls{ofdm} carriers for perfect data}
+  \caption{Surface plot of the magnitude of the \glsentrytext{ofdm} carriers for perfect data}
   \label{fig:ofdm-surface-perfect}
 \end{figure}
 
@@ -399,7 +399,7 @@ Recall that the \texttt{symbols\_unpack} sub-block from earlier transformed the 
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=0.7\linewidth]{plots/ofdm-surface-raw.png}
-  \caption{Surface plot of the magnitude of the \gls{ofdm} carriers for real-world data}
+  \caption{Surface plot of the magnitude of the \glsentrytext{ofdm} carriers for real-world data.}
   \label{fig:ofdm-surface-raw}
 \end{figure}
 
@@ -411,7 +411,7 @@ A graphical summary of the \texttt{ofdm\_demux} sub-block is given in Figure~\re
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/ofdm_demux.pdf_tex}}
-  \caption{Graphical summary of the \texttt{ofdm\_demux} function}
+  \caption{Graphical summary of the \texttt{ofdm\_demux} function.}
   \label{fig:ofdm_demux}
 \end{figure}
 
@@ -446,7 +446,7 @@ Consider the carriers from three consecutive symbols---call them \(S_{l-1}\), \(
     \caption{\(\angle S_{l+1}\)}
     \label{fig:ofdm-carriers-perfect-angle-3}
   \end{subfigure}
-  \caption{Plots showing the phase of \gls{ofdm} carriers for a three consecutive \gls{dab} symbols of perfect data}
+  \caption{Plots showing the phase of \glsentrytext{ofdm} carriers for a three consecutive \glsentrytext{dab} symbols of perfect data.}
   \label{fig:ofdm-carriers-perfect-angle}
 \end{figure}
 
@@ -494,7 +494,7 @@ It was also useful to view the angles of the carrier waves on a complex plane. T
     \caption{\(D_{l-1} = S_{l}/S_{l-1}\)}
     \label{fig:dqpsk_demap_perfect-2over1}
   \end{subfigure}
-  \caption{Plots shown on the complex plane of various data derived from a perfect \gls{dab} signal.}
+  \caption{Plots shown on the complex plane of various data derived from a perfect \glsentrytext{dab} signal.}
   \label{fig:dqpsk_demap_perfect}
 \end{figure}
 
@@ -526,7 +526,7 @@ Though the plots in Figure~\ref{fig:dqpsk_demap_perfect} are correct, they do no
     \caption{\(D_{l-1} = S_{l}/S_{l-1}\)}
     \label{fig:dqpsk_demap_rtl-2over1}
   \end{subfigure}
-  \caption{Plots shown on the complex plane of various data derived from a real-world \gls{dab} signal.}
+  \caption{Plots shown on the complex plane of various data derived from a real-world \glsentrytext{dab} signal.}
   \label{fig:dqpsk_demap_rtl}
 \end{figure}
 
@@ -560,7 +560,7 @@ Consider an even more extreme example, from some poor-quality \gls{dab} data. Fi
     \caption{\(D_{l-1} = S_{l}/S_{l-1}\)}
     \label{fig:dqpsk_demap_raw-2over1}
   \end{subfigure}
-  \caption{Plots shown on the complex plane of various data derived from a poor-quality \gls{dab} signal.}
+  \caption{Plots shown on the complex plane of various data derived from a poor-quality \glsentrytext{dab} signal.}
   \label{fig:dqpsk_demap_raw}
 \end{figure}
 
@@ -579,7 +579,7 @@ In summary, this block "demapped" the \gls{dqpsk}-modulated data from the \gls{d
 \subsection{Frequency Deinterleaving \label{subsect:dab-proc_freq-deinterleave}}
 This sub-block, termed \texttt{freq\_deinterleave}, was created to receive \((L-1)\) interleaved sets of \gls{dqpsk}-demodulated data, and return the same data but deinterleaved according to a given map. In the previous chapter, the problem of frequency-selective fading was discussed, along with the \gls{dab} standard's mitigation strategy of interleaving the \gls{ofdm} carriers in a particular way. The precise motivation and details of the specific map used for interleaving are given in \gls{etsi}'s document in~\cite{dabstandard}. Note that the input data, the output of the \texttt{dqpsk\_demap} block, included all \(T_u\) carriers, including those which were outside the band of the central \(K\) carriers. In performing the frequency deinterleaving process, this function also removed the out-of-band carriers, leaving only the \(K\) relevant carriers.
 
-For convenience, a helper function was written in \textsc{Matlab}, called \texttt{build\_interleave\_map()}, which returned an array mapping the \(K\) indices of an array to \(K\) corresponding interleaved indices. Importantly, note that the mapping used differs for each of the four \gls{dab} transmission modes. Since this project was designed using Mode I signals, the code was implemented with Mode I's interleaving map, and with \(K = 1536\). The full code for this function is provided in Appendix (?). Future work should be done to enable this functionality for all four \gls{dab} modes.
+For convenience, a helper function was written in \textsc{Matlab}, called \texttt{build\_interleave\_map()}, which returned an array mapping the \(K\) indices of an array to \(K\) corresponding interleaved indices. Importantly, note that the mapping used differs for each of the four \gls{dab} transmission modes. Since this project was designed using Mode I signals, the code was implemented with Mode I's interleaving map, and with \(K = 1536\). Future work should be done to enable this functionality for all four \gls{dab} modes.
 
 Once the interleave map was created, deinterleaving the frequency components was trivial, as it simply entailed indexing the \textsc{Matlab} matrices appropriately. The \texttt{freq\_deinterleave} function is given in Listing~\ref{code:freq_deinterleave}. Notice that this code is independent of the \gls{dab} mode used, relying only on a generic interleaving map.
 
@@ -595,7 +595,7 @@ When visualized, the deinterleaving of the frequency components is not particula
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=0.9\linewidth]{plots/freq_deinterleave_plot.pdf}
-  \caption{Phase plot for the carriers of a real-world \gls{dab} symbol, before and after frequency deinterleaving.}
+  \caption{Phase plot for the carriers of a real-world \glsentrytext{dab} symbol, before and after frequency deinterleaving.}
   \label{fig:freq_deinterleave_plot}
 \end{figure}
 
@@ -606,7 +606,7 @@ Even the plot of the interleaving map for Mode I looks somewhat arbitrary, as se
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=\linewidth]{plots/interleave_map.pdf}
-  \caption{Interleave map for \gls{dab} Transmission Mode I.}
+  \caption{Interleave map for \glsentrytext{dab} Transmission Mode I.}
   \label{fig:interleave_map}
 \end{figure}
 
@@ -632,7 +632,7 @@ The easiest way to correct the spread of the \gls{dqpsk} symbols was to re-assig
   \centering
   \captionsetup{type=figure}
   \includegraphics[width=0.8\linewidth]{dqpsk_snap-rtl.pdf}
-  \caption{Graphic showing the assignment of \gls{dqpsk} data to one of four known values, based on the quadrant in which the data lies.}
+  \caption{Graphic showing the assignment of \glsentrytext{dqpsk} data to one of four known values, based on the quadrant in which the data lies.}
   \label{fig:dqpsk_snap_rtl}
 \end{figure}
 
@@ -644,7 +644,7 @@ The same data points are plotted against their corresponding carrier indices in 
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
       \input{../Images/dqpsk_snap_rtl-alt.pdf_tex}}
-  \caption{Alternative plot of the \gls{dqpsk} snapping situation, viewed across the \(K\) carriers, showing the snapped values and decision boundaries.}
+  \caption{Alternative plot of the \glsentrytext{dqpsk} snapping situation, viewed across the \(K\) carriers, showing the snapped values and decision boundaries.}
   \label{fig:dqpsk_snap_rtl-alt}
 \end{figure}
 
@@ -741,7 +741,7 @@ Recall that the \gls{dab} data used in this sub-block ultimately came from the o
   \def\svgwidth{\linewidth}
   {\setstretch{0.7} % Line spacing
     \input{../Images/dqpsk_map-demo.pdf_tex}}
-  \caption{Demonstration of a section of the processing chain converting a noisy \gls{ofdm} symbol into a clean one.}
+  \caption{Demonstration of a section of the processing chain converting a noisy \glsentrytext{ofdm} symbol into a clean one.}
   \label{fig:dqpsk_map-demo}
 \end{figure}
 
