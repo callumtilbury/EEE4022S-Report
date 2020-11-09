@@ -61,8 +61,8 @@ The first sub-block is called \texttt{iq\_read}, and, as mentioned previously, w
 
 As a minor note, one must remember that a \gls{dab} recording contains \gls{iq} data, which is complex-valued. Since a binary file cannot store such a datatype, it will usually be stored as pairs of numbers. To read this correctly in \textsc{Matlab}, one can use the simple code shown in Listing~\ref{code:iq_read}.
 
-\begin{lstlisting}[caption={Creating a complex data array with the values read from a binary file},label={code:iq_read}]
-iq_data_raw = data_from_file(1:2:end) + 1j*data_from_file(2:2:end);
+\begin{lstlisting}[caption={\textsc{Matlab} code for creating a complex data array with the values read from a binary file.},label={code:iq_read}]
+iq_data_raw = data_from_file(1:2:end) + j*data_from_file(2:2:end);
 \end{lstlisting}
 
 Though it is not shown in the pre-processing block diagrams, the \textsc{Matlab} function for \texttt{iq\_read} also included some other input parameters for convenience, including the data-type of the binary file, the offset to skip in the file's data, the number of frames to read, and so on.
@@ -805,7 +805,7 @@ Graphically, this function is summarised in Figure~\ref{fig:symbols_pack}.
 \end{figure}
 
 \section{Summary}
-This chapter thoroughly explored the design of a \gls{dab} processing chain, starting with a high-level overview of the system via block diagrams, and later moving into the details of each block and sub-block. Plots were provided where appropriate, both to demonstrate the functionality of the code, and to provide a summarised graphical reference of each block, to be used when working with the chain. Short code snippets were given where necessary, in order to convey the essence of the chain's functioning. Longer form algorithms were provided for the frame synchronisation methods, since these were non-trivial.
+This chapter thoroughly explored the design of a \gls{dab} processing chain, starting with a high-level overview of the system via block diagrams, and later moving into the details of each block and sub-block. Plots were provided where appropriate, both to demonstrate the functionality of the code, and to provide a summarised graphical reference of each block, to be used when working with the chain. Short code snippets were given where necessary, in order to convey the essence of certain required steps. Longer form algorithms were provided for the frame synchronisation methods, since these were non-trivial.
 
 % ----------------------------------------------------
 \ifstandalone
