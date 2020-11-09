@@ -11,8 +11,22 @@
     {\emph{---Abraham Lincoln}}
 % ----------------------------------------------------
 
+The nature of this short project has left many interesting and important aspects of the topic unaddressed. It is hoped that the cursory work completed here will act as a trampoline for future investigations. The recommendations for further study are summarised briefly below.
 
+\section{\glsentrytext{dab} Processing Chain}
+\begin{itemize}
+    \item The use of the other three \gls{dab} transmission modes should be investigated and tested.
+    \item Frequency synchronisation methods should be considered and implemented into the existing \gls{dab} processing blocks.
+    \item The built-in error correction techniques of the \gls{dab} signal should be further explored and applied to real-world data.
+    \item The designed \textsc{Matlab} code should be ported into a language appropriate for real-time implementation, such as \textsc{C++}, and this code should be optimised where possible. Much more work can be done in considering the efficiency of the algorithms and indivudal sub-blocks too.
+    \item The entire processing chain should be adapted to allow for live streaming of \gls{dab} data, rather than simply reading from a pre-recorded binary file.
+\end{itemize}
 
+\section{Real-world Passive Radar Integration}
+\begin{itemize}
+    \item The \gls{dab} processing blocks should be integrated into an actual \gls{pr} processing system.
+    \item The \gls{pr} system should then be tested with regards to effiency, accuracy, and similar metrics, with and without the various \gls{dab} processing techniques and blocks.
+\end{itemize}
 
 
 
