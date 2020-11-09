@@ -10,23 +10,17 @@
 \fi
 % ----------------------------------------------------
 \chapter{Literature Review \label{ch:literature}}
-% \epigraph{I say with Didacus Stella, a dwarf standing on the shoulders of a giant may see farther than a giant himself.}%
-%     {\emph{---Robert Burton}}
 \epigraph{If you wish to make an apple pie from scratch, you must first invent the universe.}%
     {\emph{---Carl Sagan}}
 % ----------------------------------------------------
-This chapter aims to establish the context for this project, by considering its place within a broader literary sphere. Fundamentally, if one wanted to implement a \gls{dab} processing chain in software, one would only need to consult the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, and perhaps one or two more papers for assistance. However, in doing so, one might erroneously overlook the reasons for which the chain here is being designed: integration into a \gls{pr} system. Consequently, the chain would likely be ill-suited for the specific needs of such a system. Instead, it is important to understand the situations in which this chain is intended to operate, to use later as a foundation for the design, testing, and validation of the chain. Therefore, the surveillance of the literature done here hopes mostly to paint a backdrop for the reader, providing a general insight into the motivations for the project, and the existing work that relates to it.
+This chapter aims to establish the context for this project, by considering its place within a broader literary sphere. Fundamentally, if one wanted to implement a conventional \gls{dab} processing chain in software, one would only need to consult the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, and perhaps one or two more papers for assistance. However, in doing so, one might erroneously overlook the reasons for which the chain here is being designed: integration into a \gls{pr} system. Consequently, the resulting chain would likely be ill-suited for the specific needs of such a system. Instead, it is important to understand the situations in which this chain is intended to operate, and use this as a foundation for the chain's design, testing, and validation. Therefore, the surveillance of the literature done here hopes mostly to paint a backdrop for the reader, providing a general insight into the motivations for the project, and the existing work that relates to it.
 
-The chapter begins by examining \gls{pr} and digital broadcasting methods (such as \gls{dab}) in two separate sections, as independent concepts. Each concept has an interesting history, a rich theoretical foundation, a unique set of advantages and disadvantages, and deserves to be considered in isolation. With the stage then set, the  integration of digital broadcasting into \gls{pr} is discussed, including the motivations for such integration, and a broad overview of the work done so far in this domain. Finally, a short critique of the literature is presented, outlining the proposed value of this report.
+The chapter begins by examining \gls{pr} and digital broadcasting methods---such as \gls{dab}---in two separate sections, as independent concepts. Each concept has an interesting history, a rich theoretical foundation, a unique set of advantages and disadvantages, and deserves to be considered in isolation. With the stage then set, the integration of digital broadcasting into \gls{pr} is discussed, including the motivations for such integration, and a broad overview of the work done so far in this domain. Finally, a short critique of the literature is presented, outlining the proposed value of this report.
 
 %---------------------------------
 % PASSIVE RADAR
 %---------------------------------
 \section{Passive Radar}
-% Fundamentally, radar\footnote{The word \emph{radar} was originally derived from the acronym, \acrlong{radar}; however, it has subsequently become a common noun, and is used in this report as such.} is a fairly straightforward concept, one that is analogous to the biological mechanism of \emph{echolocation}---used by animals such as bats and dolphins. In the simplest form, a radar system consists of a co-located transmitter and receiver. If the transmitter sends out an \gls{em} signal---a short pulse, for example---this signal will propagate through space, hitting objects as it does. The collection of objects is often called a \emph{scene}. Depending on the properties of the objects the \gls{em} waves hit, some of the energy will reflect off of them, thus travelling back to the receiver. There will be a variety of time delays between sending out the signal and receiving the reflections, depending on the positions of the objects. Since these waves are travelling at the speed of light, which is known,\footnote{The speed of light in a vacuum, \(c\), is known exactly, as our measurement of distance is actually defined in terms of \(c\), not the other way around. The speed of light in air, however, is slightly slower than this---and is thus an approximation. Nevertheless, this difference is usually negligible.} the time delays can be converted to distances---thus revealing the ranges to the various objects. Additional complexity can be introduced to calculate the objects' actual positions, velocities, and so on. This is the basis for an \emph{active} radar system---because the transmitter is \emph{actively} producing the \gls{em} waves.
-
-% A \gls{pr} system, on the other hand, is different: instead of having a transmitter and receiver, it only has the latter. Rather than actively transmitting signals, it uses existing \gls{em} transmissions---sometimes called \gls{ioo}~\cite{Griffiths1992}---that are being transmitted by some other operator---a radio station, for example. While the mathematics is slightly more complicated for this approach, the core idea remains the same: reflections of the transmitted signal are measured, and using the calculated time delays, the locations of objects are calculated. This approach is sometimes called Passive Coherent Location, Passive Bistatic Radar, or Commensal Radar. The simple term, \gls{pr}, will be used throughout this report.
-
 \subsection{Brief History}
 The history of \gls{pr} naturally begins as a history of radar itself. Like most scientific breakthroughs, it is difficult to attribute the development of radar solely to one individual or group, and frankly, it would be disingenuous to do so---it arrived via a long line of successive discoveries, sometimes even with multiple independent discoveries of the same thing, as highlighted by Brown~\cite{brown1999technical}. A good starting point for this history is in 1865, when the Scottish mathematical physicist, James Maxwell, published his seminal work~\cite{maxwell1865viii}, in which the now-famous \emph{Maxwell's equations} were first demonstrated, albeit in a verbose form. In doing so, Maxwell correctly predicted that \Gls{em} waves travel through free space at the speed of light~\cite{Sengupta2003}. Three decades later, through a host of experiments done between 1885 and 1889, Heinrich Hertz was able to verify these equations and, more relevantly, demonstrate the \emph{reflection} of \gls{em} waves~\cite{hertz1893electromagnetic, Cichon1995}, amongst other things. In the subsequent years, this work was continued by many more scientists---each of whom helped construct the stage on which radar technology could develop.
 
@@ -42,7 +36,7 @@ Radar systems can be divided into three broad categories, based on the geometry 
 \begin{figure}[htbp]
     \centering
     \captionsetup{type=figure}
-    \begin{subfigure}[t]{0.48\textwidth}
+    \begin{subfigure}[t]{0.43\textwidth}
         \centering
         \def\svgwidth{\linewidth}
         {\setstretch{0.7} % Line spacing
@@ -51,7 +45,7 @@ Radar systems can be divided into three broad categories, based on the geometry 
         \label{fig:Geometry_Monostatic}
     \end{subfigure}%
     ~ 
-    \begin{subfigure}[t]{0.48\textwidth}
+    \begin{subfigure}[t]{0.43\textwidth}
         \centering
         \def\svgwidth{\linewidth}
         {\setstretch{0.7} % Line spacing
@@ -132,7 +126,10 @@ Finally, digital broadcasting also offers more functionality to the end-user. A 
 
 Despite the many benefits of digital broadcasting systems---of which only some were mentioned---analogue broadcasting systems remain popular around the world. This reality is less about the \emph{disadvantages} of moving towards digital broadcasting, and more about the practicalities of doing so. Since analogue broadcasting has existed for many decades, the receivers for \gls{am}, \gls{fm}, and similar transmissions remain cheaply and widely available. Accordingly, the transition from analogue to digital requires an enormous amount of political will and regulatory effort, as demonstrated by South Africa's failed switch-over. Here, the \emph{Broadcasting Digital Migration Policy} was issued by the Department of Communications in 2008~\cite{icasaNotice2008}, where the \gls{icasa} was tasked with rolling-out digital television, such that there would be an "analogue switch-off" in 2011. As of late-2020, after countless delays, this has yet to occur.
 
+\textcolor{red}{
 \subsection{Current Standards \& Adoption}
+To include?
+}
 % The current digital broadcasting landscape is somewhat divided across the globe. For digital television,  For digital audio transmissions---superseding \gls{am} and \gls{fm}---
 
 %---------------------------------
