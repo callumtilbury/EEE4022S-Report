@@ -11,7 +11,7 @@
     {\emph{---Karl Marx}}
 % ----------------------------------------------------
 
-This report describes a project done to implement a processing chain for \gls{dab} signals, specifically oriented for the context of \gls{pr}. The project involved research into the \gls{dab} standard, design and implementation of a corresponding processing chain, and a series of validation steps taken to ensure its correctness. This cursory chapter aims to outline the background for the project, followed by a listing of the project's key objectives, requirements, and scope.
+This report describes a project involving the implementation of a processing chain for \gls{dab} signals, specifically oriented for the context of \gls{pr}. The project consisted of research into the \gls{dab} standard, design and implementation of a corresponding processing chain, and a series of validation steps taken to ensure its correctness. This cursory chapter aims to outline the background for the project, followed by a listing of the project's key objectives, requirements, and scope.
 
 \section{Background}
 Fundamentally, radar\footnote{The word \emph{radar} was originally derived from the acronym, \acrlong{radar}; however, it has subsequently become a common noun, and is used in this report as such.} is a fairly straightforward concept, one that is analogous to the biological mechanism of \emph{echolocation}---used by animals such as bats and dolphins. In the simplest form, a radar system consists of a co-located transmitter and receiver. If the transmitter sends out an \gls{em} signal---a short pulse, for example---this signal will propagate through space, hitting objects as it does. The collection of objects is often called a \emph{scene}. Depending on the properties of the objects the \gls{em} waves hit, some of the energy will reflect off them, thus travelling back to the receiver. There will be a variety of time delays between sending out the signal and receiving the reflections, depending on the positions of the objects. Since these waves are travelling at the speed of light, which is known,\footnote{The speed of light in a vacuum, \(c\), is known exactly, as our measurement of distance is actually defined in terms of \(c\), not the other way around. The speed of light in air, however, is slightly slower than this---and is thus an approximation. Nevertheless, this difference is usually negligible.} the time delays can be converted to distances---thus revealing the ranges to the various objects. Additional complexity can be introduced to calculate the objects' actual positions, velocities, and so on. This is the basis for an \emph{active} radar system---because the transmitter is \emph{actively} producing the \gls{em} waves.
@@ -30,18 +30,22 @@ The broad objective of this project was to design and build a \gls{dab} processi
 
 \section{System Requirements}
 Based on the objectives above, a set of general system requirements were defined. The designed \gls{dab} processing chain was required to have the ability to:
-\begin{itemize}
-    \item Pre-process a \gls{dab} signal from a provided recording.
-    \item Demodulate the frames of the \gls{dab} signal.
-    \item Remodulate the demodulated data, back into \gls{dab} frames, but perfectly reconstructed.
-\end{itemize}
+
+{
+    \setstretch{0.8}
+    \begin{itemize}
+        \item Pre-process a \gls{dab} signal from a provided recording.
+        \item Demodulate the frames of the \gls{dab} signal.
+        \item Remodulate the demodulated data, back into \gls{dab} frames, but perfectly reconstructed.
+    \end{itemize}
+}
 
 \section{Scope \& Limitations}
 This project was considerably time-bound, with approximately fourteen weeks from its genesis to its submission. Moreover, the ongoing COVID-19 pandemic created additional barriers for both students and staff during this period. Owing to this, the study was intentionally kept fairly narrow in scope.
 
 Formally, the scope of the project centred around an implementation of the required \gls{dab} functionality---pre-processing, demodulation, and remodulation---in \textsc{Matlab}. This code was to be separated into a set of functions, and submitted in conjunction with this report. Motivations for the design decisions made were to be well justified and documented. Block diagrams for each function were also to be documented, as well each function's associated component-steps and algorithms. An array of validation tests were expected to be formulated, including some tests using provided reference data. These tests were to demonstrate convincingly that the chain indeed worked.
 
-In terms of the project's limitations, there were several. Firstly, within the \gls{dab} chain itself, some processing steps could be omitted for simplicity. These being: frequency synchronisation, and the implementation of error correction. Secondly, the \gls{dab} processing chain was not necessarily required to be \emph{optimised}, and its efficiency, execution times, and other related metrics were not to be considered whatsoever. Thirdly, pre-recorded data was used in the demodulation and remodulation chains. \textcolor{red}{(Update)} Finally, the processing chain was not intended to be integrated into a real-world \gls{pr} system during the course of the project. In fact, no \gls{pr} processing was required to be tested at all.
+In terms of the project's limitations, there were several. Firstly, within the \gls{dab} chain itself, some processing steps could be omitted for simplicity. These being: frequency synchronisation, and the implementation of error correction. Secondly, the \gls{dab} processing chain was not necessarily required to be \emph{optimised}, and its efficiency, execution times, and other related metrics were not to be considered whatsoever. Thirdly, only pre-recorded data was to be used in the demodulation and remodulation chain---in contrast, data would probably be live-streamed in a practical system. Finally, the processing chain was not intended to be integrated into a real-world \gls{pr} system during the course of the project. In fact, no \gls{pr} processing was required to be tested at all.
 
 \section{Report Outline}
 This report begins with a broad surveillance of the relevant literature for the project, in Chapter~\ref{ch:literature}. Thereafter, an unpacking of the relevant aspects of the \gls{dab} standard is presented in Chapter~\ref{ch:dab-standard}, including a detailed explanation of the theoretical concepts that underpin the core \gls{dab} functionality. With the standard then established, Chapter~\ref{ch:dab-processing} provides a thorough exhibition of the design of the \gls{dab} processing chain, including the relevant block diagrams and sample outputs. To ensure the correctness of the designed chain, Chapter~\ref{ch:dab-validation} outlines the validation steps that were taken for the project. After this, a short illustrative segment is provided in Chapter~\ref{ch:pr-integration}, showing how the \gls{dab} processing blocks would fit into a larger \gls{pr} system. Finally, conclusions are made and recommendations provided, in Chapters~\ref{ch:conclusions} and~Chapter~\ref{ch:recommendations} respectively. Appendices follow with miscellaneous information that appeared during the report.

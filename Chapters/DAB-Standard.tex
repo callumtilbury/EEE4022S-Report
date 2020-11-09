@@ -15,14 +15,12 @@
 % ----------------------------------------------------
 
 \section{Overview}
-This chapter aims to outline the salient aspects of the \gls{dab} standard, as prescribed by the \gls{etsi} in~\cite{dabstandard}. Fundamentally, the \gls{dab} standard was built upon two important communication technologies: \acrfull{cofdm}, and \acrfull{dqpsk}. Without the innovations witnessed in these domains in the latter half of the twentieth century, it is unlikely that the \gls{dab} system could have been adequately designed, while maintaining a suitable degree of spectral efficiency and information robustness. Each of these concepts will thus be thoroughly discussed in the following sections. Thereafter, the \gls{dab} frame structure will be outlined, with the key regions highlighted where appropriate.
+This chapter aims to outline the salient aspects of the \gls{dab} standard, as prescribed by the \gls{etsi} in~\cite{dabstandard}. Fundamentally, the \gls{dab} standard was built upon two important communication technologies: \gls{cofdm}, and \gls{dqpsk}. Without the innovations witnessed in these domains in the latter half of the twentieth century, it is unlikely that the \gls{dab} system could have been adequately designed, while maintaining a suitable degree of spectral efficiency and information robustness. Each of these concepts will thus be thoroughly discussed in the following sections. For the sake of clarity, the provided explanations attempt to be as graphical as possible, leaving out the sometimes-obfuscating mathematical details. Thereafter, the \gls{dab} frame structure will be outlined, with the key regions highlighted where appropriate.
 
 Note, however, that this project focused on \gls{dab} signals within the context of \gls{pr}; therefore, it was unnecessary to provide a complete and thorough description of the \gls{dab} format itself. Instead, information was considered only insofar as it was relevant to the broader picture of a \gls{pr} processing chain. As a consequence, the details surrounding \gls{dab}'s audio coding, configuration information, and other data features were omitted for simplicity.
 
 \section{Coded Orthogonal Frequency Division Multiplexing}
-\gls{cofdm} is the first pillar upon which the \gls{dab} standard was built. As its name suggests, this technology is a special case of \gls{ofdm}, which itself is a special case of \gls{fdm}. Each of these concepts will be explored in the coming text, along with other important considerations surrounding the implementation of \gls{ofdm}, starting with the motivation for it.
-
-\textcolor{red}{Mention Rault~\cite{Raulta} and Sheswell~\cite{Shelswell1995}}
+\gls{cofdm} is the first pillar upon which the \gls{dab} standard was built. As its name suggests, this technology is a special case of \gls{ofdm}, which itself is a special case of \gls{fdm}. Each of these concepts will be explored in the coming text, along with other important considerations surrounding the implementation of \gls{cofdm}, starting with the motivation for it. The reader is also encouraged to see~\cite{Raulta} and~\cite{Shelswell1995} for a deeper exploration of \gls{cofdm}.
 
 \subsection{Motivation: The Problem of Multipath \label{subsect:multipath}}
 
@@ -151,7 +149,7 @@ The reason that the sub-carriers can be placed so close together, without crosst
     \def\svgwidth{0.8\linewidth}
     {\setstretch{0.7} % Line spacing
         \input{../Images/ofdm-three-sincs.pdf_tex}}
-    \caption{Three \(\mathrm{Sa}(\omega)\) spectra arranged orthogonally.}
+    \caption{Plot showing three \(\mathrm{Sa}(\omega)\) spectra arranged orthogonally.}
     \label{fig:ofdm-three-sincs}
 \end{figure}
 
@@ -171,7 +169,7 @@ While the \gls{ofdm} method is a conceptually clever one, it could not be easily
         \scriptsize
         \input{../Images/ofdm-multipliers.pdf_tex}
     }
-    \caption{Depicting of a multiplier approach to \glsentrytext{ofdm}}
+    \caption{Depiction of a multiplier approach to \glsentrytext{ofdm}.}
     \label{fig:ofdm-multipliers}
 \end{figure}
 
@@ -313,7 +311,7 @@ This scheme is usually termed \(\pi/4\)-\gls{dqpsk}, but hereafter this distinct
 \section{Transmission Frame}
 The previous two sections have detailed the two core technologies that underpin the \gls{dab} standard: \gls{cofdm}, and \gls{dqpsk}. It is important now to discuss how these concepts are practically implemented in a \gls{dab} signal. This section begins with an overview of a \gls{dab} "symbol", followed by the structure of a \gls{dab} "transmission frame" in the time domain. The three relevant regions in this structure are then highlighted briefly. Relevance in this context reflects that which is useful in a broader \gls{pr} system, not necessarily what is relevant in a \gls{dab} radio receiver system.
 
-Note that the dimensions provided in the coming text are all generic, independent of the \gls{dab} transmission mode used. Appendix~\cite{sect:dab_t-mode} provides a table showing the actual values for these dimensions for each of the possible modes.
+Note that the dimensions provided in the coming text are all generic, independent of the \gls{dab} transmission mode used. Appendix~\ref{sect:dab-values_t-mode} provides a table showing the actual values for these dimensions for each of the possible modes.
 
 \subsection{Overview}
 Fundamentally, a \gls{dab} signal is constituted of a series of \gls{dab} transmission "frames", where each frame is a collection of \gls{dab} "symbols" (i.e. \gls{ofdm} symbols). In the frequency domain, each \gls{dab} symbol contains \(K\) adjacent \gls{ofdm} sub-carriers, arranged symmetrically around a central frequency, which itself is not a sub-carrier. Hence, the \gls{dab} spectrum spans \((K+1)\) sub-carriers, with a spacing of \(\Delta\omega\) between each of them\footnote{Recall that, for orthogonality to hold over an integration period of \(T\), the relationship of  \(\Delta\omega = \frac{2\pi}{T}\) must hold.}. The magnitude of the frequency spectrum of a single \gls{dab} symbol is depicted in Figure~\ref{fig:dab-single-symbol-diagram}, along with various annotations of the aforementioned information.
@@ -371,7 +369,7 @@ The \gls{ns} is a period that begins the \gls{dab} frame, where all \gls{ofdm} s
 \subsection{Phase Reference Symbol \label{subsect:dab-std_prs}}
 The \gls{prs} is the first of the \(L\) \gls{dab} symbols within a frame, and is arguably the most important. Fundamentally, it serves two purposes. Firstly, as mentioned previously, it provides a reference for the differential modulation of the subsequent symbols. Secondly, it serves as a mechanism for "fine" synchronisation of the \gls{dab} frame. Because the \gls{prs} consists of known values, detecting the location of these values in a received signal can reveal the precise beginning of a frame. Together, the \gls{ns} and the \gls{prs} are called the "Synchronisation Channel."
 
-The \gls{prs} is generated via a specifically-defined process outlined in the \gls{dab} standard, which uses various formulae and look-up tables~\cite{dabstandard}. The details of this process for Transmission Mode~I are included in Appendix~\cite{sect:dab_prs}. Note that the values of the \gls{prs} are not arbitrary: they create a so-called \gls{cazac} waveform in time, which facilitates robust detection in the presence of noise and other unwanted effects~\cite{gandy2003dab}.
+The \gls{prs} is generated via a specifically-defined process outlined in the \gls{dab} standard, which uses various formulae and look-up tables~\cite{dabstandard}. The details of this process for Transmission Mode~I are included in Appendix~\ref{sect:dab-values_prs}. Note that the values of the \gls{prs} are not arbitrary: they create a so-called \gls{cazac} waveform in time, which facilitates robust detection in the presence of noise and other unwanted effects~\cite{gandy2003dab}.
 
 \subsection{Data-carrying Symbols \label{subsect:dab-std_data}}
 The "data-carrying" symbols are all those that follow the \gls{prs} in a \gls{dab} frame. Note that this terminology is not used in the \gls{dab} specifications document whatsoever, and is introduced here for the sake of simplicity. The formal \gls{dab} standard delves into the technicalities of these symbols, dividing them into a "Fast Information Channel," and a "Main Service Channel." It further defines concepts such as "Fast Information Blocks," "Common Interleaved Frames," and so on.
@@ -379,7 +377,7 @@ The "data-carrying" symbols are all those that follow the \gls{prs} in a \gls{da
 Fortunately, because of the context of this project, one can ignore these details. Recall that a \gls{pr} system only requires the \gls{dab} processing chain to \emph{reconstruct} a given \gls{dab} signal perfectly according to the standard. Since no actual data (audio, station information, etc.) needs to be extracted from the signal, the specifics of the data-carrying symbols are safely omitted in this report.
 
 \section{Summary}
-This chapter provided an insight into the important concepts surrounding the \gls{dab} standard, as defined in~\cite{dabstandard}. This included a detailed description of \gls{cofdm} and \gls{dqpsk}, both of which are fundamental to the \gls{dab} signal. Thereafter, an overview of the \gls{dab} transmission frame was provided.
+This chapter provided an insight into the important concepts surrounding the \gls{dab} standard, as defined in~\cite{dabstandard}. This included a detailed motivation for and description of both \gls{cofdm} and \gls{dqpsk}, which are fundamental concepts used in \gls{dab} signals. Thereafter, an overview of the relevant aspects of the \gls{dab} transmission frame was outlined, based on the specific intention of eventual integration into a \gls{pr} system.
 
 % ----------------------------------------------------
 \ifstandalone
