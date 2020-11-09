@@ -11,15 +11,23 @@
     {\emph{---Karl Marx}}
 % ----------------------------------------------------
 
-% This report describes an investigation done into using \acrfull{dab} signals for Passive Radar. Much of the report focuses on the \acrshort{dab} standard, and the algorithms used for modulating and demodulating such signals. Some basic tests are then done, integrating the processed \acrshort{dab} signals into various Passive Radar processing algorithms.
+This report describes the research, design, and validation steps taken to implement a processing chain for \gls{dab} signals, specifically oriented for the context of \gls{pr}. This did not entail a creating \emph{complete} \gls{dab} pipeline---from a received signal to extracted audio---but rather, focused on the demodulation and subsequent remodulation of \gls{dab} data. The intention behind such a process was to generate "perfect" reference data from received surveillance data in a \gls{pr} system.
 
 \section{Background}
-% Passive radar has been around for as long as radar itself. Though it garnered some initial interest in the 1950s, the topic remained was neglected in favour of active radar systems. However, in recent decades there has been fresh excitement surrounding the field, for a host of reasons.
+Fundamentally, radar\footnote{The word \emph{radar} was originally derived from the acronym, \acrlong{radar}; however, it has subsequently become a common noun, and is used in this report as such.} is a fairly straightforward concept, one that is analogous to the biological mechanism of \emph{echolocation}---used by animals such as bats and dolphins. In the simplest form, a radar system consists of a co-located transmitter and receiver. If the transmitter sends out an \gls{em} signal---a short pulse, for example---this signal will propagate through space, hitting objects as it does. The collection of objects is often called a \emph{scene}. Depending on the properties of the objects the \gls{em} waves hit, some of the energy will reflect off them, thus travelling back to the receiver. There will be a variety of time delays between sending out the signal and receiving the reflections, depending on the positions of the objects. Since these waves are travelling at the speed of light, which is known,\footnote{The speed of light in a vacuum, \(c\), is known exactly, as our measurement of distance is actually defined in terms of \(c\), not the other way around. The speed of light in air, however, is slightly slower than this---and is thus an approximation. Nevertheless, this difference is usually negligible.} the time delays can be converted to distances---thus revealing the ranges to the various objects. Additional complexity can be introduced to calculate the objects' actual positions, velocities, and so on. This is the basis for an \emph{active} radar system---because the transmitter is \emph{actively} producing the \gls{em} waves.
 
-% Most of the existing work done in passive radar uses the ubiquitous analog modulation signals, most notably Frequency Modulation (FM). While a popular standard, \acrfull{fm} presents several important problems for passive radar. Digital modulation techniques, on the other hand, present several advantages for passive radar processing.
+A \gls{pr} system, on the other hand, is different: instead of having a transmitter and receiver, it only has the latter. Rather than actively transmitting signals, it uses existing \gls{em} transmissions---sometimes called \gls{ioo}---that are being transmitted by some other operator---a radio station, for example. While the mathematics is slightly more complicated for this approach, the core idea remains the same: reflections of the transmitted signal are measured, and using the calculated time delays, the locations of objects are calculated. This approach is sometimes called Passive Coherent Location, Passive Bistatic Radar, or Commensal Radar. The simple term, \gls{pr}, will be used throughout this report.
+
+For the past century of radar development, much of the focus has been on \emph{active} radar systems, despite \gls{pr} systems appearing as early as 1935. However, in recent decades, the use of \gls{pr} has been shown to have a host of advantages over its active counterpart. As a result, there has been a renewed interest in the field, across a broad range of use cases.
+
+A substantial amount of the research done in \gls{pr} has involved the use of analogue broadcasting signals as \gls{ioo}s, such as \gls{fm} signals---likely because they are so ubiquitous worldwide. Nonetheless, these transmissions have a variety of downsides when implemented in a \gls{pr} system, such as inconsistent range-resolution in the case of \gls{fm}. These downsides have motivated the investigation into the use of \emph{digital} broadcasting signals as \gls{ioo}s instead. Digital signals help mitigate some of the challenges encountered when using analogue signals, and can provide additional benefits to \gls{pr} systems.
+
+One such digital broadcasting standard, \gls{dab}, has been shown to yield promising results in \gls{pr} scenarios. However, though work has been published involving the use of \gls{dab} signals in \gls{pr} situations, there lacks a comprehensive guide for doing so. The design of the \gls{dab} processing chain is usually glossed over in favour of system results. Therefore, there is a need for a clear and coherent description of using \gls{dab} signals in these contexts, via a thorough exposition of the relevant processing chain design.
 
 \section{Objectives}
-% The primary objective for this investigation was to research, design, and implement a working \gls{dab} modulator and demodulator in software. In doing this, recorded \gls{dab} signals could be fed into existing passive radar processing chains. 
+The objectives of this project were: firstly, to gain an understanding
+
+to design and build the demodulation and remodulation components of a \gls{dab} processing chain. Moreover, these 
 
 \section{System Requirements}
 
@@ -42,8 +50,19 @@ Formally, the scope of this project included:
 
 
 \section{Report Outline}
-% This report begins in Chapter ( ) with a broad but brief literature review, looking at both digital audio and passive radar research, as well as existing implementations of the former in the latter. Thereafter, a detailed unpacking of the Digital Audio Broadcasting standard is provided in Chapter ( ), with specific highlights made to key concepts in the standard. Then, Chapter ( ) presents an in-depth look at how one can actually process the \acrshort{dab} signals---exploring algorithms for both demodulation and re-modulation. With the important foundations set, Chapter ( ) looks at integrating the \acrshort{dab} processing chains into existing and robust passive radar chains.
+Chapter~\ref{ch:literature}
 
+Chapter~\ref{ch:dab-standard}
+
+Chapter~\ref{ch:dab-processing}
+
+Chapter~\ref{ch:dab-validation}
+
+Chapter~\ref{ch:pr-integration}
+
+Chapter~\ref{ch:conclusions}
+
+Chapter~\ref{ch:recommendations}
 
 
 
