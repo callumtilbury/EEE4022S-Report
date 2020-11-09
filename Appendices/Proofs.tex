@@ -8,37 +8,9 @@
 \chapter{Proofs}
 % ----------------------------------------------------
 
-\section{Effect of Windowing in the Frequency Domain}
+\section{\glsentrytext{ofdm} Carrier Orthogonality \label{sect:proofs_ofdm-orthog}}
 
-Any physically-realizable system can only ever consider a finite section of a received signal---over the integration period. Mathematically, this is equivalent to multiplying the signal by a windowing function, \(w(t)\).
-
-To understand why, consider a carrier wave, \(f(t)\), which has a frequency of \(\omega_0\) and is recorded over a period of \(T\) seconds. Notice that this is equivalent to multiplying \(f(t)\) by a windowing function, \(w(t)\), with a width of \(T\). Figure~\ref{fig:sampling-sine} depicts this, where a simple rectangular pulse is used as the windowing function. Note, however, that more complex windowing functions can be used, and the point will remain. The resulting windowed carrier wave is notated as \(f_T(t)\).
-
-\begin{figure}[htbp]
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=0.7\linewidth]{sampling-sine.pdf}
-    \caption{Depiction of sampling as a multiplication with a finite window function}
-    \label{fig:sampling-sine}
-\end{figure}
-
-Consider now the impact of windowing as viewed in the frequency domain. The original carrier wave, \(f(t)\), which theoretically spans over all time, is perfectly impulsive. However, multiplication with the windowing function in time is equivalent to convolution with the window's spectrum in frequency. The exact details of this spectrum depend on the windowing function used, but for a simple rectangular function,
-\begin{equation}
-    w(t) = \textrm{rect}\bigg(\frac{t}{T}\bigg) \xLeftrightarrow{\quad\mathcal{F}\quad} W(\omega) = T \cdot \textrm{Sa}\bigg(\frac{\omega T}{2}\bigg)
-\end{equation}
-where \(\textrm{Sa}(x)=\frac{\sin{x}}{x}\).
-
-\begin{figure}[htbp]
-    \centering
-    \captionsetup{type=figure}
-    \def\svgwidth{\linewidth}
-    {\setstretch{0.7} % Line spacing
-        \input{../Images/sampling-sine-freq.pdf_tex}}
-    \caption{Effect of windowing on spectrum}
-    \label{fig:sampling-sine-freq}
-\end{figure}
-
-\section{OFDM Carrier Orthogonality: Time Domain \label{sect:proofs_ofdm-time}}
+\textcolor{red}{Incomplete. Todo!}
 
 % \begin{lemma}
     Given two complex exponential signals with frequencies that differ by \(\frac{k}{T}\), the signals are orthogonal over an integration period of~\(T\) for any integer value of~\(k\).
@@ -70,8 +42,41 @@ where \(\textrm{Sa}(x)=\frac{\sin{x}}{x}\).
     
 \end{proof}
 
-\section{Using the DFT in OFDM systems}
+\section{Using the \glsentrytext{dft} in \glsentrytext{ofdm} systems \label{sect:proofs_ofdm-dft}}
 
+%TODO
+\textcolor{red}{Incomplete. Todo!}
+
+
+% \section{Effect of Windowing in the Frequency Domain}
+
+% Any physically-realizable system can only ever consider a finite section of a received signal---over the integration period. Mathematically, this is equivalent to multiplying the signal by a windowing function, \(w(t)\).
+
+% To understand why, consider a carrier wave, \(f(t)\), which has a frequency of \(\omega_0\) and is recorded over a period of \(T\) seconds. Notice that this is equivalent to multiplying \(f(t)\) by a windowing function, \(w(t)\), with a width of \(T\). Figure~\ref{fig:sampling-sine} depicts this, where a simple rectangular pulse is used as the windowing function. Note, however, that more complex windowing functions can be used, and the point will remain. The resulting windowed carrier wave is notated as \(f_T(t)\).
+
+% \begin{figure}[htbp]
+%     \centering
+%     \captionsetup{type=figure}
+%     \includegraphics[width=0.7\linewidth]{sampling-sine.pdf}
+%     \caption{Depiction of sampling as a multiplication with a finite window function}
+%     \label{fig:sampling-sine}
+% \end{figure}
+
+% Consider now the impact of windowing as viewed in the frequency domain. The original carrier wave, \(f(t)\), which theoretically spans over all time, is perfectly impulsive. However, multiplication with the windowing function in time is equivalent to convolution with the window's spectrum in frequency. The exact details of this spectrum depend on the windowing function used, but for a simple rectangular function,
+% \begin{equation}
+%     w(t) = \textrm{rect}\bigg(\frac{t}{T}\bigg) \xLeftrightarrow{\quad\mathcal{F}\quad} W(\omega) = T \cdot \textrm{Sa}\bigg(\frac{\omega T}{2}\bigg)
+% \end{equation}
+% where \(\textrm{Sa}(x)=\frac{\sin{x}}{x}\).
+
+% \begin{figure}[htbp]
+%     \centering
+%     \captionsetup{type=figure}
+%     \def\svgwidth{\linewidth}
+%     {\setstretch{0.7} % Line spacing
+%         \input{../Images/sampling-sine-freq.pdf_tex}}
+%     \caption{Effect of windowing on spectrum}
+%     \label{fig:sampling-sine-freq}
+% \end{figure}
 
 % ----------------------------------------------------
 \ifstandalone
