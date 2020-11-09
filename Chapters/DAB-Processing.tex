@@ -16,7 +16,7 @@
 
 This chapter details the core design component of the project: a \gls{dab} processing chain. While the broader context of this report falls within the realm of \gls{pr}, the fundamental task at hand was to demodulate and remodulate a given \gls{dab} signal, in order to create a perfect reference signal of given recorded data. Fortunately, as outlined in the previous chapter, not all of the intricacies of the \gls{dab} standard were required to be understood or even considered for integration into a \gls{pr} chain.
 
-The design of the chain involved studying the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, as well as using pristine reference data for initial testing. For some functionality, real-world data was also used for design and testing. All of the data provided was of transmission Mode I, and thus the ( ). Nonetheless, altering the chain for implementation with other modes will be trivial. All MATLAB functions were designed with a \texttt{dab\_mode} input, if necessary, to allow for easy changes in future designs. Note, however, that this mode input parameter is not shown in any of the upcoming diagrams.
+The design of the chain involved studying the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, as well as using pristine reference data for initial testing. For some functionality, real-world data was also used for design and testing. All of the data provided was of transmission Mode I, and thus the ( ). Nonetheless, altering the chain for implementation with other modes will be trivial. All \textsc{Matlab} functions were designed with a \texttt{dab\_mode} input, if necessary, to allow for easy changes in future designs. Note, however, that this mode input parameter is not shown in any of the upcoming diagrams.
 
 (Make a note of diagrams showing generic dimensions)
 
@@ -33,7 +33,7 @@ Within the \gls{dab} processing chain, three main functional blocks were identif
   \label{fig:BD_Overview_All}
 \end{figure}
 
-Notice in the figure that each of the aforementioned blocks---the pre-process, demodulate, and remodulate blocks---was created from a collection of smaller sub-blocks. These sub-blocks were designed to perform simpler tasks individually, and were written as relatively short MATLAB functions. This atomic-function approach had a host of benefits for the design, debugging, and validation of the chain, and added layers of abstraction for the larger system.
+Notice in the figure that each of the aforementioned blocks---the pre-process, demodulate, and remodulate blocks---was created from a collection of smaller sub-blocks. These sub-blocks were designed to perform simpler tasks individually, and were written as relatively short \textsc{Matlab} functions. This atomic-function approach had a host of benefits for the design, debugging, and validation of the chain, and added layers of abstraction for the larger system.
 
 Each of the three blocks will be unpacked in the sections that follow this one, with subsections dedicated to the relevant sub-blocks.
 
@@ -57,15 +57,15 @@ The pre-processing block has four key stages: reading in \gls{iq} data from a bi
 \end{figure}
 
 \subsection{Reading \glsentrytext{iq} data from file \label{subsect:dab-proc_iq-read}}
-The first sub-block is called \texttt{iq\_read}, and, as mentioned previously, would likely be very different in a real \gls{pr} chain. Nonetheless, here it reads in a \gls{dab} recording from a binary file, and outputs so-called "raw" \gls{iq} data. No changes are made to this data in this function, and it essentially just abstracts MATLAB's file-handling functionality conveniently.
+The first sub-block is called \texttt{iq\_read}, and, as mentioned previously, would likely be very different in a real \gls{pr} chain. Nonetheless, here it reads in a \gls{dab} recording from a binary file, and outputs so-called "raw" \gls{iq} data. No changes are made to this data in this function, and it essentially just abstracts \textsc{Matlab}'s file-handling functionality conveniently.
 
-As a minor note, one must remember that a \gls{dab} recording contains \gls{iq} data, which is complex-valued. Since a binary file cannot store such a datatype, it will usually be stored as pairs of numbers. To read this correctly in MATLAB, one can use the simple code shown in Listing~\ref{code:iq_read}.
+As a minor note, one must remember that a \gls{dab} recording contains \gls{iq} data, which is complex-valued. Since a binary file cannot store such a datatype, it will usually be stored as pairs of numbers. To read this correctly in \textsc{Matlab}, one can use the simple code shown in Listing~\ref{code:iq_read}.
 
 \begin{lstlisting}[caption={Creating a complex data array with the values read from a binary file},label={code:iq_read}]
 iq_data_raw = data_from_file(1:2:end) + 1j*data_from_file(2:2:end);
 \end{lstlisting}
 
-Though it is not shown in the pre-processing block diagrams, the MATLAB function for \texttt{iq\_read} also included some other input parameters for convenience, including the data-type of the binary file, the offset to skip in the file's data, the number of frames to read, and so on.
+Though it is not shown in the pre-processing block diagrams, the \textsc{Matlab} function for \texttt{iq\_read} also included some other input parameters for convenience, including the data-type of the binary file, the offset to skip in the file's data, the number of frames to read, and so on.
 
 A perfect \gls{dab} recording that would be output from the \texttt{iq\_read} function is shown in Figure~\ref{fig:plots/perfect-dab-signal}, showing a handful of \gls{dab} frames. Notice the separation of successive frames by the distinct null symbols.
 
@@ -86,7 +86,7 @@ However, in a real-world scenario, the desired sampling rate might not necessari
 \end{equation}
 where \(P\) and \(Q\) are integers---preferably chosen such that \(P/Q\) is in its most reduced fractional form. Resampling, then, is equivalent to upsampling by a factor of \(P\), and thereafter downsampling by a factor of \(Q\).
 
-Fortunately, MATLAB provides a neat abstraction of this process with the \texttt{resample(X, P, Q)} function, where \(X\) is a uniformly sampled signal, and \(P\) and \(Q\) are as defined above.
+Fortunately, \textsc{Matlab} provides a neat abstraction of this process with the \texttt{resample(X, P, Q)} function, where \(X\) is a uniformly sampled signal, and \(P\) and \(Q\) are as defined above.
 
 % -----------------
 \subsection{Frame Synchronization via \glsentrytext{prs} Detection \label{subsect:dab-proc_prs-detect}}
@@ -191,7 +191,7 @@ The output of this filter in time, \(y[n]\), will contain a peak value at the lo
     \caption{Output from Matched Filter, \(y[n]\), with peak detected}
     \label{fig:mf_out_good_peak}
   \end{subfigure}
-  \caption{Plots showing the input to- and output from the Matched Filter, when the \gls{prs} symbol is detected}
+  \caption{Plots showing the input to and output from the Matched Filter, when the \gls{prs} symbol is detected}
   \label{fig:mf_out_good}
 \end{figure}
 
@@ -331,7 +331,7 @@ A graphical summary of the \texttt{symbol\_unpack} sub-block is given in Figure~
   \label{fig:symbols_unpack}
 \end{figure}
 
-% In MATLAB, the unpacking process is fairly straightforward, with complications only arising in off-by-one errors. Consider the simple code segment in Listing~\ref{code:symbols_unpack} for this functionality.
+% In \textsc{Matlab}, the unpacking process is fairly straightforward, with complications only arising in off-by-one errors. Consider the simple code segment in Listing~\ref{code:symbols_unpack} for this functionality.
 
 % \begin{lstlisting}[caption={Code used in the \texttt{symbols\_unpack} function}, label={code:symbols_unpack}]
 % function dab_symbols = symbols_unpack(dab_frame, dab_mode)
@@ -357,7 +357,7 @@ A graphical summary of the \texttt{symbol\_unpack} sub-block is given in Figure~
 
 This sub-block was designed to "demultiplex" the \gls{ofdm} signal---i.e. to extract the \gls{dab} carriers from the provided time-domain symbol data. Recall from the previous chapter that this extraction can be done via a \gls{dft}/\gls{fft} operation. Consider firstly the case of a single symbol from \texttt{dab\_symbols}, which is just a row in the \(L \times T_u\) matrix. To demultiplex this \gls{ofdm} symbol, one can use the simple code given in Listing~\ref{code:ofdm_demux}, where the \gls{fft} of the symbol is divided by its length for correct scaling, and the \texttt{fftshift} command is used to center the frequency axis on \(0\si{\hertz}\).
 
-\begin{lstlisting}[caption={MATLAB code for demultiplexing an \gls{ofdm} symbol}, label={code:ofdm_demux}]
+\begin{lstlisting}[caption={\textsc{Matlab} code for demultiplexing an \gls{ofdm} symbol}, label={code:ofdm_demux}]
 dab_carriers(1,:) = fftshift(fft(dab_symbols(1,:))) ./ length(dab_symbols(1,:));
 \end{lstlisting}
 
@@ -460,9 +460,9 @@ Consider the extraction of the data for an arbitrary index, \((l-1)\), call this
           &= \angle\left(\frac{S_{l}}{S_{l-1}}\right)
 \end{align}
 
-This process can be easily be achieved in software---for example, using the simple code given in Listing~\ref{code:dqpsk_demap}. To avoid unnecessary division computation, this calculation was only done for the relevant carriers, indexed in MATLAB using the variable called \texttt{mask}. Here, \texttt{dab\_carriers(n,:)} refers to \(S_n\), and \texttt{dab\_data\_raw(n,:)} refers to \(D_n\).
+This process can be easily be achieved in software---for example, using the simple code given in Listing~\ref{code:dqpsk_demap}. To avoid unnecessary division computation, this calculation was only done for the relevant carriers, indexed in \textsc{Matlab} using the variable called \texttt{mask}. Here, \texttt{dab\_carriers(n,:)} refers to \(S_n\), and \texttt{dab\_data\_raw(n,:)} refers to \(D_n\).
 
-\begin{lstlisting}[caption={MATLAB code for demapping \gls{dab} carriers into \gls{dqpsk} data},label={code:dqpsk_demap}]
+\begin{lstlisting}[caption={\textsc{Matlab} code for demapping \gls{dab} carriers into \gls{dqpsk} data},label={code:dqpsk_demap}]
 dab_data_raw(l-1,mask) = dab_carriers(l,mask) ./ dab_carriers(l-1,mask);
 \end{lstlisting}
 
@@ -579,11 +579,11 @@ In summary, this block "demapped" the \gls{dqpsk}-modulated data from the \gls{d
 \subsection{Frequency Deinterleaving \label{subsect:dab-proc_freq-deinterleave}}
 This sub-block, termed \texttt{freq\_deinterleave}, was created to receive \((L-1)\) interleaved sets of \gls{dqpsk}-demodulated data, and return the same data but deinterleaved according to a given map. In the previous chapter, the problem of frequency-selective fading was discussed, along with the \gls{dab} standard's mitigation strategy of interleaving the \gls{ofdm} carriers in a particular way. The precise motivation and details of the specific map used for interleaving are given in \gls{etsi}'s document in~\cite{dabstandard}. Note that the input data, the output of the \texttt{dqpsk\_demap} block, included all \(T_u\) carriers, including those which were outside the band of the central \(K\) carriers. In performing the frequency deinterleaving process, this function also removed the out-of-band carriers, leaving only the \(K\) relevant carriers.
 
-For convenience, a helper function was written in MATLAB, called \texttt{build\_interleave\_map()}, which returned an array mapping the \(K\) indices of an array to \(K\) corresponding interleaved indices. Importantly, note that the mapping used differs for each of the four \gls{dab} transmission modes. Since this project was designed using Mode I signals, the code was implemented with Mode I's interleaving map, and with \(K = 1536\). The full code for this function is provided in Appendix (?). Future work should be done to enable this functionality for all four \gls{dab} modes.
+For convenience, a helper function was written in \textsc{Matlab}, called \texttt{build\_interleave\_map()}, which returned an array mapping the \(K\) indices of an array to \(K\) corresponding interleaved indices. Importantly, note that the mapping used differs for each of the four \gls{dab} transmission modes. Since this project was designed using Mode I signals, the code was implemented with Mode I's interleaving map, and with \(K = 1536\). The full code for this function is provided in Appendix (?). Future work should be done to enable this functionality for all four \gls{dab} modes.
 
-Once the interleave map was created, deinterleaving the frequency components was trivial, as it simply entailed indexing the MATLAB matrices appropriately. The \texttt{freq\_deinterleave} function is given in Listing~\ref{code:freq_deinterleave}. Notice that this code is independent of the \gls{dab} mode used, relying only on a generic interleaving map.
+Once the interleave map was created, deinterleaving the frequency components was trivial, as it simply entailed indexing the \textsc{Matlab} matrices appropriately. The \texttt{freq\_deinterleave} function is given in Listing~\ref{code:freq_deinterleave}. Notice that this code is independent of the \gls{dab} mode used, relying only on a generic interleaving map.
 
-\begin{lstlisting}[caption={MATLAB code for the frequency deinterleaving functionality.},label={code:freq_deinterleave}]
+\begin{lstlisting}[caption={\textsc{Matlab} code for the frequency deinterleaving functionality.},label={code:freq_deinterleave}]
 function dab_data_deinterleaved = freq_deinterleave(dab_data_raw, interleave_map)
   dab_data_deinterleaved = dab_data_raw(:,interleave_map); % Use interleave map for indexing
 end
@@ -648,7 +648,7 @@ The same data points are plotted against their corresponding carrier indices in 
   \label{fig:dqpsk_snap_rtl-alt}
 \end{figure}
 
-In MATLAB, this snapping action was done by simply checking in which quadrant a point was, and assigning it to its correct value accordingly. For the function, this was performed for all points in the input matrix.
+In \textsc{Matlab}, this snapping action was done by simply checking in which quadrant a point was, and assigning it to its correct value accordingly. For the function, this was performed for all points in the input matrix.
 
 A graphical summary of the \texttt{dqpsk\_snap} function is shown in Figure~\ref{fig:dqpsk_snap}.
 
@@ -698,7 +698,7 @@ The purpose of this sub-block was to re-interleave the data from the \texttt{dem
 
 Interestingly, the same interleaving map as that created for the \texttt{freq\_deinterleave} functionality could be used here, only with a slightly different method of assigning the values. Whereas the previous function used the map to index elements on the right-hand side of the assignment, this function used the map to index elements on the left-hand side---see Listing~\ref{code:freq_interleave} for the code showing this. In this way, the same \texttt{build\_interleave\_map} tool could be used for both the interleaving and deinterleaving functionality. Note, however, that in the frequency interleaving function required knowledge the \gls{dab} mode, in order to pre-allocate the arrays correctly.
 
-\begin{lstlisting}[caption={MATLAB code for the frequency interleaving functionality.},label={code:freq_interleave}]
+\begin{lstlisting}[caption={\textsc{Matlab} code for the frequency interleaving functionality.},label={code:freq_interleave}]
 function dab_data_interleaved = freq_interleave(dab_data, interleave_map, dab_mode)
   dab_data_interleaved = zeros(dab_mode.L-1,dab_mode.Tu);   % Pre-allocate space
   dab_data_interleaved(:,interleave_map) = dab_data;        % Use interleave map
@@ -720,14 +720,14 @@ In terms of dimensions, the sub-block received \((L-1)\) sets of \(K\) carriers,
 \subsection{\glsentrytext{dqpsk} Mapping \label{subsect:dab-proc_dqpsk-map}}
 With the \gls{dab} data values re-interleaved from the previous block, they were then used to modulate the \(T_u\) \gls{ofdm} carriers---a process termed \gls{dqpsk} mapping, in contrast to the demapping process discussed previously. Since differential modulation was used, the \((L-1)\) sets of \gls{dab} data at the input of the sub-block mapped to \(L\)~sets of \gls{dab} carriers. To provide a reference for the differential phase values, the \gls{prs} was assigned to be the first output symbol---recall that this was the other purpose of the \gls{prs}, in addition to the frame synchronization discussed previously. Consider Listing~\ref{code:dqpsk_map-1}, which shows the function set-up, with memory allocation and the assignment of the first symbol.
 
-\begin{lstlisting}[caption={MATLAB code for setting up the \texttt{dqpsk\_map} function.},label={code:dqpsk_map-1}]
+\begin{lstlisting}[caption={\textsc{Matlab} code for setting up the \texttt{dqpsk\_map} function.},label={code:dqpsk_map-1}]
 dab_carriers_remod = zeros(dab_mode.L, dab_mode.Tu); % Pre-allocate space
 dab_carriers_remod(1,:) = prs; % First carrier is the phase reference symbol
 \end{lstlisting}
 
 With the first symbol then set, subsequent symbol values were calculated by mutliplying the previous symbol by the interleaved \gls{dab} data values for that index. Programmatically, this process was simple, and is shown in Listing~\ref{code:dqpsk_map-2}, where \texttt{dab\_data\_interleaved} was the output of the \texttt{freq\_interleave} sub-block.
 
-\begin{lstlisting}[caption={MATLAB code for the actual \texttt{dqpsk\_map} functionality of differential modulation.},label={code:dqpsk_map-2}]
+\begin{lstlisting}[caption={\textsc{Matlab} code for the actual \texttt{dqpsk\_map} functionality of differential modulation.},label={code:dqpsk_map-2}]
 for l = 2:dab_mode.L
   dab_carriers_remod(l,:) = dab_data_interleaved(l-1,:) .* dab_carriers_remod(l-1,:);
 end
@@ -764,7 +764,7 @@ As was the case for demultiplexing, the \gls{dft}/\gls{fft} could be used for ea
 
 In code, this functionality looked mostly identical to that for the demultiplexing, shown previously in Listing~\ref{code:ofdm_demux}. Here, in Listing~\ref{code:ofdm_mux}, the only differences were that the \gls{ifft} was used, and the result was \emph{multiplied} by the length of the array, rather than being divided by it. Once again, this is logical, considering the inverse relationship.
 
-\begin{lstlisting}[caption={MATLAB code for multiplexing an \gls{ofdm} symbol}, label={code:ofdm_mux}]
+\begin{lstlisting}[caption={\textsc{Matlab} code for multiplexing an \gls{ofdm} symbol}, label={code:ofdm_mux}]
 dab_symbols_remod = ifft(fftshift(dab_carriers_remod,2),[],2) .* length(dab_carriers_remod);
 \end{lstlisting}
 
@@ -785,7 +785,7 @@ Finally, the purpose of this function was to take the matrix of remodulated \gls
 
 Combining the guard interval for a particular symbol with the symbol itself was straightforward, as is shown in Listing~\ref{code:symbols_pack-1}, where \texttt{l} is the symbol index, and \texttt{dab\_symbols\_remod} is the data coming from the \texttt{ofdm\_mux} sub-block
 
-\begin{lstlisting}[caption={MATLAB code for prepending a guard interval to a symbol.},label={code:symbols_pack-1}]
+\begin{lstlisting}[caption={\textsc{Matlab} code for prepending a guard interval to a symbol.},label={code:symbols_pack-1}]
 lth_guard = dab_symbols_remod(l, end - dab_mode.Tg + 1 : end); % Last Tg values
 lth_symbol = [lth_guard, dab_symbols_remod(l,:)]; % Full Symbol = [Guard , Original Symbol]
 \end{lstlisting}
