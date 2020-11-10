@@ -17,7 +17,7 @@ This brief chapter serves to provide a rudimentary insight into the context for 
 \section{System Description}
 A conventional, bistatic \gls{pr} system requires two signals for its operation: a reference signal, and a surveillance signal. The former is the signal that arrives via the direct-path, from the uncooperative transmitter to system's receiver. The latter is the signal that comes from the scene, as a recording of the scatterings and reflections of the \gls{em} energy. However, when a \emph{digitally}-modulated signal is used---one which has an open and accessible standard, such as the \gls{etsi}'s \gls{dab} standard---the reference data can be generated using the surveillance data. This trick enables the system to use only one antenna for operations, which is advantageous in various ways. Several authors have discussed such systems in further detail, such as in~\cite{Barott2014},~\cite{Searle2015}, and~\cite{Fang2018}.
 
-The aim of this project was to design the functionality for converting surveillance data into reference data for a given \gls{dab} signal. This was done via the demodulation of the received signal, and then the remodulation thereof, thereby producing a "pristine" copy of the received signal. This pristine copy (used as reference data), together with the original recorded signal (used as surveillance data), could be provided to a standard \gls{pr} algorithm for further processing and analysis. A block diagram depicting the larger \gls{pr}~system's set-up is provided in Figure~\ref{fig:BD_pr-integration}.
+The aim of this project was to design the functionality for converting surveillance data into reference data for a given \gls{dab} signal. This was done via the demodulation of the received signal, and then the remodulation thereof, thereby producing a "perfect" copy of the received signal. This perfect copy (used as reference data), together with the original recorded signal (used as surveillance data), could be provided to a standard \gls{pr} algorithm for further processing and analysis. A block diagram depicting the larger \gls{pr}~system's set-up is provided in Figure~\ref{fig:BD_pr-integration}.
 
 \begin{figure}[htbp]
     \centering
@@ -41,7 +41,7 @@ The simulation was based off an arbitrary, perfect \gls{dab} signal, \(x[n]\). T
 \begin{equation}
     s[n] = x[n] + K \cdot y[n] + \sigma \cdot \eta[n]
 \end{equation}
-Ideally, by passing the surveillance signal through the demodulation-remodulation processing chain, the original \gls{dab} signal, \(x[n]\), would have been recovered. However, depending on the echo and noise signals added, some bit-errors may have arisen in the processed signal. Nonetheless, this pristine signal was used as the reference signal:
+Ideally, by passing the surveillance signal through the demodulation-remodulation processing chain, the original \gls{dab} signal, \(x[n]\), would have been recovered. However, depending on the echo and noise signals added, some bit-errors may have arisen in the processed signal. Nonetheless, this reconstructed signal was used as the reference signal:
 \begin{equation}
     r[n] = \mathrm{Remod}\bigg\{\:\mathrm{Demod}\Big\{\; s[n]\;\Big\}\:\bigg\}
 \end{equation}
