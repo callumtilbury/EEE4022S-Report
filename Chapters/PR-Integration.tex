@@ -30,7 +30,7 @@ The aim of this project was to design the functionality for converting surveilla
     \label{fig:BD_pr-integration}
 \end{figure}
 
-One can see in the figure how the \texttt{pre-process}, \texttt{demodulate}, and \texttt{remodulate} blocks fit into the context of a \gls{pr} system. Note, however, that the \texttt{pre-process} block would likely be markedly different in such a system, compared to the one designed in this project. For example, the data from the baseband receiver would likely be streamed, rather than read from a file, as it was done here. The other two blocks may also be slightly different when implemented in a real system, but their fundamental routines would remain the same. As shown, the reference and surveillance data from the \gls{dab} processing chain must always be synchronised before being used in the \gls{pr} processing chain.
+One can see in the figure how the \texttt{pre-process}, \texttt{demodulate}, and \texttt{remodulate} blocks fit into the context of a \gls{pr} system. Note, however, that the \texttt{pre-process} block would likely be markedly different in such a system, compared to the one designed in this project. For example, the data from the baseband receiver would likely be streamed, rather than read from a file, as was done here. The other two blocks may also be slightly different when implemented in a real system, but their fundamental routines would remain the same. As shown, the reference and surveillance data from the \gls{dab} processing chain must always be synchronised before being used in the \gls{pr} processing chain.
 
 For the sake of brevity, details of the \texttt{baseband receiver} and \texttt{synchronise} blocks are not given here. Moreover, specifics of the \texttt{passive radar processing} chain are similarly omitted.
 
@@ -55,7 +55,7 @@ These two signals, the surveillance and reference, were passed into a provided \
         \centering
         \captionsetup{type=figure}
         \includegraphics[width=\linewidth]{plots/integration-30km-2000Hz-K20-noise0.pdf}
-        \caption{\(d_0 = 30\si{\kilo\metre}\); \(f_0 = -2\si{\kilo\hertz}\); \(K = 0.2\); \(\textrm{SNR} = 0\si{\deci\bel}\)}
+        \caption{\(d_0 = \SI{30}{\kilo\metre}\); \(f_0 = \SI{-2}{\kilo\hertz}\); \(K = 0.2\); \(\textrm{SNR} = \SI{0}{\deci\bel}\)}
         \label{fig:integration-simulation-1}
     \end{subfigure}%
     ~~
@@ -63,7 +63,7 @@ These two signals, the surveillance and reference, were passed into a provided \
         \centering
         \captionsetup{type=figure}
         \includegraphics[width=\linewidth]{plots/integration-30km-2000Hz-K20-noise10dB.pdf}
-        \caption{\(d_0 = 30\si{\kilo\metre}\); \(f_0 = -2\si{\kilo\hertz}\); \(K = 0.2\); \(\textrm{SNR} = 10\si{\deci\bel}\)}
+        \caption{\(d_0 = \SI{30}{\kilo\metre}\); \(f_0 = \SI{-2}{\kilo\hertz}\); \(K = 0.2\); \(\textrm{SNR} = \SI{10}{\deci\bel}\)}
         \label{fig:integration-simulation-2}
     \end{subfigure}%
     \\
@@ -71,7 +71,7 @@ These two signals, the surveillance and reference, were passed into a provided \
         \centering
         \captionsetup{type=figure}
         \includegraphics[width=\linewidth]{plots/integration-30km-2000Hz-K80-noise0.pdf}
-        \caption{\(d_0 = 30\si{\kilo\metre}\); \(f_0 = -2\si{\kilo\hertz}\); \(K = 0.8\); \(\textrm{SNR} = 0\si{\deci\bel}\)}
+        \caption{\(d_0 = \SI{30}{\kilo\metre}\); \(f_0 = \SI{-2}{\kilo\hertz}\); \(K = 0.8\); \(\textrm{SNR} = \SI{0}{\deci\bel}\)}
         \label{fig:integration-simulation-3}
     \end{subfigure}%
     ~~
@@ -79,7 +79,7 @@ These two signals, the surveillance and reference, were passed into a provided \
         \centering
         \captionsetup{type=figure}
         \includegraphics[width=\linewidth]{plots/integration-65km-3000Hz-K20-noise0.pdf}
-        \caption{\(d_0 = 65\si{\kilo\metre}\); \(f_0 = +3\si{\kilo\hertz}\); \(K = 0.2\); \(\textrm{SNR} = 0\si{\deci\bel}\)}
+        \caption{\(d_0 = \SI{65}{\kilo\metre}\); \(f_0 = \SI{+3}{\kilo\hertz}\); \(K = 0.2\); \(\textrm{SNR} = \SI{0}{\deci\bel}\)}
         \label{fig:integration-simulation-4}
     \end{subfigure}%
     \caption{Results from four of the simulations of a \glsentrytext{dab} signal in a \glsentrytext{pr} processing chain.}
