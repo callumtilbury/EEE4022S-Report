@@ -8,16 +8,14 @@
 % \newgeometry{margin=30mm}
 \chapter*{Abstract}
 
-\gls{pr} is a variant of radar technology in which no dedicated transmitter is used for operation. Instead, \gls{pr} systems use so-called \gls{ioo}---such as existing radio-station broadcasts---for the detection of objects in a scene. In the past decade, there has been an increased interest in the use of \emph{digital} broadcasting signals as \gls{ioo}s, as these signals offer a variety of benefits to a \gls{pr} system. One of the digital broadcasting standards that has garnered attention for use in \gls{pr} is the \gls{dab} format, which is slowly being adopted around the world to replace the antiquated analogue modes of audio broadcasting.
+\gls{pr} is a variant of radar technology in which no dedicated transmitter is required for operation. Instead, \gls{pr} systems use so-called \gls{ioo}---such as existing radio-station broadcasts---for the detection of objects in a scene. In the past decade, there has been an increased interest in the use of \emph{digital} broadcasting signals as \gls{ioo}s, as these signals offer a variety of benefits in a \gls{pr} context. One of the digital broadcasting standards that has garnered attention for use in \gls{pr} is the \gls{dab} format, which is slowly being adopted around the world to replace the antiquated analogue-modes of audio-broadcasting.
 
-The aim of this project was to research, design, and implement a \gls{dab} processing chain for the context of a \gls{pr} system. Though prior work has been done on \gls{dab}-based \gls{pr} implementations, there are seemingly no comprehensive descriptions of the salient functions required for the \gls{dab} chain in \gls{pr} systems. Moreover, the literature considering solely \gls{dab} signals focuses too much on the intricacies of the \gls{dab} standard, in a way that is unnecessarily complex for \gls{pr} applications. Therefore, there is a need for a clear and thorough exposition of the design procedure for the \gls{pr}-focused \gls{dab} processing chain.
+The aim of this project was to research, design, and implement a \gls{dab} processing chain, with the intention that it eventually be integrated into a \gls{pr} system. Though prior work has been done on \gls{dab}-based \gls{pr} implementations, the literature lacks a clear description of the \gls{dab} pipeline used for such scenarios. Moreover, the work that covers \gls{dab} signals more comprehensively focuses too much on the intricacies of the \gls{dab} standard, in a way that is unnecessarily complex for \gls{pr} applications. Therefore, there is a need for a clear and thorough exposition of the design procedure for a \gls{dab} processing chain, specifically within the context of \gls{pr}.
 
-It begins with a brief surveillance of the available literature, followed by a comprehensive consideration of the relevant aspects of the \gls{dab} standard, including the theoretical concepts that underpin it. Following this is a detailed unpacking of the various components of the \gls{dab} chain, starting from a high-level overview, and then zooming into the functionality of each sub-block in the broader system.
-
-The \gls{dab} chain is then validated via several testing procedures, and is shown to pass all of them. It is thus concluded that the designed processing chain indeed works.
+This report aims to document the project's design steps, and its associated results. After a brief surveillance of the available literature, a comprehensive consideration of the relevant aspects of the \gls{dab} standard is provided, including the key theoretical concepts that underpin it---namely, \gls{cofdm} and \gls{dqpsk}. Thereafter, a detailed unpacking of the designed \gls{dab} processing chain is provided, starting from a high-level overview, and then zooming in to the individual functional blocks. The \gls{dab} chain is then validated via several testing procedures, and is shown to pass all of them. It is thus concluded that the designed processing chain indeed works.
 
 \ifstandalone
-\bibliography{../Bibliography/References.bib}
-\printnoidxglossary[type=\acronymtype,nonumberlist]
+% \bibliography{../Bibliography/References.bib}
+% \printnoidxglossary[type=\acronymtype,nonumberlist]
 \fi
 \end{document}
