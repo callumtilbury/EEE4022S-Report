@@ -150,3 +150,10 @@
 
 % SI
 \usepackage{siunitx}
+
+% For removing some whitespace in Chapter headings etc
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{\vspace*{-10pt}}{}{}%
+\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{\vspace*{-10pt}}{}{}%
+\makeatother
