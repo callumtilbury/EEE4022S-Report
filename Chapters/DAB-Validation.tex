@@ -28,11 +28,11 @@ For at least three points in the chain, one could know \emph{a priori} the corre
 Validating these sub-blocks' functionality, then, simply involved looking at their outputs and comparing them to what was expected. Some of these plots were already provided in the previous chapter, and shown to be correct, but a handful more will be provided here for clarity.
 
 \subsection{Frame Synchronisation}
-Recall that the frame synchronisation process involved using a Matched Filter to detect the location of a pre-defined \gls{prs} within a given \gls{dab} signal. Since the \gls{prs} is usually fairly distinct from the data-carrying symbols, and because each frame is always preceded by a \gls{ns}, it was easy to recognize the beginning of a frame visually. Thus, by comparing the output index from the \texttt{prs\_detect} function to a plot of the original data, one could quickly see if the algorithm was working correctly. As a reminder, this was not a flawless mode of validation, but it provided good initial insight.
+Recall that the frame synchronisation process involved using a matched filter to detect the location of a pre-defined \gls{prs} within a given \gls{dab} signal. Since the \gls{prs} is usually fairly distinct from the data-carrying symbols, and because each frame is always preceded by a \gls{ns}, it was easy to recognize the beginning of a frame visually. Thus, by comparing the output index from the \texttt{prs\_detect} function to a plot of the original data, one could quickly see if the algorithm was working correctly. As a reminder, this was not a flawless mode of validation, but it provided good initial insight.
 
-The plot in Figure~\ref{fig:mf_out_good} from the previous chapter has already shown the Matched Filter working on perfect data. Graphically, one can easily see that the \gls{prs} was detected, after the guard interval. It was also via graphical intuition that the problem shown in Figure~\ref{fig:mf_out_prefix-problem} was discovered.
+The plot in Figure~\ref{fig:mf_out_good} from the previous chapter has already shown the matched filter working on perfect data. Graphically, one can easily see that the \gls{prs} was detected, after the guard interval. It was also via graphical intuition that the problem shown in Figure~\ref{fig:mf_out_prefix-problem} was discovered.
 
-For two further examples, Figure~\ref{fig:validation_mf_rtl} and Figure~\ref{fig:validation_mf_raw}, given here, show the detection process working with real-world data. Importantly, the latter of the two figures displays a situation where the input data was not sampled at \(F_s = 2.048\si{\mega\hertz}\), but rather at \(F_s = 2.5\si{\mega\hertz}\). Thus, inadvertently, this plot additionally demonstrated the correct functioning of the \texttt{iq\_resample} sub-block, since the Matched Filter was designed around the \gls{prs}, which was sampled at \(F_s = 2.048\si{\mega\hertz}\). If the resampling was not working, neither would the \gls{prs} detection process.
+For two further examples, Figure~\ref{fig:validation_mf_rtl} and Figure~\ref{fig:validation_mf_raw}, given here, show the detection process working with real-world data. Importantly, the latter of the two figures displays a situation where the input data was not sampled at \(F_s = \SI{2.048}{\mega\hertz}\), but rather at \(F_s = \SI{2.5}{\mega\hertz}\). Thus, inadvertently, this plot additionally demonstrated the correct functioning of the \texttt{iq\_resample} sub-block, since the matched filter was designed around the \gls{prs}, which was sampled at \(F_s = \SI{2.048}{\mega\hertz}\). If the resampling was not working, neither would the \gls{prs} detection process.
 
 \begin{figure}[htbp]
   \centering
@@ -41,7 +41,7 @@ For two further examples, Figure~\ref{fig:validation_mf_rtl} and Figure~\ref{fig
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=0.6\linewidth]{plots/validation_mf_rtl_signal.pdf}
-    \caption{Input to Matched Filter}
+    \caption{Input to matched filter}
     \label{fig:validation_mf_rtl_signal}
   \end{subfigure}%
   \\
@@ -49,7 +49,7 @@ For two further examples, Figure~\ref{fig:validation_mf_rtl} and Figure~\ref{fig
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=0.6\linewidth]{plots/validation_mf_rtl_peak.pdf}
-    \caption{Output from Matched Filter with peak detected}
+    \caption{Output from matched filter with peak detected}
     \label{fig:validation_mf_rtl_peak}
   \end{subfigure}
   \caption{Plots demonstrating correct functioning of the \texttt{prs\_detect} sub-block using real-world data.}
@@ -63,7 +63,7 @@ For two further examples, Figure~\ref{fig:validation_mf_rtl} and Figure~\ref{fig
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=0.6\linewidth]{plots/validation_mf_raw_signal.pdf}
-    \caption{Input to Matched Filter}
+    \caption{Input to matched filter}
     \label{fig:validation_mf_raw_signal}
   \end{subfigure}%
   \\
@@ -71,10 +71,10 @@ For two further examples, Figure~\ref{fig:validation_mf_rtl} and Figure~\ref{fig
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=0.6\linewidth]{plots/validation_mf_raw_peak.pdf}
-    \caption{Output from Matched Filter with peak detected}
+    \caption{Output from matched filter with peak detected}
     \label{fig:validation_mf_raw_peak}
   \end{subfigure}
-  \caption{More plots demonstrating correct functioning of the \texttt{prs\_detect} sub-block, but using real-world data that was sampled at \(F_s \ne 2.048\si{\mega\hertz}\).}
+  \caption{More plots demonstrating correct functioning of the \texttt{prs\_detect} sub-block, but using real-world data that was sampled at \(F_s \ne \SI{2.048}{\mega\hertz}\).}
   \label{fig:validation_mf_raw}
 \end{figure}
 
@@ -112,7 +112,7 @@ This effect was due to the guard interval. Remember that a guard interval \emph{
 It is important to note that these effects were easily visualised when using perfect data, but not so much when using real-world data. The real-world \gls{ofdm} carriers indeed looked somewhat rectangular in magnitude, as seen in Figure~\ref{fig:ofdm-carriers-raw}, but the impact of symbol misalignment was far less pronounced. It is thus recommended that these sub-blocks be designed and initially tested using perfect data.
   
 \subsection{DQPSK Demapping}
-The demapping of the \gls{dqpsk} data was already discussed somewhat extensively in the previous chapter, and Figures~\ref{fig:dqpsk_demap_perfect},~\ref{fig:dqpsk_demap_rtl} and~\ref{fig:dqpsk_demap_raw} all demonstrated the success of \gls{dqpsk} demodulation, which was able to split the data in four groups of angles, albeit spread out at times. Once again, though, it was worth considering the impact of symbol misalignment on the \texttt{dqpsk\_demap} functionality---using perfect data for clarity. Building on the same two situations from the previous step, Figure~\ref{fig:dqpsk-demap-prs} demonstrates the impact that misalignment had on the \gls{dqpsk} values.
+The demapping of the \gls{dqpsk} data was already discussed extensively in the previous chapter, and Figures~\ref{fig:dqpsk_demap_perfect},~\ref{fig:dqpsk_demap_rtl} and~\ref{fig:dqpsk_demap_raw} all demonstrated the success of \gls{dqpsk} demodulation, which was able to split the data into four groups of angles, albeit spread out at times. Once again, though, it was worth considering the impact of symbol misalignment on the \texttt{dqpsk\_demap} functionality---using perfect data for clarity. Building on the same two situations from the previous step, Figure~\ref{fig:dqpsk-demap-prs} demonstrates the impact that misalignment had on the \gls{dqpsk} values.
 
 \begin{figure}[htbp]
   \centering
@@ -161,9 +161,9 @@ The sub-blocks would be considered valid inverses if there was no net change on 
 \begin{equation}
   \mathbf{E} = \mathbf{\tilde{X}} - \mathbf{X}  
 \end{equation}
-Since this relationship should hold for any input \(\mathbf{X}\), sets of pseudorandom data were provided, and even then, the data was to remain the same at the output. For a valid inverse relationship, then, the maximum value of \(\mathbf{E}\) had to be zero (or extremely close to zero, accounting for numerical inaccuracies) for multiple iterations of arbitrary complex-data as \(\mathbf{X}\).
+Since this relationship should hold for any input \(\mathbf{X}\), sets of pseudorandom data were provided, and even then, the data was to remain the same at the output. For a valid inverse relationship, then, the maximum value of \(\mathbf{E}\) had to be zero (or extremely close to zero, accounting for numerical inaccuracies) for multiple iterations of arbitrary complex data, \(\mathbf{X}\).
 
-There are two important notes to make here. Firstly, as was the case for graphical validation, this method was not unerring. Showing that two given sub-blocks demonstrated the above relationship proved that their functionality was inverted, but it said nothing about the correctness of that functionality itself. The block performing \(f^{-1}(\mathbf{X})\) could have been built around the same, incorrect underlying algorithm as \(f(\mathbf{X})\), and the validation step would not reveal this truth.
+There are two important notes to make here. Firstly, as was the case for graphical validation, this method was not infallible. Showing that two given sub-blocks demonstrated the above relationship proved that their functionality was inverted, but it said nothing about the correctness of that functionality itself. The block performing \(f^{-1}(\mathbf{X})\) could have been built around the same, incorrect underlying algorithm as \(f(\mathbf{X})\), and the validation step would not reveal this truth.
 
 Secondly, in some cases within the \gls{dab} chain, a function \(f(\mathbf{X})\) discarded certain unnecessary information from \(\mathbf{X}\). For example, the \texttt{freq\_deinterleave} sub-block transformed \((L-1)\) rows of \gls{dab} data of length \(T_u\), to \((L-1)\) rows of \gls{dab} data of length \(K\), with \(T_u > K\). Thus, there was a discarding of \((T_u - K)\) values in each of the  \((L-1)\) rows. The inverse function, \texttt{freq\_interleave}, performed the opposite transformation, and thus had to reintroduce these \((L-1)\times(T_u - K)\) data points. These values were initialized to zero. None of this mattered for the \gls{dab} functionality itself, since only the \(K\)~values contained useful information. Nonetheless, testing the two blocks as inverses with pseudorandom data would fail, since the \((T_u - K)\) values in each row would be lost in the deinterleaving step. The solution to this caveat was either to look only at the relevant data in an output, or to test the inverses only in a particular direction---for example, this problem did not arise when putting random data in \texttt{freq\_interleave} first, and thereafter into \texttt{freq\_deinterleave}.
 
@@ -283,7 +283,7 @@ This negligible value, again due to numerical inaccuracies, therefore confirmed 
 Recall that the overarching purpose of the \gls{dab} processing chain was to reconstruct a provided \gls{dab} signal perfectly---not that the reconstruction was necessarily identical to the original transmitted \gls{dab} signal, but such that its \gls{ofdm} carriers had a flat magnitude spectrum and its \gls{dqpsk} values were limited to one of the four allowable angle values. Logically, then, if this "perfect" signal was to be re-input into the processing chain, its output should be identical to its input, since no changes would need to be made to the signal. Ensuring this fact to be true was the next step of validation, termed here as "Repeated Processing."
 
 \subsection{Methodology}
-The essence of this process is depicted in Figure~\ref{fig:repeated-process-diagram}, with two iterations\footnote{As a side note, if one can demonstrate this validation process successfully for two iterations, then by mathematical induction, one can prove it to be true for \(n\) iterations, with \(n \: \forall \: \mathbb{N}\).} of the demodulation-remodulation process shown.
+The essence of this process is depicted in Figure~\ref{fig:repeated-process-diagram}, with two iterations\footnote{As a side note, if one can demonstrate this validation process successfully for two iterations, then by mathematical induction, one can prove it to be true for \(n\) iterations, \(\forall \: n \in \mathbb{N}\).} of the demodulation-remodulation process shown.
 
 \begin{figure}[htbp]
   \centering
@@ -299,7 +299,7 @@ As is clear from the diagram, this validation step was extremely straightforward
 \begin{equation}
   \mathbf{E_{Y}} = \mathbf{Y_2} - \mathbf{Y_1}
 \end{equation}
-A valid chain required all values of \(\mathbf{E_Y}\) to be zero, or sufficiently close thereto.
+A valid chain required all values of \(\mathbf{E_Y}\) to be zero.%, or sufficiently close thereto.
 
 Note, once again, that this test was not infallible. Rather than proving that the system necessarily worked correctly as a \gls{dab} processing chain, it instead showed that the chain was \emph{consistent}: a perfect signal generated once would be regenerated if processed again. This was indeed an important step to validate.
 
