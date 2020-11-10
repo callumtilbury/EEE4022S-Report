@@ -3,85 +3,52 @@
 % ----------------------------------------------------
 \documentclass[class=report,11pt,crop=false]{standalone}
 \input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
 \begin{document}
 % ----------------------------------------------------
-\chapter{Proofs}
+\chapter{Proof of \glsentrytext{ofdm} Carrier Orthogonality \label{sect:proofs_ofdm-orthog}}
 % ----------------------------------------------------
 
-\section{\glsentrytext{ofdm} Carrier Orthogonality \label{sect:proofs_ofdm-orthog}}
-
-\textcolor{red}{Incomplete. Todo!}
-
-% \begin{lemma}
-    Given two complex exponential signals with frequencies that differ by \(\frac{k}{T}\), the signals are orthogonal over an integration period of~\(T\) for any integer value of~\(k\).
+\emph{Statement.}
+Given two complex exponential signals with frequencies that differ by \(\Delta\omega = \frac{2\pi k}{T_u}\), the signals are orthogonal over an integration period of~\(T_u\) for any integer value of~\(k\).
 
 \begin{proof}
-    Consider two complex exponential signals,
-    
-    \begin{equation}
-        \psi_1 = \rho_1 \cdot e^{j(2\pi f_0 t + \theta_1)}
-    \end{equation}
-    \begin{equation}
-        \psi_2 = \rho_2 \cdot e^{j(2\pi (f_0 + \frac{k}{T})t + \theta_2)}
-    \end{equation}
+    Consider the two complex exponential signals that differ by a frequency of \(\Delta\omega\),
+    \begin{align}
+        \psi_1 &= \rho_1 \cdot e^{j(\omega_0 t + \theta_1)} \\
+        \psi_2 &= \rho_2 \cdot e^{j((\omega_0 + \Delta\omega)t + \theta_2)}
+    \end{align}
+    where \(\rho_1\) and \(\rho_2\) are arbitrary real values, and \(\theta_1\) and  \(\theta_2\) are arbitrary phase-shifts.
 
-    Looking at the orthogonality of the signals:
-    
+    The inner product of the two signals over an integration period of \(T_u\) is defined as,
     % \begin{equation}
         \setlength{\jot}{10pt}
         \begin{align}
-            F &= \int_0^T \psi_1(t) \psi_2^*(t) dt \\
-            &= \int_0^T \rho_1 e^{j(2\pi f_0 t + \theta_1)} \cdot \rho_2 e^{-j(2\pi (f_0 + \frac{k}{T})t + \theta_2)} dt \\
-            &= \rho_1 \rho_2 \int_0^T e^{j(2\pi f_0 t + \theta_1 - 2\pi f_0 t - 2\pi \frac{k}{T}t - \theta_2)} dt \\
-            &= \rho_1 \rho_2 e^{j(\theta_1 - \theta_2)} \int_0^T e^{-j 2\pi \frac{k}{T} t} dt \\
-            &= \rho_1 \rho_2 e^{j(\theta_1 - \theta_2)} \cdot \frac{1}{-j2\pi\frac{k}{T}} \bigg[ e^{-j2\pi\frac{k}{T} t} \bigg]^{t=T}_{t=0} \\
-            &= \rho_1 \rho_2 e^{j(\theta_1 - \theta_2)} \cdot \frac{1}{-j2\pi\frac{k}{T}} (e^{-j2\pi k} - 1) \\
-            &= \rho_1 \rho_2 e^{j(\theta_1 - \theta_2)} \cdot \frac{1}{-j2\pi\frac{k}{T}} \cdot 0 = 0
+            \langle \psi_1, \psi_2 \rangle &:= \int_0^{T_u} \psi_1(t) \psi_2^*(t) \: dt
         \end{align}
-    % \end{equation}
-    
+    where \(\psi_2^*(t)\) is the complex-conjugate of \(\psi_2(t)\). Substituting \(\psi_1\) and \(\psi_2\), and then simplifying,
+    \begin{align}
+        \langle \psi_1, \psi_2 \rangle &= \int_0^{T_u} \rho_1 e^{j(\omega_0 t + \theta_1)} \cdot \rho_2 e^{-j((\omega_0 + \Delta\omega)t + \theta_2)} \: dt \\
+        &= \rho_1 \rho_2 \int_0^{T_u} e^{j(\omega_0 t + \theta_1 - \omega_0 t - \Delta\omega t - \theta_2)} \: dt \\
+        &= \rho_1 \rho_2 e^{j(\theta_1 - \theta_2)} \int_0^{T_u} e^{-j \Delta\omega t} \: dt
+    \end{align}
+
+    Letting \(C = \rho_1 \rho_2 e^{j(\theta_1 - \theta_2)}\), substituting \(\Delta\omega = \frac{2\pi k}{T_u}\), and calculating the definite integral,
+    \begin{align}
+        \langle \psi_1, \psi_2 \rangle &= C \cdot \frac{1}{-j2\pi\frac{k}{T_u}} \bigg[ e^{-j2\pi\frac{k}{T_u} t} \bigg]^{t=T_u}_{t=0} \\
+        &= C \cdot \frac{1}{-j2\pi\frac{k}{T_u}} (e^{-j2\pi k} - 1)
+    \end{align}
+    Since \(e^{-j2\pi k} = 1 \: \forall \: k \in \mathbb{Z}\),
+    \begin{align}
+        \langle \psi_1, \psi_2 \rangle &= 0
+    \end{align}
+    Therefore, \(\psi_1\) and \(\psi_2\) are orthogonal over the integration period \(T_u\).
 \end{proof}
-
-\section{Using the \glsentrytext{dft} in \glsentrytext{ofdm} systems \label{sect:proofs_ofdm-dft}}
-
-%TODO
-\textcolor{red}{Incomplete. Todo!}
-
-
-% \section{Effect of Windowing in the Frequency Domain}
-
-% Any physically-realizable system can only ever consider a finite section of a received signal---over the integration period. Mathematically, this is equivalent to multiplying the signal by a windowing function, \(w(t)\).
-
-% To understand why, consider a carrier wave, \(f(t)\), which has a frequency of \(\omega_0\) and is recorded over a period of \(T\) seconds. Notice that this is equivalent to multiplying \(f(t)\) by a windowing function, \(w(t)\), with a width of \(T\). Figure~\ref{fig:sampling-sine} depicts this, where a simple rectangular pulse is used as the windowing function. Note, however, that more complex windowing functions can be used, and the point will remain. The resulting windowed carrier wave is notated as \(f_T(t)\).
-
-% \begin{figure}[htbp]
-%     \centering
-%     \captionsetup{type=figure}
-%     \includegraphics[width=0.7\linewidth]{sampling-sine.pdf}
-%     \caption{Depiction of sampling as a multiplication with a finite window function}
-%     \label{fig:sampling-sine}
-% \end{figure}
-
-% Consider now the impact of windowing as viewed in the frequency domain. The original carrier wave, \(f(t)\), which theoretically spans over all time, is perfectly impulsive. However, multiplication with the windowing function in time is equivalent to convolution with the window's spectrum in frequency. The exact details of this spectrum depend on the windowing function used, but for a simple rectangular function,
-% \begin{equation}
-%     w(t) = \textrm{rect}\bigg(\frac{t}{T}\bigg) \xLeftrightarrow{\quad\mathcal{F}\quad} W(\omega) = T \cdot \textrm{Sa}\bigg(\frac{\omega T}{2}\bigg)
-% \end{equation}
-% where \(\textrm{Sa}(x)=\frac{\sin{x}}{x}\).
-
-% \begin{figure}[htbp]
-%     \centering
-%     \captionsetup{type=figure}
-%     \def\svgwidth{\linewidth}
-%     {\setstretch{0.7} % Line spacing
-%         \input{../Images/sampling-sine-freq.pdf_tex}}
-%     \caption{Effect of windowing on spectrum}
-%     \label{fig:sampling-sine-freq}
-% \end{figure}
 
 % ----------------------------------------------------
 \ifstandalone
 % \bibliography{../Bibliography/References.bib}
-% \printnoidxglossary[type=\acronymtype,nonumberlist]
+\printnoidxglossary[type=\acronymtype,nonumberlist]
 \fi
 \end{document}
 % ----------------------------------------------------
