@@ -14,14 +14,14 @@
     {\emph{---Friedrich Nietzsche}}
 % ----------------------------------------------------
 
-This chapter details the core design component of the project: a \gls{dab} processing chain. While the broader context of this report falls within the realm of \gls{pr}, the fundamental task at hand was to demodulate and remodulate a given \gls{dab} signal, in order to create a perfect reference signal of given recorded data. Fortunately, as outlined in the previous chapter, not all of the intricacies of the \gls{dab} standard were required to be understood or even considered for integration into a \gls{pr} chain.
+This chapter details the core design component of the project: a \gls{dab} processing chain. The fundamental task at hand was to demodulate and remodulate a given \gls{dab} signal, in order to create a perfect reference signal of given recorded data. Fortunately, as outlined in the previous chapter, not all of the intricacies of \gls{dab} signals were required to be understood or even considered for integration into a \gls{pr} chain.
 
-The design of the chain involved studying the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, as well as using pristine reference data for initial testing. For some functionality, real-world data was also used for design and testing. All of the data provided was of transmission Mode I, and thus the ( ). Nonetheless, altering the chain for implementation with other modes will be trivial. All \textsc{Matlab} functions were designed with a \texttt{dab\_mode} input, if necessary, to allow for easy changes in future designs. Note, however, that this mode input parameter is not shown in any of the upcoming diagrams.
+The design of the chain involved studying the relevant aspects of the \gls{dab} standard document from the \gls{etsi}~\cite{dabstandard}, as well as using perfect reference data for initial testing. For some functionality, real-world data was also used for design and testing. So far as possible, the chain's processing steps were crafted independently of the \gls{dab} transmission mode used. All of the necessary \textsc{Matlab} functions were designed with a \texttt{dab\_mode} input to allow this generic approach. However, the provided \gls{dab} data was only of Transmission Mode I type; therefore, the chain was only practically tested in this mode.
 
-(Make a note of diagrams showing generic dimensions)
+This chapter begins with an overview of the processing chain, and then unpacks the three main blocks of the chain into respective sections. Each section then dives deeper into the different blocks, looking at their sub-blocks and associated functionality. Block diagrams are used extensively, and the dimensions provided on these diagrams are based on the generic \gls{dab} parameters. The corresponding parameters assigned to each mode are given in Appendix~\ref{sect:dab-values_t-mode}. The variable names shown on the diagrams match directly to the those used in the \textsc{Matlab} code.
 
 \section{Overview}
-Within the \gls{dab} processing chain, three main functional blocks were identified: pre-processing, demodulation, and remodulation. The first block reads in a \gls{dab} recording of \gls{iq} data saved as a binary file, and outputs a single \gls{dab} frame from this file. This frame can then be input to the demodulate block, which extracts the \gls{dab} data from it. This data is not the decoded information from the \gls{dab} recording---such as the audio signal---rather, it is simply an extracted bitstream. This bitstream can then be perfectly reconstructed as a \gls{dab} frame, by the remodulate block. A diagrammatic overview of this chain is given in Figure~\ref{fig:BD_Overview_All}.
+Within the \gls{dab} processing chain, three main functional blocks were identified: pre-processing, demodulation, and remodulation. The first block reads in a \gls{dab} recording of \gls{iq} data saved as a binary file, and outputs a single \gls{dab} frame from this file. This frame can then be input to the \texttt{demodulate} block, which extracts the \gls{dab} data from it. This data is not the decoded information from the \gls{dab} recording---such as the audio signal---rather, it is simply an extracted bitstream. This bitstream can then be perfectly reconstructed as a \gls{dab} frame, by the \texttt{remodulate} block. A diagrammatic overview of this chain is given in Figure~\ref{fig:BD_Overview_All}.
 
 \begin{figure}[htbp]
   \centering
@@ -33,7 +33,7 @@ Within the \gls{dab} processing chain, three main functional blocks were identif
   \label{fig:BD_Overview_All}
 \end{figure}
 
-Notice in the figure that each of the aforementioned blocks---the pre-process, demodulate, and remodulate blocks---was created from a collection of smaller sub-blocks. These sub-blocks were designed to perform simpler tasks individually, and were written as relatively short \textsc{Matlab} functions. This atomic-function approach had a host of benefits for the design, debugging, and validation of the chain, and added layers of abstraction for the larger system.
+Notice in the figure that each of the aforementioned blocks---the \texttt{preprocess}, \texttt{demodulate}, and \texttt{remodulate} blocks---was created from a collection of smaller sub-blocks. These sub-blocks were designed to perform simpler tasks individually, and were written as relatively short \textsc{Matlab} functions. This atomic-function approach had a host of benefits for the design, debugging, and validation of the chain, and added layers of abstraction for the larger system.
 
 Each of the three blocks will be unpacked in the sections that follow this one, with subsections dedicated to the relevant sub-blocks.
 
@@ -42,9 +42,9 @@ Each of the three blocks will be unpacked in the sections that follow this one, 
 % ##############################################################################################################################
 \section{Pre-processing \label{sect:dab-proc_preprocessing}}
 \subsection{Overview}
-The pre-processing chain was designed to read in an \gls{iq} data file, synchronize it appropriately, and extract a single frame from it. Note that in an actual \gls{pr} system---where this \gls{dab} processing chain would be only a small part of a larger chain---this block would be markedly different. If nothing else, a real-world chain would probably stream the \gls{iq} data, rather than read it from a pre-recorded file. Moreover, a real chain might process several \gls{dab} frames at once. However, such details are largely context-specific, and it would be superfluous to include every use-case in this report. Importantly, the other two blocks---used to demodulate and remodulate---would mostly remain the same in various other scenarios. Thus, to make matters simpler, the pre-processing block was designed to be straightforward: to read in data and extract a single frame. That is not to say the block is trivial, and there were some important design decisions made for it.
+The pre-processing chain was designed to read in an \gls{iq} data file, synchronise it appropriately, and extract a single frame from it. Note that in an actual \gls{pr} system---where this \gls{dab} processing chain would be only a small part of a larger chain---this block would be markedly different. If nothing else, a real-world chain would probably stream the \gls{iq} data, rather than read it from a pre-recorded file. Moreover, a real chain might process several \gls{dab} frames at once. However, such details are largely context-specific, and it would be superfluous to include every use-case in this report. Importantly, the other two blocks---used to demodulate and remodulate---would mostly remain the same in various other scenarios. Thus, to make matters simpler, the pre-processing block was designed to be straightforward: to read in data and extract a single frame. That is not to say the block was trivial, and there were some important design decisions made for it.
 
-The pre-processing block has four key stages: reading in \gls{iq} data from a binary file, resampling this data if necessary, detecting the location of the \gls{prs} and thus synchronizing the recording, and then extracting a \gls{dab} frame accordingly. This pipeline is shown graphically in Figure~\ref{fig:BD_Preprocess_All}.
+The pre-processing block had four key stages: reading in \gls{iq} data from a binary file, resampling this data if necessary, detecting the location of the \gls{prs} and thus synchronising the recording, and then extracting a \gls{dab} frame accordingly. This pipeline is shown graphically in Figure~\ref{fig:BD_Preprocess_All}.
 
 \begin{figure}[htbp]
     \centering
@@ -57,7 +57,7 @@ The pre-processing block has four key stages: reading in \gls{iq} data from a bi
 \end{figure}
 
 \subsection{Reading \glsentrytext{iq} data from file \label{subsect:dab-proc_iq-read}}
-The first sub-block is called \texttt{iq\_read}, and, as mentioned previously, would likely be very different in a real \gls{pr} chain. Nonetheless, here it reads in a \gls{dab} recording from a binary file, and outputs so-called "raw" \gls{iq} data. No changes are made to this data in this function, and it essentially just abstracts \textsc{Matlab}'s file-handling functionality conveniently.
+The first sub-block was called \texttt{iq\_read}, and, as mentioned previously, would likely be very different in a real \gls{pr} chain. Nonetheless, here it read in a \gls{dab} recording from a binary file, and output so-called "raw" \gls{iq} data. No changes were made to the data in this function, and it essentially just abstracted \textsc{Matlab}'s file-handling functionality conveniently.
 
 As a minor note, one must remember that a \gls{dab} recording contains \gls{iq} data, which is complex-valued. Since a binary file cannot store such a datatype, it will usually be stored as pairs of numbers. To read this correctly in \textsc{Matlab}, one can use the simple code shown in Listing~\ref{code:iq_read}.
 
@@ -78,9 +78,9 @@ A perfect \gls{dab} recording that would be output from the \texttt{iq\_read} fu
 \end{figure}
 
 \subsection{Resampling \glsentrytext{iq} data \label{subsect:dab-proc_iq-resample}}
-In order for one to utilise the \gls{fft} to demodulate an \gls{ofdm} symbol, certain requirements must be met. Recall that the window for a single symbol, notated as \(T_u\), is 2048 samples for \gls{dab} Mode 1. This means that a 2048-point \gls{fft} must be used, with a resulting 2048 points in the frequency domain. Recall also that \gls{ofdm} has a strict requirement for the spacing between adjacent carriers---\(1 \si{\kilo \hertz}\) for \gls{dab} Mode 1. Notice, then, if the sample rate for the original signal is precisely set at \(F_s = 2.048 \si{\mega \hertz}\), for \gls{dab} Mode 1, then the bins from the \gls{fft} will be perfectly aligned on the \gls{ofdm} carriers---enabling proper demouldation.
+In order for one to utilise the \gls{fft} to demultiplex an \gls{ofdm} symbol, certain requirements must be met. In \gls{dab} Transmission Mode~I, the window length for a single symbol, notated as \(T_u\), is 2048 samples. This means that a 2048-point \gls{fft} must be used, with a resulting 2048 points in the frequency domain. Recall also that \gls{ofdm} has a strict requirement for the spacing between adjacent carriers---\(\SI{1}{\kilo \hertz}\) for \gls{dab} Mode~I. Notice, then, if the sample rate for the original signal is precisely set at \(F_s = \SI{2.048}{\mega \hertz}\), for \gls{dab} Mode~I, then the bins from the \gls{fft} will be perfectly aligned on the \gls{ofdm} carriers---enabling proper demultiplexing.
 
-However, in a real-world scenario, the desired sampling rate might not necessarily be used in the receiver. Thus, in such a situation, the \gls{iq} data must be resampled. Consider an original sampling rate of \(F_s\), a desired sampling rate of \(\tilde{F_s} = 2.048 \si{\mega \hertz}\), with \(F_s \ne \tilde{F_s}\), and with
+However, in a real-world scenario, the desired sampling rate might not necessarily be used in the receiver. Thus, in such a situation, the \gls{iq} data must be resampled. Consider an original sampling rate of \(F_s\), a desired sampling rate of \(\tilde{F_s} = \SI{2.048}{\mega \hertz}\), with \(F_s \ne \tilde{F_s}\), and with
 \begin{equation}
   \frac{\tilde{F_s}}{F_s} = \frac{P}{Q}
 \end{equation}
@@ -91,11 +91,11 @@ Fortunately, \textsc{Matlab} provides a neat abstraction of this process with th
 % -----------------
 \subsection{Frame Synchronization via \glsentrytext{prs} Detection \label{subsect:dab-proc_prs-detect}}
 
-One of the most important parts of the entire \gls{dab} processing chain is correct time-synchronization. If the frame from the pre-processing block is misaligned, the entire demodulation process can break due to misalignment of the \gls{ofdm} symbols, thus causing havoc in the \gls{dqpsk} demodulation. Fortunately, the inclusion of a guard interval with cyclic prefixing provides some leeway, but errors can easily arise if one is not careful. It will later be shown how a result can be negatively affected by the incorrect alignment of a \gls{dab} frame.
+One of the most important parts of the entire \gls{dab} processing chain was correct time-synchronisation. If the frame from the pre-processing block was misaligned, the entire demodulation process could break due to misalignment of the \gls{ofdm} symbols, thus causing havoc in the \gls{dqpsk} demodulation. Fortunately, the inclusion of a guard interval with cyclic prefixing provided some leeway, but errors could easily arise if one was not careful. It will later be shown how a result can be negatively affected by the incorrect alignment of a \gls{dab} frame.
 
-There are two mechanisms built into the \gls{dab} signal for synchronization, namely the \gls{ns} and the \gls{prs}. As specified in the \gls{dab} standard document~\cite{dabstandard}, the former symbol is to be used for so-called "coarse" synchronization---detecting an approximate location of the frame's beginning; whereas the latter symbol is used for "fine" synchronization---detecting the exact sample at which the frame starts. 
+There are two mechanisms built into the \gls{dab} signal for synchronisation, namely the \gls{ns} and the \gls{prs}. As specified in the \gls{dab} standard document~\cite{dabstandard}, the former symbol is to be used for so-called "coarse" synchronisation---detecting an approximate location of the frame's beginning; whereas the latter symbol is used for "fine" synchronisation---detecting the exact sample at which the frame starts. 
 
-Naturally, for each of these detection processes, one cannot consider the entirety of a signal---stretching back from the dawn of time to the eventual collapse of the universe far in the future---more than just practically impossible, it would be unnecessary. Instead only a chunk of the data can be considered at once, as a subset of the longer signal. This process is termed "windowing," where the signal is truncated to a finite domain over which it will be examined. Let the length of this window be notated\footnote{The is not necessarily standardised notation.} as \(T_w\), and let the interval between successive windows be called the "advancement interval", \(T_a\). Graphically, these values are depicted in Figure~\ref{fig:window_advance_illustration}.
+Naturally, for each of these detection processes, one cannot consider the entirety of an incoming signal. More than just practically impossible, it would be detrimental to do this, for each symbol in a \gls{dab} signal is carrying independent information. Instead, only a chunk of the data can be considered at once, as a subset of the longer signal. This process is termed "windowing," where the signal is truncated to a finite domain over which it will be examined. Let the length of this window be notated\footnote{The is not necessarily standardised notation.} as \(T_w\), and let the interval between successive windows be called the "advancement interval", \(T_a\). Graphically, these values are depicted in Figure~\ref{fig:window_advance_illustration}.
 
 \begin{figure}[htbp]
   \centering
@@ -112,11 +112,11 @@ In order not to skip any sections of the signal, it is clear that the following 
   T_a \le T_w
 \end{equation}
 
-Consider firstly the detection of the \gls{ns}. Recall that this symbol is a period in the signal during which all \gls{ofdm} carriers are turned off and no power is transmitted. On the receiver's end, there will still be noise recorded from the environment and elsewhere, but the received power over the length of the null symbol, \(T_\textrm{null}\), will be significantly less than in other parts of the signal. Hence, in order to detect this symbol, one can calculate the average power starting at index \(n_0\) over a window of~\(T_w = T_\textrm{null}\). Let this be notated as \(P_{n_0}\), and calculated as:
+Consider firstly the detection of the \gls{ns}. Recall that this symbol is a period in the signal during which all \gls{ofdm} carriers are turned off and no power is transmitted. On the receiver's end, there will still be noise recorded from the environment and elsewhere, but the received power over the length of the null symbol, \(T_\textrm{null}\), will be significantly less than in other parts of the signal. Hence, in order to detect this symbol, one could calculate the average power starting at index \(n_0\) over a window of~\(T_w = T_\textrm{null}\). Let this be notated as \(P_{n_0}\), and calculated as:
 \begin{equation}
   P_{n_0} = \frac{1}{T_w} \cdot \sum^{n_0 + T_w - 1}_{n=n_0} \left| x[n] \right|^2
 \end{equation}
-where \(x[n]\) is the sampled signal, windowed on the domain \([n_0, n_0 + T_w)\). This window can be moved along the original signal, in increments of \(T_a\). Since the \gls{ns} only provides a coarse result, and further synchronisation steps would always be required, the specific value of \(T_a\) is not too important, provided it is less than or equal to \(T_w\). When the average power of a window decreases below a particular threshold---for example, it could be compared to the average power of a \emph{frame}-lengthed chunk of the signal---the \gls{ns} has been approximately detected. If things are working correctly, the symbol detection should occur within the first \(T_f\) samples---if not, there is a problem.
+where \(x[n]\) is the sampled signal, windowed on the domain \([n_0, n_0 + T_w)\). This window could be moved along the original signal, in increments of \(T_a\). Since the \gls{ns} only provides a coarse result, and further synchronisation steps would always be required, the specific value of \(T_a\) was not too important, provided it was less than or equal to \(T_w\). When the average power of a window decreased below a particular threshold---for example, it could be compared to the average power of a \emph{frame}-lengthed chunk of the signal---the \gls{ns} had been approximately detected. If things were working correctly, the symbol detection should have occurred within the first \(T_f\) samples---if not, there was a problem.
 
 An outline of the coarse detection process is given in Algorithm~\ref{alg:null_symbol_detect}.
 
@@ -126,7 +126,7 @@ An outline of the coarse detection process is given in Algorithm~\ref{alg:null_s
   \captionsetup{type=figure}
   \begin{minipage}{.75\linewidth}
     \begin{algorithm}[H]
-      \caption{Coarse Frame Synchronization via Null Symbol Detection.\label{alg:null_symbol_detect}}
+      \caption{Coarse frame synchronization via \gls{ns} detection.\label{alg:null_symbol_detect}}
 
       \DontPrintSemicolon
       \SetAlgoLined
@@ -155,7 +155,7 @@ An outline of the coarse detection process is given in Algorithm~\ref{alg:null_s
   \end{minipage}
 \end{figure}
 
-Consider next the detection of the \gls{prs}. Because this symbol is precisely defined by the \gls{dab} standard, it was known \emph{a priori} and thus could be detected via a Matched Filtering process, which is essentially a time-domain correlation. Conceptually, this entailed designing a filter, \(H(\omega)\), based on the \gls{prs}:
+Consider next the detection of the \gls{prs}. Because this symbol is precisely defined by the \gls{dab} standard, it was known \emph{a priori} and thus could be detected via a matched filtering process, which is essentially a time-domain correlation. Conceptually, this entailed designing a filter, \(H(\omega)\), based on the \gls{prs}:
 \begin{equation}
   H(\omega) = R^*(\omega)
 \end{equation}
@@ -164,14 +164,14 @@ where \(R^*(\omega)\) was the conjugate of the continuous-time Fourier transform
   H[k] = R^*[k] = \mathrm{DFT} \{ r[n] \}^*
 \end{equation}
 
-Since the \gls{dft} is a \(\mathbb{C}^N \rightarrow \mathbb{C}^N\) transformation, the filter length---and thus the window size, \(T_w\)---is constrained to the length of \(r[n]\). This length is equal to \(T_u\), the "useful symbol length" in the \gls{dab} standard.
+% Since the \gls{dft} is a \(\mathbb{C}^N \rightarrow \mathbb{C}^N\) transformation, the filter length---and thus the window size, \(T_w\)---is constrained to the length of \(r[n]\). This length is equal to \(T_u\), the "useful symbol length" in the \gls{dab} standard.
 
-The output of the Matched Filter in the Fourier domain, \(Y[k]\), for a given input signal, \(x[n]\), can be calculated via a simple Hadamard (pointwise) product:
+The output of the matched filter in the Fourier domain, \(Y[k]\), for a given input signal, \(x[n]\), can be calculated via a simple Hadamard (pointwise) product:
 \begin{equation}
   Y[k] = H[k] \odot X[k] = H[k] \odot \mathrm{DFT} \{ x[n] \}
 \end{equation}
 
-The output of this filter in time, \(y[n]\), will contain a peak value at the location within \(x[n]\) where \(r[n]\) is most highly correlated. In an arbitrary section of the \gls{dab} signal, the output will simply be noise, as the signals are not correlated; however, in a section containing the \gls{prs}, the peak value will be noticeably larger than surrounding values, even when using a non-perfect recording. One could detect this peak by comparing it to the average value of the Matched Filter output, for example. Figure~\ref{fig:mf_out_good} shows an example of the filtering process when the \gls{prs} falls within the window of \(x[n]\).
+The output of this filter in time, \(y[n]\), will contain a peak value at the location within \(x[n]\) where \(r[n]\) is most highly correlated. In an arbitrary section of the \gls{dab} signal, the output will simply be noise, as the signals are not correlated; however, in a section containing the \gls{prs}, the peak value will be noticeably larger than surrounding values, even when using a non-perfect recording. One could detect this peak by comparing it to the average value of the matched filter output, for example. Figure~\ref{fig:mf_out_good} shows an example of the filtering process when the \gls{prs} falls within the window of \(x[n]\).
 
 \begin{figure}[htbp]
   \centering
@@ -180,7 +180,7 @@ The output of this filter in time, \(y[n]\), will contain a peak value at the lo
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=0.7\linewidth]{plots/mf_out_good_signal.pdf}
-    \caption{Input to Matched Filter, \(x[n]\)}
+    \caption{Input to matched filter, \(x[n]\)}
     \label{fig:mf_out_good_signal}
   \end{subfigure}%
   \\
@@ -188,16 +188,16 @@ The output of this filter in time, \(y[n]\), will contain a peak value at the lo
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=0.7\linewidth]{plots/mf_out_good_peak.pdf}
-    \caption{Output from Matched Filter, \(y[n]\), with peak detected}
+    \caption{Output from matched filter, \(y[n]\), with peak detected}
     \label{fig:mf_out_good_peak}
   \end{subfigure}
-  \caption{Plots showing the input to and output from the Matched Filter, when the \glsentrytext{prs} is detected.}
+  \caption{Plots showing the input to and output from the matched filter, when the \glsentrytext{prs} is detected.}
   \label{fig:mf_out_good}
 \end{figure}
 
-By moving a window of length \(T_w = T_u\) across the input \gls{dab} signal until a peak is detected in the Matched Filter output, one can locate the \gls{prs}---and thus the beginning of the \gls{dab} frame---precisely. This detection should occur within the first \(T_f\) samples. There are two important points to make here. Firstly, note that the magnitude of the Matched Filter's output, \(|y[n]|\), decreases as the offset of the recorded \gls{prs} within the window increases. That is, suppose the \gls{prs} begins at the sample index \(n_p\). If the windowed \gls{dab} signal, \(x[n]\), covers the domain \(n \in [n_p, n_p + T_u]\), then \(x[n]\) is perfectly correlated with the \gls{prs} (ignoring noise in the recording); thus, the output of the Matched Filter will be large. However, as \(n_p\) increases, less of the \gls{prs} signal will be included in \(x[n]\), and the correlation peak will decrease. The smaller the correlation peak, the less distinct it will be from other peaks, and the less likely it will be successfully found.
+By moving a window of length \(T_w = T_u\), for example, across the input \gls{dab} signal until a peak was detected in the matched filter output, one could locate the \gls{prs}---and thus the beginning of the \gls{dab} frame---precisely. This detection should occur within the first \(T_f\) samples. There are two important points to make here. Firstly, note that the magnitude of the matched filter's output, \(|y[n]|\), decreases as the offset of the recorded \gls{prs} within the window increases. That is, suppose the \gls{prs} begins at the sample index \(n_p\). If the windowed \gls{dab} signal, \(x[n]\), covers the domain \(n \in [n_p, n_p + T_u]\), then \(x[n]\) is perfectly correlated with the \gls{prs} (ignoring noise in the recording); thus, the output of the matched filter will be large. However, as \(n_p\) increases, less of the \gls{prs} signal will be included in \(x[n]\), and the correlation peak will decrease. The smaller the correlation peak, the less distinct it will be from other peaks, and the less likely it will be successfully found.
 
-Secondly, notice that the peak of the Matched Filter output, in Figure~\ref{fig:mf_out_good_peak}, does not occur at the onset of the input signal, \(x[n]\); rather, it occurs around 500 samples later. This was expected, due to the inclusion of a guard interval---since the Matched Filter, \(H[k]\), is defined around the original \gls{prs} signal of length~\(T_u\), without the guard interval. However, unfortunately, this causes an unwanted effect in the detection process. Consider a situation in which \(x[n]\) only contains the guard interval of the \gls{prs}, before the actual "useful" symbol begins, as shown in Figure~\ref{fig:mf_out_prefix-problem_signal}.
+Secondly, notice that the peak of the matched filter output, in Figure~\ref{fig:mf_out_good_peak}, does not occur at the onset of the input signal, \(x[n]\); rather, it occurs around 500 samples later. This was expected, due to the inclusion of a guard interval---since the matched filter, \(H[k]\), is defined around the original \gls{prs} signal of length~\(T_u\), without the guard interval. Unfortunately, this causes an unwanted effect in the detection process. Consider a situation in which \(x[n]\) only contains the guard interval of the \gls{prs}, before the actual "useful" symbol begins, as shown in Figure~\ref{fig:mf_out_prefix-problem_signal}.
 
 \begin{figure}[htbp]
   \centering
@@ -206,7 +206,7 @@ Secondly, notice that the peak of the Matched Filter output, in Figure~\ref{fig:
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=0.7\linewidth]{plots/mf_out_prefix-problem_signal.pdf}
-    \caption{Input to Matched Filter, \(x[n]\)}
+    \caption{Input to matched filter, \(x[n]\)}
     \label{fig:mf_out_prefix-problem_signal}
   \end{subfigure}%
   \\
@@ -214,16 +214,16 @@ Secondly, notice that the peak of the Matched Filter output, in Figure~\ref{fig:
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=0.7\linewidth]{plots/mf_out_prefix-problem_peak.pdf}
-    \caption{Output from Matched Filter, \(y[n]\), with peak erroneously detected}
+    \caption{Output from matched filter, \(y[n]\), with peak erroneously detected}
     \label{fig:mf_out_prefix-problem_peak}
   \end{subfigure}
-  \caption{Plots showing the input to- and output from the Matched Filter, when the \glsentrytext{prs} is erroneously detected due to the guard interval.}
+  \caption{Plots showing the input to- and output from the matched filter, when the \glsentrytext{prs} is erroneously detected due to the guard interval.}
   \label{fig:mf_out_prefix-problem}
 \end{figure}
 
-Notice that the peak identified in the Matched Filter output, seen in Figure~\ref{fig:mf_out_prefix-problem_peak}, is erroneous---the actual \gls{prs} has, in fact, not yet begun. Recall that the guard interval is duplicated from the tail-end of the original symbol; thus, the end of the \gls{prs} in the Matched Filter has correlated with the guard interval of the input signal, \(x[n]\). Though this peak is not massive, it can nevertheless be incorrectly identified as the beginning of the \gls{dab} frame.
+Notice that the peak identified in the matched filter output, seen in Figure~\ref{fig:mf_out_prefix-problem_peak}, is erroneous---the actual \gls{prs} has, in fact, not yet begun. Recall that the guard interval is duplicated from the tail-end of the original symbol; thus, the end of the \gls{prs} in the matched filter has correlated with the guard interval of the input signal, \(x[n]\). Though this peak is not massive, it can nevertheless be incorrectly identified as the beginning of the \gls{dab} frame.
 
-Both of these points---the decreasing correlation peak, and the guard interval problem---motivate the choice of the advancement interval to be less than the window period. Of course, there is a trade-off, as a shorter advancement interval increases the computation required to detect the \gls{prs}. For this project's implementation of the \gls{dab} processing chain, the values were chosen as \(T_a = \frac{1}{2} T_w\). This ensures that any small peak occurring in the second half of a window interval is guaranteed to occur again, as a much larger peak, in the first half of the next interval. Therefore, the threshold for a "true peak" value can be stricter, which also solves the guard interval problem.
+Both of these points---the decreasing correlation peak, and the guard interval problem---motivated the choice of the advancement interval to be less than the window period. Of course, there was a trade-off, as a shorter advancement interval increased the computation required to detect the \gls{prs}. For this project's implementation of the \gls{dab} processing chain, the values were chosen as \(T_a = \frac{1}{2} T_w\). This ensured that any small peak occurring in the second half of a window interval was guaranteed to occur again, as a much larger peak, in the first half of the \emph{next} interval. Therefore, the threshold for a "true peak" value could be stricter, which also solved the guard interval problem.
 
 An outline of the \gls{prs} detection process is given in Algorithm~\ref{alg:prs_detect}.
 
@@ -233,7 +233,7 @@ An outline of the \gls{prs} detection process is given in Algorithm~\ref{alg:prs
   \captionsetup{type=figure}
   \begin{minipage}{.75\linewidth}
     \begin{algorithm}[H]
-      \caption{Fine Frame Synchronization via \gls{prs} Detection. \label{alg:prs_detect}}
+      \caption{Fine frame synchronization via \gls{prs} detection. \label{alg:prs_detect}}
 
       \DontPrintSemicolon
       \SetAlgoLined
@@ -269,10 +269,10 @@ An outline of the \gls{prs} detection process is given in Algorithm~\ref{alg:prs
 
 Recall that detection of the \gls{ns} was designed for coarse synchronisation, while the \gls{prs} was intended for fine synchronisation. Essentially, then, there were two broad algorithms for frame alignment: to locate the approximate beginning of a frame with the \gls{ns} and thereafter finely align the frame with the \gls{prs}, or to use only the \gls{prs} without first coarsely detecting the \gls{ns}. For a robust design decision between these two approaches, one should consider the various computational complexities involved in each of the algorithms, as well as possible optimisations that could be made. Nonetheless, for the sake of simplicity, the latter choice was taken in this project: to use only the \gls{prs} for detection. Further work could be done analysing the best decision to make, but such work was outside of the scope of this report.
 
-Another important question when integrating the \gls{dab} processing chain into a larger \gls{pr} system is the regularity of frame synchronization. Ideally, one would only need to synchronize once, if the clock of the transmitter and receiver are perfectly accurate. Unfortunately, in real scenarios, there are a host of unwanted effects, including clock drift, that may cause synchronization errors over time. The other extreme is to synchronize on every frame---which is possible because every frame is preceded by both a \gls{ns} and a \gls{prs}. However, this may prove to be too computationally expensive. Naturally, fixed rules cannot be set for this decision, and are largely context-specific. Further details are thus omitted here.
+Another important question when integrating the \gls{dab} processing chain into a larger \gls{pr} system is the regularity of frame synchronisation. Ideally, one would only need to synchronise once, if the clock of the transmitter and receiver were perfectly accurate. Unfortunately, in real scenarios, there would be a host of unwanted effects, including clock drift, that may cause synchronisation errors over time. The other extreme is to synchronise on every frame---which is possible because every frame is preceded by both a \gls{ns} and a \gls{prs}. However, this may prove to be too computationally expensive. Naturally, fixed rules cannot be set for this decision, and are largely context-specific. Further details are thus omitted here.
 
 \subsection{Frame Extraction \label{subsect:dab-proc_frame-extract}}
-Once the index of the \gls{prs} has been detected, extracting a frame is trivial, as it simply entails subsetting the original data array. This subsection is included for the sake of completeness.
+Once the index of the \gls{prs} has been detected, extracting a frame was trivial, as it simply entailed subsetting the original data array. This subsection is included for the sake of completeness.
 
 % ##############################################################################################################################
 %   D E M O D U L A T I O N
@@ -454,13 +454,13 @@ One can see that the phases of the carriers indeed changed from \(S_{l-1}\) to \
 
 In line with this modulation scheme, the process of extracting the \gls{dab} data from the carriers involved considering the phase difference between consecutive symbols, with the first symbol, the \gls{prs}, used as a reference for subsequent symbols (hence its name). This process was termed "demapping" the \gls{dqpsk} data. Since the data was demapped using the difference of two symbols, a given set of \(L\)~symbols mapped to \((L-1)\) streams of \gls{dab} data.
 
-Consider the extraction of the data for an arbitrary index, \((l-1)\), call this data \(D_{l-1}\), from the symbols \(S_{l-1}\) and \(S_{l}\). Using a simple complex relation,
+Consider the extraction of the data for an arbitrary index, \((l-1)\)---call this data \(D_{l-1}\)---from the symbols \(S_{l-1}\) and \(S_{l}\). Clearly,
 \begin{align}
   D_{l-1} &= \angle S_{l} - \angle S_{l-1}\\
           &= \angle\left(\frac{S_{l}}{S_{l-1}}\right)
 \end{align}
 
-This process can be easily be achieved in software---for example, using the simple code given in Listing~\ref{code:dqpsk_demap}. To avoid unnecessary division computation, this calculation was only done for the relevant carriers, indexed in \textsc{Matlab} using the variable called \texttt{mask}. Here, \texttt{dab\_carriers(n,:)} refers to \(S_n\), and \texttt{dab\_data\_raw(n,:)} refers to \(D_n\).
+This process can be easily be achieved in software---for example, using the simple code given in Listing~\ref{code:dqpsk_demap}. To avoid unnecessary division, this calculation was only done for the relevant carriers, indexed in \textsc{Matlab} using the variable called \texttt{mask}. Here, \texttt{dab\_carriers(n,:)} refers to \(S_n\), and \texttt{dab\_data\_raw(n,:)} refers to \(D_n\).
 
 \begin{lstlisting}[caption={\textsc{Matlab} code for demapping \gls{dab} carriers into \gls{dqpsk} data},label={code:dqpsk_demap}]
 dab_data_raw(l-1,mask) = dab_carriers(l,mask) ./ dab_carriers(l-1,mask);
@@ -663,7 +663,7 @@ A graphical summary of the \texttt{dqpsk\_snap} function is shown in Figure~\ref
 \end{figure}
 
 \subsection{Error Correction \label{subsect:dab-proc_error-correct}}
-Though the snapping of the \gls{dqpsk} values was a straightforward way to eliminate the spreading in the phase data, it could not account for any errors that may have arisen in the signal. These errors could have come from various sources, including environmental noise and multipath effects. Moreover, some of the values in real-world data fell close to the decision boundary, and may have been assigned incorrectly. The \gls{dab} standard provides for this by integrating an error-correction method into any \gls{dab} signal, as described in the previous chapter during the discussion around \gls{fec}. Essentially, the transmitted data is convolutionally encoded, and can be decoded on the receiver's end with a Viterbi decoder.
+Though the snapping of the \gls{dqpsk} values was a straightforward way to eliminate the spreading in the phase data, it could not account for any errors that may have arisen in the signal. These errors could have come from various sources, including environmental noise and multipath effects. Moreover, some of the values in real-world data fell close to the decision boundary, and may have been assigned incorrectly. The \gls{dab} standard provides for this by integrating an error-correction method into any \gls{dab} signal, as mentioned briefly in the previous chapter during the discussion around \gls{fec}. Essentially, the transmitted data is convolutionally encoded, and can be decoded on the receiver's end with a Viterbi decoder.
 
 Having said that, the original scope of this project did not include any error-correction implementation, and the sub-block is included here for completeness only. Ideally, in a fully-functional chain that is integrated into a \gls{pr} system, such functionality would indeed be included; however, its necessity depends on the quality of the \gls{dab} signals used in the system.
 
@@ -694,7 +694,6 @@ The details for each sub-block are given in the following sections.
 
 \subsection{Frequency Interleaving \label{subsect:dab-proc_freq-interleave}}
 The purpose of this sub-block was to re-interleave the data from the \texttt{demodulate} block, essentially to undo the effects of the \texttt{freq\_deinterleave} function. This process was termed frequency interleaving.
-%Note that this sub-block could have been placed after the next sub-block, \texttt{dqpsk\_map}, without any changes in overall functionality, and if it was, the name would make more sense---as it would then be interleaving the \gls{dab} carriers, which are \emph{frequency} components. However, to create the conveninent forwards-backwards relationship for the demodulation and remodulation chains, its position was chosen as presented above. Thus, even though it was designed to interleave the \gls{dqpsk} data, its name was chosen to be consistent with the \gls{dab} standard's terminology~\cite{dabstandard}.
 
 Interestingly, the same interleaving map as that created for the \texttt{freq\_deinterleave} functionality could be used here, only with a slightly different method of assigning the values. Whereas the previous function used the map to index elements on the right-hand side of the assignment, this function used the map to index elements on the left-hand side---see Listing~\ref{code:freq_interleave} for the code showing this. In this way, the same \texttt{build\_interleave\_map} tool could be used for both the interleaving and deinterleaving functionality. Note, however, that in the frequency interleaving function required knowledge the \gls{dab} mode, in order to pre-allocate the arrays correctly.
 
@@ -718,14 +717,14 @@ In terms of dimensions, the sub-block received \((L-1)\) sets of \(K\) carriers,
 \end{figure}
 
 \subsection{\glsentrytext{dqpsk} Mapping \label{subsect:dab-proc_dqpsk-map}}
-With the \gls{dab} data values re-interleaved from the previous block, they were then used to modulate the \(T_u\) \gls{ofdm} carriers---a process termed \gls{dqpsk} mapping, in contrast to the demapping process discussed previously. Since differential modulation was used, the \((L-1)\) sets of \gls{dab} data at the input of the sub-block mapped to \(L\)~sets of \gls{dab} carriers. To provide a reference for the differential phase values, the \gls{prs} was assigned to be the first output symbol---recall that this was the other purpose of the \gls{prs}, in addition to the frame synchronization discussed previously. Consider Listing~\ref{code:dqpsk_map-1}, which shows the function set-up, with memory allocation and the assignment of the first symbol.
+With the \gls{dab} data values re-interleaved from the previous block, they were then used to modulate the \(T_u\) \gls{ofdm} carriers---a process termed \gls{dqpsk} mapping, in contrast to the demapping process discussed previously. Since differential modulation was used, the \((L-1)\) sets of \gls{dab} data at the input of the sub-block mapped to \(L\)~sets of \gls{dab} carriers. To provide a reference for the differential phase values, the \gls{prs} was assigned to be the first output symbol---recall that this was the other purpose of the \gls{prs}, in addition to the frame synchronisation discussed previously. Consider Listing~\ref{code:dqpsk_map-1}, which shows the function set-up, with memory allocation and the assignment of the first symbol.
 
 \begin{lstlisting}[caption={\textsc{Matlab} code for setting up the \texttt{dqpsk\_map} function.},label={code:dqpsk_map-1}]
 dab_carriers_remod = zeros(dab_mode.L, dab_mode.Tu); % Pre-allocate space
 dab_carriers_remod(1,:) = prs; % First carrier is the phase reference symbol
 \end{lstlisting}
 
-With the first symbol then set, subsequent symbol values were calculated by mutliplying the previous symbol by the interleaved \gls{dab} data values for that index. Programmatically, this process was simple, and is shown in Listing~\ref{code:dqpsk_map-2}, where \texttt{dab\_data\_interleaved} was the output of the \texttt{freq\_interleave} sub-block.
+With the first symbol then set, subsequent symbol values were calculated by multiplying the previous symbol by the interleaved \gls{dab} data values for that index. Programmatically, this process was simple, and is shown in Listing~\ref{code:dqpsk_map-2}, where \texttt{dab\_data\_interleaved} was the output of the \texttt{freq\_interleave} sub-block.
 
 \begin{lstlisting}[caption={\textsc{Matlab} code for the actual \texttt{dqpsk\_map} functionality of differential modulation.},label={code:dqpsk_map-2}]
 for l = 2:dab_mode.L
@@ -760,7 +759,7 @@ Graphically, the functionality of the \gls{dqpsk} mapping is shown in Figure~\re
 \subsection{\glsentrytext{ofdm} Multiplexing \label{subsect:dab-proc_ofdm-mux}}
 The purpose of this sub-block was to convert the modulated \gls{ofdm} carriers into time-domain signals, now reconstructed as perfect \gls{dab} signals. As explained in the \gls{ofdm} \emph{de}-multiplexing subsection, these two perspectives of the signal were, in fact, the same. However, since the data was being transformed from multiple signals from which data could easily be extracted (the \gls{ofdm} carriers), to single signals containing the sum of many carriers, this process was broadly termed "multiplexing."
 
-As was the case for demultiplexing, the \gls{dft}/\gls{fft} could be used for easy extraction and reconstruction of the \gls{ofdm} symbols. Whereas the previous function used the a normal, forward \gls{fft}, this function used the \gls{ifft}---which is logical, considering the inverse relationship of the two blocks: one multiplexes, the other demultiplexes.
+As was the case for demultiplexing, the \gls{dft}/\gls{fft} could be used for easy extraction and reconstruction of the \gls{ofdm} symbols. Whereas the previous function used a normal, forward \gls{fft}, this function used the \gls{ifft}---which is logical, considering the inverse relationship of the two blocks: one multiplexes, the other demultiplexes.
 
 In code, this functionality looked mostly identical to that for the demultiplexing, shown previously in Listing~\ref{code:ofdm_demux}. Here, in Listing~\ref{code:ofdm_mux}, the only differences were that the \gls{ifft} was used, and the result was \emph{multiplied} by the length of the array, rather than being divided by it. Once again, this is logical, considering the inverse relationship.
 
@@ -768,7 +767,7 @@ In code, this functionality looked mostly identical to that for the demultiplexi
 dab_symbols_remod = ifft(fftshift(dab_carriers_remod,2),[],2) .* length(dab_carriers_remod);
 \end{lstlisting}
 
-Since the \gls{ifft} is also a \(\mathbb{C}^N \to \mathbb{C}^N\) transformation, the \texttt{ofdm\_mux} function took an input of \(L\times T_u\) carriers, and output \(L\) symbols, each of length \(T_u\). A graphical summary of this functionality is provided in Figure~\ref{fig:ofdm_mux}.
+Since the \gls{ifft} is a \(\mathbb{C}^N \to \mathbb{C}^N\) transformation, the \texttt{ofdm\_mux} function took an input of \(L\times T_u\) carriers, and output \(L\) symbols, each of length \(T_u\). A graphical summary of this functionality is provided in Figure~\ref{fig:ofdm_mux}.
 
 \begin{figure}[htbp]
   \centering
