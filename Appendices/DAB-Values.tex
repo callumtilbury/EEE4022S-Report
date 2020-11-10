@@ -3,22 +3,54 @@
 % ----------------------------------------------------
 \documentclass[class=report,11pt,crop=false]{standalone}
 \input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
 \begin{document}
 % ----------------------------------------------------
-\chapter{\glsentrytext{dab}}
+\chapter{DAB Parameter Values \label{sect:dab-values_t-mode}}
 % ----------------------------------------------------
 
-\section{Transmission Mode Parameters \label{sect:dab-values_t-mode}}
+The \gls{dab} standard---as specified by \gls{etsi} in~\cite{dabstandard}---defines four transmission modes, with each mode designed for a particular use-case. Table~\ref{tab:dab-parameters} shows the various parameter values for each of the modes. Note that all of the period values are defined in multiples of the sampling period, with \(F_s = \SI{2.048}{\mega\hertz}\), and therefore $T = \frac{1}{F_s} = \frac{1}{\num{2.048e6}}$.
 
-\textcolor{red}{NB: Is this necessary to include?}
-
-\section{Phase Reference Symbol Generation Procedure \label{sect:dab-values_prs}}
-
-\textcolor{red}{NB: Is this necessary to include?}
+{
+\renewcommand{\arraystretch}{1.25}
+\begin{table}[h]
+    \centering
+    \captionsetup{type=table}
+    \begin{tabular}{c|r|r|r|r|}
+    \cline{2-5}
+     & \multicolumn{4}{c|}{\textbf{DAB Transmission Mode}} \\ \hline
+    \multicolumn{1}{|c|}{\textbf{Parameter}} & \multicolumn{1}{c|}{\textbf{I}} & \multicolumn{1}{c|}{\textbf{II}} & \multicolumn{1}{c|}{\textbf{III}} & \multicolumn{1}{c|}{\textbf{IV}} \\ \hline
+    \multicolumn{1}{|c|}{$L$} & 76 & 76 & 153 & 76 \\ \hline
+    \multicolumn{1}{|c|}{$K$} & 1536 & 384 & 192 & 768 \\ \hline
+    \multicolumn{1}{|c|}{$T_f$} & 196 608 $T$ & 49 152 $T$ & 49 152 $T$ & 98 304 $T$ \\ \hline
+    \multicolumn{1}{|c|}{$T_\mathrm{null}$} & 2 656 $T$ & 664 $T$ & 345 $T$ & 1 328 $T$ \\ \hline
+    \multicolumn{1}{|c|}{$T_s$} & 2 552 $T$ & 638 $T$ & 319 $T$ & 1 276 $T$ \\ \hline
+    \multicolumn{1}{|c|}{$T_u$} & 2 048 $T$ & 512 $T$ & 256 $T$ & 1 024 $T$ \\ \hline
+    \multicolumn{1}{|c|}{$\Delta$} & 504 $T$ & 126 $T$ & 63 $T$ & 252 $T$ \\ \hline
+    \end{tabular}
+    \caption{Parameters for the four \gls{dab} transmission modes, as defined by \gls{etsi} in~\cite{dabstandard}}
+    \label{tab:dab-parameters}
+    \end{table}
+}
+with:
+{
+\renewcommand{\arraystretch}{1.25}
+\begin{table}[h]
+    \begin{tabular}{rl}
+    $L\quad\rightarrow$ & Number of \gls{dab} symbols in each \gls{dab} transmission frame\\
+    $K\quad\rightarrow$ &  Number of sub-carriers in an \gls{ofdm} symbol \\
+    $T_f\quad\rightarrow$ & Transmission frame period \\
+    $T_\mathrm{null}\quad\rightarrow$ & \gls{ns} period \\
+    $T_s\quad\rightarrow$ & \gls{dab} symbol period (i.e. including guard interval) \\
+    $T_u\quad\rightarrow$ & Useful symbol period (i.e. excluding guard interval) \\
+    $\Delta\quad\rightarrow$ & Guard interval period
+    \end{tabular}
+\end{table}
+}
 
 % ----------------------------------------------------
 \ifstandalone
-% \bibliography{../Bibliography/References.bib}
+\bibliography{../Bibliography/References.bib}
 % \printnoidxglossary[type=\acronymtype,nonumberlist]
 \fi
 \end{document}
