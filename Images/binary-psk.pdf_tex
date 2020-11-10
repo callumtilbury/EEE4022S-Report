@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1105.08013873bp}%
+    \setlength{\unitlength}{1105.77573352bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,29 +50,29 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.35921545)%
+  \begin{picture}(1,0.35898949)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{binary-psk.pdf}}%
-    \put(0.12037412,0.19483769){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{d40000}{$\phi[0]=0$}\end{tabular}}}}%
+    \put(0.1202984,0.19471513){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{d40000}{$\phi[0]=0$}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{binary-psk.pdf}}%
-    \put(0.11989692,0.28189408){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{d40000}{$0$}\end{tabular}}}}%
-    \put(0.23769195,0.28151631){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{$1$}\end{tabular}}}}%
-    \put(0.35605761,0.28143365){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{$1$}\end{tabular}}}}%
-    \put(0.47272029,0.28150254){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{$1$}\end{tabular}}}}%
-    \put(0.59020645,0.28161275){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{d40000}{$0$}\end{tabular}}}}%
-    \put(0.70766175,0.28155763){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{d40000}{$0$}\end{tabular}}}}%
-    \put(0.23813504,0.19491922){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{0000ff}{$\phi[1]=\pi$}\end{tabular}}}}%
-    \put(0.35568265,0.19477262){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{0000ff}{$\phi[2]=\pi$}\end{tabular}}}}%
-    \put(0.47315764,0.1949297){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{0000ff}{$\phi[3]=\pi$}\end{tabular}}}}%
-    \put(0.59066633,0.19494583){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{d40000}{$\phi[4]=0$}\end{tabular}}}}%
-    \put(0.70815502,0.19475116){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{d40000}{$\phi[5]=0$}\end{tabular}}}}%
-    \put(0.86069713,0.28345436){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Symbol Bitstream\end{tabular}}}}%
-    \put(0.05209415,0.13102528){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$A$\end{tabular}}}}%
-    \put(0.05209415,0.05009342){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$-A$\end{tabular}}}}%
-    \put(0.81220051,0.25023017){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
-    \put(0.81220051,0.07573022){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
-    \put(0.86077296,0.19263829){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Corresponding Phase\end{tabular}}}}%
-    \put(0.86081695,0.09511517){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Modulated Signal, $f(t)$\end{tabular}}}}%
+    \put(0.1198215,0.28171675){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{d40000}{$0$}\end{tabular}}}}%
+    \put(0.23754243,0.28133922){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{$1$}\end{tabular}}}}%
+    \put(0.35583363,0.28125661){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{$1$}\end{tabular}}}}%
+    \put(0.47242292,0.28132546){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{0000ff}{$1$}\end{tabular}}}}%
+    \put(0.58983518,0.2814356){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{d40000}{$0$}\end{tabular}}}}%
+    \put(0.70721659,0.28138052){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textcolor[HTML]{d40000}{$0$}\end{tabular}}}}%
+    \put(0.23798524,0.1947966){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{0000ff}{$\phi[1]=\pi$}\end{tabular}}}}%
+    \put(0.3554589,0.1946501){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{0000ff}{$\phi[2]=\pi$}\end{tabular}}}}%
+    \put(0.47286,0.19480707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{0000ff}{$\phi[3]=\pi$}\end{tabular}}}}%
+    \put(0.59029477,0.1948232){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{d40000}{$\phi[4]=0$}\end{tabular}}}}%
+    \put(0.70770955,0.19462865){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\textcolor[HTML]{d40000}{$\phi[5]=0$}\end{tabular}}}}%
+    \put(0.86015571,0.28327605){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Symbol Bitstream\end{tabular}}}}%
+    \put(0.05206138,0.13094286){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$A$\end{tabular}}}}%
+    \put(0.05206138,0.05006191){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}$-A$\end{tabular}}}}%
+    \put(0.81168959,0.25007276){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
+    \put(0.81168959,0.07568258){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
+    \put(0.86023149,0.19251711){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Corresponding Phase\end{tabular}}}}%
+    \put(0.86027545,0.09505533){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Modulated Signal, $s(t)$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

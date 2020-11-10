@@ -72,7 +72,7 @@
     \put(0.78489921,0.06949352){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
     \put(0.81850116,0.26238215){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Symbol Bitstream\end{tabular}}}}%
     \put(0.81857451,0.18456953){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Corresponding Phase Difference\\$\:\Delta\phi = \phi[n] - \phi[n-1]$\end{tabular}}}}%
-    \put(0.81861709,0.08008755){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Modulated Signal, $f(t)$\end{tabular}}}}%
+    \put(0.81861709,0.08008755){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Modulated Signal, $s(t)$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{differential-binary-psk.pdf}}%
   \end{picture}%
 \endgroup%

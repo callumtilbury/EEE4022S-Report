@@ -98,7 +98,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -112,14 +112,14 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1600"
-     inkscape:window-height="875"
+     inkscape:window-height="855"
      id="namedview1219"
      showgrid="false"
      inkscape:zoom="2.4862227"
-     inkscape:cx="790.20464"
-     inkscape:cy="274.08747"
+     inkscape:cx="1287.8273"
+     inkscape:cy="345.56569"
      inkscape:window-x="1280"
-     inkscape:window-y="25"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg1217"
      showguides="true"
@@ -662,7 +662,7 @@
        id="tspan1138"
        x="1208.3829"
        y="351.34067"
-       style="font-size:16.9593px;text-align:start;text-anchor:start;stroke-width:0.169593">Modulated Signal, $f(t)$</tspan></text>
+       style="font-size:16.9593px;text-align:start;text-anchor:start;stroke-width:0.169593">Modulated Signal, $s(t)$</tspan></text>
   <path
      style="fill:#ffffff;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="m 1434.6445,339.47079 c 0,5.90018 0,11.79935 0,17.69753"
